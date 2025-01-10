@@ -55,9 +55,17 @@ Pour chaque semaine on y trouvera :
 
 ### Ce qui a été réalisé
 
+- Début de la réfléxion sur la construction du plateau ainsi que la conception des tuiles
+- Discussion autour de la mise en place de l'algorithme posant les tuiles aléatoirement
+- Modélisation du diagramme UML pour la classe Plateau 
+
 ### Difficultés rencontrées
+- La mise en place des tuiles sur le plateau de facon aléatoire 
 
 ### Objectifs pour la semaine
+
+- Finalisation de l'algorithme permettant la mise en place des tuiles aléatoirement
+- Modélisation du diagramme UML sur les classes Tuiles et Héritage sur les types (forêt , montagne , paturâge, champ)
 
 ## Semaine 2
 
