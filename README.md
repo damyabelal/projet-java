@@ -59,6 +59,8 @@ Pour chaque semaine on y trouvera :
 - Discussion autour de la mise en place de l'algorithme posant les tuiles aléatoirement
 - Modélisation du diagramme UML pour la classe Plateau 
 
+ ![ l'uml de la classe plateau et tuile](/index/uml_w1.png "UML semaine 1")
+
 ### Difficultés rencontrées
 - La mise en place des tuiles sur le plateau de facon aléatoire 
 
