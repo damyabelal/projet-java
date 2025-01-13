@@ -72,10 +72,19 @@ Pour chaque semaine on y trouvera :
 ## Semaine 2
 
 ### Ce qui a été réalisé
+- Construction d'une énumeration Direction qui représentent les quatres directions possibles pour vérifier l'encadrement des tuiles.
+- Creation d'une énumeration Ressource qui représente les 4 types de ressource
+- Rajout de classes et amélioration du diagramme UML
+- Réalisation du pseudo-code permettant la mise en place de la construction du plateau
+
 
 ### Difficultés rencontrées
+- Débat sur comment modéliser l'héritage des types de tuiles.
 
 ### Objectifs pour la semaine
+
+- Création de la classe abstraite Tuile et la classe Sea et la classe Earth qui héritent de la classe Tuile.
+- Création des classes Forest, Montain, Field, Pasture qui héritent de la classe Earth.
 
 ## Semaine 3
 
