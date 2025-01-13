@@ -77,6 +77,8 @@ Pour chaque semaine on y trouvera :
 - Rajout de classes et amélioration du diagramme UML
 - Réalisation du pseudo-code permettant la mise en place de la construction du plateau
 
+ ![ ajout de enum et amélioration de l'héritage](/index/uml_w2.png "UML semaine 2")
+
 
 ### Difficultés rencontrées
 - Débat sur comment modéliser l'héritage des types de tuiles.
