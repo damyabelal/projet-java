@@ -79,6 +79,8 @@ Pour chaque semaine on y trouvera :
 
  ![ ajout de enum et amélioration de l'héritage](/index/uml_w2.png "UML semaine 2")
 
+  ![pseudo code construction plateau](/index/pseudoCode1.jpeg "pseudo-code semaine 2")
+
 
 ### Difficultés rencontrées
 - Débat sur comment modéliser l'héritage des types de tuiles.
