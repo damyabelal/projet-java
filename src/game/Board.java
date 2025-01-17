@@ -24,12 +24,11 @@ public Tuile[][] getGrid(){
 }
 
 /** return true if the given position is the sea, false otherwise
- * @param int x
- * @param int y
+ * @param Position the position
  * @return true if a earth tile is on the given position
  */
-public boolean isEmpty(int x, int y){
-    if ( self.grid[x][y] instanceof Sea){
+public boolean isEmpty(Position pos){
+    if ( self.grid[pos.getX()][pos.getY()] instanceof Sea){
         return false;
     }
     return true;
@@ -40,10 +39,11 @@ public boolean isEmpty(int x, int y){
  * @param int y
  * @return true if the tile have a neighbor 
 */
-public boolean haveNeighbor(){
+public boolean haveNeighbor(Position pos){
     boolean res= false;
     for (Direction d: Direction.values()){
-        if (!this.isEmpty(x,y)){
+        Position neighbor= pos.next(d);
+        if (!this.isEmpty(neighbor.getX(),neighbor.getY())){
             res= true;
             break;
         }
@@ -54,9 +54,9 @@ public boolean haveNeighbor(){
 /** creates a new board for the game randomly */
 public void createBoard(){}
 
-/** return random coordinate on the board
- * @return Position?  
+/** return a random position on the board
+ * @return a random Position 
  */
-public /** Position en type??? */ randomCoord(){}
+public Position randomCoord(){}
 
 }
