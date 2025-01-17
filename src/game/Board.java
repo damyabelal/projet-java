@@ -14,13 +14,18 @@ public Board(int width , int height){
     this.width=width;
     this.height=height;
     this.grid= new Tuile[width][height];
+    for (int x=0; x<width; x++){
+        for (int y=0; y<height; y++){
+            this.grid[x][y]= new Sea();
+        }
+    }
 }
 
 /** return the board
  * @return the grid of the board
  */
 public Tuile[][] getGrid(){
-    return self.grid;
+    return this.grid;
 }
 
 /** return true if the given position is the sea, false otherwise
@@ -28,7 +33,7 @@ public Tuile[][] getGrid(){
  * @return true if a earth tile is on the given position
  */
 public boolean isEmpty(Position pos){
-    if ( self.grid[pos.getX()][pos.getY()] instanceof Sea){
+    if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
         return false;
     }
     return true;
@@ -43,7 +48,7 @@ public boolean haveNeighbor(Position pos){
     boolean res= false;
     for (Direction d: Direction.values()){
         Position neighbor= pos.next(d);
-        if (!this.isEmpty(neighbor.getX(),neighbor.getY())){
+        if (!isEmpty(neighbor)){
             res= true;
             break;
         }

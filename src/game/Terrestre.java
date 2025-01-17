@@ -1,12 +1,11 @@
 public class Terrestre extends Tuile{
 
+   String ressource ;
    
-    String ressource ;
-/** initialises  a new earth tile of the given type*/
-    public Terrestre(String ressource){
-        super =();
-        this.ressource=ressource;
-
+   /** initialises  a new earth tile of the given type*/
+   public Terrestre(String ressource, String type){
+    super(type);
+    this.ressource=ressource;
     }
 
 /** returns the ressources of this tile
@@ -19,11 +18,7 @@ public class Terrestre extends Tuile{
 /** returs true if tis tile has a building , False otherwise
  * @return true of this tile has a building
 */
- 
-
-    public boolean haveBuild(){
-
-    }
+public boolean haveBuild(){}
 
 
 /** adds a new building to this tile */
