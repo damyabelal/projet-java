@@ -2,10 +2,10 @@ package tuile;
 
 public class Terrestre extends Tuile{
 
-   String ressource ;
+   protected Ressource ressource ;
    
    /** initialises  a new earth tile of the given type*/
-   public Terrestre(String ressource){
+   public Terrestre(Ressource ressource){
     super();
     this.ressource=ressource;
     }
@@ -13,7 +13,7 @@ public class Terrestre extends Tuile{
 /** returns the ressources of this tile
  * @return string which is the type of this tile
  */
-    public String getRessource(){
+    public Ressource getRessource(){
         return this.ressource;
     }
 

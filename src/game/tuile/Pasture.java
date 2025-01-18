@@ -1,11 +1,9 @@
 package tuile;
 
-public class Pasture{
+public class Pasture extends Terrestre{
 /** initialise a new tile of the type  pasture */
 
  public Pasture(){
-    super();
-
-    
+    super(Ressource.SHEEP);
  }
 }

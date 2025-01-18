@@ -1,9 +1,9 @@
 package tuile;
 
-public class Forest{
+public class Forest extends Terrestre{
 /** initialises  a new tile of the type forest */
     public Forest(){
-       super(); 
+       super(Ressource.WOOD); 
     }
 
 }

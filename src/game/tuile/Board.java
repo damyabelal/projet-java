@@ -19,7 +19,7 @@ public Board(int width , int height){
     this.grid= new Tuile[width][height];
     for (int x=0; x<width; x++){
         for (int y=0; y<height; y++){
-            this.grid[x][y]= new Sea(null);
+            this.grid[x][y]= new Sea();
         }
     }
 }
