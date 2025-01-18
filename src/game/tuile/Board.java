@@ -1,5 +1,8 @@
-package game;
-import game.util.Direction;
+package tuile;
+import java.util.*;
+
+import util.Direction;
+import util.Position;
 
 public class Board{
     private int width;
@@ -16,7 +19,7 @@ public Board(int width , int height){
     this.grid= new Tuile[width][height];
     for (int x=0; x<width; x++){
         for (int y=0; y<height; y++){
-            this.grid[x][y]= new Sea();
+            this.grid[x][y]= new Sea(null);
         }
     }
 }
@@ -59,9 +62,8 @@ public boolean haveNeighbor(Position pos){
 /** creates a new board for the game randomly */
 public void createBoard(){}
 
-/** return a random position on the board
- * @return a random Position 
- */
-public Position randomCoord(){}
+
+/** return a random position on the board 
+public Position randomCoord(){} */
 
 }

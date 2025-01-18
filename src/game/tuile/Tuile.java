@@ -1,3 +1,4 @@
+package tuile;
 public class Tuile {
 
     String type;

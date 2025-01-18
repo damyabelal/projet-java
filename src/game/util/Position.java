@@ -1,5 +1,4 @@
-package game;
-import game.util.Direction; 
+package util;
 
 
 public class Position{
