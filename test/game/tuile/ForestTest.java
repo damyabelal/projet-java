@@ -19,7 +19,6 @@ class ForestTest {
     void testConstructor() {
         assertNotNull(forest);
     }
-    
     // verifier que la ressource bois correspond bien a la tuile foret
     @Test
     void testGetRessource() {
