@@ -3,6 +3,8 @@ package test.game.tuile;
 import tuile.Ressource;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
+
 public class RessourceTest {
 
     // on crée un tableau qui contient toute les valeurs de l'enum : dabord on verfie si la liste est non vide avec assertNotNull
