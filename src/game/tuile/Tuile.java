@@ -1,19 +1,9 @@
 package tuile;
-public class Tuile {
 
-    String type;
-/* initialises a new tile of the given type */
-    public Tuile(String type){
-        this.type=type;
+public abstract class Tuile {
+
+    // constructeur sans parametre puisque la classe est abstraite et sans attributs
+    public Tuile() {
 
     }
-
-
-
-
-
-
-
-
-
 }
