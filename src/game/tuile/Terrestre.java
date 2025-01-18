@@ -5,7 +5,7 @@ public class Terrestre extends Tuile{
    String ressource ;
    
    /** initialises  a new earth tile of the given type*/
-   public Terrestre(String ressource, String type){
+   public Terrestre(String ressource){
     super();
     this.ressource=ressource;
     }
