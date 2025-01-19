@@ -33,7 +33,6 @@ public Tuile[][] getGrid(){
 }
 
 
-
 public int getWidth(){
     return this.width;
 }
@@ -67,15 +66,13 @@ public boolean isEmpty(Position pos){
  * @return true if the tile have a neighbor 
 */
 public boolean haveNeighbor(Position pos){
-    boolean res= false;
     for (Direction d: Direction.values()){
         Position neighbor= pos.next(d);
         if (!isEmpty(neighbor)){
-            res= true;
-            break;
+            return true ;
         }
     }
-    return res;
+    return false ;
 }
 
 /** creates a new board for the game randomly */
