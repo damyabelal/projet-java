@@ -42,6 +42,21 @@ public class Position{
         return new Position(this.x + d.getDx(),this.y + d.getDy() );
     }
 
+
+    /**
+    * this method checks if two position objects are equal
+    * @param o the object to compare with the current Position object
+    * @return true if the two positions have the same x and y
+    *         false if they are different or if the object is not a Position
+    */
+    public boolean equals(Object o) {
+        if (!(o instanceof Position)) {
+            return false; 
+        }
+        Position other = (Position) o;
+        return (this.x == other.x) && (this.y == other.y);
+    }
+
     /**
      * return a description of the position
      * @return String, the description 
