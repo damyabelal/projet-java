@@ -62,8 +62,34 @@ public boolean haveNeighbor(Position pos){
 /** creates a new board for the game randomly */
 public void createBoard(){}
 
+/** put the tile to the given coordinate
+ * @param Tuile t
+ * @param Position pos
+ */
+public void put(Tuile t, Position pos){
+    this.grid[pos.getX()][pos.getY()]= t;
+};
+
+/** put the tile randomly next to the given position
+ * @param Tuile t
+ * @param Position pos
+ */
+public void putNeighbor(Tuile t, Position pos){};
 
 /** return a random position on the board 
-public Position randomCoord(){} */
+ * @return a position on the board
+*/
+public Position randomCoord(){
+    Random randomNumbers = new Random();
+    int x= randomNumbers.nextInt(this.width);
+    int y= randomNumbers.nextInt(this.height);
+    Position RandomPos= new Position(x,y);
+    while (!this.isEmpty(RandomPos)){
+        x= randomNumbers.nextInt(this.width);
+        y= randomNumbers.nextInt(this.height);
+        RandomPos= new Position(x,y);
+    }
+    return RandomPos;
+}
 
 }
