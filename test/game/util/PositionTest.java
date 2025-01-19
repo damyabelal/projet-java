@@ -28,14 +28,14 @@ public class PositionTest {
         // tester le deplacement vers le sud S
         next = position.next(Direction.S);
         assertEquals(new Position(0, 2), next);  
-        
+
         // tester le deplacement vers l'ouest O
-        Position nextPosition = position.next(Direction.O);
-        assertEquals(new Position(1, 1), nextPosition);
+        next = position.next(Direction.O);
+        assertEquals(new Position(1, 1), next);
 
         // tester le delacement vers l'est E
-        nextPosition = position.next(Direction.E);
-        assertEquals(new Position(1, 3), nextPosition);
+        next = position.next(Direction.E);
+        assertEquals(new Position(1, 3), next);
     }
 
     @Test
