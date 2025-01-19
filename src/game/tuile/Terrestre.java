@@ -18,11 +18,11 @@ public class Terrestre extends Tuile{
     }
 
 /** returs true if tis tile has a building , False otherwise
- * @return true of this tile has a building
+ * @return true of this tile has a building */
 
 public boolean haveBuild(){}
 
-*/
+
 
 
 /** adds a new building to this tile */
