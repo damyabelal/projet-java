@@ -17,7 +17,7 @@ public class DirectionTest {
 
     @Test
     public void testGetDy() {
-        // pour vfier les déplacements en y pour chaque direction
+        // pour verifier les deplacements en y pour chaque direction
         assertEquals(0, Direction.N.getDy());
         assertEquals(0, Direction.S.getDy());
         assertEquals(-1, Direction.O.getDy());
