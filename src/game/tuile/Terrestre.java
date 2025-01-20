@@ -1,4 +1,4 @@
-package tuile;
+package game.tuile;
 
 public class Terrestre extends Tuile{
 

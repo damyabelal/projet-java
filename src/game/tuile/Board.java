@@ -1,6 +1,8 @@
-package tuile;
+package game.tuile;
 import java.util.*;
-import util.*;
+
+import game.util.*;
+
 
 public class Board{
     private int width;
@@ -43,6 +45,7 @@ public int getHeight(){
 /** places the given tile  on the board on the given position*/
 public void setTile(Tuile tile, Position pos){
     this.grid[pos.getX()][pos.getY()]= tile;
+
 }
 
 
@@ -123,6 +126,25 @@ public void placeInitialeTiles(){
 
     }
 
+
+}
+/*
+ * @return a random tile
+ */
+private Tuile randomTuile (){
+    Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
+    tuileTypes.put(0,new Forest() );
+    tuileTypes.put(1,new Mountain());
+    tuileTypes.put(2,new Pasture()) ;
+    tuileTypes.put(3,new Field());
+    
+    Random choiceRandom = new Random();
+    int random = choiceRandom.nextInt(4);
+
+    return tuileTypes.get(random);
+
+
+    
 
 }
 
