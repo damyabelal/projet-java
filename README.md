@@ -94,9 +94,21 @@ Pour chaque semaine on y trouvera :
 
 ### Ce qui a été réalisé
 
+- Organisation des packages
+- Ecriture de la méthode randomTuile() qui permet de générer une Tuile aléatoirement
+- Ecriture de la méthode placeHalfEarthTiles() qui permet de placer 1/6 (la moitie de 1/3) des tuiles terrestres
+- Résolution des bugs concernant les commandes git (git stash git merge ect..)
+- Discussion sur la répartition des taches pour la semaine pour la finalisation du plateau
+
 ### Difficultés rencontrées
 
+- GIT !!!
+
 ### Objectifs pour la semaine
+- Finalisation de la méthode placeNeighboorEarthTiles() qui permet de placer les 1/6 des tuiles terrestres restants en vérifiant le voisinage (Sera fait par : Mille Stella Rose)
+- Création de la méthode creaeBoard() qui permet la creation du Plateau (Sera fait par : Fatima ALMOHAMED Alsadou)
+- Création de la méthode display() qui permet l'affichage du plateau (Sera fait par : Laeticia Chalah)
+- Création du fichier test BoardTest pour le fichier Board.java (Sera fait par : Belal Damya)
 
 ## Semaine 4
 

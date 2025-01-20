@@ -77,9 +77,10 @@ public boolean haveNeighbor(Position pos){
 /** creates a new board for the game randomly */
 public void createBoard(){
     int tileTotal= this.height * this.height;
-    int nTile= tileTotal/3;
+    int nTile= tileTotal/3; 
     for (int i=0; i < nTile/2; i++){
         Tuile t= //tuile aléatoire;
+        
         Position pos= this.randomCoord();
         if (this.isEmpty(pos)){
             this.put(t, pos);
@@ -100,20 +101,7 @@ public void createBoard(){
         }
 }
 
-
-
-
-/** put the tile randomly next to the given position
- * @param Tuile t
- * @param Position pos
- */
-public void putNeighbor(Tuile t, Position pos){};
-
-
-/** return a random position on the board 
- * @return a position on the board
-*/
-public Position randomCoord(){
+/* 
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
@@ -125,6 +113,7 @@ public Position randomCoord(){
     }
     return RandomPos;
 }
+*/
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
  * of the said board
@@ -136,16 +125,23 @@ public int tileNumber(){
 }
 
 /** places half of the number of tiles randomly on the board */
-public void placeEarthTiles(){
+public void placeHalfEarthTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
 
     for (int i=0 ; i< nbretuilesinitiale ;i++){
         Position randomcoord = this.randomCoord();
         Tuile tuileRandom = randomTuile();
-
-
+        this.setTile(tuileRandom, randomcoord);
     }
+}
+
+
+public void placeNeighboorEarthTiles(){
+    for (int i=0; i<this.getHeight(); i++){
+        for (int )
+    }
+
 
 
 }
