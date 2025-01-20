@@ -1,7 +1,10 @@
 package game.tuile;
 import java.util.*;
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 import game.util.*;
 
 
@@ -17,16 +20,37 @@ public class Board{
  * @param int the width of the board
  * @param int the height of the board
 */
-public Board(int width , int height){
-    this.width=width;
-    this.height=height;
-    this.grid= new Tuile[width][height];
-    for (int x=0; x<width; x++){
-        for (int y=0; y<height; y++){
-            this.grid[x][y]= new Sea();
+        public Board(int width , int height){
+            this.width=width;
+            this.height=height;
+            this.grid= new Tuile[width][height];
+            for (int x=0; x<width; x++){
+                for (int y=0; y<height; y++){
+                    this.grid[x][y]= new Sea();
+                }
+            }
         }
+        
+
+
+/** displays the board with the isles placed randomly  */
+public void display(){
+    int width= this.getWidth();
+    int height= this.getHeight();
+
+    for(int  i=0, i<width ,i++){
+        for (int j=0 , i<height){
+        print( '|' +  this.grid[i][j]+ '|')
+        }
+
     }
 }
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
 /** return the board
  * @return the grid of the board
  */
@@ -34,6 +58,11 @@ public Tuile[][] getGrid(){
     return this.grid;
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 public int getWidth(){
     return this.width;
 }
@@ -102,6 +131,16 @@ public void createBoard(){
 
 
 
+<<<<<<< Updated upstream
+=======
+/** put the tile on the given position+
+ * @param Tuile t
+ * @param Position pos
+ */
+public void put(Tuile t, Position pos){
+    this.grid[pos.getX()][pos.getY()]= t;
+};
+>>>>>>> Stashed changes
 
 /** put the tile randomly next to the given position
  * @param Tuile t
@@ -140,10 +179,31 @@ public void placeEarthTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
 
+<<<<<<< Updated upstream
     for (int i=0 ; i< nbretuilesinitiale ;i++){
         Position randomcoord = this.randomCoord();
         Tuile tuileRandom = randomTuile();
+=======
 
+    for (i=0 , i< nbretuilesinitiale,i++){
+        Position randomcoord=this.randomPosition();
+        //this.setTile(randomcoord, il manque la tuile); 
+        //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
+
+>>>>>>> Stashed changes
+
+
+
+/** return one  random position on the board    */
+public Position randomPosition(){
+    int w= this.getWidth();
+    int h=this.getHeight();
+    int xalea=Math.random()*w;
+    int yalea=Math.random()*h;
+
+    return new Position(xalea,yalea);
+
+}
 
     }
 
@@ -168,6 +228,9 @@ private Tuile randomTuile (){
     
 
 }
+
+
+
 
 
 
