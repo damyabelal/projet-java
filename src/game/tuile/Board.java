@@ -92,16 +92,21 @@ public void put(Tuile t, Position pos){
  */
 public void putNeighbor(Tuile t, Position pos){};
 
-<<<<<<< HEAD
-/** return one  random position on the board    */
-public Position randomPosition(){
-    int w= this.getWidth();
-    int h=this.getHeight();
-    int xalea=Math.random()*w;
-    int yalea=Math.random()*h;
 
-    return new Position(xalea,yalea);
-
+/** return a random position on the board 
+ * @return a position on the board
+*/
+public Position randomCoord(){
+    Random randomNumbers = new Random();
+    int x= randomNumbers.nextInt(this.width);
+    int y= randomNumbers.nextInt(this.height);
+    Position RandomPos= new Position(x,y);
+    while (!this.isEmpty(RandomPos)){
+        x= randomNumbers.nextInt(this.width);
+        y= randomNumbers.nextInt(this.height);
+        RandomPos= new Position(x,y);
+    }
+    return RandomPos;
 }
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
@@ -132,22 +137,5 @@ public void placeInitialeTiles(){
 
 
 
-=======
-/** return a random position on the board 
- * @return a position on the board
-*/
-public Position randomCoord(){
-    Random randomNumbers = new Random();
-    int x= randomNumbers.nextInt(this.width);
-    int y= randomNumbers.nextInt(this.height);
-    Position RandomPos= new Position(x,y);
-    while (!this.isEmpty(RandomPos)){
-        x= randomNumbers.nextInt(this.width);
-        y= randomNumbers.nextInt(this.height);
-        RandomPos= new Position(x,y);
-    }
-    return RandomPos;
-}
->>>>>>> c2b615e6a5c8fdde661c842b158bda0ee612975a
 
 }
