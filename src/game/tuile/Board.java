@@ -27,14 +27,12 @@ public Board(int width , int height){
         }
     }
 }
-
 /** return the board
  * @return the grid of the board
  */
 public Tuile[][] getGrid(){
     return this.grid;
 }
-
 
 public int getWidth(){
     return this.width;
@@ -138,14 +136,15 @@ public int tileNumber(){
 }
 
 /** places half of the number of tiles randomly on the board */
-public void placeInitialeTiles(){
+public void placeEarthTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
 
     for (int i=0 ; i< nbretuilesinitiale ;i++){
         Position randomcoord = this.randomCoord();
-        //this.setTile(randomcoord, il manque la tuile); 
-        //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire 
+        Tuile tuileRandom = randomTuile();
+
+
     }
 
 
@@ -159,7 +158,7 @@ private Tuile randomTuile (){
     tuileTypes.put(1,new Mountain());
     tuileTypes.put(2,new Pasture()) ;
     tuileTypes.put(3,new Field());
-    
+
     Random choiceRandom = new Random();
     int random = choiceRandom.nextInt(4);
 
