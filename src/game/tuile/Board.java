@@ -1,5 +1,11 @@
 package tuile;
 import java.util.*;
+
+import tuile.Field;
+import tuile.Forest;
+import tuile.Mountain;
+import tuile.Pasture;
+import tuile.Tuile;
 import util.*;
 
 public class Board{
@@ -115,6 +121,7 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
+    
     return round(this.getHeight()*this.getWidth()*1/3);
 }
 
@@ -132,6 +139,22 @@ public void placeInitialeTiles(){
 
     }
 
+
+}
+/*
+ * @return a random tile
+ */
+private Tuile randomTuile (){
+    Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
+    tuileTypes.put(0,new Forest() );
+    tuileTypes.put(1,new Mountain());
+    tuileTypes.put(2,new Pasture()) ;
+    tuileTypes.put(3,new Field());
+    
+    Random choiceRandom = new Random();
+    int random = choiceRandom.nextInt(4);
+
+    return tuileTypes.get(random);
 
 }
 
