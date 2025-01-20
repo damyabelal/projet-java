@@ -1,6 +1,11 @@
 package tuile;
 import java.util.*;
-import util.*;
+
+import javax.swing.text.Position;
+
+import src.game.util.*;
+import util.Direction;
+
 
 public class Board{
     private int width;
@@ -55,9 +60,9 @@ public void setTile(Position pos, Terrestre tile){
  */
 public boolean isEmpty(Position pos){
     if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 /** return true of this tile have a neighbor, false otherwise 
@@ -76,7 +81,31 @@ public boolean haveNeighbor(Position pos){
 }
 
 /** creates a new board for the game randomly */
-public void createBoard(){}
+public void createBoard(){
+    int tileTotal= this.height * this.height;
+    int nTile= tileTotal/3;
+    for (int i=0; i < nTile/2; i++){
+        Tuile t= //tuile aléatoire;
+        Position pos= this.randomCoord();
+        if (this.isEmpty(pos)){
+            this.put(t, pos);
+        }
+        else{
+            while (!this.isEmpty(pos)){
+                pos= this.randomCoord();
+            }
+        }
+    }
+    for (int x=0; x<this.width; x++){
+        for (int y=0; y<this.height; y++){
+            Position p= new Position(x,y);
+                if (!this.isEmpty(p) && !this.haveNeighbor(p)){
+                    this.putNeighbor(t);
+                }
+            }
+        }
+}
+
 
 /** put the tile to the given coordinate
  * @param Tuile t
@@ -127,9 +156,6 @@ public void placeInitialeTiles(){
         Position randomcoord=this.randomPosition();
         //this.setTile(randomcoord, il manque la tuile); 
         //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire 
-
-
-
     }
 
 
