@@ -1,4 +1,4 @@
-package util;
+package game.util;
 
 /**
  * enum qui represente les directions possibles pour verifier l'encadrement des tuiles

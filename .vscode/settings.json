@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "src",
+        "test"
+    ],
+    "java.project.referencedLibraries": [
+        "/home/l2/laeticia.chalah.etu/l2s4-projet-2025/junit-console.jar"
+    ]
+}

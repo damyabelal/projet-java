@@ -1,12 +1,8 @@
-package tuile;
+package game.tuile;
 import java.util.*;
 
-import tuile.Field;
-import tuile.Forest;
-import tuile.Mountain;
-import tuile.Pasture;
-import tuile.Tuile;
-import util.*;
+import game.util.*;
+
 
 public class Board{
     private int width;
@@ -48,7 +44,7 @@ public int getHeight(){
 
 /** places the given tile  on the board on the given position*/
 public void setTile(Position pos, Terrestre tile){
-    this.grid[pos.getDx()][pos.getDy]= tile;
+    this.grid[pos.getX()][pos.getY()]= tile;
 
 
 
@@ -121,8 +117,8 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
-    
-    return round(this.getHeight()*this.getWidth()*1/3);
+    int nbTotalTuiles = this.width * this.height ;
+    return nbTotalTuiles/3 ;
 }
 
 /** places half of the number of tiles randomly on the board */
