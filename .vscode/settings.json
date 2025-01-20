@@ -1,0 +1,16 @@
+{
+    "java.project.sourcePaths": [
+<<<<<<< HEAD
+        "src"
+    ],
+    "java.project.referencedLibraries": [
+        "/home/l2/damya.belal.etu/Documents/PROJET/l2s4-projet-2025/junit-console.jar"
+=======
+        "src",
+        "test"
+    ],
+    "java.project.referencedLibraries": [
+        "/home/l2/laeticia.chalah.etu/l2s4-projet-2025/junit-console.jar"
+>>>>>>> 04ced940a2253a7ecc08e4be6f73cdd8b3d53b81
+    ]
+}

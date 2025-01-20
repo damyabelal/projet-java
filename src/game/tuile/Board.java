@@ -1,10 +1,8 @@
-package tuile;
+package game.tuile;
 import java.util.*;
 
-import javax.swing.text.Position;
 
-import src.game.util.*;
-import util.Direction;
+import game.util.*;
 
 
 public class Board{
@@ -46,10 +44,8 @@ public int getHeight(){
 }
 
 /** places the given tile  on the board on the given position*/
-public void setTile(Position pos, Terrestre tile){
-    this.grid[pos.getDx()][pos.getDy]= tile;
-
-
+public void setTile(Tuile tile, Position pos){
+    this.grid[pos.getX()][pos.getY()]= tile;
 
 }
 
@@ -107,13 +103,7 @@ public void createBoard(){
 }
 
 
-/** put the tile to the given coordinate
- * @param Tuile t
- * @param Position pos
- */
-public void put(Tuile t, Position pos){
-    this.grid[pos.getX()][pos.getY()]= t;
-};
+
 
 /** put the tile randomly next to the given position
  * @param Tuile t
@@ -144,7 +134,7 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
-    return round(this.getHeight()*this.getWidth()*1/3);
+    return Math.round(this.getHeight()*this.getWidth()*1/3);
 }
 
 /** places half of the number of tiles randomly on the board */
@@ -152,12 +142,31 @@ public void placeInitialeTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
 
-    for (i=0 , i< nbretuilesinitiale,i++){
-        Position randomcoord=this.randomPosition();
+    for (int i=0 ; i< nbretuilesinitiale ;i++){
+        Position randomcoord = this.randomCoord();
         //this.setTile(randomcoord, il manque la tuile); 
         //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire 
     }
 
+
+}
+/*
+ * @return a random tile
+ */
+private Tuile randomTuile (){
+    Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
+    tuileTypes.put(0,new Forest() );
+    tuileTypes.put(1,new Mountain());
+    tuileTypes.put(2,new Pasture()) ;
+    tuileTypes.put(3,new Field());
+    
+    Random choiceRandom = new Random();
+    int random = choiceRandom.nextInt(4);
+
+    return tuileTypes.get(random);
+
+
+    
 
 }
 
