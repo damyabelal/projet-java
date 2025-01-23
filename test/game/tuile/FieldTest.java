@@ -1,4 +1,4 @@
-package test.game.tuile;
+package game.tuile;
 import tuile.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +11,7 @@ class FieldTest {
 
     @BeforeEach
     void setUp() {
-        field = new Field();
+        field = new Field();    
     }
     
      // verifier quon a bien creer un objet de type champ et qu'il n'est pas null

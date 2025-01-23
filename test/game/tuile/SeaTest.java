@@ -1,4 +1,4 @@
-package test.game.tuile;
+package game.tuile;
 import tuile.Sea;
 
 import org.junit.jupiter.api.BeforeEach;
