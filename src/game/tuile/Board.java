@@ -9,37 +9,25 @@ public class Board{
     private Tuile[][] grid;
 
 /** initialises a new board for the game  with the given height and the given width
- * what this method does exactly is creating a 2 dimension board with the given width and height and 
- * then fills every case of the board with a sea tile. The board at this point is not done yet because we
- * still have to place islands randomly (by replacing a sea tile by an earth tile)
+ * then fills every case of the board with a sea tile. 
  * @param int the width of the board
  * @param int the height of the board
 */
-        public Board(int width , int height){
-            this.width=width;
-            this.height=height;
-            this.grid= new Tuile[width][height];
-            for (int x=0; x<width; x++){
-                for (int y=0; y<height; y++){
-                    this.grid[x][y]= new Sea();
-                }
+public Board(int width , int height){
+    this.width=width;
+    this.height=height;
+    this.grid= new Tuile[width][height];
+    for (int x=0; x<width; x++){
+        for (int y=0; y<height; y++){
+            this.grid[x][y]= new Sea();
             }
         }
+}
         
 
 
 /** displays the board with the isles placed randomly  */
-public void display(){
-    int width= this.getWidth();
-    int height= this.getHeight();
-
-    for(int  i=0, i<width ,i++){
-        for (int j=0 , i<height){
-        print( '|' +  this.grid[i][j]+ '|')
-        }
-
-    }
-}
+public void display(){}
 
 
 
@@ -49,8 +37,6 @@ public void display(){
 public Tuile[][] getGrid(){
     return this.grid;
 }
-
-
 
 public int getWidth(){
     return this.width;
@@ -93,54 +79,25 @@ public boolean haveNeighbor(Position pos){
 }
 
 /** creates a new board for the game randomly */
-public void createBoard(){
-    int tileTotal= this.height * this.height;
-    int nTile= tileTotal/3; 
-    for (int i=0; i < nTile/2; i++){
-        Tuile t= //tuile aléatoire;
-        
-        Position pos= this.randomCoord();
-        if (this.isEmpty(pos)){
-            this.put(t, pos);
-        }
-        else{
-            while (!this.isEmpty(pos)){
-                pos= this.randomCoord();
-            }
-        }
-    }
-    for (int x=0; x<this.width; x++){
-        for (int y=0; y<this.height; y++){
-            Position p= new Position(x,y);
-                if (!this.isEmpty(p) && !this.haveNeighbor(p)){
-                    this.putNeighbor(t);
-                }
-            }
-        }
-}
-
-<<<<<<< HEAD
+public void createBoard(){}
 
 
-<<<<<<< Updated upstream
-=======
+
 /** put the tile on the given position+
  * @param Tuile t
  * @param Position pos
  */
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
-};
->>>>>>> Stashed changes
+}
 
 
-/** return a random position on the board 
+
+/* return a random position on the board 
  * @return a position on the board
-*/
+ * 
+ */
 public Position randomCoord(){
-=======
-/* 
->>>>>>> 5f2d6d2d80bdcb86d23079c90f61757819589e7d
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
@@ -152,7 +109,6 @@ public Position randomCoord(){
     }
     return RandomPos;
 }
-*/
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
  * of the said board
@@ -174,25 +130,17 @@ public void placeHalfEarthTiles(){
     }
 }
 
-
-
-
 /** return one  random position on the board    */
 public Position randomPosition(){
     int w= this.getWidth();
     int h=this.getHeight();
-    int xalea=Math.random()*w;
-    int yalea=Math.random()*h;
+    int xalea=(int) (Math.random()*w);
+    int yalea=(int) (Math.random()*h);
 
     return new Position(xalea,yalea);
 
 }
 
-=======
-        this.setTile(tuileRandom, randomcoord);
->>>>>>> 5f2d6d2d80bdcb86d23079c90f61757819589e7d
-    }
-}
 
 /** return the list of all the empty neighbor around a position
  * @param Position
@@ -224,8 +172,6 @@ public void placeNeighboorEarthTiles(){
         }
     }
 
-
-
 }
 /*
  * @return a random tile
@@ -241,9 +187,7 @@ private Tuile randomTuile (){
     int random = choiceRandom.nextInt(4);
 
     return tuileTypes.get(random);
-
-
-    
+}
 
 }
 
@@ -253,4 +197,3 @@ private Tuile randomTuile (){
 
 
 
-}
