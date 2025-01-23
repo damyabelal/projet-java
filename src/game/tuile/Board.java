@@ -1,10 +1,5 @@
 package game.tuile;
 import java.util.*;
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 import game.util.*;
 
 
@@ -45,12 +40,9 @@ public void display(){
 
     }
 }
-<<<<<<< Updated upstream
-=======
 
 
 
->>>>>>> Stashed changes
 /** return the board
  * @return the grid of the board
  */
@@ -58,11 +50,8 @@ public Tuile[][] getGrid(){
     return this.grid;
 }
 
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
 public int getWidth(){
     return this.width;
 }
@@ -144,12 +133,6 @@ public void put(Tuile t, Position pos){
 };
 >>>>>>> Stashed changes
 
-/** put the tile randomly next to the given position
- * @param Tuile t
- * @param Position pos
- */
-public void putNeighbor(Tuile t, Position pos){};
-
 
 /** return a random position on the board 
  * @return a position on the board
@@ -184,20 +167,13 @@ public int tileNumber(){
 public void placeHalfEarthTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
-
-<<<<<<< Updated upstream
     for (int i=0 ; i< nbretuilesinitiale ;i++){
         Position randomcoord = this.randomCoord();
         Tuile tuileRandom = randomTuile();
-<<<<<<< HEAD
-=======
+        
+    }
+}
 
-    for (i=0 , i< nbretuilesinitiale,i++){
-        Position randomcoord=this.randomPosition();
-        //this.setTile(randomcoord, il manque la tuile); 
-        //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
-
->>>>>>> Stashed changes
 
 
 
@@ -218,10 +194,34 @@ public Position randomPosition(){
     }
 }
 
+/** return the list of all the empty neighbor around a position
+ * @param Position
+ * @return ArrayList<Position> the list of the empty neighbor
+ */
+public ArrayList<Position> haveEmptyNeighboorList(Position pos){
+    ArrayList<Position> res= new ArrayList<>();
+    for (Direction d: Direction.values()){
+        Position neighbor= pos.next(d);
+        if (isEmpty(neighbor)){
+            res.add(neighbor) ;
+        }
+    }
+    return res ;
+}
 
+/** place a random tile next to a tile who doesn't have a neighbor
+ */
 public void placeNeighboorEarthTiles(){
-    for (int i=0; i<this.getHeight(); i++){
-        for (int )
+    for (int x=0; x<this.getWidth(); x++){
+        for (int y=0; y<this.getHeight(); y++){
+            Position currentPos= new Position(x, y);
+            if (!isEmpty(currentPos)){
+                ArrayList<Position> Npos= this.haveEmptyNeighboorList(currentPos);
+                Random choiceRandom = new Random();
+                int random= choiceRandom.nextInt(Npos.size());
+                put( this.randomTuile(), Npos.get(random));
+            }
+        }
     }
 
 
