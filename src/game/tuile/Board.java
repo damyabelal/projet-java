@@ -215,7 +215,7 @@ public void placeNeighboorEarthTiles(){
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
             Position currentPos= new Position(x, y);
-            if (!isEmpty(currentPos)){
+            if (!isEmpty(currentPos) && !haveNeighbor(currentPos)){
                 ArrayList<Position> Npos= this.haveEmptyNeighboorList(currentPos);
                 Random choiceRandom = new Random();
                 int random= choiceRandom.nextInt(Npos.size());
