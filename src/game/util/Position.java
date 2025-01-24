@@ -7,6 +7,8 @@ public class Position{
     //longitude
     private int y;
 
+    
+
     /**
      * build the position
      * @param int x

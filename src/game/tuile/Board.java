@@ -1,10 +1,5 @@
 package game.tuile;
 import java.util.*;
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
 import game.util.*;
 
 
@@ -43,14 +38,13 @@ public void display(){
         print( '|' +  this.grid[i][j]+ '|')
         }
 
+        
+
     }
 }
-<<<<<<< Updated upstream
-=======
 
 
 
->>>>>>> Stashed changes
 /** return the board
  * @return the grid of the board
  */
@@ -58,11 +52,8 @@ public Tuile[][] getGrid(){
     return this.grid;
 }
 
-<<<<<<< Updated upstream
-=======
 
 
->>>>>>> Stashed changes
 public int getWidth(){
     return this.width;
 }
@@ -71,21 +62,22 @@ public int getHeight(){
 }
 
 /** places the given tile  on the board on the given position*/
-public void setTile(Tuile tile, Position pos){
-    this.grid[pos.getX()][pos.getY()]= tile;
+public void setTile(Position pos, Terrestre tile){
+    this.grid[pos.getDx()][pos.getDy]= tile;
+
+
 
 }
 
 
 /** return true if the given position is the sea, false otherwise
  * @param Position the position
- * @return true if a earth tile is on the given position
- */
+gi */
 public boolean isEmpty(Position pos){
     if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 /** return true of this tile have a neighbor, false otherwise 
@@ -104,37 +96,8 @@ public boolean haveNeighbor(Position pos){
 }
 
 /** creates a new board for the game randomly */
-public void createBoard(){
-    int tileTotal= this.height * this.height;
-    int nTile= tileTotal/3; 
-    for (int i=0; i < nTile/2; i++){
-        Tuile t= //tuile aléatoire;
-        
-        Position pos= this.randomCoord();
-        if (this.isEmpty(pos)){
-            this.put(t, pos);
-        }
-        else{
-            while (!this.isEmpty(pos)){
-                pos= this.randomCoord();
-            }
-        }
-    }
-    for (int x=0; x<this.width; x++){
-        for (int y=0; y<this.height; y++){
-            Position p= new Position(x,y);
-                if (!this.isEmpty(p) && !this.haveNeighbor(p)){
-                    this.putNeighbor(t);
-                }
-            }
-        }
-}
+public void createBoard(){}
 
-<<<<<<< HEAD
-
-
-<<<<<<< Updated upstream
-=======
 /** put the tile on the given position+
  * @param Tuile t
  * @param Position pos
@@ -142,7 +105,6 @@ public void createBoard(){
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
 };
->>>>>>> Stashed changes
 
 /** put the tile randomly next to the given position
  * @param Tuile t
@@ -155,9 +117,6 @@ public void putNeighbor(Tuile t, Position pos){};
  * @return a position on the board
 */
 public Position randomCoord(){
-=======
-/* 
->>>>>>> 5f2d6d2d80bdcb86d23079c90f61757819589e7d
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
@@ -169,7 +128,6 @@ public Position randomCoord(){
     }
     return RandomPos;
 }
-*/
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
  * of the said board
@@ -177,27 +135,20 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
-    return Math.round(this.getHeight()*this.getWidth()*1/3);
+    return round(this.getHeight()*this.getWidth()*1/3);
 }
 
 /** places half of the number of tiles randomly on the board */
-public void placeHalfEarthTiles(){
+public void placeInitialeTiles(){
     int nbretuile= this.tileNumber();
     int nbretuilesinitiale=nbretuile/2;
 
-<<<<<<< Updated upstream
-    for (int i=0 ; i< nbretuilesinitiale ;i++){
-        Position randomcoord = this.randomCoord();
-        Tuile tuileRandom = randomTuile();
-<<<<<<< HEAD
-=======
 
     for (i=0 , i< nbretuilesinitiale,i++){
         Position randomcoord=this.randomPosition();
         //this.setTile(randomcoord, il manque la tuile); 
         //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
 
->>>>>>> Stashed changes
 
 
 
@@ -212,38 +163,8 @@ public Position randomPosition(){
 
 }
 
-=======
-        this.setTile(tuileRandom, randomcoord);
->>>>>>> 5f2d6d2d80bdcb86d23079c90f61757819589e7d
-    }
-}
-
-
-public void placeNeighboorEarthTiles(){
-    for (int i=0; i<this.getHeight(); i++){
-        for (int )
     }
 
-
-
-}
-/*
- * @return a random tile
- */
-private Tuile randomTuile (){
-    Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
-    tuileTypes.put(0,new Forest() );
-    tuileTypes.put(1,new Mountain());
-    tuileTypes.put(2,new Pasture()) ;
-    tuileTypes.put(3,new Field());
-
-    Random choiceRandom = new Random();
-    int random = choiceRandom.nextInt(4);
-
-    return tuileTypes.get(random);
-
-
-    
 
 }
 
