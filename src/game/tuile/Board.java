@@ -34,7 +34,7 @@ public void display(){
 
     for(int  i=0; i<width ;i++){
         for (int j=0 ; i<height){
-        print( '|' +  this.grid[i][j]+ '|');
+        //print( '|' +  this.grid[i][j]+ '|');
         }
 
         
@@ -52,10 +52,12 @@ public Tuile[][] getGrid(){
     return this.grid;
 }
 
-
-
+public int getWidth(){
     return this.width;
+
 }
+
+
 public int getHeight(){
     return this.height;
 }
@@ -146,7 +148,7 @@ public void placeInitialeTiles(){
     int nbretuilesinitiale=nbretuile/2;
 
 
-    for (i=0 , i< nbretuilesinitiale,i++){
+    for (i=0 ;i< nbretuilesinitiale;i++){
         Position randomcoord=this.randomPosition();
         //this.setTile(randomcoord, il manque la tuile); 
         //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
@@ -201,7 +203,7 @@ public void placeNeighboorEarthTiles(){
 /*
  * @return a random tile
  */
-private Tuile randomTuile (){
+private Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
     tuileTypes.put(0,new Forest() );
     tuileTypes.put(1,new Mountain());
@@ -215,6 +217,7 @@ private Tuile randomTuile (){
 }
 
 
+}
 }
 
 
