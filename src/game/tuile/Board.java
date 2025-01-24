@@ -58,13 +58,6 @@ public int getHeight(){
     return this.height;
 }
 
-/** places the given tile  on the board on the given position
-public void setTile(Position pos, Terrestre tile){
-    this.grid[pos.getDx()][pos.getDy]= tile;
-
-*/
-
-
 
 /** return true if the given position is the sea, false otherwise
  * @param Position the position
