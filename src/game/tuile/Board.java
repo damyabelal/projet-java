@@ -29,20 +29,16 @@ public Board(int width , int height){
 /** displays the board with the isles placed randomly  */
 
 public void display(){
-    int width= this.getWidth();
-    int height= this.getHeight();
+    int w = this.getWidth();
+    int h = this.getHeight();
 
-    for(int  i=0; i<width ;i++){
-        for (int j=0 ; i<height){
-        //print( '|' +  this.grid[i][j]+ '|');
+    for(int  i=0; i<w ;i++){
+        for (int j=0 ; j<h; j++){
+        // print( '|' +  this.grid[i][j]+ '|');
         }
-
-        
 
     }
 }
-
-
 
 
 /** return the board
@@ -62,13 +58,12 @@ public int getHeight(){
     return this.height;
 }
 
-/** places the given tile  on the board on the given position*/
+/** places the given tile  on the board on the given position
 public void setTile(Position pos, Terrestre tile){
     this.grid[pos.getDx()][pos.getDy]= tile;
 
+*/
 
-
-}
 
 
 /** return true if the given position is the sea, false otherwise
@@ -107,7 +102,7 @@ public void createBoard(){}
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
 
-};
+}
 
 /** put the tile randomly next to the given position
  * @param Tuile t
@@ -139,21 +134,19 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
-    return round(this.getHeight()*this.getWidth()*1/3);
+    return Math.round(this.getHeight()*this.getWidth()*1/3);
 }
 
-/** places half of the number of tiles randomly on the board */
+/** places half of the 1/6 number of tiles randomly on the board */
 public void placeInitialeTiles(){
-    int nbretuile= this.tileNumber();
-    int nbretuilesinitiale=nbretuile/2;
-
-
-    for (i=0 ;i< nbretuilesinitiale;i++){
-        Position randomcoord=this.randomPosition();
-        //this.setTile(randomcoord, il manque la tuile); 
-        //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
-
-
+    int nbTuile= this.tileNumber();
+    int nbTuileInit = nbTuile/2;
+    for (int i=0 ;i< nbTuileInit;i++){
+        Position pos = this.randomPosition();
+        Tuile tuile = this.randomTuile();
+        put(tuile, pos);
+    }
+}
 
 
 
@@ -167,7 +160,7 @@ public Position randomPosition(){
     return new Position(xalea,yalea);
 
 }
-    }
+    
 
 /** return the list of all the empty neighbor around a position
  * @param Position
@@ -218,7 +211,7 @@ private Tuile randomTuile(){
 
 
 }
-}
+
 
 
 
