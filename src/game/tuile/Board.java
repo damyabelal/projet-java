@@ -101,7 +101,6 @@ public void put(Tuile t, Position pos){
 /* return a random position on the board 
  * @return a position on the board
  * 
- */
 public Position randomCoord(){
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
@@ -114,6 +113,7 @@ public Position randomCoord(){
     }
     return RandomPos;
 }
+    */
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
  * of the said board
