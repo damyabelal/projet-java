@@ -9,39 +9,39 @@ public class Board{
     private Tuile[][] grid;
 
 /** initialises a new board for the game  with the given height and the given width
- * what this method does exactly is creating a 2 dimension board with the given width and height and 
- * then fills every case of the board with a sea tile. The board at this point is not done yet because we
- * still have to place islands randomly (by replacing a sea tile by an earth tile)
+ * then fills every case of the board with a sea tile. 
  * @param int the width of the board
  * @param int the height of the board
 */
-        public Board(int width , int height){
-            this.width=width;
-            this.height=height;
-            this.grid= new Tuile[width][height];
-            for (int x=0; x<width; x++){
-                for (int y=0; y<height; y++){
-                    this.grid[x][y]= new Sea();
-                }
+public Board(int width , int height){
+    this.width=width;
+    this.height=height;
+    this.grid= new Tuile[width][height];
+    for (int x=0; x<width; x++){
+        for (int y=0; y<height; y++){
+            this.grid[x][y]= new Sea();
             }
         }
+}
         
 
 
 /** displays the board with the isles placed randomly  */
+
 public void display(){
     int width= this.getWidth();
     int height= this.getHeight();
 
-    for(int  i=0, i<width ,i++){
-        for (int j=0 , i<height){
-        print( '|' +  this.grid[i][j]+ '|')
+    for(int  i=0; i<width ;i++){
+        for (int j=0 ; i<height){
+        print( '|' +  this.grid[i][j]+ '|');
         }
 
         
 
     }
 }
+
 
 
 
@@ -54,7 +54,6 @@ public Tuile[][] getGrid(){
 
 
 
-public int getWidth(){
     return this.width;
 }
 public int getHeight(){
@@ -98,12 +97,14 @@ public boolean haveNeighbor(Position pos){
 /** creates a new board for the game randomly */
 public void createBoard(){}
 
+
 /** put the tile on the given position+
  * @param Tuile t
  * @param Position pos
  */
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
+
 };
 
 /** put the tile randomly next to the given position
@@ -113,9 +114,10 @@ public void put(Tuile t, Position pos){
 public void putNeighbor(Tuile t, Position pos){};
 
 
-/** return a random position on the board 
+/* return a random position on the board 
  * @return a position on the board
-*/
+ * 
+ */
 public Position randomCoord(){
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
@@ -152,19 +154,66 @@ public void placeInitialeTiles(){
 
 
 
+
 /** return one  random position on the board    */
 public Position randomPosition(){
     int w= this.getWidth();
     int h=this.getHeight();
-    int xalea=Math.random()*w;
-    int yalea=Math.random()*h;
+    int xalea=(int) (Math.random()*w);
+    int yalea=(int) (Math.random()*h);
 
     return new Position(xalea,yalea);
 
 }
-
     }
 
+/** return the list of all the empty neighbor around a position
+ * @param Position
+ * @return ArrayList<Position> the list of the empty neighbor
+ */
+public ArrayList<Position> haveEmptyNeighboorList(Position pos){
+    ArrayList<Position> res= new ArrayList<>();
+    for (Direction d: Direction.values()){
+        Position neighbor= pos.next(d);
+        if (isEmpty(neighbor)){
+            res.add(neighbor) ;
+        }
+    }
+    return res ;
+}
+
+/** place a random tile next to a tile who doesn't have a neighbor
+ */
+public void placeNeighboorEarthTiles(){
+    for (int x=0; x<this.getWidth(); x++){
+        for (int y=0; y<this.getHeight(); y++){
+            Position currentPos= new Position(x, y);
+            if (!isEmpty(currentPos) && !haveNeighbor(currentPos)){
+                ArrayList<Position> Npos= this.haveEmptyNeighboorList(currentPos);
+                Random choiceRandom = new Random();
+                int random= choiceRandom.nextInt(Npos.size());
+                put( this.randomTuile(), Npos.get(random));
+            }
+        }
+    }
+
+}
+/*
+ * @return a random tile
+ */
+private Tuile randomTuile (){
+    Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
+    tuileTypes.put(0,new Forest() );
+    tuileTypes.put(1,new Mountain());
+    tuileTypes.put(2,new Pasture()) ;
+    tuileTypes.put(3,new Field());
+
+    Random choiceRandom = new Random();
+    int random = choiceRandom.nextInt(4);
+
+    return tuileTypes.get(random);
+}
+
 
 }
 
@@ -174,4 +223,3 @@ public Position randomPosition(){
 
 
 
-}

@@ -1,4 +1,4 @@
-package test.game.util;
+package game.util;
 import util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
