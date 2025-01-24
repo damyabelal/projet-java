@@ -64,9 +64,9 @@ public int getHeight(){
 gi */
 public boolean isEmpty(Position pos){
     if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 /** return true of this tile have a neighbor, false otherwise 
@@ -97,12 +97,6 @@ public void put(Tuile t, Position pos){
 
 }
 
-/** put the tile randomly next to the given position
- * @param Tuile t
- * @param Position pos
- */
-public void putNeighbor(Tuile t, Position pos){};
-
 
 /* return a random position on the board 
  * @return a position on the board
@@ -127,7 +121,7 @@ public Position randomCoord(){
  * 
  */
 public int tileNumber(){
-    return Math.round(this.getHeight()*this.getWidth()*1/3);
+    return (int)(this.getHeight() * this.getWidth() * 1.0 / 3);
 }
 
 /** places half of the 1/6 number of tiles randomly on the board */
