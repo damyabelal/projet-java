@@ -26,19 +26,24 @@ public Board(int width , int height){
         
 
 
-/** displays the board with the isles placed randomly  */
+/**
+ * Displays the board with symbols enclosed in brackets [ ].
+ */
 
 public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
-
-    for(int  i=0; i<w ;i++){
-        for (int j=0 ; j<h; j++){
-        // print( '|' +  this.grid[i][j]+ '|');
+    System.out.println("=== Plateau du Jeu ===");
+    for(int  y=0; y < h ; y++){
+        for (int x=0 ; x < w; x++){
+            String symbole = "[" + grid[x][y].getSymbol() + "]";
+            System.out.print(symbole + " ");
         }
-
+        System.out.println();    
     }
+    System.out.println("=======================");
 }
+
 
 
 /** return the board
