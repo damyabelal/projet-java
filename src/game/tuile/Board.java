@@ -79,13 +79,18 @@ public boolean isEmpty(Position pos){
  * @return true if the tile have a neighbor 
 */
 public boolean haveNeighbor(Position pos){
-    for (Direction d: Direction.values()){
-        Position neighbor= pos.next(d);
-        if (!isEmpty(neighbor)){
-            return true ;
+    for (Direction d : Direction.values()){
+        Position neighbor = pos.next(d);
+
+        // on verifie que le voisin ne depasse pas les limites du plateau
+        if (neighbor.getX() >= 0 && neighbor.getX() < this.width &&
+            neighbor.getY() >= 0 && neighbor.getY() < this.height) {
+            if (!isEmpty(neighbor)){
+                return true;
+            }
         }
     }
-    return false ;
+    return false;
 }
 
 
@@ -104,7 +109,7 @@ public void put(Tuile t, Position pos){
 /* return a random position on the board 
  * @return a position on the board
  * */
-public Position randomCoord(){
+public Position randomPosition(){
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
@@ -139,17 +144,6 @@ public void placeInitialeTiles(){
 }
 
 
-
-/** return one  random position on the board    */
-public Position randomPosition(){
-    int w= this.getWidth();
-    int h=this.getHeight();
-    int xalea=(int) (Math.random()*w);
-    int yalea=(int) (Math.random()*h);
-
-    return new Position(xalea,yalea);
-
-}
     
 
 /** return the list of all the empty neighbor around a position
@@ -242,10 +236,10 @@ public void createBoard(){
     int tuilerestante = this.placeNeighboorEarthTiles();
     if (tuilerestante > 0) {
         for (int i = 0; i < tuilerestante; i++) {
-            Position p = this.randomCoord();
+            Position p = this.randomPosition();
             Tuile t = this.randomTuile();
             while (!isEmpty(p)) {
-            p = this.randomCoord();
+            p = this.randomPosition();
             }
             this.put(t, p);
         }
