@@ -65,8 +65,7 @@ public int getHeight(){
 
 
 /** return true if the given position is the sea, false otherwise
- * @param Position the position
-gi */
+ * @param Position the position */
 public boolean isEmpty(Position pos){
     if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
         return true;
@@ -105,7 +104,7 @@ public void put(Tuile t, Position pos){
 
 /* return a random position on the board 
  * @return a position on the board
- * 
+ * */
 public Position randomCoord(){
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
@@ -118,7 +117,7 @@ public Position randomCoord(){
     }
     return RandomPos;
 }
-    */
+
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
  * of the said board
@@ -170,19 +169,24 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
 }
 
 /** place a random tile next to a tile who doesn't have a neighbor
+ * for the ENTIRETY  of the board it also returns the number of remaining tiles to place
+ * @return nbre of remaining tiles to place
  */
-public void placeNeighboorEarthTiles(){
+public int  placeNeighboorEarthTiles(){
+    int nbredetuilerestante= this.tileNumber();
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
             Position currentPos= new Position(x, y);
-            if (!isEmpty(currentPos) && !haveNeighbor(currentPos)){
+            if (!this.isEmpty(currentPos) && !this.haveNeighbor(currentPos)){
                 ArrayList<Position> Npos= this.haveEmptyNeighboorList(currentPos);
                 Random choiceRandom = new Random();
                 int random= choiceRandom.nextInt(Npos.size());
-                put( this.randomTuile(), Npos.get(random));
+                this.put( this.randomTuile(), Npos.get(random));
+                nbredetuilerestante-=1;
             }
         }
     }
+    return nbredetuilerestante;
 
 }
 /*
@@ -199,6 +203,37 @@ private Tuile randomTuile(){
     int random = choiceRandom.nextInt(4);
 
     return tuileTypes.get(random);
+}
+
+
+public void createBoard(int width,int height){
+    Board b = new Board(width,height);
+    b.placeInitialeTiles();
+    int nbretuile= this.tileNumber()/2;
+    int tuilerestante=b.placeNeighboorEarthTiles();
+    // j'ai  mal compris la methode placeNeighborEarthTiles.je pensais qu'elle 
+    //placer une tuile de maniere aleatoire a cote d'une tuile qu'on lui passe en paramètres
+
+    // for (int i=0;i<height && nbretuile!=0 ;i++){
+    //     for(int j=0; j<width && nbretuile!=0 ;j++){
+    //         Position p =new Position(i,j);
+    //         if(!this.isEmpty(p)){
+    //             if(!this.haveNeighbor(p)){
+    //                 this.grid[i][j].placeNeighboorEarthTiles();
+    //             }
+    //         }
+    //     }
+    // }
+
+    if (tuilerestante!=0){
+        for (int i=0 ;i<nbretuile;i++ ){
+        Position p= this.randomCoord();
+        Tuile t=this.randomTuile();
+        this.put(t,p);
+    }
+    }
+
+
 }
 
 
