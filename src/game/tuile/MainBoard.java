@@ -1,6 +1,4 @@
 package game.tuile;
-import java.util.*;
-import game.util.*;
 import java.lang.Integer;
 
 public class MainBoard{
