@@ -32,10 +32,17 @@ public Tuile[][] getGrid(){
     return this.grid;
 }
 
+/** returns the width of the board chosen by the user
+ * @return the width  of the board
+ */
+
 public int getWidth(){
     return this.width;
 }
 
+/** return the height of the board chosen by the user
+ * @return height of the board
+ */
 public int getHeight(){
     return this.height;
 }
@@ -192,8 +199,8 @@ public int  placeNeighboorEarthTiles(){
     return nbredetuilerestante;
 
 }
-/*
- * @return a random tile
+/* return a random tile of a random type
+ *@return a random tile 
  */
 private Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
