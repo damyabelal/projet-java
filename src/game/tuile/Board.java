@@ -2,11 +2,11 @@ package game.tuile;
 import java.util.*;
 import game.util.*;
 
-
 public class Board{
     private int width;
     private int height;
     private Tuile[][] grid;
+
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile. 
@@ -23,7 +23,22 @@ public Board(int width , int height){
             }
         }
 }
-        
+
+
+/** return the board
+ * @return the grid of the board
+ */
+public Tuile[][] getGrid(){
+    return this.grid;
+}
+
+public int getWidth(){
+    return this.width;
+}
+
+public int getHeight(){
+    return this.height;
+}
 
 
 /**
@@ -44,31 +59,30 @@ public void display(){
     System.out.println("=======================");
 }
 
+/** creates a new board for the game randomly */
 
-
-/** return the board
- * @return the grid of the board
- */
-public Tuile[][] getGrid(){
-    return this.grid;
+public void createBoard(){
+    this.placeInitialeTiles();
+    int tuilerestante = this.placeNeighboorEarthTiles();
+    if (tuilerestante > 0) {
+        for (int i = 0; i < tuilerestante; i++) {
+            Position p = this.randomPosition();
+            Tuile t = this.randomTuile();
+            while (!isEmpty(p)) {
+            p = this.randomPosition();
+            }
+            this.put(t, p);
+        }
+    }
 }
-
-public int getWidth(){
-    return this.width;
-
-}
-
-
-public int getHeight(){
-    return this.height;
-}
-
 
 /** return true if the given position is the sea, false otherwise
  * @param Position the position */
-public boolean isEmpty(Position pos){
-    if ( this.grid[pos.getX()][pos.getY()] instanceof Sea){
-        return true;
+public boolean isEmpty(Position pos) {
+    if (pos.getX() >= 0 && pos.getX() < this.width && pos.getY() >= 0 && pos.getY() < this.height) {
+        if (this.grid[pos.getX()][pos.getY()] instanceof Sea) {
+            return true;
+        }
     }
     return false;
 }
@@ -92,8 +106,6 @@ public boolean haveNeighbor(Position pos){
     }
     return false;
 }
-
-
 
 
 /** put the tile on the given position+
@@ -143,8 +155,6 @@ public void placeInitialeTiles(){
     }
 }
 
-
-    
 
 /** return the list of all the empty neighbor around a position
  * @param Position
@@ -198,52 +208,5 @@ private Tuile randomTuile(){
     return tuileTypes.get(random);
 }
 
-
-/** creates a new board for the game randomly */
-/* public void createBoard(){ */
-    /* 
-    int width = this.getWidth();
-    int height =this.getHeight();
-    this.placeInitialeTiles();
-    int nbretuile= this.tileNumber()/2;
-    int tuilerestante=this.placeNeighboorEarthTiles();
-    // j'ai  mal compris la methode placeNeighborEarthTiles.je pensais qu'elle 
-    //placer une tuile de maniere aleatoire a cote d'une tuile qu'on lui passe en paramètres
-
-    // for (int i=0;i<height && nbretuile!=0 ;i++){
-    //     for(int j=0; j<width && nbretuile!=0 ;j++){
-    //         Position p =new Position(i,j);
-    //         if(!this.isEmpty(p)){
-    //             if(!this.haveNeighbor(p)){
-    //                 this.grid[i][j].placeNeighboorEarthTiles();
-    //             }
-    //         }
-    //     }
-    // }
-
-    if (tuilerestante!=0){
-        for (int i=0 ;i<nbretuile;i++ ){
-        Position p= this.randomCoord();
-        Tuile t=this.randomTuile();
-        this.put(t,p);
-    }
-    }
-}
-    */
-
-public void createBoard(){
-    this.placeInitialeTiles();
-    int tuilerestante = this.placeNeighboorEarthTiles();
-    if (tuilerestante > 0) {
-        for (int i = 0; i < tuilerestante; i++) {
-            Position p = this.randomPosition();
-            Tuile t = this.randomTuile();
-            while (!isEmpty(p)) {
-            p = this.randomPosition();
-            }
-            this.put(t, p);
-        }
-    }
-}
 
 }
