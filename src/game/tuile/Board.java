@@ -88,8 +88,7 @@ public boolean haveNeighbor(Position pos){
     return false ;
 }
 
-/** creates a new board for the game randomly */
-public void createBoard(){}
+
 
 
 /** put the tile on the given position+
@@ -206,11 +205,14 @@ private Tuile randomTuile(){
 }
 
 
-public void createBoard(int width,int height){
-    Board b = new Board(width,height);
-    b.placeInitialeTiles();
+/** creates a new board for the game randomly */
+public void createBoard(){
+   
+    int width=this.getWidth();
+    int height=this.getHeight();
+    this.placeInitialeTiles();
     int nbretuile= this.tileNumber()/2;
-    int tuilerestante=b.placeNeighboorEarthTiles();
+    int tuilerestante=this.placeNeighboorEarthTiles();
     // j'ai  mal compris la methode placeNeighborEarthTiles.je pensais qu'elle 
     //placer une tuile de maniere aleatoire a cote d'une tuile qu'on lui passe en paramètres
 
@@ -238,5 +240,3 @@ public void createBoard(int width,int height){
 
 
 }
-
-
