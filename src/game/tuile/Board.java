@@ -206,8 +206,8 @@ private Tuile randomTuile(){
 
 
 /** creates a new board for the game randomly */
-public void createBoard(){
-   
+/* public void createBoard(){ */
+    /* 
     int width = this.getWidth();
     int height =this.getHeight();
     this.placeInitialeTiles();
@@ -234,9 +234,22 @@ public void createBoard(){
         this.put(t,p);
     }
     }
-
-
 }
+    */
 
+public void createBoard(){
+    this.placeInitialeTiles();
+    int tuilerestante = this.placeNeighboorEarthTiles();
+    if (tuilerestante > 0) {
+        for (int i = 0; i < tuilerestante; i++) {
+            Position p = this.randomCoord();
+            Tuile t = this.randomTuile();
+            while (!isEmpty(p)) {
+            p = this.randomCoord();
+            }
+            this.put(t, p);
+        }
+    }
+}
 
 }
