@@ -208,8 +208,8 @@ private Tuile randomTuile(){
 /** creates a new board for the game randomly */
 public void createBoard(){
    
-    int width=this.getWidth();
-    int height=this.getHeight();
+    int width = this.getWidth();
+    int height =this.getHeight();
     this.placeInitialeTiles();
     int nbretuile= this.tileNumber()/2;
     int tuilerestante=this.placeNeighboorEarthTiles();
