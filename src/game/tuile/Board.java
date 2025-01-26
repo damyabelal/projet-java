@@ -182,7 +182,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
  * for the ENTIRETY  of the board it also returns the number of remaining tiles to place
  * @return nbre of remaining tiles to place
  */
-public int  placeNeighboorEarthTiles(){
+public int placeNeighboorEarthTiles(){
     int nbredetuilerestante= this.tileNumber();
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
