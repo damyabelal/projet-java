@@ -9,7 +9,7 @@ public class Board{
 
 
 /** initialises a new board for the game  with the given height and the given width
- * then fills every case of the board with a sea tile. 
+ * then fills every case of the board with a sea tile
  * @param int the width of the board
  * @param int the height of the board
 */
@@ -94,7 +94,7 @@ public boolean isEmpty(Position pos) {
     return false;
 }
 
-/** return true of this tile have a neighbor, false otherwise 
+/** return true if the tile have a neighbor, false otherwise 
  * @param int x
  * @param int y
  * @return true if the tile have a neighbor 
@@ -200,8 +200,8 @@ public int  placeNeighboorEarthTiles(){
 
 }
 /* return a random tile of a random type
- *@return a random tile 
- */
+ * @return a random tile 
+*/
 private Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
     tuileTypes.put(0,new Forest() );
