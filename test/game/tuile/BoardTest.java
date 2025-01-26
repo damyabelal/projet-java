@@ -17,6 +17,8 @@ public class BoardTest {
 
     @Test
     void testBoardInit() {
+        assertEquals(5, board.getWidth());
+        assertEquals(5, board.getHeight());
         for (int x = 0; x < board.getWidth(); x++) {
             for (int y = 0; y < board.getHeight(); y++) {
                 // on verifie a la construction du plateau que chaque case est occupé par la tuile Sea
@@ -31,7 +33,7 @@ public class BoardTest {
         Position pos = new Position(0, 0);
         assertTrue(board.isEmpty(pos));
         
-        // on ajoute une tuile differente de Sea et on teste si la meme position est toujours vide
+        // on ajoute une tuile differente de Sea et on teste si la meme position est toujours vide : doit renvoyer False ducoup
         board.put(new Forest(), pos);
         assertFalse(board.isEmpty(pos));
     }
@@ -66,4 +68,38 @@ public class BoardTest {
         // on verifie que la methode ajoute bien un voisin libre a sa liste
         assertEquals(4, emptyNeighbor.size());
     }
+
+    @Test
+    void testCreateBoard() {
+        board.createBoard();
+        // on teste par la meme occasion la methode getGrid() (pour eviter d'écrire plusieurs tests)
+        Tuile[][] grid = board.getGrid();
+        int nbEarthTile = 0;
+        for (int x = 0; x < board.getWidth(); x++) {
+            for (int y = 0; y < board.getHeight(); y++) {
+            if (!(grid[x][y] instanceof Sea)) {
+                nbEarthTile++;}
+        }
+    }
+        // on peut pas predire de tests pour createBoard vu que cest un plateau  qui est genéré aleatoirement
+        // mais on peut s'assurer qu'il ya des tuiles autre que Sea 
+        assertTrue(nbEarthTile > 0);
+    }
+
+    @Test
+    void testTileNumber() {
+        // doit calculer 1/3 du nombre total des cases du plateau
+        int test = (int) (board.getWidth() * board.getHeight() * 1.0 / 3);
+        assertEquals(test, board.tileNumber());
+    }
+
+    @Test
+    void testRandomTuile() {
+        // on verifie que la tuile générée est differente de Sea (foret ou montagne ou paturage ou champ)
+        Tuile randomTile = board.randomTuile();
+        assertFalse(randomTile instanceof Sea);
+    }
+
+
+
 }
