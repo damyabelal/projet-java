@@ -56,10 +56,17 @@ public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
     System.out.println("=== Plateau du Jeu ===");
+
+    /// afficher les numeros de colonnes 
+    System.out.println("        ");
+    
     for(int  y=0; y < h ; y++){
+
+        System.out.print("|");
         for (int x=0 ; x < w; x++){
-            String symbole = "[" + grid[x][y].getSymbol() + "]";
-            System.out.print(symbole + " ");
+            
+            String symbole = grid[x][y].getSymbol() ;
+            System.out.print(symbole + " | ");
         }
         System.out.println();    
     }
