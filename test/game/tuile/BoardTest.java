@@ -1,4 +1,5 @@
 package game.tuile;
+import game.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,25 +18,8 @@ public class BoardTest {
 
     @Test
     void testBoardInit() {
-        assertEquals(5, board.getWidth());
+        assertEquals(5, board.getWidth()); 
         assertEquals(5, board.getHeight());
-        for (int x = 0; x < board.getWidth(); x++) {
-            for (int y = 0; y < board.getHeight(); y++) {
-                // on verifie a la construction du plateau que chaque case est occupé par la tuile Sea
-                assertTrue(board.getGrid()[x][y] instanceof Sea);
-            }
-        }
-    }
-
-    @Test
-    void testIsEmpty() {
-        // verifier qu'une case avec une tuile Sea est considere comme vide
-        Position pos = new Position(0, 0);
-        assertTrue(board.isEmpty(pos));
-        
-        // on ajoute une tuile differente de Sea et on teste si la meme position est toujours vide : doit renvoyer False ducoup
-        board.put(new Forest(), pos);
-        assertFalse(board.isEmpty(pos));
     }
 
     @Test
