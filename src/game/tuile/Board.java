@@ -219,7 +219,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
  * @return nbre of remaining tiles to place
  */
 public int placeNeighboorEarthTiles(){
-    int nbredetuilerestante= this.tileNumber();
+    int nbredetuilerestante= this.tileNumber()/2;
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
             Position currentPos= new Position(x, y);
