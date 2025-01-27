@@ -229,7 +229,7 @@ public int placeNeighboorEarthTiles(){
 /* return a random tile of a random type
  * @return a random tile 
 */
-private Tuile randomTuile(){
+public Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
     tuileTypes.put(0,new Forest() );
     tuileTypes.put(1,new Mountain());
