@@ -106,17 +106,8 @@ public void display(){
 
 public void createBoard(){
     this.placeInitialeTiles();
-    int tuilerestante = this.placeNeighboorEarthTiles();
-    if (tuilerestante > 0) {
-        for (int i = 0; i < tuilerestante; i++) {
-            Position p = this.randomPosition();
-            Tuile t = this.randomTuile();
-            while (!isEmpty(p)) {
-            p = this.randomPosition();
-            }
-            this.put(t, p);
-        }
-    }
+    this.placeNeighboorEarthTiles();
+    
 }
 
 /** return true if the given position is the sea, false otherwise
@@ -219,7 +210,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
  * @return nbre of remaining tiles to place
  */
 public int placeNeighboorEarthTiles(){
-    int nbredetuilerestante= this.tileNumber()/2;
+    int nbredetuilerestante= this.tileNumber() / 2;
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
             Position currentPos= new Position(x, y);
