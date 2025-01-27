@@ -7,7 +7,7 @@ public class Livrable1 {
     try {
 
       if (args.length < 2) {
-        System.out.println("vous devez fournir les dimensions de votre plateau");
+        System.out.println("you have to give positive setting");
         return;
       }
 
@@ -15,7 +15,7 @@ public class Livrable1 {
       int width = Integer.parseUnsignedInt(args[1]);
 
       if (height <= 0 || width <= 0) {
-        System.out.println("les dimensions doivent etre positives");
+        System.out.println("dimensions must be positive");
         return;
       }
 
@@ -24,7 +24,7 @@ public class Livrable1 {
       b.display();
 
     } catch (NumberFormatException e) {
-      System.out.println("vous devez fournir des dimensions positives");
+      System.out.println("");
     }
   }
 }
