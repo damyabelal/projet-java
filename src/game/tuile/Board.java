@@ -57,7 +57,7 @@ public void display(){
     int h = this.getHeight();
     System.out.println(" Plateau du Jeu :");
 
-    /// afficher les numeros de colonnes 
+    
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
         if(x==0){
