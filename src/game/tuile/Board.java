@@ -148,7 +148,7 @@ public void placeInitialeTiles(){
     int nbretuilesinitiale=nbretuile/2;
 
 
-    for (i=0 ;i< nbretuilesinitiale;i++){
+    for (int i=0 ;i< nbretuilesinitiale;i++){
         Position randomcoord=this.randomPosition();
         //this.setTile(randomcoord, il manque la tuile); 
         //du coup il faut creer une methode qui renvoie des tuiles  de type aleatoire
@@ -158,11 +158,12 @@ public void placeInitialeTiles(){
 
 
 /** return one  random position on the board    */
-public Position randomPosition(){
-    int w= this.getWidth();
-    int h=this.getHeight();
-    int xalea=(int) (Math.random()*w);
-    int yalea=(int) (Math.random()*h);
+public Position randomPosi
+int h=this.getHeight();
+int xalea=(int) (Math.random()*w);
+int yalea=(int) (Math.random()*h);
+
+return new Position(xalea,yalea);
 
     return new Position(xalea,yalea);
 
