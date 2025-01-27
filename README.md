@@ -20,6 +20,18 @@ Les paragraphes concernant les livrables doivent être rempli avant la date de r
 Un lien vers une image de l'UML doit être fourni (une photo d'un diagramme UML fait à la main est suffisant).
 
 ## Livrable 1
+On a choisie de faire une classe abstraite Truile car pour les types de tuiles de type mer et terrestre doivent avoir le meme type c'est  a dire le type Tuile. Ensuite on a crée une classe Terrestre et Sea car  qui héritent de Tuile car les tuiles peuvent etre soit de type terrestre ou de type mer.
+Les tuiles de type Terrestre n'ont pas les memes capacites et ainsi pas les meme méthodes et attributs que ceux de type mer.
+Les tuiles de type terrestre peuvent de quatre type différents.Chaque type a un constructeur different et peuvent produire des ressources différentes. On a donc choisie de modéliser les quatres types de tuiles par une classe qui lui correspond.Une classe foret , paturage , montagne et champs.Ces quatres classes vont hériter de la class terrestre et des ses méthodes et attributs car pour chaque tuiles les méthodes sont les memes a part le constructeur.Cela évite la répétition des méthodes.
+
+
+On a choisie de faire une classe Position car dans la classe Board , on a besoin de faire appelle a des coordonnees d'une case du plateau régulièrement ce qui  peut encombrer le code.Pour éviter cette gene on décider de remplacer les tuples par une instance de la classe position.
+
+
+
+
+
+
 
 ### Atteinte des objectifs
 
@@ -102,7 +114,10 @@ Pour chaque semaine on y trouvera :
 
 ### Difficultés rencontrées
 
-- GIT !!!
+- Synchronisation de Git
+- Git Merge
+- Configuration de vs code
+
 
 ### Objectifs pour la semaine
 - Finalisation de la méthode placeNeighboorEarthTiles() qui permet de placer les 1/6 des tuiles terrestres restants en vérifiant le voisinage (Sera fait par : Mille Stella Rose)

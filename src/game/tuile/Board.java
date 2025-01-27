@@ -9,7 +9,7 @@ public class Board{
 
 
 /** initialises a new board for the game  with the given height and the given width
- * then fills every case of the board with a sea tile
+ * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
  * @param int the width of the board
  * @param int the height of the board
 */
@@ -50,7 +50,7 @@ public int getHeight(){
 
 /**
  * Displays the board with symbols enclosed in brackets [ ].
- */
+ */ 
 
 public void display(){
     int w = this.getWidth();
