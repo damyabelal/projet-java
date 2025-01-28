@@ -1,22 +1,22 @@
 package game.util;
 
 /**
- * enum qui represente les directions possibles pour verifier l'encadrement des tuiles
+ * Enum representing the possible directions for checking the borders of tiles.
  */
 public enum Direction {
-    N(1, 0),   // haut
-    S(-1, 0),  // bas
-    O(0, -1),  // gauche
-    E(0, 1);   // droit
+    N(1, 0),   // north (up)
+    S(-1, 0),  // south (down)
+    O(0, -1),  // west (left)
+    E(0, 1);   // east (right)
 
     private final int dx;
-    private final int dy; 
+    private final int dy;
 
     /**
-     * constructeur pour definir les déplacements en x et y
+     * Constructor to define the movement in x and y directions.
      *
-     * @param dx le deplacement en x
-     * @param dy le deplacement en y
+     * @param dx the movement in the x direction
+     * @param dy the movement in the y direction
      */
     Direction(int dx, int dy) {
         this.dx = dx;
@@ -24,18 +24,18 @@ public enum Direction {
     }
 
     /**
-     * retourne le deplacement en x pour cette direction
+     * Returns the movement in the x direction for this direction.
      *
-     * @return dx le deplacement en x
+     * @return dx the movement in the x direction
      */
     public int getDx() {
         return this.dx;
     }
 
     /**
-     * retourne le deplacement en y pour cette direction
+     * Returns the movement in the y direction for this direction.
      *
-     * @return dy Le déplacement en y
+     * @return dy the movement in the y direction
      */
     public int getDy() {
         return this.dy;

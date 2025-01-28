@@ -1,13 +1,8 @@
 package game.util;
 
-
 public class Position{
-    //latitude
     private int x;
-    //longitude
     private int y;
-
-    
 
     /**
      * build the position
