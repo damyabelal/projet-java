@@ -54,7 +54,7 @@ javac -sourcepath src src/game/util/*.java -d classes
 
 ### 2. Exécution de la classe principale
 
-java -classpath classes game.tuile.Livrable1 a b 
+java -classpath classes game.Livrable1 a b 
 
 ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau)
 
@@ -76,7 +76,7 @@ java -jar junit-console.jar -classpath test:classes -scan-classpath
 
 ### 6.Créer les Archives JAR
 
-jar cvfe livrable1.jar game.tuile.Livrable1 -C classes livrable1
+jar cvfe livrable1.jar game.Livrable1 -C classes .
 
 ### 7.Exécuter les Archives JAR
 
@@ -93,7 +93,7 @@ On a réussi a générer un plateau de facon aléatoire qui respecte les règles
 pas de type mer.
 
 ### Difficultés restant à résoudre
-Il n'ya pas de difficultés restant a résourdre.
+On cherche encore en parallèle comment ajouter des couleurs au plateau, mais ce n'est pas forcément la priorité , c'est plus dans un but esthétique et pratique pour debugger plus facilement.  
 
 ## Livrable 2
 
