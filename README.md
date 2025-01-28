@@ -30,7 +30,11 @@ On a donc choisie de modéliser chaque  type de tuiles par une classe qui lui co
 On a choisie de faire une classe Position car dans la classe Board , on a besoin de faire appelle a des coordonnées d'une case du plateau régulièrement ce qui  peut encombrer le code.Pour éviter cette gene on a décidé de remplacer les tuples par une instance de la classe position.
 
 
-On a choisie modéliser le plateau , toutes ses methodes et tout ce qui le concerne dans une class Board.
+On a décidé de modéliser le plateau , toutes ses methodes et tout ce qui le concerne dans une class Board. Pour ce qui est de l'algorithme de placement des tuiles on en as beaucoup discuté, notre première approche était de découpé le nombre total de tuiles terrestre sur le plateau (donc 1/3 des tuiles totales) afin de tout de suite les regroupé entre elle. On voulait formé les îles directement, en sachant par exemple qu'il y aurait 4 îles avec l'une de 2 tuiles, l'autres de 6, ect...
+Cependant cette structure qui semblait efficace dans un premier temps est vite devenu compliqué en pensant au pseudo code. C'est pour cela que nous avons optées pour une méthode plus simple: 
+on divise le nombre totale de tuile terrestre par deux et on les places de manière aléatoire. Ensuite pour s'assurer qu'elles aient toutes un voisins, on parcourt l'ensemble du plateau: 
+si une tuile est seule, on lui ajoute un voisin.
+De cette manière on respecte le caractère aléatoire mais aussi la consigne comme quoi **au moins** 2/3 des tuiles sont de types mer. Avec notre modélisation, 1/3 des tuiles totales ne sont pas obligatoirement placé (dans le cas où aléatoirement une tuile as été placé voisine d'une autre) permettant aussi de varier l'aspect du plateau.
 
 On a choisie de modéliser les différents types de ressources dans une enum car les ressources peuvent etre uniquement de quatre types prédifinies( wood , sheep, wealth , ore).
 
@@ -43,7 +47,7 @@ On a choisie de faire une enum Directon pour pouvoir parcourir les 4 directions 
 
 
 
-
+ ![ l'uml complet du premier livrable](/index/UMLlivrable1.png "UML complet pour le premier livrable")
 
 ### Atteinte des objectifs
 On a réussi a  générer un plateau de facon aléatoire.
