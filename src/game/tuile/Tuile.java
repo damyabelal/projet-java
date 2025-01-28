@@ -1,7 +1,7 @@
 package game.tuile;
 
 public abstract class Tuile {
-    public String symbol ; /// symbol de tuile 
+    public String symbol ; /// symbol of the tile
 
     /**
      * Constructor for Tuile.
