@@ -41,16 +41,56 @@ On a choisie de modéliser les différents types de ressources dans une enum car
 On a choisie de faire une enum Directon pour pouvoir parcourir les 4 directions a partir d'une tuile et ainsi éviter les répétitions.
 
 
+![ l'uml complet du premier livrable](/index/UMLlivrable1.png "UML complet pour le premier livrable")
 
 
+### 1.1 Compilation des sources du package game.tuile
+
+javac -sourcepath src src/game/tuile/*.java -d classes
+
+### 1.2 Compilation des sources du package game.util 
+
+javac -sourcepath src src/game/util/*.java -d classes
+
+### 2. Exécution de la classe principale
+
+java -classpath classes game.tuile.Livrable1 a b 
+
+ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau)
+
+### 3. Génération de la documentation Javadoc
+
+javadoc -d docs -sourcepath src game/*.java
+
+### 5.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 5.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 4. Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6.Créer les Archives JAR
+
+jar cvfe livrable1.jar game.tuile.Livrable1 -C classes livrable1
+
+### 7.Exécuter les Archives JAR
+
+java -jar livrable1.jar
 
 
-
-
- ![ l'uml complet du premier livrable](/index/UMLlivrable1.png "UML complet pour le premier livrable")
 
 ### Atteinte des objectifs
-On a réussi a  générer un plateau de facon aléatoire.
+On a réussi a générer un plateau de facon aléatoire qui respecte les règles suivantes :
+
+- le plateau doit comporter au minimum deux tiers de tuiles de type mer.
+
+- toutes les tuiles de type montagne, patûrage, champ ou forêt doivent au moins avoir une tuile adjacente qui n’est
+pas de type mer.
 
 ### Difficultés restant à résoudre
 Il n'ya pas de difficultés restant a résourdre.
