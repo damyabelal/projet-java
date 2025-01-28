@@ -24,7 +24,7 @@ public class BoardTest {
 
     @Test
     void testRandomPosition() {
-        // on verifie que la position aleatoire n'est pas null et ne sort pas des limites de bordure du plateau
+        // Verify that the random position is not null and is within the board's border limits
         Position randomPos = board.randomPosition();
         assertNotNull(randomPos);
         assertTrue(randomPos.getX() >= 0 && randomPos.getX() < board.getWidth());
@@ -33,12 +33,12 @@ public class BoardTest {
 
     @Test
     void testHaveNeighbor() {
-        // on pose une tuile au centre ensuite on verifie si elle a un voisin a cote (au depart non vu que ya que les tuiles Sea)
+        // Place a tile at the center and check if it has a neighbor next to it (initially, it won't since only Sea tiles are present)
         Position pos = new Position(2, 2);
         board.put(new Forest(), pos);
         assertFalse(board.haveNeighbor(pos));
 
-        // on lui rajoute une tuile voisine et doit renvoyer vrai dans ce cas 
+        // Add a neighboring tile and it should now return true
         Position neighbor = new Position(2, 3);
         board.put(new Forest(), neighbor);
         assertTrue(board.haveNeighbor(pos));
@@ -49,20 +49,20 @@ public class BoardTest {
         Position pos = new Position(2, 2);
         board.put(new Forest(), pos);
         ArrayList<Position> emptyNeighbor = board.haveEmptyNeighboorList(pos);
-        // on verifie que la methode ajoute bien un voisin libre a sa liste
+        // Verify that the method correctly adds a free neighbor to the list
         assertEquals(4, emptyNeighbor.size());
     }
 
     @Test
     void testTileNumber() {
-        // doit calculer 1/3 du nombre total des cases du plateau
+        // Should calculate 1/3 of the total number of board tiles
         int test = (int) (board.getWidth() * board.getHeight() * 1.0 / 3);
         assertEquals(test, board.tileNumber());
     }
 
     @Test
     void testRandomTuile() {
-        // on verifie que la tuile générée est differente de Sea (foret ou montagne ou paturage ou champ)
+        // Verify that the generated tile is not Sea (it should be Forest, Mountain, Pasture, or Field)
         Tuile randomTile = board.randomTuile();
         assertFalse(randomTile instanceof Sea);
     }
@@ -72,25 +72,25 @@ public class BoardTest {
         Position pos = new Position(2, 2);
         Tuile newTile = new Forest();
         board.put(newTile, pos);
-        // on verifie que la tuile forest a bien été placé a la position (2,2)
+        // Verify that the Forest tile is placed at position (2,2)
         assertEquals(newTile, board.getGrid()[pos.getX()][pos.getY()]);
     }
 
     @Test
-    // ce test permet de verifier que la methode place bien les 1/6 des des tuiles(la moitie de 1/3)
+    // This test ensures that the method places 1/6 of the tiles (half of 1/3)
     void testPlaceInitialeTiles() {
         board.placeInitialeTiles();
         int nb = 0;
         Tuile[][] grid = board.getGrid();
-        // on parcourt tout le plateau et on incremente (nb) a chaque fois qu'on croise une tuile terrestre
+        // Traverse the board and increment nb each time a non-Sea tile is found
         for (int x = 0; x < board.getWidth(); x++) {
             for (int y = 0; y < board.getHeight(); y++) {
-            if (!(grid[x][y] instanceof Sea)) {
-                nb++;
+                if (!(grid[x][y] instanceof Sea)) {
+                    nb++;
+                }
             }
         }
-    }
-        // a la fin nb devrait etre egal a 1/6 du nombre total
+        // At the end, nb should be equal to 1/6 of the total number
         assertEquals(board.tileNumber() / 2, nb);
     }
 
@@ -98,31 +98,25 @@ public class BoardTest {
     void testPlaceNeighboorEarthTiles() {
         board.createBoard(); 
         int reste = board.placeNeighboorEarthTiles();
-        // on verifie qu'il reste des tuiles a placer
+        // Verify that there are still tiles left to place
         assertTrue(reste >= 0); 
     }
 
     @Test
     void testCreateBoard() {
         board.createBoard();
-        // on teste par la meme occasion la methode getGrid() (pour eviter d'écrire plusieurs tests)
+        // Also test the getGrid() method (to avoid writing multiple tests)
         Tuile[][] grid = board.getGrid();
         int nbEarthTile = 0;
         for (int x = 0; x < board.getWidth(); x++) {
             for (int y = 0; y < board.getHeight(); y++) {
-            if (!(grid[x][y] instanceof Sea)) {
-                nbEarthTile++;}
+                if (!(grid[x][y] instanceof Sea)) {
+                    nbEarthTile++;
+                }
+            }
         }
-    }
-        // on peut pas predire de tests pour createBoard vu que cest un plateau qui est genéré aleatoirement
-        // mais on peut s'assurer qu'il ya des tuiles autre que Sea 
+        // We cannot predict the results for createBoard since it randomly generates the board,
+        // but we can ensure that there are some non-Sea tiles
         assertTrue(nbEarthTile > 0);
     }
-
-
-
-
-
-
-
 }

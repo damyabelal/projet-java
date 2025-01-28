@@ -13,12 +13,13 @@ class FieldTest {
         field = new Field();    
     }
     
-     // verifier quon a bien creer un objet de type champ et qu'il n'est pas null
+    // Verify that we correctly created an object of type Field and that it is not null
     @Test
     void testConstructor() {
         assertNotNull(field);
     }
-    // verifier que la ressource blé correspond bien a la tuile champ
+
+    // Verify that the resource Wheat corresponds to the Field tile
     @Test
     void testGetRessource() {
         assertEquals(Ressource.WEALTH, field.getRessource());

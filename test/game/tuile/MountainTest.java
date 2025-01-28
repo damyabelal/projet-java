@@ -13,13 +13,13 @@ class MountainTest {
         mountain = new Mountain();
     }
 
-    // verifier quon a bien creer un objet de type montagne et qu'il n'est pas null
+    // Verify that we correctly created an object of type Mountain and that it is not null
     @Test
     void testConstructor() {
         assertNotNull(mountain);
     }
     
-    // verifier que la ressource minerai correspond bien a la tuile montagne
+    // Verify that the resource Ore corresponds to the Mountain tile
     @Test
     void testGetRessource() {
         assertEquals(Ressource.ORE, mountain.getRessource());

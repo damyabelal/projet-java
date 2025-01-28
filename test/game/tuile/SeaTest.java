@@ -1,6 +1,5 @@
 package game.tuile;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +13,7 @@ class SeaTest {
         sea = new Sea();
     }
     
-    // verifier qu'on a bien construit une tuile de type mer (sea)
+    // Verify that we correctly constructed a Sea tile
     @Test
     void testConstructor() {
         assertNotNull(sea);

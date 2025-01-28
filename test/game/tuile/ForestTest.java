@@ -1,6 +1,5 @@
 package game.tuile;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,12 +13,13 @@ class ForestTest {
         forest = new Forest();
     }
     
-    // verifier quon a bien creer un objet de type foret et qu'il n'est pas null 
+    // Verify that we correctly created an object of type Forest and that it is not null
     @Test
     void testConstructor() {
         assertNotNull(forest);
     }
-    // verifier que la ressource bois correspond bien a la tuile foret
+    
+    // Verify that the resource Wood corresponds to the Forest tile
     @Test
     void testGetRessource() {
         assertEquals(Ressource.WOOD, forest.getRessource());

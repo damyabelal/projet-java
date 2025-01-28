@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class RessourceTest {
 
-    // on crée un tableau qui contient toute les valeurs de l'enum : dabord on verfie si la liste est non vide avec assertNotNull
-    // ensuite on verifie si les valeurs sont bien dans l'ordre avec assertTrue
+    // Create an array that contains all the values of the enum: first, check if the list is not empty with assertNotNull
+    // Then, check if the values are in the correct order with assertTrue
     @Test
     public void testEnumValues() {
         Ressource[] ressources = Ressource.values();
@@ -18,6 +18,4 @@ public class RessourceTest {
         assertTrue(ressources[2] == Ressource.ORE);
         assertTrue(ressources[3] == Ressource.SHEEP);
     }
-
-
 }

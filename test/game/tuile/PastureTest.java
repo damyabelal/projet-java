@@ -13,14 +13,13 @@ class PastureTest {
         pasture = new Pasture();
     }
     
-    // verifier quon a bien creer un objet de type paturage et qu'il n'est pas null 
+    // Verify that we correctly created an object of type Pasture and that it is not null
     @Test
     void testConstructor() {
         assertNotNull(pasture);
     }
 
-    // verifier que la ressource mouton correspond bien a la tuile paturage
-
+    // Verify that the resource Sheep corresponds to the Pasture tile
     @Test
     void testGetRessource() {
         assertEquals(Ressource.SHEEP, pasture.getRessource());
