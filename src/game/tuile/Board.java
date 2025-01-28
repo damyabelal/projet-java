@@ -130,7 +130,7 @@ public boolean haveNeighbor(Position pos){
     for (Direction d : Direction.values()){
         Position neighbor = pos.next(d);
 
-        // on verifie que le voisin ne depasse pas les limites du plateau
+        // we check that the neighbor does not exceed the limits of the board
         if (neighbor.getX() >= 0 && neighbor.getX() < this.width &&
             neighbor.getY() >= 0 && neighbor.getY() < this.height) {
             if (!isEmpty(neighbor)){
