@@ -34,7 +34,7 @@ On a choisie modéliser le plateau , toutes ses methodes et tout ce qui le conce
 
 On a choisie de modéliser les différents types de ressources dans une enum car les ressources peuvent etre uniquement de quatre types prédifinies( wood , sheep, wealth , ore).
 
-On a choisie de faire une enum Directon pour pouvoir parcourir les 8 directions a partir d'une tuile.
+On a choisie de faire une enum Directon pour pouvoir parcourir les 4 directions a partir d'une tuile et ainsi éviter les répétitions.
 
 
 
