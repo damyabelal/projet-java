@@ -1,12 +1,12 @@
 package game.tuile;
 
-public class Terrestre extends Tuile{
+public class Earth extends Tuile{
 
    protected Ressource ressource ;
    protected String symbol ;
    
    /** initialises  a new earth tile of the given type*/
-   public Terrestre(Ressource ressource , String symbol){
+   public Earth(Ressource ressource , String symbol){
     super(symbol);
     this.ressource=ressource;
     this.symbol =symbol;

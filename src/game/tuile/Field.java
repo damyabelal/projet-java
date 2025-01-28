@@ -1,6 +1,6 @@
 package game.tuile;
 
-public class Field extends Terrestre {
+public class Field extends Earth {
 
     /** initializes a new tile of the type field */
 
