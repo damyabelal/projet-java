@@ -20,6 +20,7 @@ Les paragraphes concernant les livrables doivent être rempli avant la date de r
 Un lien vers une image de l'UML doit être fourni (une photo d'un diagramme UML fait à la main est suffisant).
 
 ## Livrable 1
+
 On a choisie de faire une classe abstraite Tuile car pour les types de tuiles de type mer et terrestre doivent etre de meme type , c'est a dire de type Tuile. De plus ca n'a pas de sens de instancier un objet de type Tuile.
 
 Ensuite on a crée une classe Terrestre et Sea  qui héritent de Tuile car les tuiles peuvent etre soit de type terrestre soit type mer.Les tuiles de type Terrestre n'ont pas les memes capacités et ainsi pas les meme méthodes et attributs que ceux de type mer.
@@ -40,38 +41,78 @@ On a choisie de modéliser les différents types de ressources dans une enum car
 
 On a choisie de faire une enum Directon pour pouvoir parcourir les 4 directions a partir d'une tuile et ainsi éviter les répétitions.
 
-tileNumber(): calculer le nombre de tuiles terrestres a placer ,une fois qu’on a un plateau rempli de mer, il faut ajouter les tuiles terrestres en respectant la contrainte des minimum 2/3 de mer pourquoi on fait ca : on respecte la regle que 1/3 du plateau doit etre terrestre,  on utilise 1.0 / 3 pour eviter des erreurs d’arrondi en division entiere.
+
+#### Description des méthodes utilisées dans Board.java  :
+
+
+- **Constructeur Board(int width, int height)** :
+
+   La méthode crée une grille Tuile[][] grid et y place des tuiles Sea pour chaque position. Le plateau est ensuite prêt a être modifié pour accueillir des tuiles terrestres
+
+- **display()** :
+
+  Affiche le plateau de manière lisible dans la console avec des symboles représentant chaque type de tuile. Une description est également fournie à la fin de l'affichage pour expliquer le choix des symboles
+
+
+- **createBoard()** :
+
+   Génère un plateau complet en exécutant deux étapes :
+
+    1. **placeInitialeTiles()** : Place une première série de tuiles terrestres (moitié de 1/3 c'est a dire 1/6 ) de manière aléatoire
+
+    2. **placeNeighboorEarthTiles()** : Cette méthode garantit que le plateau est bien rempli en respectant la règle selon laquelle 2/3 du plateau est constitué de mer et que les tuiles terrestres sont connectées entre elles ou proches les unes des autres
+
+
+- **isEmpty(Position pos)** :
+
+  La méthode retourne true si la case est vide (mer) et false si la case est occupée par une tuile terrestre cela permet de vérifier si une case peut accueillir une tuile terrestre
+
+- **haveNeighbor(Position pos)** :
+
+   La méthode examine les quatre directions (haut, bas, gauche, droite) autour de la position donnée pour voir si l'une des cases voisines est occupée par une tuile terrestre. Si c'est le cas, la méthode retourne true, sinon elle retourne false
+
+- **put(Tuile t, Position pos)** :
+
+   Cette méthode remplace la tuile existante à la position pos par la nouvelle tuile t, elle est utilisée pour ajouter des tuiles terrestres
+
+- **randomPosition()** :
+
+   La méthode génère des coordonnées aléatoires x et y, puis vérifie si la case à ces coordonnées est une mer si ce n'est pas le cas elle genere de nouvelles coordonnées jusqu'a trouver une case vide
+
+- **tileNumber()** :
+
+  La méthode utilise la formule (largeur * hauteur) / 3 pour déterminer le nombre de tuiles terrestres. Cela permet de respecter la contrainte selon laquelle 1/3 du plateau doit être composé de tuiles terrestres
+
+- **randomTuile()** :
+
+   La méthode utilise un générateur de nombres aléatoires pour choisir parmi les quatre types de tuiles terrestres qui sont stocké dans une hashmap 
 
 
 
-Generer une Tuile Aleatoirement : on utilise un hashmap<Integer, tuile> pour eviter de repeter du code et simplifier le choix de tuiles terrestres
-Pourquoi on utilise un hashmap au lieu d’un switch-case :  c’est plus simple et rapide a modifier si on veut ajouter d’autres types de tuiles, on evite de reecrire du code , car avec un switch-case, il faudrait ecrire plusieurs fois return new tuile()(de diiferent types), c’est plus facile a lire et a comprendre.
+#### Affichage du Plateau :
 
-Verifier si une case est vide avant d’y placer une tuile : avant de placer une tuile terrestre, on verifie que la case est bien une mer et qu’on ne depasse pas les bords du plateau.
-pourquoi cette verification est importante : on ne veut pas ecraser une tuile terrestre existante, et aussi on evite des erreurs arrayindexoutofboundsexception pendant le generation .
-
-
-Affichage du Plateau :
 Au debut, on voulait afficher le plateau avec des symboles simples comme //\ pour montagne , ~ pour mer ... etc. on a commence a faire ca sur nos machines personnelles, et ca marchait bien pour les tests. mais apres on a vu que c’etait possible d’afficher des emojis dans le terminal, alors on a decide de changer les symboles par des emojis.
 
 les emojis rendent le jeu plus beau a regarder et plus facile a comprendre. chaque type de tuile (mer, foret, paturage, montagne, champ) est represente par un emoji specifique comme suit :
+
 Sea → 🌊
 Foret → 🌳
-Paturage → 🐑
-Montagne → 🏔
-Champ → 🌸
+Pasture → 🐑
+Mountain → 🏔
+Field → 🌸
 
-voici un exemple d’affichage du plateau avec des emojis :
+### Voici un exemple d’affichage du plateau de dimension 8x8 :
 
 ![exemple d'affichage avec a =5 et b=5 :](/index/ExempleBoard.png "")
 
 
 
 
-
+### Diagramme UML pour le Livrable1 :
 
 ![ l'uml complet du premier livrable](/index/UMLlivrable1.png "UML complet pour le premier livrable")
 
+### Les commandes  : 
 
 ### 1.1 Compilation des sources du package game.tuile
 
