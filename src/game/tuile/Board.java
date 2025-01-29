@@ -78,7 +78,7 @@ public void display(){
             System.out.print(  symbole + " | ");
         }
         System.out.println(); 
-        
+        // We put a separating line between the lines but not the last one.
         if (y<h-1){
             System.out.print("|");
             for (int x = 0; x < w; x++) {
@@ -113,6 +113,7 @@ public void createBoard(){
 /** return true if the given position is the sea, false otherwise
  * @param Position the position */
 public boolean isEmpty(Position pos) {
+
     if (pos.getX() >= 0 && pos.getX() < this.width && pos.getY() >= 0 && pos.getY() < this.height) {
         if (this.grid[pos.getX()][pos.getY()] instanceof Sea) {
             return true;
