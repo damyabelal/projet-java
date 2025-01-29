@@ -5,8 +5,8 @@ import java.lang.Integer;
 
 public class Livrable1 {
   public static void main(String[] args) {
-    try {
-
+    try { 
+      
       if (args.length < 2) {
         System.out.println("you have to give positive setting");
         return;
