@@ -67,15 +67,25 @@ javac -sourcepath src src/game/tuile/*.java -d classes
 
 javac -sourcepath src src/game/util/*.java -d classes
 
+### 1.2 Compilation des sources du package game
+
+javac -sourcepath src src/game/*.java -d classes
+
+
 ### 2. Exécution de la classe principale
 
 java -classpath classes game.Livrable1 a b 
 
 ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau)
 
-### 3. Génération de la documentation Javadoc
+### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game : 
 
-javadoc -d docs -sourcepath src game/*.java
+javadoc -d docs -sourcepath src src/game/tuile/*.java
+
+javadoc -d docs -sourcepath src src/game/util/*.java
+
+javadoc -d docs -sourcepath src src/game/*.java
+
 
 ### 5.1 Compilation des tests du package game.tuile
 
@@ -96,7 +106,6 @@ jar cvfe livrable1.jar game.Livrable1 -C classes .
 ### 7.Exécuter les Archives JAR
 
 java -jar livrable1.jar
-
 
 
 ### Atteinte des objectifs
