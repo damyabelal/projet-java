@@ -1,6 +1,5 @@
 package game;
 import game.tuile.*;
-import game.util.*;
 
 import java.lang.Integer;
 
