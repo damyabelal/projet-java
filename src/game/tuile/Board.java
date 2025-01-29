@@ -61,10 +61,10 @@ public void display(){
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
         if(x==0){
-            System.out.print("|----|");
+            System.out.print("|-----|");
         }
         else {
-            System.out.print("-----|");
+            System.out.print("------|");
         }
        
     } System.out.println();
@@ -83,9 +83,9 @@ public void display(){
             System.out.print("|");
             for (int x = 0; x < w; x++) {
                 if(x==0){
-                System.out.print("____|");}
+                System.out.print("_____|");}
                 else {
-                    System.out.print("_____|");}
+                    System.out.print("______|");}
             }
             System.out.println();
         }
@@ -93,13 +93,14 @@ public void display(){
     }
     for (int x = 0; x < w; x++) {
             if(x==0){
-                System.out.print("|----|");
+                System.out.print("|-----|");
             }
             else {
-                System.out.print("-----|");
+                System.out.print("------|");
             }
         }
-    System.out.println("           ");
+        System.out.println();
+   
 }
 
 /** creates a new board for the game randomly */
