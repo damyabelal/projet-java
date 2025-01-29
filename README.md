@@ -40,6 +40,21 @@ On a choisie de modéliser les différents types de ressources dans une enum car
 
 On a choisie de faire une enum Directon pour pouvoir parcourir les 4 directions a partir d'une tuile et ainsi éviter les répétitions.
 
+tileNumber(): calculer le nombre de tuiles terrestres a placer ,une fois qu’on a un plateau rempli de mer, il faut ajouter les tuiles terrestres en respectant la contrainte des minimum 2/3 de mer pourquoi on fait ca : on respecte la regle que 1/3 du plateau doit etre terrestre,  on utilise 1.0 / 3 pour eviter des erreurs d’arrondi en division entiere.
+
+
+
+Generer une Tuile Aleatoirement : on utilise un hashmap<Integer, tuile> pour eviter de repeter du code et simplifier le choix de tuiles terrestres
+Pourquoi on utilise un hashmap au lieu d’un switch-case :  c’est plus simple et rapide a modifier si on veut ajouter d’autres types de tuiles, on evite de reecrire du code , car avec un switch-case, il faudrait ecrire plusieurs fois return new tuile()(de diiferent types), c’est plus facile a lire et a comprendre.
+
+Verifier si une case est vide avant d’y placer une tuile : avant de placer une tuile terrestre, on verifie que la case est bien une mer et qu’on ne depasse pas les bords du plateau.
+pourquoi cette verification est importante : on ne veut pas ecraser une tuile terrestre existante, et aussi on evite des erreurs arrayindexoutofboundsexception pendant le generation .
+
+
+
+
+
+
 
 ![ l'uml complet du premier livrable](/index/UMLlivrable1.png "UML complet pour le premier livrable")
 
