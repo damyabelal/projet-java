@@ -100,6 +100,12 @@ public void display(){
             }
         }
         System.out.println();
+        System.out.println("\n Légende des tuiles :");
+    System.out.println(" 🌊 : Mer");
+    System.out.println(" 🌲 : Forêt");
+    System.out.println(" 🐑 : Pâturage");
+    System.out.println(" 🏔 : Montagne");
+    System.out.println(" 🌸 : Champ");
    
 }
 
