@@ -51,6 +51,20 @@ Verifier si une case est vide avant d’y placer une tuile : avant de placer une
 pourquoi cette verification est importante : on ne veut pas ecraser une tuile terrestre existante, et aussi on evite des erreurs arrayindexoutofboundsexception pendant le generation .
 
 
+Affichage du Plateau :
+Au debut, on voulait afficher le plateau avec des symboles simples comme //\ pour montagne , ~ pour mer ... etc. on a commence a faire ca sur nos machines personnelles, et ca marchait bien pour les tests. mais apres on a vu que c’etait possible d’afficher des emojis dans le terminal, alors on a decide de changer les symboles par des emojis.
+
+les emojis rendent le jeu plus beau a regarder et plus facile a comprendre. chaque type de tuile (mer, foret, paturage, montagne, champ) est represente par un emoji specifique comme suit :
+Sea → 🌊
+Foret → 🌳
+Paturage → 🐑
+Montagne → 🏔
+Champ → 🌸
+
+voici un exemple d’affichage du plateau avec des emojis :
+
+![exemple d'affichage avec a =5 et b=5 :](/index/ExempleBoard.png "")
+
 
 
 
