@@ -20,6 +20,10 @@ public class Building{
         //TO DO
     }
 
+    public boolean canBuild(){
+        //TO DO
+    }
+
 
 
 
