@@ -16,7 +16,9 @@ public class Building{
     }
 
 
-    
+    public boolean haveEnoughRessources(){
+        //TO DO
+    }
 
 
 
