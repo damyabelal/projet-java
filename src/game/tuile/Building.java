@@ -16,7 +16,13 @@ public class Building{
     }
 
 
-    
+    public boolean haveEnoughRessources(){
+        //TO DO
+    }
+
+    public boolean canBuild(){
+        //TO DO
+    }
 
 
 
