@@ -31,8 +31,9 @@ public boolean haveBuild(){}
 
 
 
-/** adds a new building to this tile */
-    public void addBuilding(){
+/** adds a new  building to this tile with the given capacity  */
+    public void addBuilding(int capacite){
+        
 }
 
     
