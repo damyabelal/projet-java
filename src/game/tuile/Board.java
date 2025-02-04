@@ -57,7 +57,11 @@ public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
     System.out.println(" Plateau du Jeu :");
-
+    System.out.println(" 🌊 : Mer");
+    System.out.println(" 🌲 : Forêt");
+    System.out.println(" 🐑 : Pâturage");
+    System.out.println(" 🏔 : Montagne");
+    System.out.println(" 🌸 : Champ");
     
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
@@ -102,11 +106,7 @@ public void display(){
         }
         System.out.println();
         System.out.println("\n Légende des tuiles :");
-    System.out.println(" 🌊 : Mer");
-    System.out.println(" 🌲 : Forêt");
-    System.out.println(" 🐑 : Pâturage");
-    System.out.println(" 🏔 : Montagne");
-    System.out.println(" 🌸 : Champ");
+
    
 }
 
