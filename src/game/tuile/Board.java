@@ -112,7 +112,7 @@ public void display(){
 
 /** creates a new board for the game randomly */
 
-public void createBoard(){
+private void createBoard(){
     this.placeInitialeTiles();
     this.placeNeighboorEarthTiles();
     
@@ -164,7 +164,7 @@ public void put(Tuile t, Position pos){
 /* return a random position on the board 
  * @return a position on the board
  * */
-public Position randomPosition(){
+private Position randomPosition(){
     Random randomNumbers = new Random();
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
@@ -188,7 +188,7 @@ public int tileNumber(){
 }
 
 /** places half of the 1/6 number of tiles randomly on the board */
-public void placeInitialeTiles(){
+private void placeInitialeTiles(){
     int nbTuile= this.tileNumber();
     int nbTuileInit = nbTuile/2;
     for (int i=0 ;i< nbTuileInit;i++){
@@ -218,7 +218,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
  * for the ENTIRETY  of the board it also returns the number of remaining tiles to place
  * @return nbre of remaining tiles to place
  */
-public int placeNeighboorEarthTiles(){
+private int placeNeighboorEarthTiles(){
     int nbredetuilerestante= this.tileNumber() / 2;
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
@@ -238,7 +238,7 @@ public int placeNeighboorEarthTiles(){
 /* return a random tile of a random type
  * @return a random tile 
 */
-public Tuile randomTuile(){
+private Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
     tuileTypes.put(0,new Forest() );
     tuileTypes.put(1,new Mountain());
