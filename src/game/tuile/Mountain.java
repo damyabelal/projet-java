@@ -1,9 +1,10 @@
 package game.tuile;
 
 public class Mountain extends Earth{
+    private static final String SYMBOL = " ⛰️ ";
     /** initialises a new tile of the type Mountain */
     public Mountain(){
-        super(Ressource.ORE, " ⛰️  ");
+        super(Ressource.ORE, SYMBOL);
 
     }
 }

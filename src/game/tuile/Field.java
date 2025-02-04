@@ -1,10 +1,11 @@
 package game.tuile;
 
 public class Field extends Earth {
+    private static final String SYMBOL = " 🌸 ";
 
     /** initializes a new tile of the type field */
 
     public Field(){
-        super(Ressource.WEALTH," 🌸 ");
+        super(Ressource.WEALTH,SYMBOL);
     }
 }
