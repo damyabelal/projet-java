@@ -21,7 +21,6 @@ public class Livrable1 {
       }
 
       Board b = new Board(height, width);
-      b.createBoard();
       b.display();
 
     } catch (NumberFormatException e) {

@@ -22,6 +22,7 @@ public Board(int width , int height){
             this.grid[x][y]= new Sea();
             }
         }
+    createBoard();
 }
 
 
