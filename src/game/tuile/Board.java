@@ -2,6 +2,7 @@ package game.tuile;
 import java.util.*;
 import game.util.*;
 
+// A board of a given height and width
 public class Board{
     private int width;
     private int height;
@@ -18,8 +19,8 @@ public class Board{
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
- * @param int the width of the board
- * @param int the height of the board
+ * @param width the width of the board
+ * @param height the height of the board
 */
 public Board(int width , int height){
     this.width=width;
@@ -127,7 +128,9 @@ private void createBoard(){
 }
 
 /** return true if the given position is the sea, false otherwise
- * @param Position the position */
+ * @param pos the position 
+ * @return boolean true if the tile il the sea, fale otherwise
+ * */
 public boolean isEmpty(Position pos) {
 
     if (pos.getX() >= 0 && pos.getX() < this.width && pos.getY() >= 0 && pos.getY() < this.height) {
@@ -139,9 +142,8 @@ public boolean isEmpty(Position pos) {
 }
 
 /** return true if the tile have a neighbor, false otherwise 
- * @param int x
- * @param int y
- * @return true if the tile have a neighbor 
+ * @param pos the position
+ * @return boolean true if the tile have a neighbor 
 */
 public boolean haveNeighbor(Position pos){
     for (Direction d : Direction.values()){
@@ -160,8 +162,8 @@ public boolean haveNeighbor(Position pos){
 
 
 /** put the tile on the given position+
- * @param Tuile t
- * @param Position pos
+ * @param t the tile
+ * @param pos a position
  */
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
@@ -208,8 +210,8 @@ private void placeInitialeTiles(){
 
 
 /** return the list of all the empty neighbor around a position
- * @param Position
- * @return ArrayList<Position> the list of the empty neighbor
+ * @param pos the position
+ * @return the list of the empty neighbor
  */
 public ArrayList<Position> haveEmptyNeighboorList(Position pos){
     ArrayList<Position> res= new ArrayList<>();
