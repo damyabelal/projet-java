@@ -2,7 +2,9 @@ package game.tuile;
 import java.util.*;
 import game.util.*;
 
-// A board of a given height and width
+/**
+ * A board of a given height and width
+ */
 public class Board{
     private int width;
     private int height;

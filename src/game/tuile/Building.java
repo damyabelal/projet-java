@@ -1,10 +1,15 @@
 package game.tuile;
+import game.util.*;
+
+/**
+ * A class to create a Building define by 
+ */
 public class Building{
 
     private int capacity;
 
 
-    public Building(int capacity){
+    public Building(int capacity, Position pos){
         this.capacity=capacity;
 
     }
