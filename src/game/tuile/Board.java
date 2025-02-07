@@ -7,6 +7,14 @@ public class Board{
     private int height;
     private Tuile[][] grid;
 
+    private static final String FIELD_SIGN= "🌸";
+    private static final String FOREST_SIGN= "🌲";
+    private static final String MOUNTAIN_SIGN= "🏔";
+    private static final String PASTURE_SIGN= "🐑";
+    private static final String SEA_SIGN= "🌊";
+
+
+
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)

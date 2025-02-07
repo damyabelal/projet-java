@@ -11,19 +11,18 @@ public class Building{
 
 
 
-    public int getCapacity(){
-        return this.capacity;
-    }
+//    public int getCapacity(){
+  //      return this.capacity;
+    //}
 
 
-    public boolean haveEnoughRessources(){
+   // public boolean haveEnoughRessources(){
         //TO DO
-    }
+    //}
 
-    public boolean canBuild(){
+    //public boolean canBuild(){
         //TO DO
-    }
-
+    //}
 
 
 
