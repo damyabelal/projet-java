@@ -1,14 +1,22 @@
 package game.tuile;
 public class Building{
-
+    public static String SYMBOL = " 🏡 ";
+    
     private int capacity;
-
-
-    public Building(int capacity){
+    private Tuile tuile ; /// pour savoir ou est le batiment sur qu'*elle tuile il est construit
+   
+   
+   
+    public Building(int capacity, Tuile tuile){
         this.capacity=capacity;
+        this.tuile = tuile ;
 
     }
 
+    // pour savoir ou est le batiment ou sur qu'elle tuile 
+    public Tuile getTuile(){
+        return this.tuile;
+    }
 
 
     public int getCapacity(){

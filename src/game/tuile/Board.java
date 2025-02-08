@@ -169,6 +169,7 @@ private Position randomPosition(){
     int x= randomNumbers.nextInt(this.width);
     int y= randomNumbers.nextInt(this.height);
     Position RandomPos= new Position(x,y);
+    
     while (!this.isEmpty(RandomPos)){
         x= randomNumbers.nextInt(this.width);
         y= randomNumbers.nextInt(this.height);
