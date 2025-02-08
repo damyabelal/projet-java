@@ -5,7 +5,8 @@ import game.util.*;
  * A class to create a Building 
  */
 public class Building{
-
+    public static String SYMBOL = " 🏡 ";
+    
     private int capacity;
     private Position pos;
 
@@ -15,9 +16,20 @@ public class Building{
                                 // building pour pouvoir relier un building a une tuile mais je pense que creer
                                 // creer un attribut building dans earth est plus efficace et plus simple
         
+    private Tuile tuile ; /// pour savoir ou est le batiment sur qu'*elle tuile il est construit
+   
+   
+   
+    public Building(int capacity, Tuile tuile){
+        this.capacity=capacity;
+        this.tuile = tuile ;
 
     }
 
+    // pour savoir ou est le batiment ou sur qu'elle tuile 
+    public Tuile getTuile(){
+        return this.tuile;
+    }
 
 
  public int getCapacity(){
@@ -35,4 +47,4 @@ public class Building{
 
 
 
-}
+}}
