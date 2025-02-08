@@ -159,21 +159,19 @@ public void put(Tuile t, Position pos){
 }
 
 
-/* return a random position on the board 
- * @return a position on the board
- * */
-private Position randomPosition(){
+/** return an empty random position if found within less 100 attempts, if not found return null
+* @return a random position or null if not found
+*/
+private Position randomPosition() {
     Random randomNumbers = new Random();
-    int x= randomNumbers.nextInt(this.width);
-    int y= randomNumbers.nextInt(this.height);
-    Position RandomPos= new Position(x,y);
-    while (!this.isEmpty(RandomPos)){
-        x= randomNumbers.nextInt(this.width);
-        y= randomNumbers.nextInt(this.height);
-        RandomPos= new Position(x,y);
-    }
-    return RandomPos;
+    int cpt = 0;
+    Position randomPos;
+    do {
+        randomPos = new Position(randomNumbers.nextInt(this.width), randomNumbers.nextInt(this.height));
+    } while (!this.isEmpty(randomPos) && cpt++ < 100);
+    return cpt < 100 ? randomPos : null;  
 }
+
 
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
