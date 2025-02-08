@@ -125,13 +125,23 @@ public boolean isValidPosition(Position pos) {
            pos.getY() >= 0 && pos.getY() < this.height;
 }
 
+/**
+ * checks if the tile at the given position is of type Earth because Earth is buildable 
+ *
+ * @param pos the position to check
+ * @return true if the tile is Earth, false otherwise
+ */
+public boolean isBuildable(Position pos){
+    return this.grid[pos.getX()][pos.getY()] instanceof Earth;
+}
+
 
 /** return true if the given position is the sea, false otherwise
  * @param pos the position 
  * @return boolean true if the tile il the sea, fale otherwise
  * */
 public boolean isEmpty(Position pos) {
-    return isValidPosition(pos) && this.grid[pos.getX()][pos.getY()] instanceof Sea;
+    return isValidPosition(pos) && !isBuildable(pos);
 }
 
 
