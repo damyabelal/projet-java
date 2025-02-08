@@ -58,12 +58,13 @@ public int getHeight(){
 public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
-    System.out.println(" Plateau du Jeu :");
-    System.out.println(" 🌊 : Mer");
-    System.out.println(" 🌲 : Forêt");
-    System.out.println(" 🐑 : Pâturage");
-    System.out.println(" 🏔 : Montagne");
-    System.out.println(" 🌸 : Champ");
+
+    System.out.println("GAME BOARD :");
+    System.out.println(new Sea().getSymbol() + " : Sea");
+    System.out.println(new Forest().getSymbol() + " : Forest");
+    System.out.println(new Pasture().getSymbol() + " : Pasture");
+    System.out.println(new Mountain().getSymbol() + " : Mountain");
+    System.out.println(new Field().getSymbol() + " : Field");
     
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
@@ -75,12 +76,9 @@ public void display(){
         }
        
     } System.out.println();
-    
     for(int  y=0; y < h ; y++){
-
         System.out.print("|");
         for (int x=0 ; x < w; x++){
-            
             String symbole = grid[x][y].getSymbol() ;
             System.out.print(  symbole + " | ");
         }
@@ -96,7 +94,6 @@ public void display(){
             }
             System.out.println();
         }
-        
     }
     for (int x = 0; x < w; x++) {
             if(x==0){
