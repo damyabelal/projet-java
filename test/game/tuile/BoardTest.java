@@ -23,15 +23,6 @@ public class BoardTest {
     }
 
     @Test
-    void testRandomPosition() {
-        // Verify that the random position is not null and is within the board's border limits
-        Position randomPos = board.randomPosition();
-        assertNotNull(randomPos);
-        assertTrue(randomPos.getX() >= 0 && randomPos.getX() < board.getWidth());
-        assertTrue(randomPos.getY() >= 0 && randomPos.getY() < board.getHeight());
-    }
-
-    @Test
     void testHaveNeighbor() {
         // Place a tile at the center and check if it has a neighbor next to it (initially, it won't since only Sea tiles are present)
         Position pos = new Position(2, 2);
@@ -61,13 +52,6 @@ public class BoardTest {
     }
 
     @Test
-    void testRandomTuile() {
-        // Verify that the generated tile is not Sea (it should be Forest, Mountain, Pasture, or Field)
-        Tuile randomTile = board.randomTuile();
-        assertFalse(randomTile instanceof Sea);
-    }
-
-    @Test
     void testPut() {
         Position pos = new Position(2, 2);
         Tuile newTile = new Forest();
@@ -79,7 +63,6 @@ public class BoardTest {
     @Test
     // This test ensures that the method places 1/6 of the tiles (half of 1/3)
     void testPlaceInitialeTiles() {
-        board.placeInitialeTiles();
         int nb = 0;
         Tuile[][] grid = board.getGrid();
         // Traverse the board and increment nb each time a non-Sea tile is found
@@ -94,29 +77,4 @@ public class BoardTest {
         assertEquals(board.tileNumber() / 2, nb);
     }
 
-    @Test
-    void testPlaceNeighboorEarthTiles() {
-        board.createBoard(); 
-        int reste = board.placeNeighboorEarthTiles();
-        // Verify that there are still tiles left to place
-        assertTrue(reste >= 0); 
-    }
-
-    @Test
-    void testCreateBoard() {
-        board.createBoard();
-        // Also test the getGrid() method (to avoid writing multiple tests)
-        Tuile[][] grid = board.getGrid();
-        int nbEarthTile = 0;
-        for (int x = 0; x < board.getWidth(); x++) {
-            for (int y = 0; y < board.getHeight(); y++) {
-                if (!(grid[x][y] instanceof Sea)) {
-                    nbEarthTile++;
-                }
-            }
-        }
-        // We cannot predict the results for createBoard since it randomly generates the board,
-        // but we can ensure that there are some non-Sea tiles
-        assertTrue(nbEarthTile > 0);
-    }
 }

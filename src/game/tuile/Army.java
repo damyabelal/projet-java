@@ -42,6 +42,8 @@ public class Army extends Building{
             return false;
         }
 
+        S
+
 
 }
         

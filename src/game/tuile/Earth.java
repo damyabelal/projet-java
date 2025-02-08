@@ -5,7 +5,10 @@ public class Earth extends Tuile{
    protected Ressource ressource ;
    protected String symbol ;
    
-   /** initialises  a new earth tile of the given type*/
+   /** initialises  a new earth tile of the given type
+    * @param ressource the ressource
+    * @param symbol the symbol of the tile
+   */
    public Earth(Ressource ressource , String symbol){
     super(symbol);
     this.ressource=ressource;
@@ -31,10 +34,10 @@ public boolean haveBuild(){}
 
 
 
-/** adds a new  building to this tile with the given capacity  */
-    public void addBuilding(int capacite){
-        
-}
+/** adds a new  building to this tile with the given capacity  
+ * @param capacity the capacity of the building
+*/
+    public void addBuilding(int capacity){};
 
     
 }
