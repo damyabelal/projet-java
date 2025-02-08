@@ -10,15 +10,6 @@ public class Board{
     private int height;
     private Tuile[][] grid;
 
-    private static final String FIELD_SIGN= "🌸";
-    private static final String FOREST_SIGN= "🌲";
-    private static final String MOUNTAIN_SIGN= "🏔";
-    private static final String PASTURE_SIGN= "🐑";
-    private static final String SEA_SIGN= "🌊";
-
-
-
-
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
  * @param width the width of the board
@@ -117,8 +108,6 @@ public void display(){
         }
         System.out.println();
         System.out.println("\n Légende des tuiles :");
-
-   
 }
 
 /** creates a new board for the game randomly */
@@ -126,42 +115,42 @@ public void display(){
 private void createBoard(){
     this.placeInitialeTiles();
     this.placeNeighboorEarthTiles();
-    
 }
+
+/**
+ * checks if the position is within the board's boundaries
+ *
+ * @param pos the position to check
+ * @return true if the position is inside the board, false if outside
+ */
+public boolean isValidPosition(Position pos) {
+    return pos.getX() >= 0 && pos.getX() < this.width &&
+           pos.getY() >= 0 && pos.getY() < this.height;
+}
+
 
 /** return true if the given position is the sea, false otherwise
  * @param pos the position 
  * @return boolean true if the tile il the sea, fale otherwise
  * */
 public boolean isEmpty(Position pos) {
-
-    if (pos.getX() >= 0 && pos.getX() < this.width && pos.getY() >= 0 && pos.getY() < this.height) {
-        if (this.grid[pos.getX()][pos.getY()] instanceof Sea) {
-            return true;
-        }
-    }
-    return false;
+    return isValidPosition(pos) && this.grid[pos.getX()][pos.getY()] instanceof Sea;
 }
+
 
 /** return true if the tile have a neighbor, false otherwise 
  * @param pos the position
  * @return boolean true if the tile have a neighbor 
 */
-public boolean haveNeighbor(Position pos){
-    for (Direction d : Direction.values()){
+public boolean haveNeighbor(Position pos) {
+    for (Direction d : Direction.values()) {
         Position neighbor = pos.next(d);
-
-        // we check that the neighbor does not exceed the limits of the board
-        if (neighbor.getX() >= 0 && neighbor.getX() < this.width &&
-            neighbor.getY() >= 0 && neighbor.getY() < this.height) {
-            if (!isEmpty(neighbor)){
-                return true;
-            }
+        if (isValidPosition(neighbor) && !isEmpty(neighbor)) {
+            return true;
         }
     }
     return false;
 }
-
 
 /** put the tile on the given position+
  * @param t the tile
