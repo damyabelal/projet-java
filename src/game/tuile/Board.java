@@ -54,7 +54,6 @@ public int getHeight(){
 /**
  * Displays the board with symbols enclosed in brackets [ ].
  */ 
-
 public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
@@ -108,7 +107,6 @@ public void display(){
 }
 
 /** creates a new board for the game randomly */
-
 private void createBoard(){
     this.placeInitialeTiles();
     this.placeNeighboorEarthTiles();
