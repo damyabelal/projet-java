@@ -20,17 +20,19 @@ public class Army extends Building{
 
     }
 
-/// ajouter les warriors mais il faut verifier si le nombre de warriors est entre 1 et 5 si c'est pas le cas on met le nb a 5
     /** add a given number of warriors, 
      * @param nbWarriors
      */
     public void addWarriors(int newWarriors){
-        if(this.nbWarriors+ newWarriors>5){
-            this.nbWarriors=5;
+        this.nbWarriors+=newWarriors ;
+        if (this.nbWarriors > 5){
+            evolveIntoCamp();
         }
-        else{
-            this.nbWarriors+=newWarriors ;
-        }
+    }
+
+    /** evolve the army into a camp */
+    public void evolveIntoCamp(){
+        Camp camp = camp(this.nbWarriors, this.tuile);
     }
 
     /** return the number of warriors
@@ -50,11 +52,6 @@ public class Army extends Building{
         else{
             return false;
         }
-
-
 }
-        
-
-    
     
 }
