@@ -1,23 +1,19 @@
 package game.tuile;
 
 public class Army extends Building{
-    
+
     public int nbWarriors;
-    public int tuile;
    
     public Army(int nbWarriors, Tuile tuile){
-        super(tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
-        
-        
+        super(tuile, capacity); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
         /// faut verfier il est entre 1 et 5
-        if (nbWarriors > 5){
-            this.nbWarriors = 5;
-        }
-        else{
-            this.nbWarriors = nbWarriors;
-        }
-        
-
+        this.nbWarriors = nbWarriors; 
+        //if (nbWarriors > 5){
+        //    this.nbWarriors = 5;
+        //}
+        //else{
+        //    this.nbWarriors = nbWarriors;
+        //}
     }
 
     /** add a given number of warriors, 

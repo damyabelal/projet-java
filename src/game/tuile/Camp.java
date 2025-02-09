@@ -2,13 +2,9 @@ package game.tuile;
 
 public class Camp extends Army{
 
-    public Camp(){
-        super(nbWarriors, Tuile);
+    public Camp(int nbWarriors, Earth tuile, int capacity){
+        super(nbWarriors, tuile, capacity);
     }
-
-    public getRessource(){
-        return super.getRessource()*2; 
-    };
 
 
 }
