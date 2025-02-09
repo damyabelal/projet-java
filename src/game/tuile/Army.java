@@ -4,9 +4,8 @@ public class Army extends Building{
 
     public int nbWarriors;
    
-    public Army(int nbWarriors, Tuile tuile){
-        super(tuile, capacity); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
-        /// faut verfier il est entre 1 et 5
+    public Army(int nbWarriors, Earth tuile, int capacity){
+        super(capacity, tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
         this.nbWarriors = nbWarriors; 
         //if (nbWarriors > 5){
         //    this.nbWarriors = 5;
@@ -17,19 +16,19 @@ public class Army extends Building{
     }
 
     /** add a given number of warriors, 
-     * @param nbWarriors
+     * @param newWarriors the number of warriors 
      */
     public void addWarriors(int newWarriors){
         this.nbWarriors+=newWarriors ;
         if (this.nbWarriors > 5){
-            evolveIntoCamp();
+            //this.evolveIntoCamp();
         }
     }
 
     /** evolve the army into a camp */
-    public void evolveIntoCamp(){
-        Camp camp = camp(this.nbWarriors, this.tuile);
-    }
+    //public void evolveIntoCamp(){
+    //    Camp camp = camp(this.nbWarriors, this.tuile);
+    //}
 
     /** return the number of warriors
      * @return the number of warriors

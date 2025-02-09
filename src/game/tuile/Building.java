@@ -5,9 +5,8 @@ package game.tuile;
  */
 public class Building{
     public static String SYMBOL = " 🏡 ";
-    
-    private int capacity;
-    private Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
+    protected int capacity;
+    protected Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
    
    
    /** create a building on a given tile
@@ -41,7 +40,6 @@ public class Building{
     }
 
     /** return the ressources
-     * @??
      */
     public Ressource getRessource(){
         return this.tuile.getRessource();
