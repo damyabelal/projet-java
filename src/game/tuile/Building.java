@@ -7,14 +7,14 @@ public class Building{
     public static String SYMBOL = " 🏡 ";
     
     private int capacity;
-    private Tuile tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
+    private Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
    
    
    /** create a building on a given tile
     * @param capacity the capacity oh this construction
     * @param tuile the tile where we build the building
     */
-    public Building(int capacity, Tuile tuile){
+    public Building(int capacity, Earth tuile){
         this.capacity=capacity;
         this.tuile = tuile ;
 
@@ -38,6 +38,13 @@ public class Building{
      */
     public int getCapacity(){
      return this.capacity;
+    }
+
+    /** return the ressources
+     * @??
+     */
+    public Ressource getRessource(){
+        return this.tuile.getRessource();
     }
 
 }

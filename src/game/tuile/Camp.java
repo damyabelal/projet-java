@@ -6,7 +6,9 @@ public class Camp extends Army{
         super(nbWarriors, Tuile);
     }
 
-    public getAdditionalWarrios(){};
+    public getRessource(){
+        return super.getRessource()*2; 
+    };
 
 
 }
