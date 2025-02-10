@@ -3,16 +3,9 @@ package game.tuile;
 /**
  * A class to create a Building 
  */
-<<<<<<< HEAD
 public class Building{
     public static final String SYMBOL = " B ";
-    protected int dimension;
-=======
-public abstract class Building{
-    public int dimension = 1;
-    public static final String SYMBOL = " 🏡 ";
-    protected int capacity;
->>>>>>> e3c6b0a63519935f5dae3239cc2e4f7907856e7c
+    protected int dimension = 1 ; /// la capacité de ce batiment
     protected Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
    
    
