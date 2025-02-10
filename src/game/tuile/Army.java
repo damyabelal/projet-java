@@ -2,25 +2,24 @@ package game.tuile;
 
 public class Army extends Building{
 
-    public int nbWarriors;
+    
    
-    public Army(int nbWarriors, Earth tuile, int capacity){
-        super(capacity, tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
-        this.nbWarriors = nbWarriors; 
-        //if (nbWarriors > 5){
-        //    this.nbWarriors = 5;
-        //}
-        //else{
-        //    this.nbWarriors = nbWarriors;
-        //}
+    public Army( Earth tuile, int capacity){
+        super(capacity, tuile); 
+        if (capacity > 5){
+            this.capacity = 5;
+        }
+        else{
+            this.capacity = capacity;
+        }
     }
 
     /** add a given number of warriors, 
      * @param newWarriors the number of warriors 
      */
     public void addWarriors(int newWarriors){
-        this.nbWarriors+=newWarriors ;
-        if (this.nbWarriors > 5){
+        this.capacity+=capacity ;
+        if (this.capacity > 5){
             //this.evolveIntoCamp();
         }
     }
@@ -34,19 +33,14 @@ public class Army extends Building{
      * @return the number of warriors
      */
     public int getNbWarriors(){
-        return this.nbWarriors;
+        return this.capacity;
     }
 
 /// une methode pour savoir si on peut construire un camp
 /// 
     /**  */
     public boolean canBeCamp(){
-        if(this.nbWarriors==5){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.capacity >= 5; 
 }
     
 }

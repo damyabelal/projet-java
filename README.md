@@ -306,6 +306,7 @@ Lors de cette séance, l'objectif était de mettre à plat l'UML afin de se mett
 
 - faire des modifications sur Tuile pour qu'elle prenne Building en attribut
 
+![ l'uml BUILDING ](/index/UMLlivrable1.png "UML Buidling ")
 ## Semaine 6
 
 ### Ce qui a été réalisé
