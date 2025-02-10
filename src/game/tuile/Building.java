@@ -3,20 +3,14 @@ package game.tuile;
 /**
  * A class to create a Building 
  */
-<<<<<<< HEAD
-public abstract class Building{
-    public int dimension = 1;
-    public static final String SYMBOL = " 🏡 ";
-=======
 public class Building{
     public static final String SYMBOL = " B ";
->>>>>>> f58ebfa7bb7ce11a59f8f877fcac7602c215e319
-    protected int capacity;
+    protected int dimension;
     protected Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
    
    
    /** create a building on a given tile
-    * @param capacity the capacity oh this construction
+    * @param di the capacity oh this construction
     * @param tuile the tile where we build the building
     */
     public Building(int dimension, Earth tuile){
@@ -42,7 +36,7 @@ public class Building{
      * @return the capacity
      */
     public int getCapacity(){
-     return this.capacity;
+     return this.dimension;
     }
 
     /** return the ressources

@@ -13,9 +13,9 @@ public class Army extends Building{
      * @param nbWarriors the number of warriors
      */
     public Army( Earth tuile, int nbWarriors){
-        super(dimension, tuile); 
-        if (capacity > nbWarriorsMax){
-            this.capacity = nbWarriorsMax;
+        super( tuile); 
+        if (nbWarriors > nbWarriorsMax){
+            this.nbWarriors = nbWarriorsMax;
         }
         else{
             this.nbWarriors = nbWarriors;

@@ -49,16 +49,68 @@ public int getWidth(){
 public int getHeight(){
     return this.height;
 }
-
+public void display(){
+    int w = this.getWidth();
+    int h = this.getHeight();
+   
+    System.out.println("GAME BOARD :");
+    System.out.println("\n Légende des tuiles :");
+    System.out.println(new Sea().getSymbol() + " : Sea");
+    System.out.println(new Forest().getSymbol() + " : Forest");
+    System.out.println(new Pasture().getSymbol() + " : Pasture");
+    System.out.println(new Mountain().getSymbol() + " : Mountain");
+    System.out.println(new Field().getSymbol() + " : Field");
+    
+    System.out.println("        ");
+    for (int x = 0; x < w; x++) {
+        if(x==0){
+            System.out.print("|-----|");
+        }
+        else {
+            System.out.print("------|");
+        }
+       
+    } System.out.println();
+    for(int  y=0; y < h ; y++){
+        System.out.print("|");
+        for (int x=0 ; x < w; x++){
+            String symbole =(" "+ grid[x][y].getSymbol() +"");
+            System.out.print(  symbole + " | ");
+        }
+        System.out.println(); 
+        // We put a separating line between the lines but not the last one.
+        if (y<h-1){
+            System.out.print("|");
+            for (int x = 0; x < w; x++) {
+                if(x==0){
+                System.out.print("_____|");}
+                else {
+                    System.out.print("______|");}
+            }
+            System.out.println();
+        }
+    }
+    for (int x = 0; x < w; x++) {
+            if(x==0){
+                System.out.print("|-----|");
+            }
+            else {
+                System.out.print("------|");
+            }
+        }
+        System.out.println();
+        
+}
 
 /**
  * Displays the board with symbols enclosed in brackets [ ].
  */ 
-public void display(){
+/**public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
-
+   
     System.out.println("GAME BOARD :");
+    System.out.println("\n Légende des tuiles :");
     System.out.println(new Sea().getSymbol() + " : Sea");
     System.out.println(new Forest().getSymbol() + " : Forest");
     System.out.println(new Pasture().getSymbol() + " : Pasture");
@@ -103,8 +155,8 @@ public void display(){
             }
         }
         System.out.println();
-        System.out.println("\n Légende des tuiles :");
-}
+        
+}*/
 
 /** creates a new board for the game randomly */
 private void createBoard(){
