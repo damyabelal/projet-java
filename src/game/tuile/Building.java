@@ -4,7 +4,7 @@ package game.tuile;
  * A class to create a Building 
  */
 public class Building{
-    public static String SYMBOL = " 🏡 ";
+    public static final String SYMBOL = " 🏡 ";
     protected int capacity;
     protected Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
    
