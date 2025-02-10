@@ -1,7 +1,7 @@
 package game.tuile;
 
 public class Field extends Earth {
-    private static final String SYMBOL = " 🌸 ";
+    private static final String SYMBOL = " C ";
 
     /** initializes a new tile of the type field */
 
