@@ -2,15 +2,23 @@ package game.tuile;
 
 public class Army extends Building{
 
+    public int nbWarriors  ;
+    public static final String SYMBOL = " -> ";//" 🏹 "
+    public int nbWarriorsMax = 5;
+
+
     
-   
-    public Army( Earth tuile, int capacity){
-        super(capacity, tuile); 
-        if (capacity > 5){
-            this.capacity = 5;
+    /** create an army on a given tile
+     * @param tuile the tile where we build the building
+     * @param nbWarriors the number of warriors
+     */
+    public Army( Earth tuile, int nbWarriors){
+        super(dimension, tuile); 
+        if (capacity > nbWarriorsMax){
+            this.capacity = nbWarriorsMax;
         }
         else{
-            this.capacity = capacity;
+            this.nbWarriors = nbWarriors;
         }
     }
 
@@ -18,9 +26,11 @@ public class Army extends Building{
      * @param newWarriors the number of warriors 
      */
     public void addWarriors(int newWarriors){
-        this.capacity+=capacity ;
-        if (this.capacity > 5){
-            //this.evolveIntoCamp();
+        if (this.nbWarriors + newWarriors > this.nbWarriorsMax){
+            this.nbWarriors = this.nbWarriorsMax;
+        }
+        else{
+            this.nbWarriors += newWarriors;
         }
     }
 
@@ -33,12 +43,16 @@ public class Army extends Building{
      * @return the number of warriors
      */
     public int getNbWarriors(){
-        return this.capacity;
+        return this.nbWarriors;
     }
 
-/// une methode pour savoir si on peut construire un camp
-/// 
-    /**  */
+
+
+
+    /**
+     * return true if the army can be a camp
+     * @return boolean
+     */
     public boolean canBeCamp(){
         return this.capacity >= 5; 
 }

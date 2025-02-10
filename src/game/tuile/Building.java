@@ -4,6 +4,7 @@ package game.tuile;
  * A class to create a Building 
  */
 public abstract class Building{
+    public int dimension = 1;
     public static final String SYMBOL = " 🏡 ";
     protected int capacity;
     protected Earth tuile ; /// pour savoir ou est le batiment sur qu'elle tuile il est construit
@@ -13,8 +14,8 @@ public abstract class Building{
     * @param capacity the capacity oh this construction
     * @param tuile the tile where we build the building
     */
-    public Building(int capacity, Earth tuile){
-        this.capacity=capacity;
+    public Building(int dimension, Earth tuile){
+        this.dimension=dimension;
         this.tuile = tuile ;
 
     }
