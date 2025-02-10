@@ -294,10 +294,17 @@ Pour chaque semaine on y trouvera :
 ## Semaine 5
 
 ### Ce qui a été réalisé
+Lors de cette séance, l'objectif était de mettre à plat l'UML afin de se mettre d'accord pour de bon sur la conception de Building. On as passé la séance au tableau à discuter et finalement compléter l'UML afin de pouvoir continuer le projets sans problèmes durant la pause pédagogique. 
 
 ### Difficultés rencontrées
+- Lier la classe Tuile et Building afin de pouvoir récupérer les bâtiments facilement durant le display
+
+- définition de la capacité (nottament sur ce qu'elle représente et si elle devait être une constante)
 
 ### Objectifs pour la semaine
+- Avancer sur le code de la classe Building (+ correction de ce qui a déjà était fait)
+
+- faire des modifications sur Tuile pour qu'elle prenne Building en attribut
 
 ## Semaine 6
 
