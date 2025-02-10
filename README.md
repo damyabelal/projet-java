@@ -266,9 +266,30 @@ Pour chaque semaine on y trouvera :
 
 ### Ce qui a été réalisé
 
+- Modélisation du diagramme UML permettant la mise en place des classes Building, Army, Camp, Port, Farm, Exploitation 
+
+- Discussion sur les héritages entre Army et Camp car il y'a une relation entre elles (Army peut évoluer en camp selon le nombre de guerriers, par exemple si ca dépasse 5 une armmée devient camp)
+
+- Discussion sur les héritages entre Farm et Exploitation car il y'a une  entre elles (Un joueur peut faire évoluer les fermes en exploitations en utilisant des ressources)
+
+- Réflexion sur le choix de constante pour la dimension des classes Farm et Exploitation car c'est des valeurs fixes 
+
 ### Difficultés rencontrées
 
+- Remise en question sur la conception Building
+
 ### Objectifs pour la semaine
+
+- Suite a la discussion avec le prof concernant le livrable1, on va procéder a quelques modifications 
+
+- Finalisation du diagramme UML pour la modélisation des batiments
+
+- Répartir les tâches entre les membres du groupe pour répartir la partie code 
+
+
+
+
+![Building](/index/UML_Building.png "UML Building")
 
 ## Semaine 5
 

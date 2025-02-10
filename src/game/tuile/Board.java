@@ -2,16 +2,18 @@ package game.tuile;
 import java.util.*;
 import game.util.*;
 
+/**
+ * A board of a given height and width
+ */
 public class Board{
     private int width;
     private int height;
     private Tuile[][] grid;
 
-
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
- * @param int the width of the board
- * @param int the height of the board
+ * @param width the width of the board
+ * @param height the height of the board
 */
 public Board(int width , int height){
     this.width=width;
@@ -22,6 +24,7 @@ public Board(int width , int height){
             this.grid[x][y]= new Sea();
             }
         }
+    createBoard();
 }
 
 
@@ -51,12 +54,16 @@ public int getHeight(){
 /**
  * Displays the board with symbols enclosed in brackets [ ].
  */ 
-
 public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
-    System.out.println(" Plateau du Jeu :");
 
+    System.out.println("GAME BOARD :");
+    System.out.println(new Sea().getSymbol() + " : Sea");
+    System.out.println(new Forest().getSymbol() + " : Forest");
+    System.out.println(new Pasture().getSymbol() + " : Pasture");
+    System.out.println(new Mountain().getSymbol() + " : Mountain");
+    System.out.println(new Field().getSymbol() + " : Field");
     
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
@@ -68,12 +75,9 @@ public void display(){
         }
        
     } System.out.println();
-    
     for(int  y=0; y < h ; y++){
-
         System.out.print("|");
         for (int x=0 ; x < w; x++){
-            
             String symbole = grid[x][y].getSymbol() ;
             System.out.print(  symbole + " | ");
         }
@@ -89,7 +93,6 @@ public void display(){
             }
             System.out.println();
         }
-        
     }
     for (int x = 0; x < w; x++) {
             if(x==0){
@@ -101,58 +104,62 @@ public void display(){
         }
         System.out.println();
         System.out.println("\n Légende des tuiles :");
-    System.out.println(" 🌊 : Mer");
-    System.out.println(" 🌲 : Forêt");
-    System.out.println(" 🐑 : Pâturage");
-    System.out.println(" 🏔 : Montagne");
-    System.out.println(" 🌸 : Champ");
-   
 }
 
 /** creates a new board for the game randomly */
-
-public void createBoard(){
+private void createBoard(){
     this.placeInitialeTiles();
     this.placeNeighboorEarthTiles();
-    
 }
 
-/** return true if the given position is the sea, false otherwise
- * @param Position the position */
-public boolean isEmpty(Position pos) {
+/**
+ * checks if the position is within the board's boundaries
+ *
+ * @param pos the position to check
+ * @return true if the position is inside the board, false if outside
+ */
+public boolean isValidPosition(Position pos) {
+    return pos.getX() >= 0 && pos.getX() < this.width &&
+           pos.getY() >= 0 && pos.getY() < this.height;
+}
 
-    if (pos.getX() >= 0 && pos.getX() < this.width && pos.getY() >= 0 && pos.getY() < this.height) {
-        if (this.grid[pos.getX()][pos.getY()] instanceof Sea) {
+/**
+ * checks if the tile at the given position is of type Earth because Earth is buildable 
+ *
+ * @param pos the position to check
+ * @return true if the tile is Earth, false otherwise
+ */
+public boolean isBuildable(Position pos){
+    return this.grid[pos.getX()][pos.getY()] instanceof Earth;
+}
+
+
+/** return true if the given position is the sea, false otherwise
+ * @param pos the position 
+ * @return boolean true if the tile il the sea, fale otherwise
+ * */
+public boolean isEmpty(Position pos) {
+    return isValidPosition(pos) && !isBuildable(pos);
+}
+
+
+/** return true if the tile have a neighbor, false otherwise 
+ * @param pos the position
+ * @return boolean true if the tile have a neighbor 
+*/
+public boolean haveNeighbor(Position pos) {
+    for (Direction d : Direction.values()) {
+        Position neighbor = pos.next(d);
+        if (isValidPosition(neighbor) && !isEmpty(neighbor)) {
             return true;
         }
     }
     return false;
 }
 
-/** return true if the tile have a neighbor, false otherwise 
- * @param int x
- * @param int y
- * @return true if the tile have a neighbor 
-*/
-public boolean haveNeighbor(Position pos){
-    for (Direction d : Direction.values()){
-        Position neighbor = pos.next(d);
-
-        // we check that the neighbor does not exceed the limits of the board
-        if (neighbor.getX() >= 0 && neighbor.getX() < this.width &&
-            neighbor.getY() >= 0 && neighbor.getY() < this.height) {
-            if (!isEmpty(neighbor)){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-
 /** put the tile on the given position+
- * @param Tuile t
- * @param Position pos
+ * @param t the tile
+ * @param pos a position
  */
 public void put(Tuile t, Position pos){
     this.grid[pos.getX()][pos.getY()]= t;
@@ -160,21 +167,19 @@ public void put(Tuile t, Position pos){
 }
 
 
-/* return a random position on the board 
- * @return a position on the board
- * */
-public Position randomPosition(){
+/** return an empty random position if found within less 100 attempts, if not found return null
+* @return a random position or null if not found
+*/
+private Position randomPosition() {
     Random randomNumbers = new Random();
-    int x= randomNumbers.nextInt(this.width);
-    int y= randomNumbers.nextInt(this.height);
-    Position RandomPos= new Position(x,y);
-    while (!this.isEmpty(RandomPos)){
-        x= randomNumbers.nextInt(this.width);
-        y= randomNumbers.nextInt(this.height);
-        RandomPos= new Position(x,y);
-    }
-    return RandomPos;
+    int cpt = 0;
+    Position randomPos;
+    do {
+        randomPos = new Position(randomNumbers.nextInt(this.width), randomNumbers.nextInt(this.height));
+    } while (!this.isEmpty(randomPos) && cpt++ < 100);
+    return cpt < 100 ? randomPos : null;  
 }
+
 
 
 /** returns the number of the earth tiles that we should place on the board using the width and the height
@@ -187,7 +192,7 @@ public int tileNumber(){
 }
 
 /** places half of the 1/6 number of tiles randomly on the board */
-public void placeInitialeTiles(){
+private void placeInitialeTiles(){
     int nbTuile= this.tileNumber();
     int nbTuileInit = nbTuile/2;
     for (int i=0 ;i< nbTuileInit;i++){
@@ -199,8 +204,8 @@ public void placeInitialeTiles(){
 
 
 /** return the list of all the empty neighbor around a position
- * @param Position
- * @return ArrayList<Position> the list of the empty neighbor
+ * @param pos the position
+ * @return the list of the empty neighbor
  */
 public ArrayList<Position> haveEmptyNeighboorList(Position pos){
     ArrayList<Position> res= new ArrayList<>();
@@ -217,7 +222,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
  * for the ENTIRETY  of the board it also returns the number of remaining tiles to place
  * @return nbre of remaining tiles to place
  */
-public int placeNeighboorEarthTiles(){
+private int placeNeighboorEarthTiles(){
     int nbredetuilerestante= this.tileNumber() / 2;
     for (int x=0; x<this.getWidth(); x++){
         for (int y=0; y<this.getHeight(); y++){
@@ -237,7 +242,7 @@ public int placeNeighboorEarthTiles(){
 /* return a random tile of a random type
  * @return a random tile 
 */
-public Tuile randomTuile(){
+private Tuile randomTuile(){
     Map<Integer,Tuile> tuileTypes= new HashMap<Integer,Tuile>();
     tuileTypes.put(0,new Forest() );
     tuileTypes.put(1,new Mountain());

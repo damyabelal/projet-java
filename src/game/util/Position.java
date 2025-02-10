@@ -1,13 +1,15 @@
 package game.util;
-
+/**
+ * A class to create a position on a grid
+ */
 public class Position{
     private int x;
     private int y;
 
     /**
      * build the position
-     * @param int x
-     * @param int y
+     * @param x int
+     * @param y int
      */
     public Position(int x, int y){
         this.x= x;
@@ -32,7 +34,7 @@ public class Position{
 
     /**
      * add the the value of the direction of to x and y
-     * @param Direction d, the direction we add
+     * @param d, the direction we add
      * @return Position , the previous position plus the direction 
      */
     public Position next(Direction d){

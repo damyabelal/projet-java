@@ -3,7 +3,15 @@ import game.tuile.*;
 
 import java.lang.Integer;
 
+/**
+ * print a board of the size to the given parameters
+ */
 public class Livrable1 {
+
+  /**
+   * take 2 arguments for the size of the board and print it. 
+   * @param args the size
+   */
   public static void main(String[] args) {
     try { 
       
@@ -21,7 +29,6 @@ public class Livrable1 {
       }
 
       Board b = new Board(height, width);
-      b.createBoard();
       b.display();
 
     } catch (NumberFormatException e) {
