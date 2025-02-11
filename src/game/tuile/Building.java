@@ -1,5 +1,7 @@
 package game.tuile;
 import java.util.*;
+import game.util.*;
+
 
 /**
  * A class to create a Building 
@@ -57,7 +59,15 @@ public abstract class Building{
     }
 
     public boolean canBuild(){
+
         //TO DO
+    }
+
+/** returns the position of this building which is also the position of the tile the building is placed on
+ */
+    public Position getPosition(){
+        return this.tuile.getPosition();
+
     }
 
     
