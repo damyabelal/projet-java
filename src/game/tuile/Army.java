@@ -2,26 +2,35 @@ package game.tuile;
 
 public class Army extends Building{
 
-    public int nbWarriors;
-   
-    public Army(int nbWarriors, Earth tuile, int capacity){
-        super(capacity, tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
-        this.nbWarriors = nbWarriors; 
-        //if (nbWarriors > 5){
-        //    this.nbWarriors = 5;
-        //}
-        //else{
-        //    this.nbWarriors = nbWarriors;
-        //}
+    public int nbWarriors  ;
+    public static final String SYMBOL = " -> ";//" 🏹 "
+    public int nbWarriorsMax = 5;
+
+
+    
+    /** create an army on a given tile
+     * @param tuile the tile where we build the building
+     * @param nbWarriors the number of warriors
+     */
+    public Army( Earth tuile, int nbWarriors){
+        super( tuile); 
+        if (nbWarriors > nbWarriorsMax){
+            this.nbWarriors = nbWarriorsMax;
+        }
+        else{
+            this.nbWarriors = nbWarriors;
+        }
     }
 
     /** add a given number of warriors, 
      * @param newWarriors the number of warriors 
      */
     public void addWarriors(int newWarriors){
-        this.nbWarriors+=newWarriors ;
-        if (this.nbWarriors > 5){
-            //this.evolveIntoCamp();
+        if (this.nbWarriors + newWarriors > this.nbWarriorsMax){
+            this.nbWarriors = this.nbWarriorsMax;
+        }
+        else{
+            this.nbWarriors += newWarriors;
         }
     }
 
@@ -37,16 +46,15 @@ public class Army extends Building{
         return this.nbWarriors;
     }
 
-/// une methode pour savoir si on peut construire un camp
-/// 
-    /**  */
+
+
+
+    /**
+     * return true if the army can be a camp
+     * @return boolean
+     */
     public boolean canBeCamp(){
-        if(this.nbWarriors==5){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.capacity >= 5; 
 }
     
 }
