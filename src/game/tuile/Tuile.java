@@ -3,7 +3,7 @@ import game.util.*;
 
 public abstract class Tuile {
     public String symbol ; /// symbol of the tile
-    private Building building ;
+   
     private Position pos; // to be able to get the position of the tile
 
 
@@ -27,9 +27,13 @@ public abstract class Tuile {
 
 
     public Position getPosition(){
-        return this.position;
+        return this.pos;
 
     }
+
+
+
+
 
 
 

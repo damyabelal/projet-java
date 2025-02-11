@@ -49,6 +49,10 @@ public int getWidth(){
 public int getHeight(){
     return this.height;
 }
+
+
+
+/*** displays a  board for the game with tiles with random type placed on random positions */
 public void display(){
     int w = this.getWidth();
     int h = this.getHeight();
