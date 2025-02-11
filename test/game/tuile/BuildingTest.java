@@ -7,17 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BuildingTest{
 
     private  Building building;
-    private Tile tile;
+    private Earth tile;
 
     @BeforeEach
     void setUp() {
-        building = new Building();    
+        building = new Building();  
+        tile=new  Earth();
+
     }
+
+
 
 
 
     @Test
     void testGetTile(){
+    tile.addBuilding();
+    assertEquals(tile.getPosition(),Building.getPosition());
+
+
+    
+
 
     }
 

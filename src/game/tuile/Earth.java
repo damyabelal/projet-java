@@ -6,9 +6,13 @@ public class Earth extends Tuile{
    protected String symbol ;
    protected int quantiteRessource;// j'ai met cet attribut car chaque tuile a une quantité de ressource qui 
                                     // egale a 0 au depart mais qui augmente a chaque tour de jeu
-   
+    protected Building building; // chaque tuile a au plus un batiment
 
-   protected Building building; // chaque tuile a au plus un batiment
+
+
+
+
+
    /** initialises  a new earth tile of the given type
     * @param ressource the ressource
     * @param symbol the symbol of the tile
@@ -60,7 +64,7 @@ public boolean haveBuild(){}
  * @param capacity the capacity of the building
 */
     public void addBuilding(int capacity){
-        //this.building= new Building(capacity);   
+        this.building= new Building(capacity);   
         //  maintenant un building (si il y en a) est relier a une tuile et pour recupere le
         // building d'une tuile est suffit de faire tuile.getBuilding()
 
