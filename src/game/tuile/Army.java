@@ -1,5 +1,7 @@
 package game.tuile;
 
+import java.util.HashMap;
+
 public class Army extends Building{
 
     public int nbWarriors  ;
@@ -12,14 +14,19 @@ public class Army extends Building{
      * @param tuile the tile where we build the building
      * @param nbWarriors the number of warriors
      */
-    public Army( Earth tuile, int nbWarriors){
-        super( tuile); 
+    public Army(Earth tuile, int nbWarriors){
+        super(tuile); 
         if (nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
         }
         else{
             this.nbWarriors = nbWarriors;
         }
+        this.symbol = SYMBOL;
+        this.cost.put(1, Ressource.WOOD);
+        this.cost.put(1, Ressource.SHEEP);
+        this.cost.put(1,Ressource.WEALTH);
+
     }
 
     /** add a given number of warriors, 
