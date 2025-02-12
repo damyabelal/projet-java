@@ -1,6 +1,5 @@
 package game.tuile;
 
-import java.util.HashMap;
 
 public class Army extends Building{
 
@@ -32,7 +31,7 @@ public class Army extends Building{
     /** add a given number of warriors, 
      * @param newWarriors the number of warriors 
      */
-    public void addWarriors(int newWarriors){
+    public void addWarwheatriors(int newWarriors){
         if (this.nbWarriors + newWarriors > this.nbWarriorsMax){
             this.nbWarriors = this.nbWarriorsMax;
         }
@@ -61,7 +60,14 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(){
-        return this.capacity >= 5; 
-}
+        return this.nbWarriors >= 5; 
+    }
+
+    @Override
+    protected boolean canBuild() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'canBuild'");
+    }
+
     
 }
