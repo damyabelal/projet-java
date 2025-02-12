@@ -57,13 +57,13 @@ public abstract class Building{
     public Ressource getRessourceBis(){
         return this.tuile.getRessource();
     }
+    
+    /** methode abstraite qui sera redéfini dans les classes Army Camp..ect, car canBuild() dépend de chaque Batiment */
+    protected abstract boolean canBuild();
 
-    public boolean canBuild(){
 
-        //TO DO
-    }
 
-/** returns the position of this building which is also the position of the tile the building is placed on
+    /** returns the position of this building which is also the position of the tile the building is placed on
  * @return the position on which the building was placed on */
     public Position getPosition(){
         return this.tuile.getPosition();
