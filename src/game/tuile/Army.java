@@ -1,39 +1,45 @@
 package game.tuile;
 
 public class Army extends Building{
-    
+
     public int nbWarriors;
    
-    public Army(int nbWarriors, Tuile tuile){
-        super(tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
-        
-        
-        /// faut verfier il est entre 1 et 5
-        if (nbWarriors > 5){
-            this.nbWarriors = 5;
-        }
-        else{
-            this.nbWarriors = nbWarriors;
-        }
-        
-
+    public Army(int nbWarriors, Earth tuile, int capacity){
+        super(capacity, tuile); // il a la meme tuile que le building (je comprends pas pourquoi y a une erreur )
+        this.nbWarriors = nbWarriors; 
+        //if (nbWarriors > 5){
+        //    this.nbWarriors = 5;
+        //}
+        //else{
+        //    this.nbWarriors = nbWarriors;
+        //}
     }
-/// ajouter les warriors mais il faut verifier si le nombre de warriors est entre 1 et 5 si c'est pas le cas on met le nb a 5
-    public void addWarriors(int nbWarriors){
-        if(this.nbWarriors+nbWarriors>5){
-            this.nbWarriors=5;
-        }
-        else{
-            this.nbWarriors+=nbWarriors ;
+
+    /** add a given number of warriors, 
+     * @param newWarriors the number of warriors 
+     */
+    public void addWarriors(int newWarriors){
+        this.nbWarriors+=newWarriors ;
+        if (this.nbWarriors > 5){
+            //this.evolveIntoCamp();
         }
     }
 
-/// returnnle nombre de warriors
+    /** evolve the army into a camp */
+    //public void evolveIntoCamp(){
+    //    Camp camp = camp(this.nbWarriors, this.tuile);
+    //}
+
+    /** return the number of warriors
+     * @return the number of warriors
+     */
     public int getNbWarriors(){
         return this.nbWarriors;
     }
 
 /// une methode pour savoir si on peut construire un camp
+/// 
+    /**  */
     public boolean canBeCamp(){
         if(this.nbWarriors==5){
             return true;
@@ -41,13 +47,6 @@ public class Army extends Building{
         else{
             return false;
         }
-
-        S
-
-
 }
-        
-
-    
     
 }
