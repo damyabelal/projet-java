@@ -10,6 +10,7 @@ public abstract class Building{
     public static final String SYMBOL = " B ";
     protected String symbol;
     protected int dimension;
+    protected int resourceMultiplier;
     protected Earth tuile ; 
     protected HashMap<Integer, Ressource> cost;
    
@@ -20,6 +21,7 @@ public abstract class Building{
     public Building(Earth tuile){
         this.symbol = SYMBOL;
         this.dimension = 1;
+        this.resourceMultiplier = 1;
         this.tuile = tuile ;
         this.cost = new HashMap<>();
     }
@@ -37,6 +39,15 @@ public abstract class Building{
     public int getDimension(){
      return this.dimension;
     }
+
+    /**
+     * return the resource multiplier for this building
+     * @return the resource multiplier
+     */
+    public int getResourceMultiplier() {
+        return this.resourceMultiplier;
+    }
+
 
     /** return the symbol of this building
      * @return the symbol
