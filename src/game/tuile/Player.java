@@ -58,7 +58,7 @@ public class Player {
      * @return resource map
      */
     public HashMap<Ressource, Integer> getResources() {
-        return ressources;
+        return this.ressources;
     }
     
     /** 
@@ -67,7 +67,7 @@ public class Player {
      * @param nb amount to add
      */
     public void addResource(Ressource resource, int nb) {
-        ressources.put(resource, ressources.getOrDefault(resource, 0) + nb);
+        this.ressources.put(resource, ressources.getOrDefault(resource, 0) + nb);
     }
 
     /** 
@@ -76,7 +76,7 @@ public class Player {
      * @param nb amount to remove
      */
     public void removeResource(Ressource ressource, int nb) {
-        ressources.put(ressource, ressources.getOrDefault(ressource, 0) - nb);
+        this.ressources.put(ressource, ressources.getOrDefault(ressource, 0) - nb);
     }
 
     /** 
