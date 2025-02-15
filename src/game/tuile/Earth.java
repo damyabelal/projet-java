@@ -10,9 +10,6 @@ public class Earth extends Tuile{
 
 
 
-
-
-
    /** initialises  a new earth tile of the given type
     * @param ressource the ressource
     * @param symbol the symbol of the tile
@@ -25,23 +22,24 @@ public class Earth extends Tuile{
 
     }
 
-/** returns the ressources of this tile
- * @return string which is the type of this tile
- */
+   /** returns the ressources of this tile
+   * @return string which is the type of this tile
+   */
     public Ressource getRessource(){
         return this.ressource;
     }
 
-
-/** return the quantity of ressource of this tile
- * @return quantity of ressource of this tile
- */
+    /** return the quantity of ressource of this tile
+    * @return quantity of ressource of this tile
+    */
     public int getQuantiteRessource(){
         return this.quantiteRessource;
     }
-/** adds a number of the tile's  ressources to the already existing quantity of ressources
- * 
-  */
+
+
+    /** adds a number of the tile's  ressources to the already existing quantity of ressources
+    * 
+    */
     public void addRessource(int nbre){
         this.quantiteRessource+=nbre; // on a besoind de cette methode pour augmenter le nombre de 
                                         // ressource de chaque tuile a chaque tour de jeu
@@ -56,8 +54,6 @@ public class Earth extends Tuile{
 public boolean haveBuild(){}
 
 */
-
-
 
 
 /** adds a new  building to this tile with the given capacity  

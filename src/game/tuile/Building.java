@@ -12,7 +12,7 @@ public abstract class Building{
     protected int dimension;
     protected int resourceMultiplier;
     protected Earth tuile ; 
-    protected HashMap<Integer, Ressource> cost;
+    protected HashMap<Ressource, Integer> cost;
    
    
    /** create a building on a given tile
@@ -59,20 +59,30 @@ public abstract class Building{
     /** return the cost of the building
      * @return the cost 
      */
-    public HashMap<Integer, Ressource> getCost(){
+    public HashMap<Ressource, Integer> getCost(){
         return this.cost;
     }
 
     /** return the ressources
      * @return the ressources of the building
      */
-    public Ressource getRessourceBis(){
+    public Ressource getTuileRessource(){
         return this.tuile.getRessource();
     }
     
-    /** methode abstraite qui sera redéfini dans les classes Army Camp..ect, car canBuild() dépend de chaque Batiment */
-    protected abstract boolean canBuild();
-
+    /**
+    * returns the result of collecting resources from the specific building
+    * for example a camp collects twice the amount of resources from the tile
+    * so the value in the hashmap for the camp would be 2 (resourceMultiplier)
+    * 
+    * @return a HashMap containing the resources and their multipliers
+    */
+    public HashMap<Ressource, Integer> collectRessource() {
+        HashMap<Ressource, Integer> res  = new HashMap<>();
+        Ressource resource = this.tuile.getRessource();  
+        res.put(resource, this.resourceMultiplier);  
+        return res;
+}
 
 
     /** returns the position of this building which is also the position of the tile the building is placed on
@@ -81,12 +91,11 @@ public abstract class Building{
         return this.tuile.getPosition();
 
     }
-
-    
-    
-
-
-
-
-
 }
+    
+    
+
+
+
+
+

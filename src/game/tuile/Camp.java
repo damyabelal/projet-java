@@ -17,8 +17,8 @@ public class Camp extends Army{
         this.resourceMultiplier = 2;
         this.symbol = SYMBOL;
         this.cost = new HashMap<>();
-        this.cost.put(2, Ressource.WOOD);
-        this.cost.put(3, Ressource.ORE);
+        this.cost.put(Ressource.WOOD, 2);
+        this.cost.put(Ressource.ORE, 3);
 
     }
 }
