@@ -53,6 +53,7 @@ public abstract class Building{
     }
 
     /** return the ressources
+     * @return the ressources of the building
      */
     public Ressource getRessourceBis(){
         return this.tuile.getRessource();
@@ -64,7 +65,7 @@ public abstract class Building{
 
 
     /** returns the position of this building which is also the position of the tile the building is placed on
- * @return the position on which the building was placed on */
+    * @return the position on which the building was placed on */
     public Position getPosition(){
         return this.tuile.getPosition();
 

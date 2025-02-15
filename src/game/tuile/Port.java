@@ -4,13 +4,10 @@ import java.util.HashMap;
 
 public class Port extends Building{
 
-    private Tuile tuile;
-    private int dimension;
-    private String symbol;
-    private HashMap<Integer,Ressource> cost;
-
-    public Port(){
-        super(tuile, dimension, symbol, cost);
+    public Port(Earth tuile, int dimension,HashMap<Integer, Ressource> cost){
+        super(tuile);
+        this.dimension = dimension;
+        this.cost= cost; 
     }
 
     @Override

@@ -1,18 +1,18 @@
 package game.tuile;
 
+import java.util.HashMap;
 
 public class Army extends Building{
 
-    public int nbWarriors  ;
+    private int nbWarriors  ;
     public static final String SYMBOL = " -> ";//" 🏹 "
-    public int nbWarriorsMax = 5;
-
-
+    private static int nbWarriorsMax = 5;
+    private HashMap<Integer, Ressource> cost;
     
     /** create an army on a given tile
-     * @param tuile the tile where we build the building
-     * @param nbWarriors the number of warriors
-     */
+    * @param tuile the tile where we build the building
+    * @param nbWarriors the number of warriors
+    */
     public Army(Earth tuile, int nbWarriors){
         super(tuile); 
         if (nbWarriors > nbWarriorsMax){
@@ -21,10 +21,9 @@ public class Army extends Building{
         else{
             this.nbWarriors = nbWarriors;
         }
-        this.symbol = SYMBOL;
-        this.cost.put(1, Ressource.WOOD);
-        this.cost.put(1, Ressource.SHEEP);
-        this.cost.put(1,Ressource.WEALTH);
+    this.cost.put(1, Ressource.WOOD);
+    this.cost.put(1, Ressource.SHEEP);
+    this.cost.put(1,Ressource.WEALTH);
 
     }
 
@@ -32,8 +31,8 @@ public class Army extends Building{
      * @param newWarriors the number of warriors 
      */
     public void addWarwheatriors(int newWarriors){
-        if (this.nbWarriors + newWarriors > this.nbWarriorsMax){
-            this.nbWarriors = this.nbWarriorsMax;
+        if (this.nbWarriors + newWarriors > Army.nbWarriorsMax){
+            this.nbWarriors = Army.nbWarriorsMax;
         }
         else{
             this.nbWarriors += newWarriors;
