@@ -79,8 +79,9 @@ public abstract class Building{
     */
     public HashMap<Ressource, Integer> collectRessource() {
         HashMap<Ressource, Integer> res  = new HashMap<>();
-        Ressource resource = this.tuile.getRessource();  
-        res.put(resource, this.resourceMultiplier);  
+        Ressource resource = this.tuile.getRessource();
+        int multiplier = this.getResourceMultiplier();  
+        res.put(resource, multiplier);  
         return res;
 }
 
