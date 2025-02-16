@@ -2,6 +2,7 @@ package game;
 import java.util.HashMap;
 
 import game.tuile.Building;
+import game.tuile.Earth;
 import game.tuile.Ressource;
 
 public class Player {
@@ -96,4 +97,30 @@ public class Player {
         }
         return true;
     }
+
+    /** 
+     * builds the given building if the player has enough resources
+     * @param building the building to construct
+     * @param tile the tile on which to construct the building
+     * @return true if the building was constructed false if the player does not have enough resources
+     */
+    public boolean build(Building building, Earth tile) {
+        // on verifie que le joueur a suffisament de ressource pour le batiment en question
+        if (! this.hasEnoughRessources(building)) {
+            System.out.println("Not enough resources to build the building");
+            return false; // on renvoie false car on a pas réussi
+        }
+        // si il en a on soustrait ces ressources de son stock, par exemple une armee qui coute 1 bois, 1 mouton, 1 blé on soustrait ces valeurs du joueur
+        HashMap<Ressource, Integer> cost = building.getCost();
+        for (Ressource resource : cost.keySet()) {
+            removeRessource(resource, cost.get(resource));
+        }
+        // a la fin on place le batiment sur la tuile en question grace a la methode setBuilding()
+        tile.setBuilding(building);
+        System.out.println("Building has been constructed on the tile");
+        return true; // on renvoie vrai car on a reussi 
+    }
 }
+
+
+
