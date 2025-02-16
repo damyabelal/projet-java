@@ -43,7 +43,11 @@ public class ArmyTest {
     }
 
     @Test
-    void upGradeToCampTest(){}
+    void upGradeToCampTest(){
+        army.addWarriors(5, player);
+        assertTrue(army.canBeCamp(player));
+        assertTrue(army.upGradeToCamp(player) instanceof Camp);
+    }
 
 
 }
