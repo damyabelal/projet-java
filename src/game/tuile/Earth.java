@@ -60,7 +60,7 @@ public boolean haveBuild(){}
  * @param capacity the capacity of the building
 */
     public void addBuilding(int capacity){
-        this.building= new Building(capacity);   
+        //this.building= new Building(capacity);   
         //  maintenant un building (si il y en a) est relier a une tuile et pour recupere le
         // building d'une tuile est suffit de faire tuile.getBuilding()
 

@@ -1,5 +1,8 @@
-package game.tuile;
+package game;
 import java.util.HashMap;
+
+import game.tuile.Building;
+import game.tuile.Ressource;
 
 public class Player {
 

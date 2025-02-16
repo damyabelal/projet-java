@@ -1,6 +1,8 @@
 package game.tuile;
 import java.util.HashMap;
 
+import game.Player;
+
 public class Army extends Building{
 
     protected int nbWarriors  ;
