@@ -21,4 +21,14 @@ public class Camp extends Army{
         this.cost.put(Ressource.ORE, 3);
 
     }
+
+    /**
+     * returns the number of additional warriors that were added beyond the normal Army limit
+     *
+     * @return additional warriors 
+     */
+    public int getAdditionalWarriors() {
+        return this.getNbWarriors() - 5;
+    }
+
 }

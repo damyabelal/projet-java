@@ -8,7 +8,7 @@ public class Army extends Building{
     protected int nbWarriors  ;
     private static final String SYMBOL = " -> ";        //" 🏹 "
     private static int nbWarriorsMax = 5;
-    private static int nbWarriorsMin = 5;
+    private static int nbWarriorsMin = 1;
 
     /** create an army on a given tile
     * @param tuile the tile where we build the building
@@ -47,7 +47,6 @@ public class Army extends Building{
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(this);
     }
 
-
     /** add a given number of warriors, 
     * @param newWarriors the number of warriors to add
     * @param player the player who adds the warriors
@@ -55,13 +54,13 @@ public class Army extends Building{
     public void addWarriors(int newWarriors, Player player) {
         if (player.getWarriors() >= newWarriors) {
         this.nbWarriors += newWarriors;
-        // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
-        // ici on reduit le nb de guerriers du stock du joueur 
+        // on soustrait le nb de guerriers du stock du joueur 
         player.removeWarriors(newWarriors);
     } else {
         System.out.println("Not enough warriors in stock");
     }
-}
+    }
+
     /** evolve the army into a camp
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
@@ -75,9 +74,5 @@ public class Army extends Building{
         System.out.println("Not enough warriors or not enough resources");
     }
     return null;
-}
-
-
-
-    
+}  
 }
