@@ -71,19 +71,16 @@ public abstract class Building{
     }
     
     /**
-    * returns the result of collecting resources from the specific building
-    * for example a camp collects twice the amount of resources from the tile
-    * so the value in the hashmap for the camp would be 2 (resourceMultiplier)
+    * collects resources from the tile and adds them to the player's stock
+    * for exemple a camp collects twice the amount of resources
     * 
-    * @return a HashMap containing the resources and their multipliers
+    * @param player the player who owns the building
     */
-    public HashMap<Ressource, Integer> collectRessource() {
-        HashMap<Ressource, Integer> res  = new HashMap<>();
+    public void collectRessource(Player player) {
         Ressource resource = this.getTuile().getRessource();
         int multiplier = this.getResourceMultiplier();  
-        res.put(resource, multiplier);  
-        return res;
-}
+        player.addResource(resource, multiplier);
+    }
 
 
     /** returns the position of this building which is also the position of the tile the building is placed on
