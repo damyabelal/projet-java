@@ -79,7 +79,7 @@ public abstract class Building{
     public void collectRessource(Player player) {
         Ressource resource = this.getTuile().getRessource();
         int multiplier = this.getResourceMultiplier();  
-        player.addResource(resource, multiplier);
+        player.addRessource(resource, multiplier);
     }
 
 

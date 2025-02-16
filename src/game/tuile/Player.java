@@ -66,7 +66,7 @@ public class Player {
      * @param resource resource to add
      * @param nb amount to add
      */
-    public void addResource(Ressource resource, int nb) {
+    public void addRessource(Ressource resource, int nb) {
         this.ressources.put(resource, ressources.getOrDefault(resource, 0) + nb);
     }
 
@@ -75,7 +75,7 @@ public class Player {
      * @param ressource resource to remove
      * @param nb amount to remove
      */
-    public void removeResource(Ressource ressource, int nb) {
+    public void removeRessource(Ressource ressource, int nb) {
         this.ressources.put(ressource, ressources.getOrDefault(ressource, 0) - nb);
     }
 
