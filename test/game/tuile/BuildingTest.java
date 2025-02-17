@@ -10,11 +10,16 @@ class BuildingTest{
 
     private  Building building;
     private Farm farm;
+    private Earth earthtuile;
+    private Ressource ressource;
+
 
     @BeforeEach
-    void setUp() {
-        Farm farm=new  Farm();
-
+    void setUp(){
+        Ressource ressource=Ressource.SHEEP;
+        Earth earthtuile=new Earth(ressource ,"F");
+        Farm farm=new  Farm(earthtuile);
+        
     }
 
 
@@ -27,13 +32,7 @@ class BuildingTest{
     Building building = new Building(farm);  
     assertEquals(farm,Building.getTuile());
 
-
-
-    
-    
-
-
-    }
+}
 
 
     
