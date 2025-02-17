@@ -1,5 +1,7 @@
 package game.tuile;
+import game.Board;
 import game.util.*;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;

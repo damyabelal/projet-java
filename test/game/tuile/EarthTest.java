@@ -12,10 +12,10 @@ class EarthTest{
         building = new Building(35);   
     }
 
-    private Tile tile ;
+    private Tuile tile ;
     @BeforeEach
     void setUp() {
-        tile = new Tile();    
+        tile = new Tuile();    
     }
 
 

@@ -1,18 +1,19 @@
 package game.tuile;
+import game.util.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import game.tuile.*;
 
-public class BuildingTest{
+class BuildingTest{
 
     private  Building building;
-    private Earth tile;
+    private Farm farm;
 
     @BeforeEach
     void setUp() {
-        building = new Building();  
-        tile=new  Earth();
+        Farm farm=new  Farm();
 
     }
 
@@ -21,11 +22,14 @@ public class BuildingTest{
 
 
     @Test
-    void testGetTile(){
-    tile.addBuilding();
-    assertEquals(tile.getPosition(),Building.getPosition());
+    void testGetTuile(){
+    
+    Building building = new Building(farm);  
+    assertEquals(farm,Building.getTuile());
 
 
+
+    
     
 
 
