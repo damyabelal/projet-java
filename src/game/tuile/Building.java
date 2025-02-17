@@ -89,11 +89,7 @@ public abstract class Building{
 
 
     /** returns the position of this building which is also the position of the tile the building is placed on
-<<<<<<< HEAD
- * @return the position on which the building was placed on */                  
-=======
     * @return the position on which the building was placed on */
->>>>>>> 1014677b1631254ecc4644961b704789f7d19a0b
     public Position getPosition(){
         return this.tuile.getPosition();
 
