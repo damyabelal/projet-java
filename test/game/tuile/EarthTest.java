@@ -2,40 +2,62 @@ package game.tuile;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class EarthTest{
-    private Building building ;
+    private Army army ;
+    private Earth tuile1;
+    private Earth tuile2;
     @BeforeEach
     void setUp() {
-        building = new Building(35);   
+        army = new Army(tuile1 ,0);   
+        
     }
-
-    private Tuile tile ;
-    @BeforeEach
-    void setUp() {
-        tile = new Tuile();    
-    }
-
-
-
 
     @Test
     void TestAddingABuildingToATile(){
       
-      tile.addBuilding(building);
-      assertEquals(building , tile.getBuilding());
+      tuile1.setBuilding(army);
+      assertEquals(army , tuile1.getBuilding());
 
     }
 
 
 
-    @Test // it should throw an exception
+    @Test 
     void TestGetBuildingOnATileWithoutABuilding(){
-      assertThrows( tile.getBuilding()->Exception);
+        
+       assertTrue( tuile2.getBuilding()==null);
     }
+
+    @Test
+    void TestHaveBuild(){
+      assertTrue(tuile1.haveBuild());
+  }
+
+    @Test
+    void TestGetRessource(){
+      Ressource ressource = Ressource.SHEEP;
+      Earth tuile= new Earth(ressource,"F");
+      assertEquals(tuile.getRessource(),ressource);
+    }
+
+     @Test 
+      void TestGetSymbol(){
+      Ressource ressource = Ressource.SHEEP;
+      Earth tuile= new Earth(ressource,"F");
+      assertTrue(tuile.getSymbol()=="F");
+
+
+    }
+
+  
+    }
+
 
 
     
-}
+
