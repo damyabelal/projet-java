@@ -1,49 +1,34 @@
 package game.tuile;
+import java.util.HashMap;
 
+import game.Player;
 
 public class Army extends Building{
 
-    public int nbWarriors  ;
-    public static final String SYMBOL = " -> ";//" 🏹 "
-    public int nbWarriorsMax = 5;
+    protected int nbWarriors  ;
+    private static final String SYMBOL = " -> ";        //" 🏹 "
+    private static int nbWarriorsMax = 5;
 
-
-    
     /** create an army on a given tile
-     * @param tuile the tile where we build the building
-     * @param nbWarriors the number of warriors
-     */
+    * @param tuile the tile where we build the building
+    * @param nbWarriors the number of warriors
+    */
     public Army(Earth tuile, int nbWarriors){
         super(tuile); 
-        if (nbWarriors > nbWarriorsMax){
+        if (this.nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
         }
         else{
             this.nbWarriors = nbWarriors;
         }
+        this.dimension = this.nbWarriors;
         this.symbol = SYMBOL;
-        this.cost.put(1, Ressource.WOOD);
-        this.cost.put(1, Ressource.SHEEP);
-        this.cost.put(1,Ressource.WEALTH);
+        this.cost = new HashMap<>();
+        this.cost.put(Ressource.WOOD,1);
+        this.cost.put(Ressource.SHEEP, 1);
+        this.cost.put(Ressource.WEALTH, 1);
 
     }
-
-    /** add a given number of warriors, 
-     * @param newWarriors the number of warriors 
-     */
-    public void addWarwheatriors(int newWarriors){
-        if (this.nbWarriors + newWarriors > this.nbWarriorsMax){
-            this.nbWarriors = this.nbWarriorsMax;
-        }
-        else{
-            this.nbWarriors += newWarriors;
-        }
-    }
-
-    /** evolve the army into a camp */
-    //public void evolveIntoCamp(){
-    //    Camp camp = camp(this.nbWarriors, this.tuile);
-    //}
 
     /** return the number of warriors
      * @return the number of warriors
@@ -52,22 +37,43 @@ public class Army extends Building{
         return this.nbWarriors;
     }
 
-
-
-
     /**
      * return true if the army can be a camp
      * @return boolean
      */
-    public boolean canBeCamp(){
-        return this.nbWarriors >= 5; 
+    public boolean canBeCamp(Player player){
+        // on verifie si l'armee a plus de 5 guerriers ou si le joueur a suffisament de ressource
+        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(this);
     }
 
-    @Override
-    protected boolean canBuild() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canBuild'");
-    }
 
-    
+    /** add a given number of warriors, 
+    * @param newWarriors the number of warriors to add
+    * @param player the player who adds the warriors
+    */
+    public void addWarriors(int newWarriors, Player player) {
+        if (player.getWarriors() >= newWarriors) {
+        this.nbWarriors += newWarriors;
+        // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
+        // ici on reduit le nb de guerriers du stock du joueur 
+        player.removeWarriors(newWarriors);
+    } else {
+        System.out.println("Not enough warriors in stock");
+    }
+}
+    /** evolve the army into a camp
+    * @param player the player who wants to upgrade the army
+    * @return the new camp if the army can be upgraded null otherwise
+    */
+    public Camp upGradeToCamp(Player player) {
+    if (this.canBeCamp(player)) {
+        Camp camp = new Camp(this.getTuile(), this.getNbWarriors());
+        System.out.println("Army evolved into a camp");
+        return camp;
+    } else {
+        System.out.println("Not enough warriors or not enough resources");
+    }
+    return null;
+}
+
 }

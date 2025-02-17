@@ -1,5 +1,7 @@
 package game.tuile;
 import java.util.*;
+
+import game.Player;
 import game.util.*;
 
 
@@ -11,9 +13,9 @@ public abstract class Building{
     public static final String SYMBOL = " B ";
     protected String symbol;
     protected int dimension;
+    protected int resourceMultiplier;
     protected Earth tuile ; 
-    protected HashMap<Integer, Ressource> cost;
-
+    protected HashMap<Ressource, Integer> cost;
    
    
    /** create a building on a given tile
@@ -22,6 +24,7 @@ public abstract class Building{
     public Building(Earth tuile){
         this.symbol = SYMBOL;
         this.dimension = 1;
+        this.resourceMultiplier = 1;
         this.tuile = tuile ;
 
         this.cost = new HashMap<>();
@@ -42,6 +45,15 @@ public abstract class Building{
      return this.dimension;
     }
 
+    /**
+     * return the resource multiplier for this building
+     * @return the resource multiplier
+     */
+    public int getResourceMultiplier() {
+        return this.resourceMultiplier;
+    }
+
+
     /** return the symbol of this building
      * @return the symbol
      */
@@ -52,33 +64,45 @@ public abstract class Building{
     /** return the cost of the building
      * @return the cost 
      */
-    public HashMap<Integer, Ressource> getCost(){
+    public HashMap<Ressource, Integer> getCost(){
         return this.cost;
     }
 
     /** return the ressources
+     * @return the ressources of the building
      */
-    public Ressource getRessourceBis(){
+    public Ressource getTuileRessource(){
         return this.tuile.getRessource();
     }
     
-    /** methode abstraite qui sera redéfini dans les classes Army Camp..ect, car canBuild() dépend de chaque Batiment */
-    protected abstract boolean canBuild();
-
+    /**
+    * collects resources from the tile and adds them to the player's stock
+    * for exemple a camp collects twice the amount of resources
+    * 
+    * @param player the player who owns the building
+    */
+    public void collectRessource(Player player) {
+        Ressource resource = this.getTuile().getRessource();
+        int multiplier = this.getResourceMultiplier();  
+        player.addRessource(resource, multiplier);
+    }
 
 
     /** returns the position of this building which is also the position of the tile the building is placed on
+<<<<<<< HEAD
  * @return the position on which the building was placed on */                  
+=======
+    * @return the position on which the building was placed on */
+>>>>>>> 1014677b1631254ecc4644961b704789f7d19a0b
     public Position getPosition(){
         return this.tuile.getPosition();
 
     }
-
-    
-    
-
-
-
-
-
 }
+    
+    
+
+
+
+
+

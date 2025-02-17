@@ -1,8 +1,18 @@
 package game.tuile;
-public class Port{
 
+import java.util.HashMap;
 
-    public Port(){
-        
+public class Port extends Building{
+    
+    private static final String SYMBOL = " -> ";        //" ⚓ "
+
+    public Port(Earth tuile){
+        super(tuile);
+        this.symbol = SYMBOL;
+        this.cost= new HashMap<>(); 
+        this.cost.put(Ressource.WOOD,1);
+        this.cost.put(Ressource.SHEEP,2);
     }
+
+    
 }
