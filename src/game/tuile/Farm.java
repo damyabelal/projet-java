@@ -8,6 +8,10 @@ public class Farm extends Building{
     public Farm(Earth tuile) {
         super(tuile);
         this.dimension = 1;
+        this.cost = new HashMap<>();
+        this.cost.put(Ressource.WOOD, 1);
+        this.cost.put(Ressource.ORE, 1);
     }
+    
 
 }
