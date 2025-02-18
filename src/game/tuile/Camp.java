@@ -31,4 +31,11 @@ public class Camp extends Army{
         return this.getNbWarriors() - 5;
     }
 
+    /** 
+     * returns the name of the building
+     */
+    public String getName(){
+        return "Camp";
+    }
+
 }

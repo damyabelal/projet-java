@@ -15,6 +15,14 @@ public class Farm extends Building{
         this.cost.put(Ressource.ORE, 1);
     }
 
+    /** 
+     * returns the name of the building
+     */
+    public String getName(){
+        return "Farm";
+    }
+    
+
     /**
      * return true if the farm can be a exploitation
      * @return boolean

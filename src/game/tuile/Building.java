@@ -83,23 +83,44 @@ public abstract class Building{
     */
     public void collectRessource(Player player) {
         if (this.getTuile().haveBuild()){
-            Ressource ressource = this.getTuile().getRessource();
+            Ressource ressource = this.getTuileRessource();
             int multiplier = this.getResourceMultiplier();  
             player.addRessource(ressource, multiplier);
-            int x = this.getTuile().getPosition().getX(); 
-            int y = this.getTuile().getPosition().getY(); 
+            int x = this.getPosition().getX(); 
+            int y = this.getPosition().getY(); 
             System.out.println("Tile (" + x + "," + y + ") produces " + multiplier + " " + ressource);
         }
     }
     
-
     /** returns the position of this building which is also the position of the tile the building is placed on
     * @return the position on which the building was placed on */
     public Position getPosition(){
         return this.tuile.getPosition();
 
     }
+    
+    /** abstract method because the name of the building will be different for each subclass */
+    public abstract String getName();
+
+    /** 
+    * displays the building's cost 
+    * exemple: "Harbor, cost -> Sheep: 2, Wood: 1"
+    */
+    public void displayCost() {
+        HashMap<Ressource, Integer> cost = this.getCost();
+        System.out.print(this.getName() + ", cost -> ");
+        for (Map.Entry<Ressource, Integer> entry : cost.entrySet()) {
+            Ressource ressource = entry.getKey();
+            int nb = entry.getValue();
+            System.out.print(ressource + ": " + nb + " ");
+        }
+        System.out.println();
+    }
+
+
+
 }
+
     
     
 
