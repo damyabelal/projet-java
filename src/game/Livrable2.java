@@ -40,7 +40,7 @@ public class Livrable2 {
         Army army = new Army(armyTile,5);
         Camp camp = new Camp(campTile,20);
 
-        /// y a un truc que je ne sais pas si je dosi les placer sur le board ou pas et comment le faire
+        /// y a un truc que je ne sais pas si je dosi les placer sur le board ou pas et comment le faire 
 
 
 

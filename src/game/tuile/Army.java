@@ -6,7 +6,7 @@ import game.Player;
 public class Army extends Building{
 
     protected int nbWarriors  ;
-    private static final String SYMBOL = " -> ";        //" 🏹 "
+    private static final String SYMBOL = " -> ";        //"  "
     private static int nbWarriorsMax = 5;
 
     /** create an army on a given tile
