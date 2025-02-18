@@ -1,4 +1,5 @@
 package game.tuile;
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,16 @@ public class PlayerTest {
     void testRemoveWarriors() {
         player.removeWarriors(10);
         assertEquals(30, player.getWarriors());
+
     }
+    @Test // it should throw an exception
+    void TestNoWarriorsToRemove(){
+        player.removeWarriors(30); // removing the initial 30 warriors the player has
+        assertThrows(Exception.class ,()->{player.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
+        
+
+    }
+    
     // test the player adding resources
     @Test
     void testPlayerAddResources() {

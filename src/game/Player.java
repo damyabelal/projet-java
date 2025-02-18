@@ -66,8 +66,8 @@ public class Player {
     }
     
     /** 
-     * adds a resource to the player's stock
-     * @param resource resource to add
+     * adds a type of  resource to the player's stock
+     * @param resource the resource to add
      * @param nb amount to add
      */
     public void addRessource(Ressource resource, int nb) {
@@ -75,7 +75,7 @@ public class Player {
     }
 
     /** 
-     * removes a resource from the player's stock
+     * removes a type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
      */
@@ -84,9 +84,9 @@ public class Player {
     }
 
     /** 
-     * checks if the player has enough resources to build
-     * @param building building to check
-     * @return true if enough resources false otherwise
+     * checks if the player has enough resources to build the given building 
+     * @param building the building the player wants to build
+     * @return true if the player has  enough resources false otherwise
      */
     public boolean hasEnoughRessources(Building building) {
         HashMap<Ressource, Integer> cost = building.getCost();
@@ -102,7 +102,7 @@ public class Player {
      * builds the given building if the player has enough resources
      * @param building the building to construct
      * @param tile the tile on which to construct the building
-     * @return true if the building was constructed false if the player does not have enough resources
+     * @return true if the building was constructed false if the player does not have enough resources to build the building
      */
     public boolean build(Building building, Earth tile) {
         // on verifie que le joueur a suffisament de ressource pour le batiment en question
