@@ -77,16 +77,21 @@ public abstract class Building{
     
     /**
     * collects resources from the tile and adds them to the player's stock
-    * for exemple a camp collects twice the amount of resources
+    * for exemple a camp collects twice the amount of resources  and displays the resources collected from the tile's position
     * 
     * @param player the player who owns the building
     */
     public void collectRessource(Player player) {
-        Ressource resource = this.getTuile().getRessource();
-        int multiplier = this.getResourceMultiplier();  
-        player.addRessource(resource, multiplier);
+        if (this.getTuile().haveBuild()){
+            Ressource ressource = this.getTuile().getRessource();
+            int multiplier = this.getResourceMultiplier();  
+            player.addRessource(ressource, multiplier);
+            int x = this.getTuile().getPosition().getX(); 
+            int y = this.getTuile().getPosition().getY(); 
+            System.out.println("Tile (" + x + "," + y + ") produces " + multiplier + " " + ressource);
+        }
     }
-
+    
 
     /** returns the position of this building which is also the position of the tile the building is placed on
     * @return the position on which the building was placed on */
