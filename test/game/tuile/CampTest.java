@@ -9,11 +9,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CampTest{
 
+  private Camp camp;
+  private Earth tuile;
+  private Ressource ressource;
+
+ @BeforeEach
+ void setUp(){
+  ressource= Ressource.SHEEP;
+  tuile= new Earth(ressource,"F");
+  camp = new Camp(tuile ,8);
+
+ }
+
 @Test 
 void GetAdditionnalWarriorTest(){
-  Ressource ressource= Ressource.SHEEP;
-  Earth tuile= new Earth(ressource,"F");
-  Camp camp = new Camp(tuile ,8);
+  
   assertEquals(camp.getAdditionalWarriors(),3);
 
 
@@ -23,10 +33,8 @@ void GetAdditionnalWarriorTest(){
 
 @Test 
 void getNameTest(){
-  Ressource ressource= Ressource.SHEEP;
-  Earth tuile= new Earth(ressource,"F");
-  Camp camp = new Camp(tuile ,8);
-  assertEquals(camp.getName(),"Camp");
+
+  assertTrue(camp.getName()=="Camp");
 
   
 }

@@ -54,7 +54,7 @@ public class Army extends Building{
     }
 
 
-    /** add a given number of warriors, 
+    /** adds a given number of warriors, 
     * @param newWarriors the number of warriors to add
     * @param player the player who adds the warriors
     */
@@ -68,7 +68,7 @@ public class Army extends Building{
         System.out.println("Not enough warriors in stock");
     }
 }
-    /** evolve the army into a camp
+    /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
     */
