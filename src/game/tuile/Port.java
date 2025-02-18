@@ -54,19 +54,21 @@ public class Port extends Building{
         return false;
     }
 
-
-
-   
-    }
-
-
-
     /** 
      * returns the name of the building
      */
     public String getName(){
         return "Port";
     }
+
+
+}
+   
+
+
+
+
+    
     
 
     

@@ -15,7 +15,6 @@ public class Farm extends Building{
         this.cost.put(Ressource.ORE, 1);
     }
 
-<<<<<<< HEAD
     /** 
      * returns the name of the building
      */
@@ -24,7 +23,6 @@ public class Farm extends Building{
     }
     
 
-=======
     /**
      * return true if the farm can be a exploitation
      * @return boolean
@@ -47,5 +45,4 @@ public class Farm extends Building{
         }
         return null;
     }
->>>>>>> 29f62e747a23056ee8d67934e709a24e0b4cf296
 }
