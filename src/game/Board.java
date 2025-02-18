@@ -58,6 +58,18 @@ public int getHeight(){
     return this.height;
 }
 
+/**
+ * returns the tile at the given position
+ * @param pos
+ * @return the tile at the given position
+ */
+public Tuile getTile(Position pos){
+    if(isValidPosition(pos)){
+        return this.grid[pos.getX()][pos.getY()];
+    }
+    return null ;
+}
+
 
 
 /*** displays a  board for the game with tiles with random type placed on random positions */
