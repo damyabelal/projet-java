@@ -33,6 +33,7 @@ public class Port extends Building{
         }
         return nbSeaTiles;
     }
+
     /**
      * return true if the port can be placed at the given position , false otherwise
      * @param pos
@@ -61,4 +62,3 @@ public class Port extends Building{
 
 
     
-}
