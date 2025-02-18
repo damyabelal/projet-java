@@ -72,11 +72,20 @@ public class PlayerTest {
     // test the player building a farm
     @Test
     void testBuild(){
+        
+        Farm farm = new Farm(earth);
+        
+
+        // a player trying to build with enough resources should return True
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.ORE, 1);
-        Farm farm = new Farm(earth);
         assertTrue(player.build(farm, earth));
         assertEquals(farm, earth.getBuilding());
+        // after building a farm with using one wood and one ore , the player's ressources should diminish
+        assertTrue(player.getResources().get(Ressource.WOOD)==0);
+        assertTrue(player.getResources().get(Ressource.ORE)==0);
+
+    
     }
 
 
