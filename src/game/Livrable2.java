@@ -42,6 +42,7 @@ public class Livrable2 {
         armyTile.setBuilding(army);
         campTile.setBuilding(camp);
 
+        
         /// display costs
         port.displayCost();
         farm.displayCost();
