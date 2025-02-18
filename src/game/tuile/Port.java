@@ -14,5 +14,13 @@ public class Port extends Building{
         this.cost.put(Ressource.SHEEP,2);
     }
 
+    /** 
+     * returns the name of the building
+     */
+    public String getName(){
+        return "Port";
+    }
+    
+
     
 }

@@ -36,6 +36,13 @@ public class Army extends Building{
     public int getNbWarriors(){
         return this.nbWarriors;
     }
+    
+     /** 
+     * returns the name of the building
+     */
+    public String getName(){
+        return "Army";
+    }
 
     /**
      * return true if the army can be a camp

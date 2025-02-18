@@ -10,4 +10,12 @@ public class Farm extends Building{
         this.dimension = 1;
     }
 
+    /** 
+     * returns the name of the building
+     */
+    public String getName(){
+        return "Farm";
+    }
+    
+
 }
