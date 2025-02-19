@@ -86,9 +86,9 @@ public abstract class Building{
             Ressource ressource = this.getTuileRessource();
             int multiplier = this.getResourceMultiplier();  
             player.addRessource(ressource, multiplier);
-            // int x = this.getTuile().getPosition().getX(); 
-            // int y = this.getTuile().getPosition().getY(); 
-            System.out.println("Tile" + this.getTuile().getSymbol() + "produces " + multiplier + " " + ressource);
+            int x = this.getTuile().getPosition().getX(); 
+            int y = this.getTuile().getPosition().getY(); 
+            System.out.println("Tile (" + x + "," + y + ") produces " + multiplier + " " + ressource);
         }
     }
     

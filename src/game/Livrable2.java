@@ -1,5 +1,8 @@
 package game;
+import java.util.List;
+
 import game.tuile.*;
+import game.util.Position;
 
 public class Livrable2 {
     public static void main (String[] args){
@@ -19,50 +22,45 @@ public class Livrable2 {
         placeBuildings(board);
 
     }
-    private static void placeBuildings(Board board){
+   private static void placeBuildings(Board board) {
+    Player player = new Player("player1");
 
-        Player player = new Player("player1");
+    List<Position> buildableTiles = board.getBuildablePositions();
 
-        Earth portTile = new Forest();
-        Earth farmTile = new Field();
-        Earth exploitationTile = new Pasture();
-        Earth armyTile = new Mountain();
-        Earth campTile = new Mountain();                        
+    Earth portTile = (Earth) board.getTile(buildableTiles.get(0));
+    Earth farmTile = (Earth) board.getTile(buildableTiles.get(1));
+    Earth exploitationTile = (Earth) board.getTile(buildableTiles.get(2));
+    Earth armyTile = (Earth) board.getTile(buildableTiles.get(3));
+    Earth campTile = (Earth) board.getTile(buildableTiles.get(4));
 
-        Port port = new Port(portTile);
-        Farm farm = new Farm(farmTile);
-        Exploitation exploitation = new Exploitation(exploitationTile);
-        Army army = new Army(armyTile,5);
-        Camp camp = new Camp(campTile,20);
- 
-        // associer les building a leur tuile 
-        portTile.setBuilding(port);
-        farmTile.setBuilding(farm);
-        exploitationTile.setBuilding(exploitation);
-        armyTile.setBuilding(army);
-        campTile.setBuilding(camp);
+    Port port = new Port(portTile);
+    Farm farm = new Farm(farmTile);
+    Exploitation exploitation = new Exploitation(exploitationTile);
+    Army army = new Army(armyTile, 5);
+    Camp camp = new Camp(campTile, 20);
 
-        
-        /// display costs
-        port.displayCost();
-        farm.displayCost();
-        exploitation.displayCost();
-        army.displayCost();
-        camp.displayCost();
+    portTile.setBuilding(port);
+    farmTile.setBuilding(farm);
+    exploitationTile.setBuilding(exploitation);
+    armyTile.setBuilding(army);
+    campTile.setBuilding(camp);
 
-        System.out.println("--------------------------------------");
+    port.displayCost();
+    farm.displayCost();
+    exploitation.displayCost();
+    army.displayCost();
+    camp.displayCost();
 
-        ///display collected resources 
-        port.collectRessource(player);
-        farm.collectRessource(player);
-        exploitation.collectRessource(player);
-        army.collectRessource(player);
-        camp.collectRessource(player);
+    System.out.println("--------------------------------------");
+
+    port.collectRessource(player);
+    farm.collectRessource(player);
+    exploitation.collectRessource(player);
+    army.collectRessource(player);
+    camp.collectRessource(player);
+}
 
 
-
-
-    }
 
     
 }

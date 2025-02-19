@@ -233,11 +233,12 @@ public boolean haveNeighbor(Position pos) {
     return false;
 }
 
-/** put the tile on the given position+
+/** put the tile on the given position ans set the position to the tile
  * @param t the tile
  * @param pos a position
  */
 public void put(Tuile t, Position pos){
+    t.setPosition(pos);
     this.grid[pos.getX()][pos.getY()]= t;
 
 }
@@ -330,6 +331,27 @@ private Tuile randomTuile(){
 
     return tuileTypes.get(random);
 }
+
+/**
+ * returns a list of all buildable positions on the board
+ * A position is buildable if it is not a Sea tile
+ *
+ * @return a list of buildable positions
+ */
+public List<Position> getBuildablePositions() {
+    List<Position> buildableTiles = new ArrayList<>();
+    for (int x = 0; x < this.width; x++) {
+        for (int y = 0; y < this.height; y++) {
+            Position pos = new Position(x, y);
+            if (isBuildable(pos)) { 
+                buildableTiles.add(pos);
+            }
+        }
+    }
+    return buildableTiles;
+}
+
+
 
 
 }

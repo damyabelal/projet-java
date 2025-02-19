@@ -4,7 +4,7 @@ import game.util.*;
 public abstract class Tuile {
     public String symbol ; /// symbol of the tile
    
-    private Position pos; // to be able to get the position of the tile
+    protected Position pos; // to be able to get the position of the tile
 
 
     /**
@@ -14,6 +14,7 @@ public abstract class Tuile {
      */    
     public Tuile(String symbol) {
         this.symbol =symbol ;
+        this.pos = null;
 
     }
     /**
@@ -29,6 +30,10 @@ public abstract class Tuile {
     public Position getPosition(){
         return this.pos;
 
+    }
+
+    public void setPosition(Position position) {
+        this.pos = position;
     }
 
 
