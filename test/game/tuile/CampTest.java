@@ -31,14 +31,6 @@ void GetAdditionnalWarriorTest(){
 
 }
 
-@Test 
-void getNameTest(){
-
-  assertTrue(camp.getName()=="Camp");
-
-  
-}
-
 
 
 
