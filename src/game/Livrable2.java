@@ -53,6 +53,10 @@ public class Livrable2 {
 
     System.out.println("--------------------------------------");
 
+    board.displayBuildings();
+
+    System.out.println("--------------------------------------");
+
     port.collectRessource(player);
     farm.collectRessource(player);
     exploitation.collectRessource(player);

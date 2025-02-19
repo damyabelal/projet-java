@@ -351,6 +351,24 @@ public List<Position> getBuildablePositions() {
     return buildableTiles;
 }
 
+/**
+ * displays the buildings placed on Earth tiles in the grid with their positions
+ */
+public void displayBuildings() {
+    for (int x = 0; x < this.width; x++) {
+        for (int y = 0; y < this.height; y++) {
+            Tuile tuile = this.grid[x][y];
+            if (tuile instanceof Earth) {
+                Earth earthTile = (Earth) tuile;
+                if (earthTile.haveBuild()) {
+                    System.out.println(earthTile.getBuilding().getName() + " has been set on " + tuile.getSymbol() + "(" + x + "," + y + ")");
+                }
+            }
+        }
+    }
+}
+
+
 
 
 
