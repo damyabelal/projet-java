@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+
 
 
 public class PortTest{
@@ -15,22 +15,20 @@ public class PortTest{
   private Port port;
   private Board board;
   private Earth forest;
-  private Ressource ressource;
   private Position pos;
-  private Position pos2;
+  private Position posbis;
 
 
 
   @BeforeEach
   void setUp(){
     board= new Board(4,4);
-    ressource= Ressource.WOOD;
     forest= new Forest();
     port = new Port(forest);
     pos= new Position(0,0);
-    pos2=new Position(2,2);
+    posbis=new Position(2,2);
     board.put(forest,pos);
-    board.put(forest,pos2);
+    board.put(forest,posbis);
 
 
   
@@ -38,14 +36,38 @@ public class PortTest{
 
   }
 
-
-  
   @Test
-  void numbeOfSeaTilesAroundAPort(){
-    assertEquals(port.nbSeaTiles(pos,board),2);// la position pos doit etre entouré de 2 tuile mer
-    assertEquals(port.nbSeaTiles(pos2,board),8);
+  void numberOfSeaTilesAroundAPosition(){
+    assertEquals(port.nbSeaTiles(pos,board),3);// la position pos doit etre entouré de 2 tuile mer
+    assertEquals(port.nbSeaTiles(posbis,board),8);
 
 
 }
+
+  @Test
+  void canPlacePortShoudReturnTrue(){
+    assertTrue(port.canPlacePort(pos, board));
+  }
+  @Test
+  void canPlacePortShoudReturnFalse(){
+    
+    // placing earth tiles around the position (0,0) , 
+    //so now the method canplaceport for this positin should return false
+    Forest forest2= new Forest();
+    Forest forest3= new Forest();
+    Forest forest4= new Forest();
+    Position pos2 =new Position(0,1);
+    Position pos3=new Position(1,0);
+    Position pos4 =new Position(1,1);
+    board.put(forest2,pos2);
+    board.put(forest3,pos3);
+    board.put(forest4,pos4);
+
+    assertFalse(port.canPlacePort(pos, board));
+
+
+
+
+  }
 
 }
