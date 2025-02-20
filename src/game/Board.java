@@ -84,7 +84,14 @@ public void display(){
     System.out.println(new Pasture().getSymbol() + " : Pasture");
     System.out.println(new Mountain().getSymbol() + " : Mountain");
     System.out.println(new Field().getSymbol() + " : Field");
-    
+
+    System.out.println("\n Légende des Batiments :");
+    System.out.println(" a : Army");
+    System.out.println(" c : Camp");
+    System.out.println(" f : Farm");
+    System.out.println(" e : Exploitation");
+    System.out.println(" p : Port");
+
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
         if(x==0){
