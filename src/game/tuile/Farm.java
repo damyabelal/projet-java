@@ -9,7 +9,7 @@ public class Farm extends Building{
 
     private static final String SYMBOL= "f";
 
-    /** Build a Farm
+    /** Builds a Farm
      * @param tuile the tile where we build the farm
      */
     public Farm(Earth tuile) {
@@ -30,7 +30,7 @@ public class Farm extends Building{
     
 
     /**
-     * return true if the farm can be a exploitation
+     * returns true if the farm can be a exploitation
      * @param player the person who play
      * @return boolean
      */
