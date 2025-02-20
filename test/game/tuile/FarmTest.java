@@ -11,25 +11,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class FarmTest{
-  private Farm farm;
-  private Earth tuile;
-  private Player player;
-  private Ressource ressource;
+  
+    private Farm farm;
+    private Earth tuile;
+    private Player player;
+    private Ressource ressource;
+  
+    @BeforeEach
+    void setUp(){
+      player = new Player("loulou");
+      ressource = Ressource.SHEEP;
+      tuile = new Earth(ressource,"F");
+      farm = new Farm(tuile);
+  
+    }
+  
+    @Test
+    void canBeExploitationShouldReturnFalse(){
+      assertFalse(farm.canBeExploitation(player));
+  
+    }
+    
+    @Test 
+    void upGradeToExploitationShouldReturnNull(){
+      assertEquals(farm.upGradeToExploitation(player),null);
 
-  @BeforeEach
-  void setUp(){
-    player = new Player("loulou");
-    ressource = Ressource.SHEEP;
-    tuile = new Earth(ressource,"F");
-    farm = new Farm(tuile);
 
   }
 
-  @Test
-  void canBeExploitationShouldReturnFalse(){
-    assertFalse(farm.canBeExploitation(player));
 
-  }
 
   @Test
   void canBeExploitationShouldReturnTrue(){
@@ -41,8 +51,17 @@ public class FarmTest{
     player.addRessource(sheep, 1);
     player.addRessource(wood, 2);
     player.addRessource(wealth, 1);
-
     assertTrue(farm.canBeExploitation(player));
+
   }
+
+
+  @Test
+  void  upGradeToExploitationShouldReturnNewExploitation(){
+    assertTrue(farm.upGradeToExploitation(player) instanceof Exploitation);
+ 
+}
+
+
 
 }
