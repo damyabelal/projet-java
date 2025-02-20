@@ -54,7 +54,10 @@ public class Player {
      * @param nb number of warriors to remove
      */
     public void removeWarriors(int nb) {
-        this.warriors -= nb;
+        if (this.getWarriors()!=0){
+            this.warriors -= nb;
+        }
+        
     }
 
     /** 

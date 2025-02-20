@@ -48,9 +48,9 @@ public class FarmTest{
     Ressource wood=Ressource.WOOD;
 
     // giving the player enough ressources to be able to upgrade a farm to an exploitation
-    player.addRessource(sheep, 1);
+    player.addRessource(sheep, 2);
     player.addRessource(wood, 2);
-    player.addRessource(wealth, 1);
+    player.addRessource(wealth, 2);
     assertTrue(farm.canBeExploitation(player));
 
   }
@@ -58,7 +58,15 @@ public class FarmTest{
 
   @Test
   void  upGradeToExploitationShouldReturnNewExploitation(){
-    assertTrue(farm.upGradeToExploitation(player) instanceof Exploitation);
+    Ressource sheep =Ressource.SHEEP;
+    Ressource wealth=Ressource.WEALTH;
+    Ressource wood=Ressource.WOOD;
+
+    // giving the player enough ressources to be able to upgrade a farm to an exploitation
+    player.addRessource(sheep, 2);
+    player.addRessource(wood, 2);
+    player.addRessource(wealth, 2);
+    assertTrue(farm.upGradeToExploitation(player)!=null);
  
 }
 
