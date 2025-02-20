@@ -45,10 +45,10 @@ public class Farm extends Building{
     public Exploitation upGradeToExploitation(Player player) {
         if (this.canBeExploitation(player)) {
             Exploitation exploitation = new Exploitation(this.getTuile());
-            System.out.println("Farm evolve into exploitation");
+            System.out.println("Farm evolves into exploitation.");
             return exploitation;
         } else {
-            System.out.println("Not enough resources");
+            System.out.println("There is not enough resources");
         }
         return null;
     }

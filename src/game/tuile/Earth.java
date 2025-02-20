@@ -40,7 +40,7 @@ public class Earth extends Tuile {
      */
     public void setBuilding(Building building) {
         if (this.haveBuild()){
-            System.out.println("this tuile already has a building");
+            System.out.println("This tile already has a building.");
             return;
         }
         this.building = building;
