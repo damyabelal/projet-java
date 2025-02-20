@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
@@ -40,13 +41,16 @@ public class PlayerTest {
     @Test
     void testRemoveWarriors() {
         player.removeWarriors(10);
-        assertEquals(30, player.getWarriors());
-
+        assertEquals(20, player.getWarriors());
     }
+
+    
     @Test // it should throw an exception
     void TestNoWarriorsToRemove(){
+        assertEquals(30, player.getWarriors());
         player.removeWarriors(30); // removing the initial 30 warriors the player has
-        assertThrows(Exception.class ,()->{player.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
+        assertEquals(0, player.getWarriors());
+        assertThrows(NoMoreRessourcesException.class ,()->{player.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
         
 
     }

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.building.Camp;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;

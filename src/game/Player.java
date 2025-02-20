@@ -52,12 +52,15 @@ public class Player {
     /** 
      * removes warriors from the army
      * @param nb number of warriors to remove
+     * @exception NoMoreRessourcesException
      */
-    public void removeWarriors(int nb) {
-        if (this.getWarriors()!=0){
+    public void removeWarriors(int nb) throws NoMoreRessourcesException{
+        if ((this.warriors- nb) <0){
+            throw new NoMoreRessourcesException("you have less than "+nb+" warriors"); 
+        }
+        else{
             this.warriors -= nb;
         }
-        
     }
 
     /** 
@@ -81,8 +84,12 @@ public class Player {
      * removes a type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
+     * @exception NoMoreRessourcesException
      */
-    public void removeRessource(Ressource ressource, int nb) {
+    public void removeRessource(Ressource ressource, int nb) throws NoMoreRessourcesException{
+        if ((ressources.getOrDefault(ressource, 0) - nb)<0 ){
+            throw new NoMoreRessourcesException("you have less than"+ nb + ressource);
+        }
         this.ressources.put(ressource, ressources.getOrDefault(ressource, 0) - nb);
     }
 
@@ -107,7 +114,7 @@ public class Player {
      * @param tile the tile on which to construct the building
      * @return true if the building was constructed false if the player does not have enough resources to build the building
      */
-    public boolean build(Building building, Earth tile) {
+    public boolean build(Building building, Earth tile) throws NoMoreRessourcesException{
         // on verifie que le joueur a suffisament de ressource pour le batiment en question
         if (! this.hasEnoughRessources(building)) {
             System.out.println("Not enough resources to build the building");

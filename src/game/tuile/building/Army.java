@@ -1,6 +1,7 @@
 package game.tuile.building;
 import java.util.HashMap;
 
+import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -64,7 +65,7 @@ public class Army extends Building{
     * @param newWarriors the number of warriors to add
     * @param player the player who adds the warriors
     */
-    public void addWarriors(int newWarriors, Player player) {
+    public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException{
         if (player.getWarriors() >= newWarriors) {
         this.nbWarriors += newWarriors;
         // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
