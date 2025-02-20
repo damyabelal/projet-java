@@ -4,6 +4,8 @@ import game.Player;
 
 public class Farm extends Building{
 
+    private static final String SYMBOL= "f";
+
     /** Build a Farm
      * @param tuile the tile where we build the farm
      */
@@ -13,6 +15,7 @@ public class Farm extends Building{
         this.cost = new HashMap<>();
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
+        this.symbol= SYMBOL; 
     }
 
     /** 

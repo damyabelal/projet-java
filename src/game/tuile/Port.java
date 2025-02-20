@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Port extends Building{
     
-    private static final String SYMBOL = " -> ";        //" ⚓ "
+    private static final String SYMBOL = "p";        //" ⚓ "
 
     public Port(Earth tuile){
         super(tuile);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Camp extends Army{
     
-    private static final String SYMBOL = " -> ";     //"  "
+    private static final String SYMBOL = "c";     //"  "
 
     /**
      * creates a Camp on the given tile with a set number of warriors

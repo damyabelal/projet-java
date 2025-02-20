@@ -36,10 +36,9 @@ public abstract class Tuile {
         this.pos = position;
     }
 
-
-
-
-
+    public boolean haveBuild(){
+        return false;
+    }
 
 
 }
