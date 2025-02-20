@@ -38,7 +38,7 @@ public class Farm extends Building{
         return player.hasEnoughRessources(this);
     }
     
-    /** evolve the farm into a exploitation
+    /** evolves the farm into a exploitation
     * @param player the player who wants to upgrade the farm
     * @return the new exploitation if the farm can be upgraded null otherwise
     */
