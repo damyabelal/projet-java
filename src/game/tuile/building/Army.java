@@ -1,7 +1,10 @@
-package game.tuile;
+package game.tuile.building;
 import java.util.HashMap;
 
 import game.Player;
+import game.tuile.Earth;
+import game.tuile.Ressource;
+import game.util.*;
 
 /*
  * A class to create a Army

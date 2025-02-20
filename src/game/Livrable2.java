@@ -1,6 +1,6 @@
 package game;
 import java.util.List;
-
+import game.tuile.building.*;
 import game.tuile.*;
 import game.util.Position;
 

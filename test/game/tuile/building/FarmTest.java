@@ -1,6 +1,7 @@
-package game.tuile;
+package game.tuile.building;
 import game.Player;
-
+import game.tuile.Earth;
+import game.tuile.Ressource;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package game;
 import java.util.HashMap;
 
-import game.tuile.Building;
+import game.tuile.building.*;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 

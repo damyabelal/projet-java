@@ -1,4 +1,5 @@
 package game.tuile;
+import game.tuile.building.*;
 
 public class Earth extends Tuile {
 

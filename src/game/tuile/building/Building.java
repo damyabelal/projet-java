@@ -1,7 +1,9 @@
-package game.tuile;
+package game.tuile.building;
 import java.util.*;
 
 import game.Player;
+import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.util.*;
 
 

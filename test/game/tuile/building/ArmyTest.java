@@ -1,8 +1,12 @@
-package game.tuile;
+package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.*;
+import game.tuile.Forest;
+import game.tuile.Ressource;
+import game.tuile.building.Army;
+import game.tuile.building.Camp;
 
 import static org.junit.jupiter.api.Assertions.*;
 

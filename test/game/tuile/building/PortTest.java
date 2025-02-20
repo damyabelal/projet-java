@@ -1,5 +1,7 @@
-package game.tuile;
+package game.tuile.building;
 import game.Board;
+import game.tuile.Earth;
+import game.tuile.Forest;
 import game.util.*;
 
 

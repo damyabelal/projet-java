@@ -1,6 +1,9 @@
-package game.tuile;
+package game.tuile.building;
 
 import java.util.HashMap;
+
+import game.tuile.Earth;
+import game.tuile.Ressource;
 
 /*
  * A class to create a Camp

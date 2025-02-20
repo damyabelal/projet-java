@@ -1,6 +1,8 @@
-package game.tuile;
+package game.tuile.building;
 import java.util.HashMap;
 import game.Player;
+import game.tuile.Earth;
+import game.tuile.Ressource;
 
 /*
  * A class to create a Farm
@@ -9,7 +11,7 @@ public class Farm extends Building{
 
     private static final String SYMBOL= "f";
 
-    /** Builds a Farm
+    /** Build a Farm
      * @param tuile the tile where we build the farm
      */
     public Farm(Earth tuile) {
@@ -30,7 +32,7 @@ public class Farm extends Building{
     
 
     /**
-     * returns true if the farm can be a exploitation
+     * return true if the farm can be a exploitation
      * @param player the person who play
      * @return boolean
      */
@@ -38,17 +40,17 @@ public class Farm extends Building{
         return player.hasEnoughRessources(this);
     }
     
-    /** evolves the farm into a exploitation
+    /** evolve the farm into a exploitation
     * @param player the player who wants to upgrade the farm
     * @return the new exploitation if the farm can be upgraded null otherwise
     */
     public Exploitation upGradeToExploitation(Player player) {
         if (this.canBeExploitation(player)) {
             Exploitation exploitation = new Exploitation(this.getTuile());
-            System.out.println("Farm evolves into exploitation.");
+            System.out.println("Farm evolve into exploitation");
             return exploitation;
         } else {
-            System.out.println("There is not enough resources");
+            System.out.println("Not enough resources");
         }
         return null;
     }
