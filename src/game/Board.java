@@ -98,8 +98,15 @@ public void display(){
     for(int  y=0; y < h ; y++){
         System.out.print("|");
         for (int x=0 ; x < w; x++){
-            String symbole =(" "+ grid[x][y].getSymbol() +"");
-            System.out.print(  symbole + " | ");
+            String symbole=""; 
+            Tuile t= grid[x][y]; 
+            if (t instanceof Earth && t.haveBuild()){
+                symbole= (""+(t).getSymbol()+ ((Earth)t).getBuilding().getSymbol()+"");
+            }
+            else{
+                symbole =(" "+ t.getSymbol() +"");
+            }
+        System.out.print(  symbole + " | ");
         }
         System.out.println(); 
         // We put a separating line between the lines but not the last one.

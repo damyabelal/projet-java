@@ -62,6 +62,8 @@ public class Livrable2 {
     exploitation.collectRessource(player);
     army.collectRessource(player);
     camp.collectRessource(player);
+
+    board.display(); 
 }
 
 
