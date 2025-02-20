@@ -19,12 +19,12 @@ public class Port extends Building{
         this.cost.put(Ressource.SHEEP,2);
     }
     /**
-     * return the number of sea tiles around the port
+     * return the number of sea tiles around a given position on the board
      * @param pos
      * @param board
-     * @return int the number of sea tiles around the port
+     * @return int the number of sea tiles around the given position
      */
-    private int nbSeaTiles(Position pos, Board board) {
+    protected int nbSeaTiles(Position pos, Board board) {
         int nbSeaTiles = 0;
         for (Direction d : Direction.values()) {
             Position neighbor = pos.next(d);
