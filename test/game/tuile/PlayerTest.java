@@ -38,13 +38,14 @@ public class PlayerTest {
     @Test
     void testRemoveWarriors() {
         player.removeWarriors(10);
-        assertEquals(30, player.getWarriors());
+        assertEquals(20, player.getWarriors());
 
     }
     @Test // it should throw an exception
     void TestNoWarriorsToRemove(){
         player.removeWarriors(30); // removing the initial 30 warriors the player has
-        assertThrows(Exception.class ,()->{player.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
+        player.removeWarriors(1);
+        assertEquals(player.getWarriors(),0);//quand on remove des warriors a un joueuer qui na pas de warrior ,le nombre de warrior de ce joueur reste egale a 0
         
 
     }

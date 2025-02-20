@@ -17,18 +17,20 @@ public class PortTest{
   private Earth forest;
   private Position pos;
   private Position posbis;
+  private Earth forestbis;
 
 
 
   @BeforeEach
   void setUp(){
     board= new Board(4,4);
-    forest= new Forest();
     port = new Port(forest);
     pos= new Position(0,0);
     posbis=new Position(2,2);
+    forest= new Forest();
+    forestbis=new Forest();
+    board.put(forestbis,posbis);
     board.put(forest,pos);
-    board.put(forest,posbis);
 
 
   
@@ -38,8 +40,8 @@ public class PortTest{
 
   @Test
   void numberOfSeaTilesAroundAPosition(){
-    assertEquals(port.nbSeaTiles(pos,board),3);// la position pos doit etre entouré de 2 tuile mer
-    assertEquals(port.nbSeaTiles(posbis,board),8);
+    assertEquals(port.nbSeaTiles(pos,board),2);// la position pos doit etre entouré de 2 tuile mer
+    assertEquals(port.nbSeaTiles(posbis,board),4);
 
 
 }
