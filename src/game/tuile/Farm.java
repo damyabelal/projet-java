@@ -2,6 +2,9 @@ package game.tuile;
 import java.util.HashMap;
 import game.Player;
 
+/*
+ * A class to create a Farm
+ */
 public class Farm extends Building{
 
     private static final String SYMBOL= "f";
@@ -28,6 +31,7 @@ public class Farm extends Building{
 
     /**
      * return true if the farm can be a exploitation
+     * @param player the person who play
      * @return boolean
      */
     public boolean canBeExploitation(Player player){

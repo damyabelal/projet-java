@@ -7,6 +7,10 @@ public class Port extends Building{
     
     private static final String SYMBOL = "p";        //" ⚓ "
 
+    /*
+     * Build a Port on the given tile
+     * @param tile the tile we want to build the port on
+     */
     public Port(Earth tuile){
         super(tuile);
         this.symbol = SYMBOL;
@@ -36,8 +40,8 @@ public class Port extends Building{
 
     /**
      * return true if the port can be placed at the given position , false otherwise
-     * @param pos
-     * @param board
+     * @param pos the position where we want to place it
+     * @param board the board of the game
      * @return boolean true if the port can be placed at the given position , false otherwise
      */
     public boolean canPlacePort(Position pos, Board board) {

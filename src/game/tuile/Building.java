@@ -8,9 +8,9 @@ import game.util.*;
 /**
  * A class to create a Building 
  */
-
 public abstract class Building{
-    public static final String SYMBOL = " B ";
+
+    public static final String SYMBOL = " B "; //each building have his own SYMBOL
     protected String symbol;
     protected int dimension;
     protected int resourceMultiplier;
@@ -99,7 +99,9 @@ public abstract class Building{
 
     }
     
-    /** abstract method because the name of the building will be different for each subclass */
+    /** abstract method because the name of the building will be different for each subclass 
+     * @return the name of the building
+    */
     public abstract String getName();
 
     /** 

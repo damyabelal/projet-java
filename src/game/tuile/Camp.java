@@ -2,6 +2,9 @@ package game.tuile;
 
 import java.util.HashMap;
 
+/*
+ * A class to create a Camp
+ */
 public class Camp extends Army{
     
     private static final String SYMBOL = "c";     //"  "

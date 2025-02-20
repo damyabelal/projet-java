@@ -3,11 +3,14 @@ import java.util.HashMap;
 
 import game.Player;
 
+/*
+ * A class to create a Army
+ */
 public class Army extends Building{
 
-    protected int nbWarriors  ;
-    private static final String SYMBOL = "a";        //"  "
-    private static int nbWarriorsMax = 5;
+    protected int nbWarriors  ; //the number of warriors in the army
+    private static final String SYMBOL = "a";
+    private static int nbWarriorsMax = 5; //the max number of warriors in a army 
 
     /** create an army on a given tile
     * @param tuile the tile where we build the building
@@ -46,6 +49,7 @@ public class Army extends Building{
 
     /**
      * return true if the army can be a camp
+     * @param player the person who play
      * @return boolean
      */
     public boolean canBeCamp(Player player){
