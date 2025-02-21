@@ -26,32 +26,51 @@ public class PortTest{
   @BeforeEach
   void setUp(){
     board= new Board(4,4);
-    port = new Port(forest);
+    port = new Port(forest); 
+
     pos= new Position(0,0);
     posbis=new Position(2,2);
+    
     forest= new Forest();
     forestbis=new Forest();
+    
     board.put(forestbis,posbis);
     board.put(forest,pos);
 
 
-  
+
 
 
   }
-
+  /*
+   * test the number of sea tiles around a position
+   */
   @Test
   void numberOfSeaTilesAroundAPosition(){
-    assertEquals(port.nbSeaTiles(pos,board),2);// la position pos doit etre entouré de 2 tuile mer
+    //position (0,0) is surrounded by 2 sea tiles
+    assertEquals(port.nbSeaTiles(pos,board),2);
+
+    //position (2,2) is surrounded by 4 sea tiles
     assertEquals(port.nbSeaTiles(posbis,board),4);
 
 
 }
-
+  /*
+   * Tests if a port can be placed when adjacent to at least 2 sea tiles
+   */
   @Test
   void canPlacePortShoudReturnTrue(){
+    // port shoulf be placed at position (0,0) because it is surrounded by 2 sea tiles
+    assertTrue(port.canPlacePort(pos, board));
+    // port shoulf be placed at position (2,2) because it is surrounded by 4 sea tiles
     assertTrue(port.canPlacePort(posbis, board));
   }
+
+
+  
+  /*
+   * tets if a port can not be placed when completly surrounded by earth tiles
+   */
   @Test
   void canPlacePortShoudReturnFalse(){
     
@@ -67,6 +86,7 @@ public class PortTest{
     board.put(forest3,pos3);
     board.put(forest4,pos4);
 
+    // port should not be placed at position (0,0) because it is surrounded by 4 earth tiles
     assertFalse(port.canPlacePort(pos, board));
 
 
