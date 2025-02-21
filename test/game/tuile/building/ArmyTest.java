@@ -22,7 +22,7 @@ public class ArmyTest {
     }
 
     @Test
-    void canBeCampWithWarriorsTest(){
+    void canBeCampWithWarriorsTest() throws NoMoreRessourcesException{
         assertFalse(army.canBeCamp(player));
         army.addWarriors(5, player);
         assertTrue(army.canBeCamp(player));
@@ -38,14 +38,14 @@ public class ArmyTest {
     }
 
     @Test
-    void addWarriorsTest(){
+    void addWarriorsTest() throws NoMoreRessourcesException{
         assertTrue(army.getNbWarriors() ==0 );
         army.addWarriors(1, player);
         assertTrue(army.getNbWarriors()==1);
     }
 
     @Test
-    void upGradeToCampTest(){
+    void upGradeToCampTest() throws NoMoreRessourcesException{
         army.addWarriors(5, player);
         assertTrue(army.canBeCamp(player));
         assertTrue(army.upGradeToCamp(player) instanceof Camp);
