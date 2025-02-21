@@ -39,14 +39,14 @@ public class PlayerTest {
     }
     /// test the player removing warriors
     @Test
-    void testRemoveWarriors() {
+    void testRemoveWarriors() throws NoMoreRessourcesException {
         player.removeWarriors(10);
         assertEquals(20, player.getWarriors());
     }
 
     
     @Test // it should throw an exception
-    void TestNoWarriorsToRemove(){
+    void TestNoWarriorsToRemove() throws NoMoreRessourcesException{
         assertEquals(30, player.getWarriors());
         player.removeWarriors(30); // removing the initial 30 warriors the player has
         assertEquals(0, player.getWarriors());
@@ -64,7 +64,7 @@ public class PlayerTest {
 
     // test the player removing resources
     @Test
-    void testPlayerRemoveResources() {
+    void testPlayerRemoveResources()  throws NoMoreRessourcesException{
         player.addRessource(Ressource.WOOD, 10);
         player.removeRessource(Ressource.WOOD, 5);
         assertEquals(5, player.getResources().get(Ressource.WOOD));
@@ -87,7 +87,7 @@ public class PlayerTest {
     }
     // test the player building a farm
     @Test
-    void testBuild(){
+    void testBuild() throws NoMoreRessourcesException{
         
         Farm farm = new Farm(earth);
         
@@ -97,7 +97,7 @@ public class PlayerTest {
         player.addRessource(Ressource.ORE, 1);
         assertTrue(player.build(farm, earth));
         assertEquals(farm, earth.getBuilding());
-        // after building a farm with using one wood and one ore , the player's ressources should diminish
+        // after building a farm  using one wood and one ore , the player's ressources should diminish
         assertTrue(player.getResources().get(Ressource.WOOD)==0);
         assertTrue(player.getResources().get(Ressource.ORE)==0);
 
