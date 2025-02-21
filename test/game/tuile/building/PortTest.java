@@ -50,13 +50,13 @@ public class PortTest{
 
   @Test
   void canPlacePortShoudReturnTrue(){
-    assertTrue(port.canPlacePort(pos, board));
+    assertTrue(port.canPlacePort(posbis, board));
   }
   @Test
   void canPlacePortShoudReturnFalse(){
     
     // placing earth tiles around the position (0,0) , 
-    //so now the method canplaceport for this positin should return false
+    //so now the method canplaceport for this position should return false
     Forest forest2= new Forest();
     Forest forest3= new Forest();
     Forest forest4= new Forest();
