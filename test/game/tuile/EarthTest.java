@@ -11,8 +11,17 @@ class EarthTest{
     private Army army ;
     private Earth tuile1;
     private Earth tuile2;
+    private Ressource ressource1;
+    private Ressource ressource2;
+
     @BeforeEach
     void setUp() {
+      ressource1= Ressource.WOOD;
+      ressource2=Ressource.WOOD;
+
+      tuile1= new Earth(ressource1,"F");
+      tuile2=new Earth(ressource2,"F");
+      
         army = new Army(tuile1 ,0);   
         
     }
