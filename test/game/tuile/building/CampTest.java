@@ -23,16 +23,62 @@ class CampTest{
   camp = new Camp(tuile ,8);
 
  }
-
+/*
+ * test the getAdditionalWarriors method : 
+ * Tests whether the number of additional warriors beyond the Army limit is calculated correctly.
+ */
 @Test 
 void GetAdditionnalWarriorTest(){
-  
   assertEquals(camp.getAdditionalWarriors(),3);
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
