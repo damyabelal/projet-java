@@ -37,7 +37,7 @@ public class Farm extends Building{
      * @return boolean
      */
     public boolean canBeExploitation(Player player){
-        return player.hasEnoughRessources(this);
+        return player.hasEnoughRessources(new Exploitation(tuile));
     }
     
     /** evolve the farm into a exploitation

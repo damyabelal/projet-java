@@ -21,7 +21,11 @@ public class Army extends Building{
     */
     public Army(Earth tuile, int nbWarriors){
         super(tuile); 
+<<<<<<< HEAD
         if ( nbWarriors > nbWarriorsMax){
+=======
+        if (nbWarriors > nbWarriorsMax){
+>>>>>>> 0b330ee (résolution des conflits tests et modifications de quelques petits details de code dans Army et Farm)
             this.nbWarriors = nbWarriorsMax;
         }
         else{
@@ -57,7 +61,7 @@ public class Army extends Building{
      */
     public boolean canBeCamp(Player player){
         // on verifie si l'armee a plus de 5 guerriers ou si le joueur a suffisament de ressource
-        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(this);
+        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
 
 
@@ -65,6 +69,7 @@ public class Army extends Building{
     * @param newWarriors the number of warriors to add
     * @param player the player who adds the warriors
     */
+<<<<<<< HEAD
     public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException{
         if (player.getWarriors() >= newWarriors) {
             this.nbWarriors += newWarriors;
@@ -75,8 +80,17 @@ public class Army extends Building{
             player.removeWarriors(newWarriors);
     } else {
         throw new NoMoreRessourcesException("Not enough warriors in stock ");
+=======
+    public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException {
+        if (player.getWarriors() < newWarriors) { 
+            throw new NoMoreRessourcesException("Not enough warriors in stock");
+        }
+        this.nbWarriors += newWarriors;
+        player.removeWarriors(newWarriors);
+>>>>>>> 0b330ee (résolution des conflits tests et modifications de quelques petits details de code dans Army et Farm)
     }
-}
+    
+
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
