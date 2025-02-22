@@ -64,7 +64,7 @@ public int getHeight(){
  * @return the tile at the given position
  */
 public Tuile getTile(Position pos){
-    if(isValidPosition(pos)){
+    if(this.isValidPosition(pos)){
         return this.grid[pos.getX()][pos.getY()];
     }
     return null ;
@@ -395,7 +395,7 @@ public void displayBuildings() {
             Position neighbor = pos.next(d);
             if (this.isValidPosition(neighbor)) {
                 Tuile neighborTile = this.getTile(neighbor);
-                if (neighborTile==new Sea()) {
+                if (neighborTile instanceof Sea) {
                     nbSeaTiles += 1;
                 }
             }

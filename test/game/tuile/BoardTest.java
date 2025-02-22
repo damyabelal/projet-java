@@ -85,14 +85,15 @@ public class BoardTest {
    */
   @Test
   void numberOfSeaTilesAroundAPosition(){
-     board= new Board(4,4);
-     Forest forest= new Forest();
+    board= new Board(4,4);
+    Forest forest= new Forest();
   
+     
+    Forest forestbis=new Forest();
 
     Position pos= new Position(0,0);
     Position posbis=new Position(2,2);
     
-    Forest forestbis=new Forest();
     
     board.put(forestbis,posbis);
     board.put(forest,pos);
