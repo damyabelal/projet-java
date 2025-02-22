@@ -175,11 +175,18 @@ pas de type mer.
 On cherche encore en parallèle comment ajouter des couleurs au plateau, mais ce n'est pas forcément la priorité , c'est plus dans un but esthétique et pratique pour debugger plus facilement.  
 
 ## Livrable 2
+
 On a choisie de modéliser les building avec une classe abstraite car ça n'a pas de sens de créer une instance Building.
+Les objets héritant d'une classe Building ont un cout , donc on a crée un attribut cost qui est une hashmap qui associe tout les ressources qui vas couter un Building a leur quantité.
+
 On a crée ensuite une classe Port pour modéliser les ports , une classe Farm pour modéliser une ferme. Une classe Army pour modéliser une armée.Cest trois classes héritent toutes de  la classe Building et ainsi de ses méthodes car elles toutes le meme comportement et ainsi nécessitent les memes méthodes.
+
 Parcontre Army a quelque méthodes en plus que Port et Farm n'ont pas.Donc on les a mis dans la classe Army.
-Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent d'une farme car une ferme peut se tranformer en une exploitation si le joueur a le moyen que cela soit en ressource ou en nombre de guerriers.
-De meme , on a choisie de modéliser un camp en créeant une classe Camp.Cette classe hérite de Army car une armée peut évoluer en un camp avec des ressources ou des guerriers. Ainsi Camp a les memes fonctionnaliés que Army c'est pourquoi elle hérite de ses méthodes.En plus des méthodes qu'elle hérite de Army , elle a des méthodes propre a elle.
+Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent d'une ferme car une ferme peut se tranformer en une exploitation si le joueur a le moyen que cela soit en ressource ou en nombre de guerriers.
+
+De meme , on a choisie de modéliser un camp en créant une classe Camp.Cette classe hérite de Army car une armée peut évoluer en un camp avec des ressources ou des guerriers. Ainsi Camp a les memes fonctionnaliés que Army c'est pourquoi elle hérite de ses méthodes.En plus des méthodes qu'elle hérite de Army , elle a des méthodes propre a elle.
+
+
 
 
 
