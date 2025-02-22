@@ -220,7 +220,7 @@ public boolean isValidPosition(Position pos) {
  * @return true if the tile is Earth, false otherwise
  */
 public boolean isBuildable(Position pos){
-    return this.grid[pos.getX()][pos.getY()] instanceof Earth;
+    return this.grid[pos.getX()][pos.getY()] instanceof Earth  && !((Earth)this.grid[pos.getX()][pos.getY()]).haveBuild();
 }
 
 
@@ -229,7 +229,19 @@ public boolean isBuildable(Position pos){
  * @return boolean true if the tile il the sea, fale otherwise
  * */
 public boolean isEmpty(Position pos) {
-    return this.isValidPosition(pos) && !this.isBuildable(pos);
+    if(!isValidPosition(pos)){
+        return false;
+    }
+    Tuile tile = getTile(pos);
+    if (tile instanceof Sea) {
+        return true;
+    }
+    else if(isBuildable(pos)){
+        return true;
+    }
+    return false   ;
+    //return isValidPosition(pos) && !isBuildable(pos)   ;
+   
 }
 
 
