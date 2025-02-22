@@ -3,11 +3,9 @@ package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.tuile.Earth;
-import game.tuile.Field;
-import game.tuile.Ressource;
 
-import static org.junit.Assert.*;
+import game.tuile.Field;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -36,6 +34,14 @@ void getAdditionalWarriorTest(){
 
 
 
+
+@Test
+void getNameTest(){
+  assertEquals("Camp", camp.getName());
+
+
+
+}
 
 
 
