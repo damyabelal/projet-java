@@ -229,7 +229,7 @@ public boolean isBuildable(Position pos){
  * @return boolean true if the tile il the sea, fale otherwise
  * */
 public boolean isEmpty(Position pos) {
-    if(!isValidPosition(pos)){
+   /*f(!isValidPosition(pos)){
         return false;
     }
     Tuile tile = getTile(pos);
@@ -237,10 +237,11 @@ public boolean isEmpty(Position pos) {
         return true;
     }
     else if(isBuildable(pos)){
-        return true;
-    }
-    return false   ;
-    //return isValidPosition(pos) && !isBuildable(pos)   ;
+        Earth earthTile = (Earth) tile;
+        return earthTile.getBuilding() ==null ;
+    }*/
+    
+ return isValidPosition(pos) && !isBuildable(pos)   ;
    
 }
 
