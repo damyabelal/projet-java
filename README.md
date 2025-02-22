@@ -179,7 +179,11 @@ On cherche encore en parallèle comment ajouter des couleurs au plateau, mais ce
 On a choisie de modéliser les building avec une classe abstraite car ça n'a pas de sens de créer une instance Building.
 Les objets héritant d'une classe Building ont un cout , donc on a crée un attribut cost qui est une hashmap qui associe tout les ressources que vas couter un Building a leur quantité.
 
-On a crée ensuite une classe Port pour modéliser les ports , une classe Farm pour modéliser une ferme, une classe Army pour modéliser une armée.Cest trois classes héritent toutes de  la classe Building et ainsi de ses méthodes car elles ont toutes le meme comportement et ainsi nécessitent les memes méthodes.Army a quelque méthodes en plus que Port et Farm n'ont pas,donc on les a mis dans la classe Army.
+On a crée ensuite une classe Port pour modéliser les ports , une classe Farm pour modéliser une ferme, une classe Army pour modéliser une armée.Cest trois classes héritent toutes de  la classe Building et ainsi de ses méthodes car elles ont toutes le meme comportement et ainsi nécessitent les memes méthodes.Army a quelque méthodes en plus que Port et Farm n'ont pas,donc on les a mis dans la classe Army. Parcontre Army a quelque méthodes en plus que Port et Farm n'ont pas.Donc on les a mis dans la classe Army.
+
+Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent d'une ferme car une ferme peut se tranformer en une exploitation si le joueur a le moyen que cela soit en ressource.
+
+De meme , on a choisie de modéliser un camp en créant une classe Camp.Cette classe hérite de Army car une armée peut évoluer en un camp avec des ressources ou des guerriers. Ainsi Camp a les memes fonctionnaliés que Army c'est pourquoi elle hérite de ses méthodes.En plus des méthodes qu'elle hérite de Army , elle a des méthodes propre a elle.
 
 Pour placer un port sur une tuile terrestre, on regarde si il y a au moins une tuile de type mer autour de la tuile considerée.Si oui on le place sinon on renvoie False.
 Pour la classe Army ,comme le joueur ne peut pas avoir plus de 5 guerriers par armée , il fallait bien donc restreindre le nombre de guerrier quand le joueur veut on créer , pour cela on a crée une constante nbWarriorMax pour pourvoir le réustiliser plus tard dans le constructeur de Army.Si un joueur construit une armée avec plus de 5 guerriers alors on construit une armée avec 5 guerriers seulement.
@@ -197,6 +201,64 @@ Pour pourvoir gérer le fait qu'un joueur peut potentiellement vouloir acheter o
 
 
 
+### Les commandes  : 
+
+### 1.1 Compilation des sources du package game.tuile
+
+javac -sourcepath src src/game/tuile/*.java -d classes
+
+### 1.2 Compilation des sources du package game.util 
+
+javac -sourcepath src src/game/util/*.java -d classes
+
+### 1.3 Compilation des sources du package game
+
+javac -sourcepath src src/game/*.java -d classes
+
+### 1.4 Compilation des sources du package game.tuile.building
+
+javac -sourcepath src src/game/tuile/building*.java -d classes
+
+### 2. Exécution de la classe principale
+
+java -classpath classes game.Livrable2 a b 
+
+ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau et le minimum est 10)
+
+### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game : 
+
+javadoc -d docs -sourcepath src src/game/tuile/*.java
+
+javadoc -d docs -sourcepath src src/game/util/*.java
+
+javadoc -d docs -sourcepath src src/game/*.java
+
+javadoc -d docs -sourcepath src src/game/tuile/building*.java
+
+
+### 5.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 5.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 5.2 Compilation des tests du package game.tuile.building
+
+javac javac -classpath junit-console.jar:classes test/game/tuile/building*.java
+
+### 4. Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6.Créer les Archives JAR
+
+jar cvfe livrable2.jar game.Livrable2 -C classes .
+
+### 7.Exécuter les Archives JAR
+
+java -jar livrable2.jar
 
 
 

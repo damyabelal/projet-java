@@ -3,23 +3,23 @@ package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.tuile.Earth;
-import game.tuile.Ressource;
 
-import static org.junit.Assert.*;
+import game.tuile.Field;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class CampTest{
 
   private Camp camp;
-  private Earth tuile;
-  private Ressource ressource;
+  private Field tuile;
+  
 
  @BeforeEach
  void setUp(){
-  ressource= Ressource.SHEEP;
-  tuile= new Earth(ressource,"F");
+ 
+  
+  tuile = new Field();
   camp = new Camp(tuile ,8);
 
  }
@@ -28,12 +28,20 @@ class CampTest{
  * Tests whether the number of additional warriors beyond the Army limit is calculated correctly.
  */
 @Test 
-void GetAdditionnalWarriorTest(){
-  assertEquals(camp.getAdditionalWarriors(),3);
+void getAdditionalWarriorTest(){
+  assertEquals(3, camp.getAdditionalWarriors());
 }
 
 
 
+
+@Test
+void getNameTest(){
+  assertEquals("Camp", camp.getName());
+
+
+
+}
 
 
 
