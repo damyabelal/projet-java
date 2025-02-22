@@ -1,5 +1,6 @@
 package game.tuile;
 import game.Board;
+import game.tuile.building.Port;
 import game.util.*;
 
 
@@ -78,5 +79,32 @@ public class BoardTest {
         // At the end, nb should be equal to 1/6 of the total number
         assertEquals(board.tileNumber() / 2, nb);
     }
+
+
+     /** test the number of sea tiles around a position
+   */
+  @Test
+  void numberOfSeaTilesAroundAPosition(){
+    board= new Board(4,4);
+    Forest forest= new Forest();
+  
+     
+    Forest forestbis=new Forest();
+
+    Position pos= new Position(0,0);
+    Position posbis=new Position(2,2);
+    
+    
+    
+    board.put(forestbis,posbis);
+    board.put(forest,pos);
+    //position (0,0) is surrounded by 2 sea tiles
+    assertEquals(board.nbSeaTiles(pos),2);
+
+    //position (2,2) is surrounded by 4 sea tiles
+    assertEquals(board.nbSeaTiles(posbis),4);
+
+
+}
 
 }

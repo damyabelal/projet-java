@@ -22,31 +22,13 @@ public class Port extends Building{
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP,2);
     }
-    /**
-     * return the number of sea tiles around the port
-     * @param pos
-     * @param board
-     * @return int the number of sea tiles around the port
-     */
-    public int nbSeaTiles(Position pos, Board board) {
-        int nbSeaTiles = 0;
-        for (Direction d : Direction.values()) {
-            Position neighbor = pos.next(d);
-            if (board.isValidPosition(neighbor)) {
-                Tuile neighborTile = board.getTile(neighbor);
-                if (neighborTile instanceof Sea) {
-                    nbSeaTiles += 1;
-                }
-            }
-        }
-        return nbSeaTiles;
-    }
+    
 
     /**
      * return true if the port can be placed at the given position , false otherwise
-     * @param pos the position where we want to place it
+     * @param pos the position where we want to place it on 
      * @param board the board of the game
-     * @return boolean true if the port can be placed at the given position , false otherwise
+     * @return true if the port can be placed at the given position , false otherwise
      */
     public boolean canPlacePort(Position pos, Board board) {
         if (!(board.getTile(pos) instanceof Earth)) {
@@ -55,7 +37,7 @@ public class Port extends Building{
         for (Direction d : Direction.values()) {
             Position neighbor = pos.next(d);
             Tuile neighborTile = board.getTile(neighbor);
-            if (neighborTile instanceof Sea && nbSeaTiles(pos, board) >= 2) {
+            if (neighborTile instanceof Sea && board.nbSeaTiles(pos) >= 2) {
                 return true;
             }
         }

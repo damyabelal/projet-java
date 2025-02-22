@@ -42,19 +42,7 @@ public class PortTest{
 
 
   }
-  /*
-   * test the number of sea tiles around a position
-   */
-  @Test
-  void numberOfSeaTilesAroundAPosition(){
-    //position (0,0) is surrounded by 2 sea tiles
-    assertEquals(port.nbSeaTiles(pos,board),2);
-
-    //position (2,2) is surrounded by 4 sea tiles
-    assertEquals(port.nbSeaTiles(posbis,board),4);
-
-
-}
+ 
   /*
    * Tests if a port can be placed when adjacent to at least 2 sea tiles
    */
@@ -69,7 +57,7 @@ public class PortTest{
 
   
   /*
-   * tets if a port can not be placed when completly surrounded by earth tiles
+   * test if a port can not be placed on a tile when completly surrounded by earth tiles
    */
   @Test
   void canPlacePortShoudReturnFalse(){

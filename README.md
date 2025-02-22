@@ -177,6 +177,10 @@ On cherche encore en parallèle comment ajouter des couleurs au plateau, mais ce
 ## Livrable 2
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac95977708f5cdf93a0c28285c648f5477f558a1
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
