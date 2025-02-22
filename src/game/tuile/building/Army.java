@@ -21,7 +21,7 @@ public class Army extends Building{
     */
     public Army(Earth tuile, int nbWarriors){
         super(tuile); 
-        if (this.nbWarriors > nbWarriorsMax){
+        if ( nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
         }
         else{
@@ -67,12 +67,14 @@ public class Army extends Building{
     */
     public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException{
         if (player.getWarriors() >= newWarriors) {
-        this.nbWarriors += newWarriors;
-        // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
-        // ici on reduit le nb de guerriers du stock du joueur 
-        player.removeWarriors(newWarriors);
+            this.nbWarriors += newWarriors;
+        
+            // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
+            // ici on reduit le nb de guerriers du stock du joueur 
+            
+            player.removeWarriors(newWarriors);
     } else {
-        System.out.println("Not enough warriors in stock");
+        throw new NoMoreRessourcesException("Not enough warriors in stock ");
     }
 }
     /** evolves the army into a camp

@@ -176,6 +176,7 @@ On cherche encore en parallèle comment ajouter des couleurs au plateau, mais ce
 
 ## Livrable 2
 
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre
