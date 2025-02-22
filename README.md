@@ -191,7 +191,10 @@ De meme , on a choisie de modéliser un camp en créant une classe Camp.Cette cl
 
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> ac95977708f5cdf93a0c28285c648f5477f558a1
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre

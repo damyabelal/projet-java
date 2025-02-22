@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.*;
+import game.tuile.Field;
 import game.tuile.Forest;
 import game.tuile.Ressource;
 
@@ -20,7 +21,7 @@ public class ArmyTest {
         player = new Player("Scott");
         army = new Army(tuile,0);
     }
-    // ensures the numbers of warriors does not exceed the maximum number of warriors
+    /* ensures the numbers of warriors does not exceed the maximum number of warriors */ 
    @Test
    void armyMaxWarriorsTest(){
         Army army = new Army(tuile, 10);
@@ -57,11 +58,21 @@ public class ArmyTest {
         assertTrue(army.canBeCamp(player));
         assertTrue(army.upGradeToCamp(player) instanceof Camp);
     }
-    // ensures that a player can not add more warriors than they have resources for
+    /*
+     * ensures that a player can not add more warriors than they have resources for
+     */
+    
     @Test 
-    void addMoreWarriorsThanPossibleTest(){
+    void addMoreWarriorsThanPossibleTest() throws NoMoreRessourcesException{
+        Player player = new Player("player 1");
+        player.removeWarriors(30); // ensure the player has no warriors
+
+        Field tuile = new Field();
+        Army army = new Army(tuile, 0);
         
         assertThrows(NoMoreRessourcesException.class, () -> army.addWarriors(6, player));
+        
+        // ensures that the number of warriors in the army is still 0
         assertEquals(0,army.getNbWarriors());
     }
     // ensures that upgrading to a camp fails when a player does not have enough resources
@@ -70,11 +81,18 @@ public class ArmyTest {
         assertFalse(army.canBeCamp(player));
         assertNull(army.upGradeToCamp(player));
     }
-    // ensures that upgrading to a camp is successful when a player has enough resources
+    /*
+     * ensures that a player can not add more warriors than they have resources for
+     */
     @Test
     void upgradeToCampWithRessourcesTest() throws NoMoreRessourcesException{
+        // add resources to the player
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.SHEEP, 3);
+
+        // xheck if the player has the correct amount of resources
+       
+
         assertTrue(army.canBeCamp(player));
         assertTrue(army.upGradeToCamp(player) instanceof Camp);
     }
