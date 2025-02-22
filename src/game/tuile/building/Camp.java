@@ -19,7 +19,9 @@ public class Camp extends Army{
      * @param nbWarriors The number of warriors in the Camp
      */
     public Camp(Earth tuile, int nbWarriors){
+        
         super(tuile, nbWarriors);
+        this.nbWarriors = nbWarriors;
         this.resourceMultiplier = 2;
         this.symbol = SYMBOL;
         this.cost = new HashMap<>();
@@ -34,7 +36,7 @@ public class Camp extends Army{
      * @return additional warriors 
      */
     public int getAdditionalWarriors() {
-        return this.getNbWarriors() - 5;
+        return Math.max(0,this.getNbWarriors() - 5);
     }
 
     /** 
