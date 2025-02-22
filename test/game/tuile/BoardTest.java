@@ -48,11 +48,22 @@ public class BoardTest {
      */
     @Test
     void testHaveEmptyNeighborList() {
+        board = new Board(5, 5);
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
         Position pos = new Position(2, 2);
         board.put(new Forest(), pos);
         ArrayList<Position> emptyNeighbors= board.haveEmptyNeighboorList(pos);
         // Verify that the method correctly adds a free neighbor to the list
-        assertTrue(emptyNeighbors.size() >= 3 && emptyNeighbors.size() <= 4);}
+        assertTrue(emptyNeighbors.size() >= 3 && emptyNeighbors.size() <= 4);
+
+        for (Position p : emptyNeighbors) {
+            assertTrue(board.isEmpty(p));
+        }
+    }
 
     @Test
     void testTileNumber() {
