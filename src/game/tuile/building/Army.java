@@ -21,11 +21,7 @@ public class Army extends Building{
     */
     public Army(Earth tuile, int nbWarriors){
         super(tuile); 
-<<<<<<< HEAD
-        if ( nbWarriors > nbWarriorsMax){
-=======
         if (nbWarriors > nbWarriorsMax){
->>>>>>> 0b330ee (résolution des conflits tests et modifications de quelques petits details de code dans Army et Farm)
             this.nbWarriors = nbWarriorsMax;
         }
         else{
@@ -69,25 +65,12 @@ public class Army extends Building{
     * @param newWarriors the number of warriors to add
     * @param player the player who adds the warriors
     */
-<<<<<<< HEAD
-    public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException{
-        if (player.getWarriors() >= newWarriors) {
-            this.nbWarriors += newWarriors;
-        
-            // haha stella la blague des guerriers qui se perdent au milieu du chemin je leur ai trouvé une solution
-            // ici on reduit le nb de guerriers du stock du joueur 
-            
-            player.removeWarriors(newWarriors);
-    } else {
-        throw new NoMoreRessourcesException("Not enough warriors in stock ");
-=======
     public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException {
         if (player.getWarriors() < newWarriors) { 
             throw new NoMoreRessourcesException("Not enough warriors in stock");
         }
         this.nbWarriors += newWarriors;
         player.removeWarriors(newWarriors);
->>>>>>> 0b330ee (résolution des conflits tests et modifications de quelques petits details de code dans Army et Farm)
     }
     
 
@@ -107,3 +90,4 @@ public class Army extends Building{
 }
 
 }
+
