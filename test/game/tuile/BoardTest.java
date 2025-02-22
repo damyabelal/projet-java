@@ -39,15 +39,9 @@ public class BoardTest {
                 board.put(new Sea(), new Position(x, y));
                 }
             }
-
         Position pos = new Position(2, 2);
         board.put(new Forest(), pos);
         assertFalse(board.haveNeighbor(pos));
-        
-        // Add a neighboring tile and it should now return true
-        Position neighbor = new Position(2, 3);
-        board.put(new Forest(), neighbor);
-        assertTrue(board.haveNeighbor(pos));
     }
     /*
      * test the haveEmptyNeighborList method

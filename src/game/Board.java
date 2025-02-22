@@ -1,13 +1,7 @@
 package game;
 import java.util.*;
 
-import game.tuile.Earth;
-import game.tuile.Field;
-import game.tuile.Forest;
-import game.tuile.Mountain;
-import game.tuile.Pasture;
-import game.tuile.Sea;
-import game.tuile.Tuile;
+import game.tuile.*;
 import game.util.*;
 
 /**
