@@ -383,6 +383,26 @@ public void displayBuildings() {
 }
 
 
+/**
+     * return the number of sea tiles around the port
+     * @param pos
+     * @param board
+     * @return int the number of sea tiles around the port
+     */
+    public int nbSeaTiles(Position pos) {
+        int nbSeaTiles = 0;
+        for (Direction d : Direction.values()) {
+            Position neighbor = pos.next(d);
+            if (this.isValidPosition(neighbor)) {
+                Tuile neighborTile = this.getTile(neighbor);
+                if (neighborTile==new Sea()) {
+                    nbSeaTiles += 1;
+                }
+            }
+        }
+        return nbSeaTiles;
+    }
+
 
 
 
