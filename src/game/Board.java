@@ -79,11 +79,11 @@ public void display(){
    
     System.out.println("GAME BOARD :");
     System.out.println("\n Légende des tuiles :");
-    System.out.println(new Sea().getSymbol() + " : Sea");
-    System.out.println(new Forest().getSymbol() + " : Forest");
-    System.out.println(new Pasture().getSymbol() + " : Pasture");
-    System.out.println(new Mountain().getSymbol() + " : Mountain");
-    System.out.println(new Field().getSymbol() + " : Field");
+    System.out.println((new Sea()).getSymbol() + " : Sea");
+    System.out.println((new Forest()).getSymbol() + " : Forest");
+    System.out.println((new Pasture()).getSymbol() + " : Pasture");
+    System.out.println((new Mountain()).getSymbol() + " : Mountain");
+    System.out.println((new Field()).getSymbol() + " : Field");
 
     System.out.println("\n Légende des Batiments :");
     System.out.println(" a : Army");
@@ -106,7 +106,7 @@ public void display(){
         System.out.print("|");
         for (int x=0 ; x < w; x++){
             String symbole=""; 
-            Tuile t= grid[x][y]; 
+            Tuile t= this.grid[x][y]; // j'ai ajouté this.grid ou lieu de grid tout court 
             if (t instanceof Earth && t.haveBuild()){
                 symbole= (""+(t).getSymbol()+ ((Earth)t).getBuilding().getSymbol()+"");
             }
@@ -229,7 +229,7 @@ public boolean isBuildable(Position pos){
  * @return boolean true if the tile il the sea, fale otherwise
  * */
 public boolean isEmpty(Position pos) {
-    return isValidPosition(pos) && !isBuildable(pos);
+    return this.isValidPosition(pos) && !this.isBuildable(pos);
 }
 
 
@@ -240,7 +240,7 @@ public boolean isEmpty(Position pos) {
 public boolean haveNeighbor(Position pos) {
     for (Direction d : Direction.values()) {
         Position neighbor = pos.next(d);
-        if (isValidPosition(neighbor) && !isEmpty(neighbor)) {
+        if (this.isValidPosition(neighbor) && !this.isEmpty(neighbor)) {
             return true;
         }
     }
@@ -289,7 +289,7 @@ private void placeInitialeTiles(){
     for (int i=0 ;i< nbTuileInit;i++){
         Position pos = this.randomPosition();
         Tuile tuile = this.randomTuile();
-        put(tuile, pos);
+        this.put(tuile, pos);
     }
 }
 
@@ -302,7 +302,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
     ArrayList<Position> res= new ArrayList<>();
     for (Direction d: Direction.values()){
         Position neighbor= pos.next(d);
-        if (isEmpty(neighbor)){
+        if (this.isEmpty(neighbor)){
             res.add(neighbor) ;
         }
     }
@@ -357,7 +357,7 @@ public List<Position> getBuildablePositions() {
     for (int x = 0; x < this.width; x++) {
         for (int y = 0; y < this.height; y++) {
             Position pos = new Position(x, y);
-            if (isBuildable(pos)) { 
+            if (this.isBuildable(pos)) { 
                 buildableTiles.add(pos);
             }
         }

@@ -95,6 +95,7 @@ public class BoardTest {
     Position posbis=new Position(2,2);
     
     
+    
     board.put(forestbis,posbis);
     board.put(forest,pos);
     //position (0,0) is surrounded by 2 sea tiles
