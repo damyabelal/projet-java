@@ -261,17 +261,27 @@ java -jar livrable2.jar
 #### Affichage du Plateau :
 
  Légende des tuiles :
+
  S  : Sea
+
  F  : Forest
+
  P  : Pasture
+
  M  : Mountain
+
  C  : Field
 
  Légende des Batiments :
+
  a : Army
+
  c : Camp
+
  f : Farm
+
  e : Exploitation
+
  p : Port
 
 ### Voici un exemple d’affichage du plateau de dimension 10x10 :
@@ -287,8 +297,13 @@ java -jar livrable2.jar
 [mieux voir l'uml](https://lucid.app/lucidchart/38cc81c5-70a7-4213-a395-4649bfcfe868/edit?viewport_loc=546%2C-728%2C1467%2C646%2C0_0&invitationId=inv_a5bb74cc-7cd8-4e37-9fc7-9fcbdb7c63b1)
 
 ### Atteinte des objectifs
+On peut maintenant placer des Building sur les tuiles Earth grâce à des ressources. Certains type de bâtiments peuvent évoluer en un autre: 
+- une Army peut évoluer en Camp avec un certain nombre de ressources ou en ayant atteint son seuil de soldat maximum
+- une Farm évolue en Exploitation en payant un certain nombre de ressource
+De plus, le bâtiment Port ne peut être placer uniquement sur des tuiles voisines à a mer. 
 
 ### Difficultés restant à résoudre
+Pour cause de problèmes technique les émojis ont disparuts de l'affichage. On aimerait les remettre avec aussi des émojis pour les bâtiments, cependant cela n'est pas la priorité. 
 
 ## Livrable 3
 
