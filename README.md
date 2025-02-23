@@ -284,7 +284,7 @@ java -jar livrable2.jar
 ### Diagramme UML pour le Livrable2 :
 
 ![ l'uml complet du second livrable](/index/UMLLivrable2.png "UML complet pour le second livrable")
-
+[mieux voir l'uml](https://lucid.app/lucidchart/38cc81c5-70a7-4213-a395-4649bfcfe868/edit?viewport_loc=546%2C-728%2C1467%2C646%2C0_0&invitationId=inv_a5bb74cc-7cd8-4e37-9fc7-9fcbdb7c63b1)
 
 ### Atteinte des objectifs
 
