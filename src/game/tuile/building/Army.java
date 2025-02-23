@@ -56,7 +56,6 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(Player player){
-        // on verifie si l'armee a plus de 5 guerriers ou si le joueur a suffisament de ressource
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
 
