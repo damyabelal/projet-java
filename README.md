@@ -181,7 +181,8 @@ Les objets héritant d'une classe Building ont un cout , donc on a crée un attr
 
 On a crée ensuite une classe Port pour modéliser les ports , une classe Farm pour modéliser une ferme, une classe Army pour modéliser une armée.Cest trois classes héritent toutes de  la classe Building et ainsi de ses méthodes car elles ont toutes le meme comportement et ainsi nécessitent les memes méthodes.Army a quelque méthodes en plus que Port et Farm n'ont pas,donc on les a mis dans la classe Army. Parcontre Army a quelque méthodes en plus que Port et Farm n'ont pas.Donc on les a mis dans la classe Army.
 
-Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent d'une ferme car une ferme peut se tranformer en une exploitation si le joueur a le moyen que cela soit en ressource.
+
+Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent de Farm  car une ferme peut se tranformer en une exploitation si le joueur a le moyen ,que cela soit en ressource ou en nombre de guerriers,de le faire.
 
 De meme , on a choisie de modéliser un camp en créant une classe Camp.Cette classe hérite de Army car une armée peut évoluer en un camp avec des ressources ou des guerriers. Ainsi Camp a les memes fonctionnaliés que Army c'est pourquoi elle hérite de ses méthodes.En plus des méthodes qu'elle hérite de Army , elle a des méthodes propre a elle.
 
@@ -189,15 +190,11 @@ Pour placer un port sur une tuile terrestre, on regarde si il y a au moins une t
 Pour la classe Army ,comme le joueur ne peut pas avoir plus de 5 guerriers par armée , il fallait bien donc restreindre le nombre de guerrier quand le joueur veut on créer , pour cela on a crée une constante nbWarriorMax pour pourvoir le réustiliser plus tard dans le constructeur de Army.Si un joueur construit une armée avec plus de 5 guerriers alors on construit une armée avec 5 guerriers seulement.
 
 
-Pour modéliser une Exploitation, on a crée une classe Exploitation qui héritent de Farm  car une ferme peut se tranformer en une exploitation si le joueur a le moyen ,que cela soit en ressource ou en nombre de guerriers,de le faire.
-
-De meme , on a choisie de modéliser un camp en créant une classe Camp.Cette classe hérite de Army car une armée peut évoluer en un camp avec des ressources ou des guerriers. Ainsi Camp a les memes fonctionnaliés que Army c'est pourquoi elle hérite de ses méthodes.En plus des méthodes qu'elle hérite de Army , elle a des méthodes propre a elle.
-
 On s'est rendu compte qu'on avait besoin de modéliser un joueur pour pouvoir écrire les méthodes de c'est classe ,on a donc créer la classe Player.Chaque player a un nom et a initiallement 30 guerriers et 0 ressources.
 
-Comme il ya plusieurs fichier qui concerne des choses qu'on peut construire et qui hérite de la Classe Building et pour avoir des fichiers mieux organiser , on a regroupé ces classes au sein d'un meme package Building.
+Comme il ya plusieurs fichier qui concerne des choses qu'on peut construire et qui hérite de la Classe Building .Ainsi pour avoir des fichiers mieux organiser , on a regroupé ces classes au sein d'un meme package Building.
 
-Pour pourvoir gérer le fait qu'un joueur peut potentiellement vouloir acheter ou faire évoluer alors que il n'a pas assez de ressources pour faire cela, on a crée une classe d'exception NoMoreRessourcesException.
+Pour pourvoir gérer le fait qu'un joueur peut potentiellement vouloir acheter ou faire évoluer quelque chose alors que il n'a pas assez de ressources pour faire cela, on a crée une classe d'exception NoMoreRessourcesException.
 
 
 
