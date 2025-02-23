@@ -2,6 +2,7 @@ package game.tuile.building;
 import game.Board;
 import game.tuile.Earth;
 import game.tuile.Forest;
+import game.tuile.Sea;
 import game.util.*;
 
 
@@ -48,9 +49,18 @@ public class PortTest{
    */
   @Test
   void canPlacePortShoudReturnTrue(){
+    board = new Board(4, 4);
+        for (int x=0; x<4; x++){
+            for (int y=0; y<4; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
     // port shoulf be placed at position (0,0) because it is surrounded by 2 sea tiles
+    board.put(forest, pos);
     assertTrue(port.canPlacePort(pos, board));
     // port shoulf be placed at position (2,2) because it is surrounded by 4 sea tiles
+
+    board.put(forestbis, posbis);
     assertTrue(port.canPlacePort(posbis, board));
   }
 
