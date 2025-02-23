@@ -220,7 +220,7 @@ public boolean isBuildable(Position pos){
 
 /** return true if the given position is the sea, false otherwise
  * @param pos the position 
- * @return boolean true if the tile il the sea, fale otherwise
+ * @return boolean true if the tile il the sea, false otherwise
  * */
 public boolean isEmpty(Position pos) {
    /*f(!isValidPosition(pos)){
@@ -235,7 +235,7 @@ public boolean isEmpty(Position pos) {
         return earthTile.getBuilding() ==null ;
     }*/
     
- return isValidPosition(pos) && !isBuildable(pos)   ;
+ return isValidPosition(pos) && !(this.grid[pos.getX()][pos.getY()] instanceof Earth)   ;
    
 }
 
