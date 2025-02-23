@@ -258,6 +258,32 @@ jar cvfe livrable2.jar game.Livrable2 -C classes .
 java -jar livrable2.jar
 
 
+#### Affichage du Plateau :
+
+ Légende des tuiles :
+ S  : Sea
+ F  : Forest
+ P  : Pasture
+ M  : Mountain
+ C  : Field
+
+ Légende des Batiments :
+ a : Army
+ c : Camp
+ f : Farm
+ e : Exploitation
+ p : Port
+
+### Voici un exemple d’affichage du plateau de dimension 10x10 :
+
+![exemple d'affichage avec a =10 et b=10 :](/index/exempleBoard2.png "")
+
+
+
+
+### Diagramme UML pour le Livrable2 :
+
+![ l'uml complet du second livrable](/index/UMLlivrable2.png "UML complet pour le second livrable")
 
 
 ### Atteinte des objectifs
