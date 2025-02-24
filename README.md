@@ -435,10 +435,19 @@ Lors de cette séance, l'objectif était de mettre à plat l'UML afin de se mett
 ## Semaine 6
 
 ### Ce qui a été réalisé
+-Reflexion sur la modélisation de different action
+-Reflexion sur les avantages d'utiliser une interface
+-Ajout d'un attribut playerTiles pour pouvoir associer chaque joueur a ses tuiles pour faciliter l'utilisation de methodes 
+-Création d'une interface et d'une classe pour chaque  d'action
+-Reflexion sur la manière qu'on va utiliser pour relier une saisie de joueur a une action
 
 ### Difficultés rencontrées
+-Association d'un saisie de joueur a une méthode
+-Modélisation de differents actions
+
 
 ### Objectifs pour la semaine
+Commencer a coder les classes des actions.
 
 ## Semaine 7
 
