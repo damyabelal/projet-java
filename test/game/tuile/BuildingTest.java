@@ -26,7 +26,7 @@ public class BuildingTest{
     assertEquals(tile.getPosition(),Building.getPosition());
 
 
-    
+     
 
 
     }

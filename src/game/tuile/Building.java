@@ -60,7 +60,7 @@ public abstract class Building{
 
     public boolean canBuild(){
 
-        //TO DO
+    //TO DO
     }
 
 /** returns the position of this building which is also the position of the tile the building is placed on
