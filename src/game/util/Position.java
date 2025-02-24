@@ -38,7 +38,7 @@ public class Position{
      * @return Position , the previous position plus the direction 
      */
     public Position next(Direction d){
-        return new Position(this.x + d.getDx(),this.y + d.getDy() );
+        return new Position((this.x + d.getDx()),(this.y + d.getDy()) );
     }
 
 

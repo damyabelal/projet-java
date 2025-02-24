@@ -4,7 +4,7 @@ import game.util.*;
 public abstract class Tuile {
     public String symbol ; /// symbol of the tile
    
-    private Position pos; // to be able to get the position of the tile
+    protected Position pos; // to be able to get the position of the tile
 
 
     /**
@@ -14,6 +14,7 @@ public abstract class Tuile {
      */    
     public Tuile(String symbol) {
         this.symbol =symbol ;
+        this.pos = null;
 
     }
     /**
@@ -25,16 +26,30 @@ public abstract class Tuile {
         return symbol;
     }   
 
-
+    /*
+     * return the position of the tile
+     * @return the position
+     */
     public Position getPosition(){
         return this.pos;
 
     }
 
+    /*
+     * set the position of the tile
+     * @param position the position we want
+     */
+    public void setPosition(Position position) {
+        this.pos = position;
+    }
 
-
-
-
+    /*
+     * return if the tile have a building on it
+     * @return true if it have a buiding, false otherwise
+     */
+    public boolean haveBuild(){
+        return false;
+    }
 
 
 }

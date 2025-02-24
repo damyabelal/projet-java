@@ -1,5 +1,7 @@
-package game.tuile;
+package game;
 import java.util.*;
+
+import game.tuile.*;
 import game.util.*;
 
 /**
@@ -50,6 +52,18 @@ public int getHeight(){
     return this.height;
 }
 
+/**
+ * returns the tile at the given position
+ * @param pos
+ * @return the tile at the given position
+ */
+public Tuile getTile(Position pos){
+    if(this.isValidPosition(pos)){
+        return this.grid[pos.getX()][pos.getY()];
+    }
+    return null ;
+}
+
 
 
 /*** displays a  board for the game with tiles with random type placed on random positions */
@@ -59,12 +73,19 @@ public void display(){
    
     System.out.println("GAME BOARD :");
     System.out.println("\n Légende des tuiles :");
-    System.out.println(new Sea().getSymbol() + " : Sea");
-    System.out.println(new Forest().getSymbol() + " : Forest");
-    System.out.println(new Pasture().getSymbol() + " : Pasture");
-    System.out.println(new Mountain().getSymbol() + " : Mountain");
-    System.out.println(new Field().getSymbol() + " : Field");
-    
+    System.out.println((new Sea()).getSymbol() + " : Sea");
+    System.out.println((new Forest()).getSymbol() + " : Forest");
+    System.out.println((new Pasture()).getSymbol() + " : Pasture");
+    System.out.println((new Mountain()).getSymbol() + " : Mountain");
+    System.out.println((new Field()).getSymbol() + " : Field");
+
+    System.out.println("\n Légende des Batiments :");
+    System.out.println(" a : Army");
+    System.out.println(" c : Camp");
+    System.out.println(" f : Farm");
+    System.out.println(" e : Exploitation");
+    System.out.println(" p : Port");
+
     System.out.println("        ");
     for (int x = 0; x < w; x++) {
         if(x==0){
@@ -78,8 +99,15 @@ public void display(){
     for(int  y=0; y < h ; y++){
         System.out.print("|");
         for (int x=0 ; x < w; x++){
-            String symbole =(" "+ grid[x][y].getSymbol() +"");
-            System.out.print(  symbole + " | ");
+            String symbole=""; 
+            Tuile t= this.grid[x][y]; // j'ai ajouté this.grid ou lieu de grid tout court 
+            if (t instanceof Earth && t.haveBuild()){
+                symbole= (""+(t).getSymbol()+ ((Earth)t).getBuilding().getSymbol()+"");
+            }
+            else{
+                symbole =(" "+ t.getSymbol() +"");
+            }
+        System.out.print(  symbole + " | ");
         }
         System.out.println(); 
         // We put a separating line between the lines but not the last one.
@@ -186,16 +214,29 @@ public boolean isValidPosition(Position pos) {
  * @return true if the tile is Earth, false otherwise
  */
 public boolean isBuildable(Position pos){
-    return this.grid[pos.getX()][pos.getY()] instanceof Earth;
+    return this.grid[pos.getX()][pos.getY()] instanceof Earth  && !((Earth)this.grid[pos.getX()][pos.getY()]).haveBuild();
 }
 
 
 /** return true if the given position is the sea, false otherwise
  * @param pos the position 
- * @return boolean true if the tile il the sea, fale otherwise
+ * @return boolean true if the tile il the sea, false otherwise
  * */
 public boolean isEmpty(Position pos) {
-    return isValidPosition(pos) && !isBuildable(pos);
+   /*f(!isValidPosition(pos)){
+        return false;
+    }
+    Tuile tile = getTile(pos);
+    if (tile instanceof Sea) {
+        return true;
+    }
+    else if(isBuildable(pos)){
+        Earth earthTile = (Earth) tile;
+        return earthTile.getBuilding() ==null ;
+    }*/
+    
+ return isValidPosition(pos) && !(this.grid[pos.getX()][pos.getY()] instanceof Earth)   ;
+   
 }
 
 
@@ -206,18 +247,19 @@ public boolean isEmpty(Position pos) {
 public boolean haveNeighbor(Position pos) {
     for (Direction d : Direction.values()) {
         Position neighbor = pos.next(d);
-        if (isValidPosition(neighbor) && !isEmpty(neighbor)) {
+        if (this.isValidPosition(neighbor) && !this.isEmpty(neighbor)) {
             return true;
         }
     }
     return false;
 }
 
-/** put the tile on the given position+
+/** put the tile on the given position ans set the position to the tile
  * @param t the tile
  * @param pos a position
  */
 public void put(Tuile t, Position pos){
+    t.setPosition(pos);
     this.grid[pos.getX()][pos.getY()]= t;
 
 }
@@ -254,7 +296,7 @@ private void placeInitialeTiles(){
     for (int i=0 ;i< nbTuileInit;i++){
         Position pos = this.randomPosition();
         Tuile tuile = this.randomTuile();
-        put(tuile, pos);
+        this.put(tuile, pos);
     }
 }
 
@@ -267,7 +309,7 @@ public ArrayList<Position> haveEmptyNeighboorList(Position pos){
     ArrayList<Position> res= new ArrayList<>();
     for (Direction d: Direction.values()){
         Position neighbor= pos.next(d);
-        if (isEmpty(neighbor)){
+        if (this.isEmpty(neighbor)){
             res.add(neighbor) ;
         }
     }
@@ -310,6 +352,65 @@ private Tuile randomTuile(){
 
     return tuileTypes.get(random);
 }
+
+/**
+ * returns a list of all buildable positions on the board
+ * A position is buildable if it is not a Sea tile
+ *
+ * @return a list of buildable positions
+ */
+public List<Position> getBuildablePositions() {
+    List<Position> buildableTiles = new ArrayList<>();
+    for (int x = 0; x < this.width; x++) {
+        for (int y = 0; y < this.height; y++) {
+            Position pos = new Position(x, y);
+            if (this.isBuildable(pos)) { 
+                buildableTiles.add(pos);
+            }
+        }
+    }
+    return buildableTiles;
+}
+
+/**
+ * displays the buildings placed on Earth tiles in the grid with their positions
+ */
+public void displayBuildings() {
+    for (int x = 0; x < this.width; x++) {
+        for (int y = 0; y < this.height; y++) {
+            Tuile tuile = this.grid[x][y];
+            if (tuile instanceof Earth) {
+                Earth earthTile = (Earth) tuile;
+                if (earthTile.haveBuild()) {
+                    System.out.println(earthTile.getBuilding().getName() + " has been set on " + tuile.getSymbol() + "(" + x + "," + y + ")");
+                }
+            }
+        }
+    }
+}
+
+
+/**
+     * return the number of sea tiles around the port
+     * @param pos
+     * @param board
+     * @return int the number of sea tiles around the port
+     */
+    public int nbSeaTiles(Position pos) {
+        int nbSeaTiles = 0;
+        for (Direction d : Direction.values()) {
+            Position neighbor = pos.next(d);
+            if (this.isValidPosition(neighbor)) {
+                Tuile neighborTile = this.getTile(neighbor);
+                if (neighborTile instanceof Sea) {
+                    nbSeaTiles += 1;
+                }
+            }
+        }
+        return nbSeaTiles;
+    }
+
+
 
 
 }
