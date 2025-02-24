@@ -435,8 +435,13 @@ Lors de cette séance, l'objectif était de mettre à plat l'UML afin de se mett
 ## Semaine 6
 
 ### Ce qui a été réalisé
+- discussion autour de l'impémentation/ représentation des îles
+- élaboration de l'interface des actions
 
 ### Difficultés rencontrées
+- 
+
+![ l'uml ACRTION ](/index/UMLAction.png "UML Action ")
 
 ### Objectifs pour la semaine
 
