@@ -444,7 +444,12 @@ Lors de cette séance, l'objectif était de mettre à plat l'UML afin de se mett
 ### Difficultés rencontrées
 -Association d'un saisie de joueur a une méthode
 -Modélisation de differents actions
+-discussion autour de l'impémentation/ représentation des îles
+-élaboration de l'interface des actions
 
+
+
+![ l'uml ACRTION ](/index/UMLAction.png "UML Action ")
 
 ### Objectifs pour la semaine
 Commencer a coder les classes des actions.
