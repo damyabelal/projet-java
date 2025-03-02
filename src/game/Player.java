@@ -1,10 +1,14 @@
 package game;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 import game.tuile.building.*;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.tuile.Tuile;
 
 public class Player {
 
@@ -152,6 +156,43 @@ public class Player {
         System.out.println("Building has been constructed on the tile");
         return true; // on renvoie vrai car on a reussi 
     }
+    
+
+    private List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
+
+        List<Earth> island = new ArrayList<>();
+        Queue<Earth> queue = new LinkedList<>();
+        
+        
+        queue.add(Start);
+        visited.add(Start);
+
+        while(!queue.isEmpty()){
+
+            Earth current = queue.poll();
+            island.add(current);
+
+            //verifier les tuiles voisines
+            for (Tuile neighbour : board.getNeighbours(current.getPosition())){
+                if (neighbour instanceof Earth){
+                    Earth neighbourEarth = (Earth) neighbour;
+
+                    // ajouter a la file si elle n'a pas encore ete visitee
+                    if (!visited.contains(neighbourEarth)){
+                        queue.add(neighbourEarth);
+                        visited.add(neighbourEarth);
+                    }
+                }
+            }
+        }
+        return island;
+
+
+        
+        
+
+
+    } 
 
 
     public List<List<Earth>> findIslands(Board board){
@@ -161,7 +202,7 @@ public class Player {
             for(int y=0; y<board.getHeight(); y++){
 
                 Tuile tile = board.getTile(x, y);
-                
+
             }
         }
 
