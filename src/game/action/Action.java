@@ -1,5 +1,6 @@
 package game.action;
 
+import game.NoMoreRessourcesException;
 import game.Player;
 
 /**
@@ -11,6 +12,7 @@ public interface Action {
      * executes the action for the given player
      * 
      * @param player the player performing the action
+     * @throws NoMoreRessourcesException 
      */
-    void act(Player player);
+    void act(Player player) throws NoMoreRessourcesException;
 }
