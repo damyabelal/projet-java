@@ -1,4 +1,5 @@
 package game;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import game.tuile.building.*;
@@ -10,6 +11,7 @@ public class Player {
     private String name;
     private int warriors;
     private HashMap<Ressource, Integer> ressources;
+    private ArrayList<Earth> playerTiles;
 
     /** 
      * creates a player with a name and initial resources
@@ -23,6 +25,7 @@ public class Player {
         this.ressources.put(Ressource.ORE, 0);
         this.ressources.put(Ressource.WEALTH, 0);
         this.ressources.put(Ressource.SHEEP, 0);
+        this.playerTiles = new ArrayList<>();
     }
 
     /** 
