@@ -159,6 +159,16 @@ public class Player {
         System.out.println("Building has been constructed on the tile");
         return true; // on renvoie vrai car on a reussi 
     }
+
+    /**
+    * returns the amount of a specific resource the player has
+    * @param resource the resource type
+    * @return the amount of the resource
+    */
+    public int getRessourceAmount(Ressource resource) {
+        return this.ressources.getOrDefault(resource, 0);
+    }
+
     
     /**
      * 
@@ -168,24 +178,17 @@ public class Player {
      * @return
      */
     public List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
-
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
-        
-        
         queue.add(Start);
         visited.add(Start);
-
         while(!queue.isEmpty()){
-
             Earth current = queue.poll();
             island.add(current);
-
             //verifier les tuiles voisines
             for (Tuile neighbour : board.getNeighbours(current.getPosition())){
                 if (neighbour instanceof Earth){
                     Earth neighbourEarth = (Earth) neighbour;
-
                     // ajouter a la file si elle n'a pas encore ete visitee
                     if (!visited.contains(neighbourEarth)){
                         queue.add(neighbourEarth);
@@ -195,12 +198,6 @@ public class Player {
             }
         }
         return island;
-
-
-        
-        
-
-
     } 
 
     /**
@@ -211,32 +208,20 @@ public class Player {
     public List<List<Earth>> findIslands(Board board){
         List<List<Earth>> islands = new ArrayList<>();
         Set<Earth> visited = new HashSet<>();
-
         for (int x=0 ; x<board.getWidth(); x++){
             for(int y=0; y<board.getHeight(); y++){
-
                 Tuile tile = board.getTile(new Position(x, y));
-
                 if(tile instanceof Earth){
                     Earth earthTile = (Earth) tile ;
-
                     if(!visited.contains(earthTile)){
-
                         List<Earth> island =exploreIsland(earthTile, board, visited);
                         islands.add(island);
                     }
                 }
-
             }
-
         }
         return islands;
-
-
     }
-
-
-
 }
 
 
