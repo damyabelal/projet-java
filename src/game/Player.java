@@ -65,6 +65,25 @@ public class Player {
             this.warriors -= nb;
         }
     }
+    /**
+     * getter for playerTiles
+     * @return playerTiles
+     */
+    public ArrayList<Earth> getPlayerTiles() {
+        return this.playerTiles;
+    }
+
+
+    /**
+     * adds a tile to the player's list of tiles
+     * @param tile
+     */
+    public void addPlayerTile(Earth tile) {
+        if(!this.playerTiles.contains(tile)){
+            this.playerTiles.add(tile);
+        }
+    }
+
 
     /** 
      * returns the resources of player
