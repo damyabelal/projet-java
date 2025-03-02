@@ -1,13 +1,20 @@
 package game.tuile;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
+import game.util.Position;
 
 
 
@@ -103,6 +110,32 @@ public class PlayerTest {
 
     
     }
+
+    @Test
+    void testExploreIsland(){
+       Board board = new Board(5, 5);
+        for (int x=0; x<4; x++){
+            for (int y=0; y<4; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
+
+        board.put(new Forest(), new Position(1, 1));
+        board.put(new Field(), new Position(1, 2));
+        board.put(new Mountain(), new Position(2, 2));
+
+        Earth tile = (Earth) board.getTile(new Position(1, 1));
+        assertNotNull(tile);
+
+        Set<Earth> visited = new HashSet<>();
+        
+        List<Earth> islandsList = player.exploreIsland(tile,board,visited);
+        assertEquals(3, islandsList.size());
+
+    }
+
+
+    
 
 
 

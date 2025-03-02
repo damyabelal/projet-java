@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
 
 import game.tuile.building.*;
 import game.tuile.Earth;
@@ -157,8 +158,14 @@ public class Player {
         return true; // on renvoie vrai car on a reussi 
     }
     
-
-    private List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
+    /**
+     * 
+     * @param Start
+     * @param board
+     * @param visited
+     * @return
+     */
+    public List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -195,7 +202,7 @@ public class Player {
     } 
 
 
-    public List<List<Earth>> findIslands(Board board){
+   /*  public List<List<Earth>> findIslands(Board board){
         List<List<Earth>> islands = new ArrayList<>();
 
         for (int x=0 ; x<board.getWidth(); x++){
@@ -207,7 +214,7 @@ public class Player {
         }
 
 
-    }
+    }*/
 
 
 
