@@ -1,6 +1,7 @@
 package game.action;
 import java.util.HashMap;
 
+import game.Player;
 import game.tuile.Ressource;
 
 public class BuyThief implements Action{
@@ -19,7 +20,9 @@ public class BuyThief implements Action{
         return true;
     }
 
-    public void act() {
-        throw new UnsupportedOperationException("Unimplemented method 'act'");
+    public void act(Player player) {
+        if (canBuy(player.getResources())){
+            // à voir comment on veut ajouter le voleur, si c'est un boolean ou autre chose... 
+        }
     }
 }
