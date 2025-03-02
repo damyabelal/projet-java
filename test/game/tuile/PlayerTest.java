@@ -110,12 +110,14 @@ public class PlayerTest {
 
     
     }
-
+    /*
+     * 
+     */
     @Test
     void testExploreIsland(){
        Board board = new Board(5, 5);
-        for (int x=0; x<4; x++){
-            for (int y=0; y<4; y++){
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
                 board.put(new Sea(), new Position(x, y));
                 }
             }
@@ -132,6 +134,33 @@ public class PlayerTest {
         List<Earth> islandsList = player.exploreIsland(tile,board,visited);
         assertEquals(3, islandsList.size());
 
+    }
+
+    @Test
+    void testFindIslands(){
+        Board board = new Board(5, 5);
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
+        //placer une ile d 3 tuile
+        board.put(new Forest(), new Position(1, 1));
+        board.put(new Field(), new Position(1, 2));
+        board.put(new Mountain(), new Position(2, 2));
+
+
+        //placer une deuxieme ile de 2 tuile
+        board.put(new Field(), new Position(4, 4));
+        board.put(new Field(), new Position(4, 3));
+ 
+        List<List<Earth>> islands = player.findIslands(board);
+
+        assertEquals(2, islands.size());
+
+
+
+        
     }
 
 

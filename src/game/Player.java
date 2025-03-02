@@ -1,12 +1,14 @@
 package game;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
 import game.tuile.building.*;
+import game.util.Position;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Tuile;
@@ -201,20 +203,37 @@ public class Player {
 
     } 
 
-
-   /*  public List<List<Earth>> findIslands(Board board){
+    /**
+     * 
+     * @param board
+     * @return
+     */
+    public List<List<Earth>> findIslands(Board board){
         List<List<Earth>> islands = new ArrayList<>();
+        Set<Earth> visited = new HashSet<>();
 
         for (int x=0 ; x<board.getWidth(); x++){
             for(int y=0; y<board.getHeight(); y++){
 
-                Tuile tile = board.getTile(x, y);
+                Tuile tile = board.getTile(new Position(x, y));
+
+                if(tile instanceof Earth){
+                    Earth earthTile = (Earth) tile ;
+
+                    if(!visited.contains(earthTile)){
+
+                        List<Earth> island =exploreIsland(earthTile, board, visited);
+                        islands.add(island);
+                    }
+                }
 
             }
+
         }
+        return islands;
 
 
-    }*/
+    }
 
 
 
