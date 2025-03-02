@@ -300,6 +300,25 @@ private void placeInitialeTiles(){
     }
 }
 
+/**
+ * returns the list of all the neighbors of a given position
+ * @param pos
+ * @return the list of neighbors
+ */
+public List<Tuile> getNeighbours(Position pos){
+    List<Tuile> neighbours = new ArrayList<>();
+
+    for (Direction d : Direction.values()) {
+        Position neighbourPos = pos.next(d);
+        if (this.isValidPosition(neighbourPos)) {
+            neighbours.add(this.getTile(neighbourPos));
+        }
+    }
+    return neighbours;
+
+
+}
+
 
 /** return the list of all the empty neighbor around a position
  * @param pos the position
