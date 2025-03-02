@@ -152,6 +152,24 @@ public class Player {
         System.out.println("Building has been constructed on the tile");
         return true; // on renvoie vrai car on a reussi 
     }
+
+
+    public List<List<Earth>> findIslands(Board board){
+        List<List<Earth>> islands = new ArrayList<>();
+
+        for (int x=0 ; x<board.getWidth(); x++){
+            for(int y=0; y<board.getHeight(); y++){
+
+                Tuile tile = board.getTile(x, y);
+                
+            }
+        }
+
+
+    }
+
+
+
 }
 
 
