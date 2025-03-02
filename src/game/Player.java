@@ -1,17 +1,9 @@
 package game;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 
+import java.util.*;
 import game.tuile.building.*;
-import game.util.Position;
-import game.tuile.Earth;
-import game.tuile.Ressource;
-import game.tuile.Tuile;
+import game.util.*;
+import game.tuile.*;
 
 public class Player {
 
