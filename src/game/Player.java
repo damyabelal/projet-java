@@ -25,13 +25,6 @@ public class Player {
         this.playerTiles = new ArrayList<>();
     }
 
-    /** 
-     * returns the number of warriors
-     * @return number of warriors
-     */
-    public int getWarriors() {
-        return this.warriors;
-    }
 
     /** 
      * returns the player's name
@@ -41,27 +34,7 @@ public class Player {
         return this.name;
     }
 
-    /** 
-     * adds warriors to the army
-     * @param nb number of warriors to add
-     */
-    public void addWarriors(int nb) {
-        this.warriors += nb;
-    }
 
-    /** 
-     * removes warriors from the army
-     * @param nb number of warriors to remove
-     * @exception NoMoreRessourcesException
-     */
-    public void removeWarriors(int nb) throws NoMoreRessourcesException{
-        if ((this.warriors- nb) <0){
-            throw new NoMoreRessourcesException("you have less than "+nb+" warriors"); 
-        }
-        else{
-            this.warriors -= nb;
-        }
-    }
     /**
      * getter for playerTiles
      * @return playerTiles
@@ -80,7 +53,6 @@ public class Player {
             this.playerTiles.add(tile);
         }
     }
-
 
     /** 
      * returns the resources of player
@@ -137,62 +109,4 @@ public class Player {
     }
 
     
-<<<<<<< HEAD
-=======
-    /**
-     * 
-     * @param Start
-     * @param board
-     * @param visited
-     * @return
-     */
-    public List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
-        List<Earth> island = new ArrayList<>();
-        Queue<Earth> queue = new LinkedList<>();
-        queue.add(Start);
-        visited.add(Start);
-        while(!queue.isEmpty()){
-            Earth current = queue.poll();
-            island.add(current);
-            //verifier les tuiles voisines
-            for (Tuile neighbour : board.getNeighbours(current.getPosition())){
-                if (neighbour instanceof Earth){
-                    Earth neighbourEarth = (Earth) neighbour;
-                    // ajouter a la file si elle n'a pas encore ete visitee
-                    if (!visited.contains(neighbourEarth)){
-                        queue.add(neighbourEarth);
-                        visited.add(neighbourEarth);
-                    }
-                }
-            }
-        }
-        return island;
-    } 
- 
-    /** returns all islands on the board in a list of list
-     * 
-     * @param board
-     * @return
-     */
-    public List<List<Earth>> findIslands(Board board){
-        List<List<Earth>> islands = new ArrayList<>();
-        Set<Earth> visited = new HashSet<>();
-        for (int x=0 ; x<board.getWidth(); x++){
-            for(int y=0; y<board.getHeight(); y++){
-                Tuile tile = board.getTile(new Position(x, y));
-                if(tile instanceof Earth){
-                    Earth earthTile = (Earth) tile ;
-                    if(!visited.contains(earthTile)){
-                        List<Earth> island =exploreIsland(earthTile, board, visited);
-                        islands.add(island);
-                    }
-                }
-            }
-        }
-        return islands;
-    }
->>>>>>> 3afe6a9ec68e91c4e4c77922766640d85cfed47c
 }
-
-
-
