@@ -4,7 +4,7 @@ import game.NoMoreRessourcesException;
 import game.Player;
 
 /**
- * represents an action that can be performed by a player
+ * represents an action that can be done by a player
  */
 public interface Action {
 

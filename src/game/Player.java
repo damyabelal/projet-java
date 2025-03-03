@@ -191,9 +191,8 @@ public class Player {
         }
         return island;
     } 
-
-    /**
-     * 
+ 
+    /** returns all islands on the board in a list of list
      * @param board
      * @return
      */
