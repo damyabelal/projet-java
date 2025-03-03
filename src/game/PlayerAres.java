@@ -11,7 +11,7 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         
         
-
+        // initialies a new playerares with 30 warriors , a name and zero secret weapons
         public PlayerAres(String name){
                 super(name );
                 this.warriors=30;
@@ -29,7 +29,7 @@ public class  PlayerAres extends Player{
     }
 
     /** 
-     * removes warriors from the army
+     * removes nb  warriors from  the players army
      * @param nb number of warriors to remove
      * @exception NoMoreRessourcesException
      */
