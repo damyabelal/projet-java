@@ -49,6 +49,15 @@ public class  PlayerAres extends Player{
         return this.warriors;
 
     }
+    /** returns the number of secret weapons owned by this player
+     * @return the number of secret weapons of this player
+     * 
+     */
+    public  int getNbSecretWeapon(){
+        return this.secretWeapon;
+
+
+    }
 
     
 
