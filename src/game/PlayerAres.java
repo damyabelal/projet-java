@@ -1,10 +1,5 @@
 package game;
 
-import java.util.*;
-import game.tuile.building.*;
-import game.util.*;
-import game.tuile.*;
-
 public class  PlayerAres extends Player{
 
         private int warriors;
@@ -58,15 +53,10 @@ public class  PlayerAres extends Player{
 
  
     }
-
-    /** adds the this players inventory a new secret weapon that costs one wood and one ore if the player has enough ressources for that  */
-    public void buySecretWeapon(){
-       if (this.ressources.getOrDefault(Ressource.ORE,0)>= 1 && (this.ressources.getOrDefault(Ressource.WOOD,0))>=1);
-            this.secretWeapon+=1;
+     
+    public void addSecretWeapon(){
+        this.secretWeapon += 1 ;
     }
-
-    
-
 
 
 }

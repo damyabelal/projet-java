@@ -33,11 +33,11 @@ public class PlayerDemeter extends Player{
     }
 
     public void addPoints(int nb){
-        this.points += nb;
+        this.points += 1;
     }
 
     public void addThiefs(int nb){
-        this.nbThief += nb;
+        this.nbThief += 1;
     }
 
     
