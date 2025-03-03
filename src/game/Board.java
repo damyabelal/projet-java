@@ -435,7 +435,7 @@ public void displayBuildings() {
      * @param visited
      * @return
      */
-    public List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    public static  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -476,7 +476,7 @@ public void displayBuildings() {
      * @param board
      * @return
      */
-    public List<List<Earth>> findIslands(Board board){
+    public List<List<Earth>> findIslands(){
         List<List<Earth>> islands = new ArrayList<>();
         Set<Earth> visited = new HashSet<>();
 
