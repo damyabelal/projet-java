@@ -1,17 +1,25 @@
 package game;
 
-
 import java.util.*;
 import game.tuile.building.*;
 import game.util.*;
 import game.tuile.*;
 
-public class  PlayerAres{
+public class  PlayerAres extends Player{
 
         private int warriors;
+        private int secretWeapon;
         
-}
+        
 
+        public PlayerAres(String name){
+                super(name);
+                this.warriors=30;
+                this.secretWeapon=0;
+                
+
+        
+        }
 /** 
      * adds warriors to the army
      * @param nb number of warriors to add
@@ -33,3 +41,17 @@ public class  PlayerAres{
             this.warriors -= nb;
         }
     }
+
+    /** return the number of warriors for this player 
+     *@return number of warriors belonging this this player
+     */
+    public int getWarrior(){
+        return this.warriors;
+
+    }
+
+    
+
+
+
+}
