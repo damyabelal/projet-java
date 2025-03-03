@@ -7,8 +7,8 @@ import game.tuile.*;
 public class Player {
 
     private String name;
-    private HashMap<Ressource, Integer> ressources;
-    private ArrayList<Earth> playerTiles;
+    protected HashMap<Ressource, Integer> ressources;
+    protected  ArrayList<Earth> playerTiles;
 
     /** 
      * creates a player with a name and initial resources

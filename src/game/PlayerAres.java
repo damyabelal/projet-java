@@ -13,7 +13,7 @@ public class  PlayerAres extends Player{
         
 
         public PlayerAres(String name){
-                super(name);
+                super(name );
                 this.warriors=30;
                 this.secretWeapon=0;
                 
@@ -56,7 +56,13 @@ public class  PlayerAres extends Player{
     public  int getNbSecretWeapon(){
         return this.secretWeapon;
 
+ 
+    }
 
+    /** adds the this players inventory a new secret weapon that costs */
+    public void buySecretWeapon(){
+       if (this.ressources.getOrDefault(Ressource.ORE,0)>= 1 && (this.ressources.getOrDefault(Ressource.WOOD,0))>=1);
+            this.secretWeapon+=1;
     }
 
     
