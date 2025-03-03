@@ -32,5 +32,13 @@ public class PlayerDemeter extends Player{
         return this.nbThief;
     }
 
+    public void addPoints(int nb){
+        this.points += nb;
+    }
+
+    public void addThiefs(int nb){
+        this.nbThief += nb;
+    }
+
     
 }
