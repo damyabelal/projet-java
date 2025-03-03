@@ -457,10 +457,22 @@ Commencer a coder les classes des actions.
 ## Semaine 7
 
 ### Ce qui a été réalisé
+- entretien sur le livrable 2
+- ajout de deux classes héritant de player pour pouvoir avoir des constructeurs et méthodes spécifiques au deux jeux
+- ajout de la méthode canBuildArmy 
+liste des réflexions et choses à modifier du livrable 2:
+- ajouter tuile et player en paramètre de builduing
+- modifier l'emplacement de la récupération des ressources
+- pour chaque building, cost recrée une nouvelle hashmap, on doit supprimer les répétitions et juste l'initialiser dans buidling
+- supprimer setBuilding et l'ajouter dans le constructeur
+- ajouter canBeUpgrade dans building
+- modifier le fonctionnement de create army (par exemple selon le nombre de soldat ajouté on pourrais levé une exception)
 
 ### Difficultés rencontrées
+- On ne sait pas encore comment ne pas créer de conflit de type danc action avec la création des deux sous classes propre à chaque jeu, on doit donc se renseigner sur les types paramétrés (on as commencé à regarder la vidéo mais on as pas eu le temps de finir :()
 
 ### Objectifs pour la semaine
+- ce concentreer sur le code pour rencontrer des problèmes et savoir ce qu'il faut revoir la semaine prochaine
 
 ## Semaine 8
 
