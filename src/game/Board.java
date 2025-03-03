@@ -428,6 +428,82 @@ public void displayBuildings() {
         }
         return nbSeaTiles;
     }
+    
+    /**
+     * 
+     * @param Start
+     * @param visited
+     * @return
+     */
+    public List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+
+        List<Earth> island = new ArrayList<>();
+        Queue<Earth> queue = new LinkedList<>();
+        
+        
+        queue.add(Start);
+        visited.add(Start);
+
+        while(!queue.isEmpty()){
+
+            Earth current = queue.poll();
+            island.add(current);
+
+            //verifier les tuiles voisines
+            for (Tuile neighbour : this.getNeighbours(current.getPosition())){
+                if (neighbour instanceof Earth){
+                    Earth neighbourEarth = (Earth) neighbour;
+
+                    // ajouter a la file si elle n'a pas encore ete visitee
+                    if (!visited.contains(neighbourEarth)){
+                        queue.add(neighbourEarth);
+                        visited.add(neighbourEarth);
+                    }
+                }
+            }
+        }
+        return island;
+
+
+        
+        
+
+
+    } 
+
+    /**
+     * 
+     * @param board
+     * @return
+     */
+    public List<List<Earth>> findIslands(Board board){
+        List<List<Earth>> islands = new ArrayList<>();
+        Set<Earth> visited = new HashSet<>();
+
+        for (int x=0 ; x<this.width; x++){
+            for(int y=0; y<this.height; y++){
+
+                Tuile tile = this.getTile(new Position(x, y));
+
+                if(tile instanceof Earth){
+                    Earth earthTile = (Earth) tile ;
+
+                    if(!visited.contains(earthTile)){
+
+                        List<Earth> island =exploreIsland(earthTile,  visited);
+                        islands.add(island);
+                    }
+                }
+
+            }
+
+        }
+        return islands;
+
+
+    }
+
+
 
 
 

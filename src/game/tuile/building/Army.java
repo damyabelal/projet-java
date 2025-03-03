@@ -58,8 +58,9 @@ public class Army extends Building{
     public boolean canBeCamp(Player player){
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
+    
 
-   /// public boolean canBuildArmy(){}
+ ///   public boolean canBuildArmy(){}
 
 
     /** adds a given number of warriors, 

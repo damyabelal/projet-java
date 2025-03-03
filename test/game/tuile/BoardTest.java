@@ -9,7 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BoardTest {
 
@@ -253,6 +255,59 @@ public class BoardTest {
 
 
 
+@Test
+    void testExploreIsland(){
+       Board board = new Board(5, 5);
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
 
+        board.put(new Forest(), new Position(1, 1));
+        board.put(new Field(), new Position(1, 2));
+        board.put(new Mountain(), new Position(2, 2));
+
+        Earth tile = (Earth) board.getTile(new Position(1, 1));
+        assertNotNull(tile);
+
+        Set<Earth> visited = new HashSet<>();
+        
+        List<Earth> islandsList = board.exploreIsland(tile,visited);
+        assertEquals(3, islandsList.size());
+
+    }
+
+
+
+
+    
+
+    @Test
+    void testFindIslands(){
+        Board board = new Board(5, 5);
+        for (int x=0; x<5; x++){
+            for (int y=0; y<5; y++){
+                board.put(new Sea(), new Position(x, y));
+                }
+            }
+        //placer une ile d 3 tuile
+        board.put(new Forest(), new Position(1, 1));
+        board.put(new Field(), new Position(1, 2));
+        board.put(new Mountain(), new Position(2, 2));
+
+
+        //placer une deuxieme ile de 2 tuile
+        board.put(new Field(), new Position(4, 4));
+        board.put(new Field(), new Position(4, 3));
+ 
+        List<List<Earth>> islands = board.findIslands(board);
+
+        assertEquals(2, islands.size());
+
+
+
+        
+    }
 
 }
