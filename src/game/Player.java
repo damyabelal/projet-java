@@ -8,7 +8,6 @@ import game.tuile.*;
 public class Player {
 
     private String name;
-    private int warriors;
     private HashMap<Ressource, Integer> ressources;
     private ArrayList<Earth> playerTiles;
 
@@ -18,7 +17,7 @@ public class Player {
      */
     public Player(String name) {
         this.name = name;
-        this.warriors = 30;
+       
         this.ressources = new HashMap<>();
         this.ressources.put(Ressource.WOOD, 0);
         this.ressources.put(Ressource.ORE, 0);
@@ -193,6 +192,7 @@ public class Player {
     } 
  
     /** returns all islands on the board in a list of list
+     * 
      * @param board
      * @return
      */
