@@ -7,7 +7,6 @@ import game.tuile.*;
 public class Player {
 
     private String name;
-    private int warriors;
     private HashMap<Ressource, Integer> ressources;
     private ArrayList<Earth> playerTiles;
 
@@ -17,7 +16,7 @@ public class Player {
      */
     public Player(String name) {
         this.name = name;
-        this.warriors = 30;
+       
         this.ressources = new HashMap<>();
         this.ressources.put(Ressource.WOOD, 0);
         this.ressources.put(Ressource.ORE, 0);
@@ -138,6 +137,61 @@ public class Player {
     }
 
     
+<<<<<<< HEAD
+=======
+    /**
+     * 
+     * @param Start
+     * @param board
+     * @param visited
+     * @return
+     */
+    public List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
+        List<Earth> island = new ArrayList<>();
+        Queue<Earth> queue = new LinkedList<>();
+        queue.add(Start);
+        visited.add(Start);
+        while(!queue.isEmpty()){
+            Earth current = queue.poll();
+            island.add(current);
+            //verifier les tuiles voisines
+            for (Tuile neighbour : board.getNeighbours(current.getPosition())){
+                if (neighbour instanceof Earth){
+                    Earth neighbourEarth = (Earth) neighbour;
+                    // ajouter a la file si elle n'a pas encore ete visitee
+                    if (!visited.contains(neighbourEarth)){
+                        queue.add(neighbourEarth);
+                        visited.add(neighbourEarth);
+                    }
+                }
+            }
+        }
+        return island;
+    } 
+ 
+    /** returns all islands on the board in a list of list
+     * 
+     * @param board
+     * @return
+     */
+    public List<List<Earth>> findIslands(Board board){
+        List<List<Earth>> islands = new ArrayList<>();
+        Set<Earth> visited = new HashSet<>();
+        for (int x=0 ; x<board.getWidth(); x++){
+            for(int y=0; y<board.getHeight(); y++){
+                Tuile tile = board.getTile(new Position(x, y));
+                if(tile instanceof Earth){
+                    Earth earthTile = (Earth) tile ;
+                    if(!visited.contains(earthTile)){
+                        List<Earth> island =exploreIsland(earthTile, board, visited);
+                        islands.add(island);
+                    }
+                }
+            }
+        }
+        return islands;
+    }
+>>>>>>> 3afe6a9ec68e91c4e4c77922766640d85cfed47c
 }
 
 
