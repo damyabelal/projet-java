@@ -13,7 +13,7 @@ public class Player {
     /** 
      * creates a player with a name and initial resources
      * @param name  name of the player
-     */
+     */ 
     public Player(String name) {
         this.name = name;
        
@@ -34,7 +34,6 @@ public class Player {
         return this.name;
     }
 
-
     /**
      * getter for playerTiles
      * @return playerTiles
@@ -42,7 +41,6 @@ public class Player {
     public ArrayList<Earth> getPlayerTiles() {
         return this.playerTiles;
     }
-
 
     /**
      * adds a tile to the player's list of tiles
@@ -99,6 +97,7 @@ public class Player {
         return true;
     }
 
+
     /**
     * returns the amount of a specific resource the player has
     * @param resource the resource type
@@ -110,3 +109,6 @@ public class Player {
 
     
 }
+
+
+
