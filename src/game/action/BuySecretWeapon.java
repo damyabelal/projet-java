@@ -1,23 +1,21 @@
 package game.action;
 
-import java.util.HashMap;
-
+import game.Player;
 import game.tuile.Ressource;
+import game.NoMoreRessourcesException;
 
 public class BuySecretWeapon implements Action{
 
-  public HashMap<Ressource,Integer> cost=new HashMap<>();
-  cost.put(Ressource.ORE);
-  cost.put(Ressource.WODD);
+    @Override
+    public void act(Player player) throws NoMoreRessourcesException {
 
-  public boolean canBuy(HashMap<Ressource, Integer> inventory) {
-        for (Ressource ressource: cost.key()){
-            if (ressource.getOrDefault(ressource,0)< cost.get(ressource)){
-                return false;
-            }
-        }
-        return true;
+        // the cost of buying an secret weapon 
+        int costOre = 1;
+        int costWood = 1;
+
+        // we check if the player hqs enough ressources to buy a secret weapon
+
     }
 
-    
+
 }

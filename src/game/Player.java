@@ -2,7 +2,6 @@ package game;
 
 import java.util.*;
 import game.tuile.building.*;
-import game.util.*;
 import game.tuile.*;
 
 public class Player {
@@ -129,29 +128,6 @@ public class Player {
         return true;
     }
 
-    /** 
-     * builds the given building if the player has enough resources
-     * @param building the building to construct
-     * @param tile the tile on which to construct the building
-     * @return true if the building was constructed false if the player does not have enough resources to build the building
-     */
-    public boolean build(Building building, Earth tile) throws NoMoreRessourcesException{
-        // on verifie que le joueur a suffisament de ressource pour le batiment en question
-        if (! this.hasEnoughRessources(building)) {
-            System.out.println("Not enough resources to build the building");
-            return false; // on renvoie false car on a pas réussi
-        }
-        // si il en a on soustrait ces ressources de son stock, par exemple une armee qui coute 1 bois, 1 mouton, 1 blé on soustrait ces valeurs du joueur
-        HashMap<Ressource, Integer> cost = building.getCost();
-        for (Ressource resource : cost.keySet()) {
-            removeRessource(resource, cost.get(resource));
-        }
-        // a la fin on place le batiment sur la tuile en question grace a la methode setBuilding()
-        tile.setBuilding(building);
-        System.out.println("Building has been constructed on the tile");
-        return true; // on renvoie vrai car on a reussi 
-    }
-
     /**
     * returns the amount of a specific resource the player has
     * @param resource the resource type
@@ -162,58 +138,6 @@ public class Player {
     }
 
     
-    /**
-     * 
-     * @param Start
-     * @param board
-     * @param visited
-     * @return
-     */
-    public List<Earth> exploreIsland(Earth Start ,Board board  , Set<Earth> visited){
-        List<Earth> island = new ArrayList<>();
-        Queue<Earth> queue = new LinkedList<>();
-        queue.add(Start);
-        visited.add(Start);
-        while(!queue.isEmpty()){
-            Earth current = queue.poll();
-            island.add(current);
-            //verifier les tuiles voisines
-            for (Tuile neighbour : board.getNeighbours(current.getPosition())){
-                if (neighbour instanceof Earth){
-                    Earth neighbourEarth = (Earth) neighbour;
-                    // ajouter a la file si elle n'a pas encore ete visitee
-                    if (!visited.contains(neighbourEarth)){
-                        queue.add(neighbourEarth);
-                        visited.add(neighbourEarth);
-                    }
-                }
-            }
-        }
-        return island;
-    } 
-
-    /**
-     * 
-     * @param board
-     * @return
-     */
-    public List<List<Earth>> findIslands(Board board){
-        List<List<Earth>> islands = new ArrayList<>();
-        Set<Earth> visited = new HashSet<>();
-        for (int x=0 ; x<board.getWidth(); x++){
-            for(int y=0; y<board.getHeight(); y++){
-                Tuile tile = board.getTile(new Position(x, y));
-                if(tile instanceof Earth){
-                    Earth earthTile = (Earth) tile ;
-                    if(!visited.contains(earthTile)){
-                        List<Earth> island =exploreIsland(earthTile, board, visited);
-                        islands.add(island);
-                    }
-                }
-            }
-        }
-        return islands;
-    }
 }
 
 
