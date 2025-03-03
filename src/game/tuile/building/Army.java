@@ -1,6 +1,10 @@
 package game.tuile.building;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Earth;
@@ -49,7 +53,7 @@ public class Army extends Building{
     public String getName(){
         return "Army";
     }
-
+   
     /**
      * return true if the army can be a camp
      * @param player the person who play
@@ -59,8 +63,33 @@ public class Army extends Building{
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
     
+    /**
+     * 
+     * @param earth
+     * @param player
+     * @return
+     */
+    public boolean canBuildArmy(Earth earth, Player player) {
+        Set<Earth> visited = new HashSet<>();
+        visited.add(earth);
+        int cptPort = 0;
+        int cptBuild =0;
 
- ///   public boolean canBuildArmy(){}
+        List<Earth> island = Board.exploreIsland(earth, visited);
+
+        for (Earth tuile : island){
+            if(tuile.haveBuild()){
+                cptBuild++;
+            }
+            if(tuile.getBuilding() instanceof Port){
+                cptPort++;
+            }
+
+        }
+        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding());
+  
+        
+    }
 
 
     /** adds a given number of warriors, 
@@ -90,6 +119,9 @@ public class Army extends Building{
     }
     return null;
 }
+
+
+
 
 }
 

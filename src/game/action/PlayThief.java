@@ -1,5 +1,7 @@
 package game.action;
 
+import game.NoMoreRessourcesException;
+import game.Player;
 import game.tuile.Ressource;
 
 public class PlayThief implements Action{
@@ -14,4 +16,10 @@ public class PlayThief implements Action{
 
   }
     
-}
+
+
+  @Override
+  public void act(Player player) throws NoMoreRessourcesException {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'act'");
+  }}
