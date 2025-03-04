@@ -460,6 +460,8 @@ Commencer a coder les classes des actions.
 - entretien sur le livrable 2
 - ajout de deux classes héritant de player pour pouvoir avoir des constructeurs et méthodes spécifiques au deux jeux
 - ajout de la méthode canBuildArmy 
+
+
 liste des réflexions et choses à modifier du livrable 2:
 - ajouter tuile et player en paramètre de builduing
 - modifier l'emplacement de la récupération des ressources
