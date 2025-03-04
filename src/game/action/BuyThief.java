@@ -2,9 +2,10 @@ package game.action;
 import java.util.HashMap;
 
 import game.Player;
+import game.PlayerDemeter;
 import game.tuile.Ressource;
 
-public class BuyThief implements Action{
+public class BuyThief implements Action<PlayerDemeter>{
 
     public HashMap<Ressource, Integer> cost = new HashMap<>();
     cost.put(Ressource.WOOD, 1);
@@ -20,7 +21,7 @@ public class BuyThief implements Action{
         return true;
     }
 
-    public void act(Player player) {
+    public void act(PlayerDemeter player) {
         if (canBuy(player.getResources())){
             // à voir comment on veut ajouter le voleur, si c'est un boolean ou autre chose... 
         }

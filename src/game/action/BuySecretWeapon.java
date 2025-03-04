@@ -1,13 +1,13 @@
 package game.action;
 
-import game.Player;
+import game.PlayerAres;
 import game.tuile.Ressource;
 import game.NoMoreRessourcesException;
 
-public class BuySecretWeapon implements Action{
+public class BuySecretWeapon implements Action<PlayerAres>{
 
     @Override
-    public void act(Player player) throws NoMoreRessourcesException {
+    public void act(PlayerAres player) throws NoMoreRessourcesException {
 
         // the cost of buying an secret weapon 
         int costOre = 1;
