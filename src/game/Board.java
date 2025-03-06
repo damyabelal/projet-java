@@ -86,7 +86,12 @@ public void display(){
     System.out.println(" e : Exploitation");
     System.out.println(" p : Port");
 
+    
     System.out.println("        ");
+
+    for (int i= 0; i< w; i++){
+        System.out.println("   "+i+"   ");
+    }
     for (int x = 0; x < w; x++) {
         if(x==0){
             System.out.print("|-----|");
@@ -97,6 +102,7 @@ public void display(){
        
     } System.out.println();
     for(int  y=0; y < h ; y++){
+        System.out.print(y);
         System.out.print("|");
         for (int x=0 ; x < w; x++){
             String symbole=""; 
