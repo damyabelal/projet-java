@@ -1,29 +1,26 @@
 package game.action;
-import java.util.HashMap;
-
-import game.Player;
+import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
 
 public class BuyThief implements Action<PlayerDemeter>{
 
-    public HashMap<Ressource, Integer> cost = new HashMap<>();
-    cost.put(Ressource.WOOD, 1);
-    cost.put(Ressource.ORE, 1);
-    cost.put(Ressource.WEALTH, 1);
-
-    public boolean canBuy(HashMap<Ressource, Integer> inventory) {
-        for (Ressource ressource: cost.key()){
-            if (ressource.getOrDefault(ressource,0)< cost.get(ressource)){
-                return false;
-            }
+    /*
+     * buy a thief if the player have enough ressources
+     * @param the player who make the action
+     */
+    public void act(PlayerDemeter player) throws NoMoreRessourcesException{
+        int costWood = 1;
+        int costOre= 1;
+        int costWealth = 1;
+        if (player.getRessourceAmount(Ressource.ORE) < costOre ||
+            player.getRessourceAmount(Ressource.WOOD) < costWood ||
+            player.getRessourceAmount(Ressource.WEALTH) < costWealth){
+            throw new NoMoreRessourcesException("Not enough ressources to buy a secret weapon");
         }
-        return true;
+        player.removeRessource(Ressource.ORE, costOre);
+        player.removeRessource(Ressource.WOOD, costWood);
+        player.addThiefs(1);
     }
-
-    public void act(PlayerDemeter player) {
-        if (canBuy(player.getResources())){
-            // à voir comment on veut ajouter le voleur, si c'est un boolean ou autre chose... 
-        }
-    }
+    
 }
