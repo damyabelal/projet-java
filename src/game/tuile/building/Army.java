@@ -23,6 +23,7 @@ public class Army extends Building{
     * @throws CantBuildException 
     */
 <<<<<<< HEAD
+<<<<<<< HEAD
         public Army(Earth tuile, int nbWarriors) throws CantBuildException{
         super(tuile); 
 =======
@@ -31,6 +32,12 @@ public class Army extends Building{
 >>>>>>> refs/remotes/origin/main
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
+=======
+    public Army(Earth tuile, int nbWarriors) throws Exception{
+        super(tuile); 
+        if (nbWarriors > nbWarriorsMax) {
+            throw new Exception("Warriors must be equal or under 5.");
+>>>>>>> 65a601baea59a67e94ec2f37ad0bb3a7cbe0c8a3
         }
         else{
             this.nbWarriors = nbWarriors;
