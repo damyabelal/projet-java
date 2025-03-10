@@ -43,6 +43,13 @@ public class Army extends Building{
     public String getName(){
         return "Army";
     }
+    /**
+     * return the number of warriors in the army
+     * @return int
+     */
+    public int getNbWarriors(){
+        return this.nbWarriors;
+    }
    
     /**
      * return true if the army can be a camp

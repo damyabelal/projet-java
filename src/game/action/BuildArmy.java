@@ -44,6 +44,9 @@ public class BuildArmy implements Action<PlayerAres> {
         
 
 
+
+
+
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
@@ -60,6 +63,8 @@ public class BuildArmy implements Action<PlayerAres> {
         player.removeRessource(Ressource.WOOD, 1);
         player.removeRessource(Ressource.SHEEP, 1);
         player.removeRessource(Ressource.WEALTH, 1);
+
+       
 
         player.addArmy(new Army(null, 0));
 
