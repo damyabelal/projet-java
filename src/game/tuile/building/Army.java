@@ -3,6 +3,7 @@ package game.tuile.building;
 import java.util.*;
 import game.Board;
 import game.Player;
+import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 
@@ -20,7 +21,7 @@ public class Army extends Building{
     * @param nbWarriors the number of warriors
     */
     public Army(Earth tuile, int nbWarriors){
-        super(tuile); 
+        super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
         }
@@ -55,7 +56,7 @@ public class Army extends Building{
      * @param player the person who play
      * @return boolean
      */
-    public boolean canBeCamp(Player player){
+    public boolean canBeCamp(PlayerAres player){
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
     
@@ -65,7 +66,7 @@ public class Army extends Building{
      * @param player
      * @return
      */
-    public boolean canBuildArmy(Earth earth, Player player) {
+    public boolean canBuildArmy(Earth earth, PlayerAres player) {
         Set<Earth> visited = new HashSet<>();
         visited.add(earth);
         int cptPort = 0;
@@ -92,7 +93,7 @@ public class Army extends Building{
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
     */
-    public Camp upGradeToCamp(Player player) {
+    public Camp upGradeToCamp(PlayerAres player) {
     if (this.canBeCamp(player)) {
         Camp camp = new Camp(this.getTuile(), this.getNbWarriors());
         System.out.println("Army evolved into a camp");

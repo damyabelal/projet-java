@@ -18,17 +18,18 @@ public abstract class Building{
     protected int resourceMultiplier;
     protected Earth tuile ; 
     protected HashMap<Ressource, Integer> cost;
-   
-   
-   /** create a building on a given tile
+    protected Player player;
+           
+           
+    /** create a building on a given tile
     * @param tuile the tile where we build the building
     */
-    public Building(Earth tuile){
+    public Building(Earth tuile, Player player){
+        this.player = player;
         this.symbol = SYMBOL;
         this.dimension = 1;
         this.resourceMultiplier = 1;
         this.tuile = tuile ;
-
         this.cost = new HashMap<>();
     }
 
@@ -39,6 +40,14 @@ public abstract class Building{
     public Earth getTuile(){
         return this.tuile;
     }
+
+    /** return the player who build this buiding
+     * @return the player
+     */
+    public T getPlayer(){
+        return this.player; 
+    }
+
 
     /** return the dimension of this building
      * @return the dimension
