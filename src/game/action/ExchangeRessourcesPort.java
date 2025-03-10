@@ -21,7 +21,7 @@ public class ExchangeRessourcesPort implements Action<PlayerDemeter>{
     @Override
     public void act(PlayerDemeter player) throws NoMoreRessourcesException {
         if (player.getRessourceAmount(toExchange)<2){
-           throw new NoMoreRessourcesException("Not enough Ressources to be able to exchange.")
+           throw new NoMoreRessourcesException("Not enough Ressources to be able to exchange.");
         }
         player.removeRessource(toExchange, 0);
         player.addRessource(toReceive, 0);
