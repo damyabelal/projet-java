@@ -4,6 +4,7 @@ import java.util.*;
 import game.Board;
 import game.CantBuildException;
 import game.Player;
+import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 
@@ -21,8 +22,13 @@ public class Army extends Building{
     * @param nbWarriors the number of warriors
     * @throws CantBuildException 
     */
+<<<<<<< HEAD
         public Army(Earth tuile, int nbWarriors) throws CantBuildException{
         super(tuile); 
+=======
+    public Army(Earth tuile, int nbWarriors, Player player){
+        super(tuile, player); 
+>>>>>>> refs/remotes/origin/main
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
         }
@@ -57,8 +63,8 @@ public class Army extends Building{
      * @param player the person who play
      * @return boolean
      */
-    public boolean canBeCamp(Player player){
-        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
+    public boolean canBeCamp(PlayerAres player){
+        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
     }
     
     /**
@@ -67,7 +73,7 @@ public class Army extends Building{
      * @param player
      * @return
      */
-    public boolean canBuildArmy(Earth earth, Player player) {
+    public boolean canBuildArmy(Earth earth, PlayerAres player) {
         Set<Earth> visited = new HashSet<>();
         visited.add(earth);
         int cptPort = 0;
@@ -94,9 +100,9 @@ public class Army extends Building{
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
     */
-    public Camp upGradeToCamp(Player player) {
+    public Camp upGradeToCamp(PlayerAres player) {
     if (this.canBeCamp(player)) {
-        Camp camp = new Camp(this.getTuile(), this.getNbWarriors());
+        Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayer());
         System.out.println("Army evolved into a camp");
         return camp;
     } else {

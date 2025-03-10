@@ -14,8 +14,8 @@ public class Farm extends Building{
     /** Build a Farm
      * @param tuile the tile where we build the farm
      */
-    public Farm(Earth tuile) {
-        super(tuile);
+    public Farm(Earth tuile, Player player) {
+        super(tuile, player);
         this.dimension = 1;
         this.cost = new HashMap<>();
         this.cost.put(Ressource.WOOD, 1);
@@ -37,7 +37,7 @@ public class Farm extends Building{
      * @return boolean
      */
     public boolean canBeExploitation(Player player){
-        return player.hasEnoughRessources(new Exploitation(tuile));
+        return player.hasEnoughRessources(new Exploitation(tuile, player));
     }
     
     /** evolve the farm into a exploitation
@@ -46,7 +46,7 @@ public class Farm extends Building{
     */
     public Exploitation upGradeToExploitation(Player player) {
         if (this.canBeExploitation(player)) {
-            Exploitation exploitation = new Exploitation(this.getTuile());
+            Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayer());
             System.out.println("Farm evolve into exploitation");
             return exploitation;
         } else {

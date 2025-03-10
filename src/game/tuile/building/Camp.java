@@ -2,6 +2,7 @@ package game.tuile.building;
 
 import java.util.HashMap;
 
+import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 
@@ -18,9 +19,8 @@ public class Camp extends Army{
      * @param tuile The tile where the Camp is placed
      * @param nbWarriors The number of warriors in the Camp
      */
-    public Camp(Earth tuile, int nbWarriors){
-        
-        super(tuile, nbWarriors);
+    public Camp(Earth tuile, int nbWarriors, Player player){
+        super(tuile, nbWarriors , player);
         this.nbWarriors = nbWarriors;
         this.resourceMultiplier = 2;
         this.symbol = SYMBOL;
