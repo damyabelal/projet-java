@@ -11,6 +11,7 @@ public class Board{
     private int width;
     private int height;
     private Tuile[][] grid;
+    public List<List<Earth>> islands ; 
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
@@ -27,6 +28,7 @@ public Board(int width , int height){
             }
         }
     createBoard();
+    List<List<Earth>> islands = findIslands();
 }
 
 
@@ -63,6 +65,33 @@ public Tuile getTile(Position pos){
     }
     return null ;
 }
+
+
+
+/**
+ * get the list of islands on the board
+ * @return List<List<Earth>> the list of islands
+ */
+public List<List<Earth>> getIslands(){
+    return this.islands;
+}
+
+
+/**
+ * get the island of the given earth
+ * @param earth the earth
+ * @return List<Earth> the island of the given earth
+ */
+public List<Earth> getIsland(Earth earth){
+    for (List<Earth> island : this.islands){
+        if (island.contains(earth)){
+            return island;
+        }
+    }
+    return null;
+}
+
+
 
 
 
@@ -445,7 +474,7 @@ public void displayBuildings() {
      * @param visited
      * @return
      */
-    public  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    private static List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -460,7 +489,7 @@ public void displayBuildings() {
             island.add(current);
 
             //verifier les tuiles voisines
-            for (Tuile neighbour : this.getNeighbours(current.getPosition())){
+            for (Tuile neighbour : getNeighbours(current.getPosition())){
                 if (neighbour instanceof Earth){
                     Earth neighbourEarth = (Earth) neighbour;
 
@@ -474,11 +503,6 @@ public void displayBuildings() {
         }
         return island;
 
-
-        
-        
-
-
     } 
 
     /**
@@ -486,7 +510,7 @@ public void displayBuildings() {
      * @param board
      * @return
      */
-    public List<List<Earth>> findIslands(){
+    private List<List<Earth>> findIslands(){
         List<List<Earth>> islands = new ArrayList<>();
         Set<Earth> visited = new HashSet<>();
 

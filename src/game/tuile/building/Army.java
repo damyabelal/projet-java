@@ -54,12 +54,13 @@ public class Army extends Building{
     }
     
     /**
-     * 
-     * @param earth
-     * @param player
-     * @return
+     * Checks if an army can be built on the given tile by the player  
+     * @param earth the tile where the army is to be built
+     * @param player the player who wants to build the army
+     * @param board the game board
+     * @return true if the army can be built, false otherwise
      */
-    public boolean canBuildArmy(Earth earth, PlayerAres player) {
+    public boolean canBuildArmy(Earth earth, Player player ){ {
         Set<Earth> visited = new HashSet<>();
         visited.add(earth);
         int cptPort = 0;
@@ -69,6 +70,7 @@ public class Army extends Building{
 
         for (Earth tuile : island){
             if(tuile.haveBuild()){
+
                 cptBuild++;
             }
             if(tuile.getBuilding() instanceof Port){
@@ -76,8 +78,8 @@ public class Army extends Building{
             }
 
         }
-        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding());
-  
+        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding()) ;
+  }
         
     }
 
