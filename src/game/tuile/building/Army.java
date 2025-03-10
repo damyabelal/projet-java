@@ -19,10 +19,10 @@ public class Army extends Building{
     * @param tuile the tile where we build the building
     * @param nbWarriors the number of warriors
     */
-    public Army(Earth tuile, int nbWarriors){
+    public Army(Earth tuile, int nbWarriors) throws Exception{
         super(tuile); 
-        if (nbWarriors > nbWarriorsMax){
-            this.nbWarriors = nbWarriorsMax;
+        if (nbWarriors > nbWarriorsMax) {
+            throw new Exception("Warriors must be equal or under 5.");
         }
         else{
             this.nbWarriors = nbWarriors;
