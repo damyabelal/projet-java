@@ -1,11 +1,7 @@
 package game.tuile.building;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
+import java.util.*;
 import game.Board;
-import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -91,20 +87,7 @@ public class Army extends Building{
         
     }
 
-
-    /** adds a given number of warriors, 
-    * @param newWarriors the number of warriors to add
-    * @param player the player who adds the warriors
-    */
-    public void addWarriors(int newWarriors, Player player) throws NoMoreRessourcesException {
-        if (player.getWarriors() < newWarriors) { 
-            throw new NoMoreRessourcesException("Not enough warriors in stock");
-        }
-        this.nbWarriors += newWarriors;
-        player.removeWarriors(newWarriors);
-    }
     
-
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise

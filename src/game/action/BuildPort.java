@@ -3,7 +3,7 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.Player;
 
-public class BuildPort implements Action{
+public class BuildPort implements Action<Player>{
 
     @Override
     public void act(Player player) throws NoMoreRessourcesException {

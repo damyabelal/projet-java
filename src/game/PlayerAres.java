@@ -1,14 +1,14 @@
 package game;
 
-import java.util.*;
-import game.tuile.building.*;
-import game.util.*;
-import game.tuile.*;
+import java.util.ArrayList;
+import java.util.List;
+import game.tuile.building.Army;
 
 public class  PlayerAres extends Player{
 
         private int warriors;
         private int secretWeapon;
+        private List<Army> armies;
         
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
@@ -16,6 +16,7 @@ public class  PlayerAres extends Player{
                 super(name );
                 this.warriors=30;
                 this.secretWeapon=0;
+                this.armies = new ArrayList<>();
                 
 
         
@@ -45,7 +46,7 @@ public class  PlayerAres extends Player{
     /** return the number of warriors for this player 
      *@return number of warriors belonging this this player
      */
-    public int getWarrior(){
+    public int getWarriors(){
         return this.warriors;
 
     }
@@ -58,15 +59,18 @@ public class  PlayerAres extends Player{
 
  
     }
-
-    /** adds the this players inventory a new secret weapon that costs one wood and one ore if the player has enough ressources for that  */
-    public void buySecretWeapon(){
-       if (this.ressources.getOrDefault(Ressource.ORE,0)>= 1 && (this.ressources.getOrDefault(Ressource.WOOD,0))>=1);
-            this.secretWeapon+=1;
+     
+    public void addSecretWeapon(){
+        this.secretWeapon += 1 ;
     }
 
-    
+    public List<Army> getArmies(){
+        return this.armies;
+    }
 
+    public void addArmy(Army army){
+        this.armies.add(army);
+    }
 
 
 }

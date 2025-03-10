@@ -1,17 +1,18 @@
 package game.action;
-
-import game.Player;
+import game.PlayerAres;
 import game.tuile.Ressource;
 import game.NoMoreRessourcesException;
 
-public class AddWarriors implements Action {
+public class AddWarriors implements Action<PlayerAres> {
 
-    @Override
-    public void act(Player player) throws NoMoreRessourcesException {
+    public AddWarriors(){}
+
+    public void act(PlayerAres player) throws NoMoreRessourcesException {
         // the cost of adding 5 warriors :
         int costWealth = 2;
         int costSheep = 2;
         int costOre = 1;
+
         // we check if player has enough ressource to buy 5 warriors
         if (player.getRessourceAmount(Ressource.WEALTH) < costWealth ||
             player.getRessourceAmount(Ressource.SHEEP) < costSheep ||

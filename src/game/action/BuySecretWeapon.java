@@ -1,30 +1,31 @@
 package game.action;
 
-import java.util.HashMap;
-
-import game.NoMoreRessourcesException;
-import game.Player;
+import game.PlayerAres;
 import game.tuile.Ressource;
+import game.NoMoreRessourcesException;
 
-public class BuySecretWeapon implements Action{
+public class BuySecretWeapon implements Action<PlayerAres>{
 
-  public HashMap<Ressource,Integer> cost=new HashMap<>();
-  cost.put(Ressource.ORE);
-  cost.put(Ressource.WODD);
+    @Override
+    public void act(PlayerAres player) throws NoMoreRessourcesException {
 
-  public boolean canBuy(HashMap<Ressource, Integer> inventory) {
-        for (Ressource ressource: cost.key()){
-            if (ressource.getOrDefault(ressource,0)< cost.get(ressource)){
-                return false;
-            }
+        // the cost of buying an secret weapon 
+        int costOre = 1;
+        int costWood = 1;
+
+        // we check if the player hqs enough ressources to buy a secret weapon
+        if (player.getRessourceAmount(Ressource.ORE) < costOre ||
+            player.getRessourceAmount(Ressource.WOOD) < costWood ){
+            throw new NoMoreRessourcesException("Not enough ressources to buy a secret weapon");
         }
-        return true;
-    }
-@Override
-public void act(Player player) throws NoMoreRessourcesException {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'act'");
-}
+        
+        // remove the ressources from the player
+        player.removeRessource(Ressource.ORE, costOre);
+        player.removeRessource(Ressource.WOOD, costWood);
 
-    
+        // add a secret weapon to the player 
+        player.addSecretWeapon();
+    }
+
+
 }

@@ -1,12 +1,12 @@
 package game.action;
 
 import game.NoMoreRessourcesException;
-import game.Player;
+import game.PlayerAres;
 
-public class BuyWarriors implements Action{
+public class BuyWarriors implements Action<PlayerAres>{
 
     @Override
-    public void act(Player player) throws NoMoreRessourcesException {
+    public void act(PlayerAres player) throws NoMoreRessourcesException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'act'");
     }

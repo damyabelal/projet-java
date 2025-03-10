@@ -3,21 +3,12 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 
-public class UpgradeArmy implements Action<PlayerAres>{
+public class AttackNeighboor implements Action<PlayerAres>{
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'act'");
     }
-
-
-
-
-
-    
-
-
-
     
 }

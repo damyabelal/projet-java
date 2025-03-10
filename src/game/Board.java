@@ -86,7 +86,12 @@ public void display(){
     System.out.println(" e : Exploitation");
     System.out.println(" p : Port");
 
+    
     System.out.println("        ");
+
+    for (int i= 0; i< w; i++){
+        System.out.println("   "+i+"   ");
+    }
     for (int x = 0; x < w; x++) {
         if(x==0){
             System.out.print("|-----|");
@@ -97,6 +102,7 @@ public void display(){
        
     } System.out.println();
     for(int  y=0; y < h ; y++){
+        System.out.print(y);
         System.out.print("|");
         for (int x=0 ; x < w; x++){
             String symbole=""; 
@@ -428,6 +434,10 @@ public void displayBuildings() {
         }
         return nbSeaTiles;
     }
+
+
+
+    
     
     /**
      * 
@@ -435,7 +445,7 @@ public void displayBuildings() {
      * @param visited
      * @return
      */
-    public static  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    public  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
