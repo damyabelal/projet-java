@@ -43,6 +43,13 @@ public class Army extends Building{
     public String getName(){
         return "Army";
     }
+    /**
+     * return the number of warriors in the army
+     * @return int
+     */
+    public int getNbWarriors(){
+        return this.nbWarriors;
+    }
    
     /**
      * return true if the army can be a camp
@@ -53,35 +60,7 @@ public class Army extends Building{
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
     }
     
-    /**
-     * Checks if an army can be built on the given tile by the player  
-     * @param earth the tile where the army is to be built
-     * @param player the player who wants to build the army
-     * @param board the game board
-     * @return true if the army can be built, false otherwise
-     */
-    public boolean canBuildArmy(Earth earth, Player player ){ {
-        Set<Earth> visited = new HashSet<>();
-        visited.add(earth);
-        int cptPort = 0;
-        int cptBuild =0;
-
-        List<Earth> island = Board.exploreIsland(earth, visited);
-
-        for (Earth tuile : island){
-            if(tuile.haveBuild()){
-
-                cptBuild++;
-            }
-            if(tuile.getBuilding() instanceof Port){
-                cptPort++;
-            }
-
-        }
-        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding()) ;
-  }
-        
-    }
+    
 
     
     /** evolves the army into a camp
