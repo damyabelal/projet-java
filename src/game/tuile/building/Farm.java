@@ -1,6 +1,6 @@
 package game.tuile.building;
 import java.util.HashMap;
-import game.Player;
+import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 
@@ -14,7 +14,7 @@ public class Farm extends Building{
     /** Build a Farm
      * @param tuile the tile where we build the farm
      */
-    public Farm(Earth tuile, Player player) {
+    public Farm(Earth tuile, PlayerDemeter player) {
         super(tuile, player);
         this.dimension = 1;
         this.cost = new HashMap<>();
@@ -36,7 +36,7 @@ public class Farm extends Building{
      * @param player the person who play
      * @return boolean
      */
-    public boolean canBeExploitation(Player player){
+    public boolean canBeExploitation(PlayerDemeter player){
         return player.hasEnoughRessources(new Exploitation(tuile, player));
     }
     
@@ -44,7 +44,7 @@ public class Farm extends Building{
     * @param player the player who wants to upgrade the farm
     * @return the new exploitation if the farm can be upgraded null otherwise
     */
-    public Exploitation upGradeToExploitation(Player player) {
+    public Exploitation upGradeToExploitation(PlayerDemeter player) {
         if (this.canBeExploitation(player)) {
             Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayer());
             System.out.println("Farm evolve into exploitation");

@@ -1,9 +1,10 @@
 package game.tuile.building;
 
 import java.util.*;
-import game.Board;
+
+
 import game.CantBuildException;
-import game.Player;
+
 import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -23,7 +24,7 @@ public class Army extends Building{
     * @throws CantBuildException 
     */
 
-    public Army(Earth tuile, int nbWarriors, Player player) throws CantBuildException{
+    public Army(Earth tuile, int nbWarriors, PlayerAres player) throws CantBuildException{
         super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
@@ -57,7 +58,12 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
-        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
+        try {
+            return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
+        } catch (CantBuildException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     
@@ -68,10 +74,15 @@ public class Army extends Building{
     * @return the new camp if the army can be upgraded null otherwise
     */
     public Camp upGradeToCamp(PlayerAres player) {
-    if (this.canBeCamp(player)) {
-        Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayer());
-        System.out.println("Army evolved into a camp");
-        return camp;
+    if (this.canBeCamp(player)){
+        try{
+            Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayer());
+            System.out.println("Army evolved into a camp");
+            return camp;
+        }catch(CantBuildException e){
+            System.out.println("Failed ");
+
+        }
     } else {
         System.out.println("Not enough warriors or not enough resources");
     }
