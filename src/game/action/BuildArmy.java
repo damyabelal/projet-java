@@ -19,6 +19,9 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WEALTH, 1);
+<<<<<<< HEAD
+    }
+=======
         this.board = board;
     }
 
@@ -52,9 +55,10 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
 
 
 
+>>>>>>> 7a52d84b6c7aaefdfa34235867e38ab8b13d9e14
 
     @Override
-    public void act(PlayerAres player) throws NoMoreRessourcesException {
+    public void act(PlayerAres player) throws Exception {
 
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");

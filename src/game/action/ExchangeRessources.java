@@ -16,7 +16,7 @@ public class ExchangeRessources implements Action<Player> {
      */
     public ExchangeRessources(Ressource toExchange , Ressource toReceive) {
         if ( toExchange == toReceive) {
-            throw new IllegalArgumentException("You cannot exchange a resource for itself");
+            throw new IllegalArgumentException("You cannot exchange a ressource for itself");
         }
         this.toExchange = toExchange;
         this.toReceive = toReceive;
