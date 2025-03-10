@@ -22,22 +22,11 @@ public class Army extends Building{
     * @param nbWarriors the number of warriors
     * @throws CantBuildException 
     */
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public Army(Earth tuile, int nbWarriors) throws CantBuildException{
-        super(tuile); 
-=======
-    public Army(Earth tuile, int nbWarriors, Player player){
+
+    public Army(Earth tuile, int nbWarriors, Player player) throws CantBuildException{
         super(tuile, player); 
->>>>>>> refs/remotes/origin/main
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
-=======
-    public Army(Earth tuile, int nbWarriors) throws Exception{
-        super(tuile); 
-        if (nbWarriors > nbWarriorsMax) {
-            throw new Exception("Warriors must be equal or under 5.");
->>>>>>> 65a601baea59a67e94ec2f37ad0bb3a7cbe0c8a3
         }
         else{
             this.nbWarriors = nbWarriors;
@@ -50,15 +39,7 @@ public class Army extends Building{
         this.cost.put(Ressource.WEALTH, 1);
 
     }
-
-    /** return the number of warriors
-     * @return the number of warriors
-     */
-    public int getNbWarriors(){
-        return this.nbWarriors;
-    }
-    
-     /** 
+    CantBuildException
      * returns the name of the building
      */
     public String getName(){
