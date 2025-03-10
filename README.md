@@ -479,10 +479,16 @@ liste des réflexions et choses à modifier du livrable 2:
 ## Semaine 8
 
 ### Ce qui a été réalisé
+- écriture de différentes actions
+- on essaye de faire les modifications demandé suite à l'entretien de la semaine dernière
+- disccussion autour de explore island et de comment sont gérés les îles en général
 
 ### Difficultés rencontrées
+- séparation de la modification et vérification de l'inventaire du joueur (ressourcesManager), on as eu du mal à séparer l'interface et la classe
 
 ### Objectifs pour la semaine
+- Finir d'écrire les actions (même si ce n'est pas la forme final), pour se concentreer sur les $iles et les tests qui ne sont pas vraiment entamés pour le moment...
+
 
 ## Semaine 9
 
