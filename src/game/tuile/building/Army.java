@@ -2,6 +2,7 @@ package game.tuile.building;
 
 import java.util.*;
 import game.Board;
+import game.CantBuildException;
 import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -18,11 +19,12 @@ public class Army extends Building{
     /** create an army on a given tile
     * @param tuile the tile where we build the building
     * @param nbWarriors the number of warriors
+    * @throws CantBuildException 
     */
-    public Army(Earth tuile, int nbWarriors){
+        public Army(Earth tuile, int nbWarriors) throws CantBuildException{
         super(tuile); 
         if (nbWarriors > nbWarriorsMax){
-            this.nbWarriors = nbWarriorsMax;
+            throw new CantBuildException("You cant build Army with nbWarriors  > 5");
         }
         else{
             this.nbWarriors = nbWarriors;
