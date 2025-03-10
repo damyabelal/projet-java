@@ -39,9 +39,7 @@ public class Army extends Building{
         this.cost.put(Ressource.WEALTH, 1);
 
     }
-    CantBuildException
-     * returns the name of the building
-     */
+    
     public String getName(){
         return "Army";
     }
