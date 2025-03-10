@@ -1,7 +1,6 @@
 package game.action;
 
 import game.NoMoreRessourcesException;
-import game.PlayerAres;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
 
@@ -21,12 +20,12 @@ public class PlayThief implements Action<PlayerDemeter>{
     }
   
   
-    /** steals the Ressource ressource from every player and adds them to the given  player's inventory 
+    /** steals the Ressource ressource from every player and adds them to the given  player's  PlayerOfThief inventory 
    * @param ressource the type of ressource that the thief will steal and give to the given player
   */
   @Override
   public void act(PlayerDemeter playerOfThief) throws NoMoreRessourcesException {
-    // TODO Auto-generated method stub
+  
     
     int amountToAdd=0;
     for (int i=0 ; i<this.players.length ;i++){
