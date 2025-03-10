@@ -44,7 +44,7 @@ public abstract class Building{
     /** return the player who build this buiding
      * @return the player
      */
-    public T getPlayer(){
+    public Player getPlayer(){
         return this.player; 
     }
 

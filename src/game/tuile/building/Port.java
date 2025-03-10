@@ -1,5 +1,6 @@
 package game.tuile.building;
 import game.Board;
+import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
@@ -15,8 +16,8 @@ public class Port extends Building{
      * Build a Port on the given tile
      * @param tile the tile we want to build the port on
      */
-    public Port(Earth tuile){
-        super(tuile);
+    public Port(Earth tuile, Player player){
+        super(tuile, player );
         this.symbol = SYMBOL;
         this.cost= new HashMap<>(); 
         this.cost.put(Ressource.WOOD,1);

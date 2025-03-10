@@ -20,7 +20,7 @@ public class Army extends Building{
     * @param tuile the tile where we build the building
     * @param nbWarriors the number of warriors
     */
-    public Army(Earth tuile, int nbWarriors){
+    public Army(Earth tuile, int nbWarriors, Player player){
         super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
@@ -57,7 +57,7 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
-        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
+        return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
     }
     
     /**
@@ -95,7 +95,7 @@ public class Army extends Building{
     */
     public Camp upGradeToCamp(PlayerAres player) {
     if (this.canBeCamp(player)) {
-        Camp camp = new Camp(this.getTuile(), this.getNbWarriors());
+        Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayer());
         System.out.println("Army evolved into a camp");
         return camp;
     } else {
