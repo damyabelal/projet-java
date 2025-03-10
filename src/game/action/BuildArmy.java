@@ -9,6 +9,7 @@ import game.tuile.building.Port;
 import java.util.List;
 
 import game.Board;
+import game.CantBuildException;
 import game.tuile.Earth;
 
 public class BuildArmy implements Action<PlayerAres> {
