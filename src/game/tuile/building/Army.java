@@ -3,6 +3,7 @@ package game.tuile.building;
 import java.util.*;
 import game.Board;
 import game.Player;
+import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 
@@ -20,7 +21,7 @@ public class Army extends Building{
     * @param nbWarriors the number of warriors
     */
     public Army(Earth tuile, int nbWarriors){
-        super(tuile); 
+        super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
             this.nbWarriors = nbWarriorsMax;
         }
@@ -55,28 +56,28 @@ public class Army extends Building{
      * @param player the person who play
      * @return boolean
      */
-    public boolean canBeCamp(Player player){
+    public boolean canBeCamp(PlayerAres player){
         return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors));
     }
     
     /**
-     * Checks if an army can be built on the given tile by the player.
-     * 
+     * Checks if an army can be built on the given tile by the player  
      * @param earth the tile where the army is to be built
      * @param player the player who wants to build the army
      * @param board the game board
      * @return true if the army can be built, false otherwise
      */
-    public boolean canBuildArmy(Earth earth, Player player,Board board ){ {
+    public boolean canBuildArmy(Earth earth, Player player ){ {
         Set<Earth> visited = new HashSet<>();
         visited.add(earth);
         int cptPort = 0;
         int cptBuild =0;
 
-        List<Earth> island = board.exploreIsland(earth, visited);
+        List<Earth> island = Board.exploreIsland(earth, visited);
 
         for (Earth tuile : island){
             if(tuile.haveBuild()){
+
                 cptBuild++;
             }
             if(tuile.getBuilding() instanceof Port){
@@ -94,7 +95,7 @@ public class Army extends Building{
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
     */
-    public Camp upGradeToCamp(Player player) {
+    public Camp upGradeToCamp(PlayerAres player) {
     if (this.canBeCamp(player)) {
         Camp camp = new Camp(this.getTuile(), this.getNbWarriors());
         System.out.println("Army evolved into a camp");
