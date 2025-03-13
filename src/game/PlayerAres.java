@@ -17,10 +17,10 @@ public class  PlayerAres extends Player{
                 this.warriors=30;
                 this.secretWeapon=0;
                 this.armies = new ArrayList<>();
-                
 
-        
-        }
+
+
+    }
 /** 
      * adds warriors to the army
      * @param nb number of warriors to add
@@ -54,6 +54,8 @@ public class  PlayerAres extends Player{
      * @return the number of secret weapons of this player
      * 
      */
+    
+    
     public  int getNbSecretWeapon(){
         return this.secretWeapon;
 

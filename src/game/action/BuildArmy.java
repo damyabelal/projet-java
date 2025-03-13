@@ -49,14 +49,8 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
    
         
 
-
-
-
-
-
-
     @Override
-    public void act(PlayerAres player) throws Exception {
+    public void act(PlayerAres player) {
 
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
