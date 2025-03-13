@@ -35,11 +35,13 @@ public class Army extends Building{
         }
         this.dimension = this.nbWarriors;
         this.symbol = SYMBOL;
-        this.cost = new HashMap<>();
-        this.cost.put(Ressource.WOOD,1);
-        this.cost.put(Ressource.SHEEP, 1);
-        this.cost.put(Ressource.WEALTH, 1);
+        //this.cost = new HashMap<>();  //comme on a mis le cost dans les constructeur de tout les classes qui héritent de building on doit egalement modifier ca
+        //this.cost.put(Ressource.WOOD,1);
+        //this.cost.put(Ressource.SHEEP, 1);
+        //this.cost.put(Ressource.WEALTH, 1);
         this.player = player;
+
+        this.cost=cost;
 
     }
     
