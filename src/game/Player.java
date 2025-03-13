@@ -38,7 +38,7 @@ public class Player {
      * getter for playerTiles
      * @return playerTiles
      */
-    public ArrayList<Earth> getPlayerTiles() {
+    public ArrayList<Earth> getTiles() {
         return this.playerTiles;
     }
 
@@ -46,7 +46,7 @@ public class Player {
      * adds a tile to the player's list of tiles
      * @param tile
      */
-    public void addPlayerTile(Earth tile) {
+    public void addTile(Earth tile) {
         if(!this.playerTiles.contains(tile)){
             this.playerTiles.add(tile);
         }
