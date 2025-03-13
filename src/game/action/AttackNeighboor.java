@@ -9,6 +9,9 @@ public class AttackNeighboor implements Action<PlayerAres>{
     public void act(PlayerAres player) throws NoMoreRessourcesException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'act'");
+
+
+        
     }
     
 }
