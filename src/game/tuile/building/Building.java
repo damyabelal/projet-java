@@ -75,7 +75,7 @@ public abstract class Building{
      */
     public int getResourceMultiplier() {
         return this.resourceMultiplier;
-    }  protected HashMap<Ressource,integer> cost;
+    }  
     
 
     /** return the ressources
