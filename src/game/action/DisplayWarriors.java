@@ -12,14 +12,24 @@ public class DisplayWarriors implements Action<PlayerAres>{
     DisplayWarriors(PlayerAres[] lesjoueurs){
             this.lesjoueurs=lesjoueurs;
 }
+
+
+
+
+   
     /** displays the warriors of every player
      */
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
-    
-    
+        for(int i=0; i<(this.lesjoueurs).length; i++){
+
+            System.out.println("Number Warriors joueur"+this.lesjoueurs[i]+ "est"+ this.lesjoueurs[i].getWarriors());
+
+        }
+
         
-    }
+
+}
 
   
     
