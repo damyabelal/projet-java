@@ -25,8 +25,8 @@ public class Army extends Building{
     * @throws CantBuildException 
     */
 
-    public Army(Earth tuile, int nbWarriors, PlayerAres player) throws CantBuildException{
-        super(tuile, player); 
+    public Army(Earth tuile, int nbWarriors, PlayerAres player,HashMap<Ressource,Integer> cost) throws CantBuildException{
+        super(tuile, player, cost); 
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
         }
