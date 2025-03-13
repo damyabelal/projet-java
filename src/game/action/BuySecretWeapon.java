@@ -4,26 +4,24 @@ import game.PlayerAres;
 import game.tuile.Ressource;
 import game.NoMoreRessourcesException;
 
-public class BuySecretWeapon implements Action<PlayerAres>{
+public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>{
+
+
+    public BuySecretWeapon(){
+        super(player);
+        this.cost.put(Ressource.ORE, 1);
+        this.cost.put(Ressource.WOOD, 1);
+    }
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
-        // the cost of buying an secret weapon 
-        int costOre = 1;
-        int costWood = 1;
-
-        // we check if the player hqs enough ressources to buy a secret weapon
-        if (player.getRessourceAmount(Ressource.ORE) < costOre ||
-            player.getRessourceAmount(Ressource.WOOD) < costWood ){
+        // we check if the player has enough ressources to buy a secret weapon
+        if (! this.hasEnoughRessources() ){
             throw new NoMoreRessourcesException("Not enough ressources to buy a secret weapon");
         }
-        
-        // remove the ressources from the player
-        player.removeRessource(Ressource.ORE, costOre);
-        player.removeRessource(Ressource.WOOD, costWood);
-
-        // add a secret weapon to the player 
+        this.removeRessources();
+        // we add a secret weapon to the player's weapons stock
         player.addSecretWeapon();
     }
 

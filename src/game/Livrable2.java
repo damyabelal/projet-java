@@ -5,7 +5,7 @@ import game.tuile.*;
 import game.util.Position;
 
 public class Livrable2 {
-    public static void main (String[] args){
+    public static void main (String[] args) throws CantBuildException{
         if (args.length < 2) {
             System.out.println("you have to give two positive setting");
             return;
@@ -22,8 +22,9 @@ public class Livrable2 {
         placeBuildings(board);
 
     }
-   private static void placeBuildings(Board board) {
-    Player player = new Player("player1");
+   private static void placeBuildings(Board board) throws CantBuildException {
+    PlayerAres ares = new PlayerAres("ares");
+    PlayerDemeter demeter = new PlayerDemeter("demeter");
 
     List<Position> buildableTiles = board.getBuildablePositions();
 
@@ -33,11 +34,11 @@ public class Livrable2 {
     Earth armyTile = (Earth) board.getTile(buildableTiles.get(3));
     Earth campTile = (Earth) board.getTile(buildableTiles.get(4));
 
-    Port port = new Port(portTile);
-    Farm farm = new Farm(farmTile);
-    Exploitation exploitation = new Exploitation(exploitationTile);
-    Army army = new Army(armyTile, 5);
-    Camp camp = new Camp(campTile, 20);
+    Port port = new Port(portTile, ares);
+    Farm farm = new Farm(farmTile, demeter);
+    Exploitation exploitation = new Exploitation(exploitationTile, demeter);
+    Army army = new Army(armyTile, 5, ares);
+    Camp camp = new Camp(campTile, 20, ares);
 
     portTile.setBuilding(port);
     farmTile.setBuilding(farm);
@@ -57,11 +58,11 @@ public class Livrable2 {
 
     System.out.println("--------------------------------------");
 
-    port.collectRessource(player);
-    farm.collectRessource(player);
-    exploitation.collectRessource(player);
-    army.collectRessource(player);
-    camp.collectRessource(player);
+    port.collectRessource(ares);
+    farm.collectRessource(demeter);
+    exploitation.collectRessource(demeter);
+    army.collectRessource(ares);
+    camp.collectRessource(ares);
 
     board.display(); 
 }
