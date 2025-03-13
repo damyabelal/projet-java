@@ -14,7 +14,7 @@ import game.tuile.Earth;
 
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    public BuildArmy(){
+    public BuildArmy(){ 
         super(player);
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.SHEEP, 1);

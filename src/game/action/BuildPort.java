@@ -11,7 +11,7 @@ public class BuildPort implements Action<Player>{
 
 
     public BuildPort(Earth tile){
-        this.tuile=tile ;
+        this.tuile=tile;
 
     }
     @Override
