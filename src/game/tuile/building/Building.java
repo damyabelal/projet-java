@@ -33,6 +33,11 @@ public abstract class Building{
         this.cost = new HashMap<>();
     }
 
+     
+    /** abstract method because the name of the building will be different for each subclass 
+     * @return the name of the building
+    */
+    public abstract String getName();
 
     /** return the tile where the build is
      * @return the tile
@@ -48,6 +53,12 @@ public abstract class Building{
         return this.player; 
     }
 
+    /** return the symbol of this building
+     * @return the symbol
+     */
+    public String getSymbol(){
+        return this.symbol;
+    }
 
     /** return the dimension of this building
      * @return the dimension
@@ -56,20 +67,13 @@ public abstract class Building{
      return this.dimension;
     }
 
+
     /**
      * return the resource multiplier for this building
      * @return the resource multiplier
      */
     public int getResourceMultiplier() {
         return this.resourceMultiplier;
-    }
-
-
-    /** return the symbol of this building
-     * @return the symbol
-     */
-    public String getSymbol(){
-        return this.symbol;
     }
 
     /** return the cost of the building
@@ -84,6 +88,13 @@ public abstract class Building{
      */
     public Ressource getTuileRessource(){
         return this.tuile.getRessource();
+    }
+
+     /** returns the position of this building which is also the position of the tile the building is placed on
+    * @return the position on which the building was placed on */
+    public Position getPosition(){
+        return this.tuile.getPosition();
+
     }
     
     /**
@@ -102,19 +113,7 @@ public abstract class Building{
             System.out.println("Tile (" + x + "," + y + ") produces " + multiplier + " " + ressource);
         }
     }
-    
-    /** returns the position of this building which is also the position of the tile the building is placed on
-    * @return the position on which the building was placed on */
-    public Position getPosition(){
-        return this.tuile.getPosition();
-
-    }
-    
-    /** abstract method because the name of the building will be different for each subclass 
-     * @return the name of the building
-    */
-    public abstract String getName();
-
+   
     /** 
     * displays the building's cost 
     * exemple: "Harbor, cost -> Sheep: 2, Wood: 1"
@@ -129,8 +128,6 @@ public abstract class Building{
         }
         System.out.println();
     }
-
-
 
 }
 
