@@ -3,12 +3,14 @@ package game;
 import java.util.ArrayList;
 import java.util.List;
 import game.tuile.building.Army;
+import game.tuile.building.Camp;
 
 public class  PlayerAres extends Player{
 
         private int warriors;
         private int secretWeapon;
         private List<Army> armies;
+        private List<Camp> camps;
         
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
@@ -17,6 +19,7 @@ public class  PlayerAres extends Player{
                 this.warriors=30;
                 this.secretWeapon=0;
                 this.armies = new ArrayList<>();
+                this.camps = new ArrayList<>();
 
 
 
@@ -72,6 +75,14 @@ public class  PlayerAres extends Player{
 
     public void addArmy(Army army){
         this.armies.add(army);
+    }
+
+    public List<Camp> getCamps(){
+        return this.camps;
+    }
+
+    public void addCamp(Camp camp){
+        this.armies.add(camp);
     }
 
 

@@ -31,7 +31,7 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
         // we set the farm on the tile
         tuile.setBuilding(farm);
         // we add the tile to the player's tile list
-        player.addTile(tuile);
+        player.addFarm(farm);
     }
 
 }

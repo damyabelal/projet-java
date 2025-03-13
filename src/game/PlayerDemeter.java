@@ -1,9 +1,17 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import game.tuile.building.Farm;
+import game.tuile.building.Exploitation;
+
 public class PlayerDemeter extends Player{
 
     private int points;
     private int nbThief;
+    private List<Farm> farms;
+    private List<Exploitation> exploitations;
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -14,6 +22,9 @@ public class PlayerDemeter extends Player{
             super(name);
             this.points = 0;
             this.nbThief = 0; 
+            this.farms = new ArrayList<>();
+            this.exploitations = new ArrayList<>();
+           
 
     }
     /**
@@ -39,6 +50,24 @@ public class PlayerDemeter extends Player{
     public void addThiefs(int nb){
         this.nbThief += 1;
     }
+
+    public List<Farm> getFarms(){
+        return this.farms;
+    }
+
+    public void addFarm(Farm farm){
+        this.farms.add(farm);
+    }
+
+    public List<Exploitation> getExploitations(){
+        return this.exploitations;
+    }
+
+    public void addExploitation(Exploitation exploitation){
+        this.exploitations.add(exploitation);
+
+    }
+        
 
     
 }
