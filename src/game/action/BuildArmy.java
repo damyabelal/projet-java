@@ -6,6 +6,7 @@ import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Port;
 
+import java.util.HashMap;
 import java.util.List;
 
 import game.Board;
@@ -14,12 +15,14 @@ import game.tuile.Earth;
 
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
+    protected HashMap<Ressource,Integer> cost;
     public BuildArmy(){ 
         super(player);
-        this.cost.put(Ressource.WOOD, 1);
-        this.cost.put(Ressource.SHEEP, 1);
-        this.cost.put(Ressource.WEALTH, 1);
+       
         this.board = board;
+        this.cost= new HashMap<>(){{put(Ressource.WOOD,1);
+            put(Ressource.SHEEP,1); put(Ressource.ORE,1);
+        }};
     }
 
 
