@@ -10,6 +10,7 @@ import game.tuile.Ressource;
 public class Farm extends Building{
 
     private static final String SYMBOL= "f";
+    protected PlayerDemeter player;
 
     /** Build a Farm
      * @param tuile the tile where we build the farm
@@ -21,6 +22,7 @@ public class Farm extends Building{
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
         this.symbol= SYMBOL; 
+        this.player = player;
     }
 
     /** 
@@ -28,6 +30,10 @@ public class Farm extends Building{
      */
     public String getName(){
         return "Farm";
+    }
+
+    public PlayerDemeter getPlayerDemeter(){
+        return this.player;
     }
     
 
@@ -44,9 +50,9 @@ public class Farm extends Building{
     * @param player the player who wants to upgrade the farm
     * @return the new exploitation if the farm can be upgraded null otherwise
     */
-    public Exploitation upGradeToExploitation(PlayerDemeter player) {
+    public Exploitation upGradeToExploitation() {
         if (this.canBeExploitation(player)) {
-            Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayer());
+            Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayerDemeter());
             System.out.println("Farm evolve into exploitation");
             return exploitation;
         } else {

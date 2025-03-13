@@ -4,7 +4,6 @@ import java.util.*;
 import game.Player;
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.Tuile;
 import game.util.*;
 
 

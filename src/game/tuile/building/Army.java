@@ -17,6 +17,7 @@ public class Army extends Building{
     protected int nbWarriors  ; //the number of warriors in the army
     private static final String SYMBOL = "a";
     private static int nbWarriorsMax = 5; //the max number of warriors in a army 
+    protected PlayerAres player;
 
     /** create an army on a given tile
     * @param tuile the tile where we build the building
@@ -38,6 +39,7 @@ public class Army extends Building{
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WEALTH, 1);
+        this.player = player;
 
     }
     
@@ -65,9 +67,11 @@ public class Army extends Building{
             return false;
         }
     }
-    
-    
 
+    
+    public PlayerAres getPlayerAres(){
+        return this.player;
+    }
     
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
@@ -76,7 +80,7 @@ public class Army extends Building{
     public Camp upGradeToCamp(PlayerAres player) {
     if (this.canBeCamp(player)){
         try{
-            Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayer());
+            Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayerAres());
             System.out.println("Army evolved into a camp");
             return camp;
         }catch(CantBuildException e){
