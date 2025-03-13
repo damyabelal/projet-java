@@ -3,6 +3,7 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.Player;
 
+
 public class AttachNeighboor implements Action{
 
     @Override

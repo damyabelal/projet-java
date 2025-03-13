@@ -1,5 +1,4 @@
 package game.tuile.building;
-import java.util.HashMap;
 import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -18,7 +17,6 @@ public class Farm extends Building{
     public Farm(Earth tuile, PlayerDemeter player) {
         super(tuile, player);
         this.dimension = 1;
-        this.cost = new HashMap<>();
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.ORE, 1);
         this.symbol= SYMBOL; 
