@@ -5,6 +5,7 @@ import game.NoMoreRessourcesException;
 
 public class BuyWarriors extends ActionManager implements Action<PlayerAres> {
 
+
     public BuyWarriors(){
         super(player);
         this.cost.put(Ressource.WEALTH, 2);
