@@ -19,8 +19,6 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.WOOD, 1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WEALTH, 1);
-
-
         this.board = board;
     }
 
