@@ -4,7 +4,9 @@ import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.tuile.building.Army;
 import game.tuile.building.Camp;
+import game.tuile.building.Farm;
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres>{
 
@@ -12,9 +14,13 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres>{
 
     public UpgradeArmy(PlayerAres player, Earth tuile){
         super(player);
-        this.tuile= tuile;
+        this.tuile= ask().getTuile();
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
+    }
+
+    public Army ask(){
+        return lc.choose("Which army do you want to upgrade?", this.player.getArmies());
     }
 
     public void act(PlayerAres player) throws NoMoreRessourcesException {

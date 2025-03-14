@@ -9,10 +9,10 @@ public abstract class ActionManager {
 
     protected HashMap<Ressource, Integer> cost;
     protected static Player player;
-
-    public ActionManager(Player player){
-        this.cost = new HashMap<>();
-        ActionManager.player = player;
+    
+        public ActionManager(Player player){
+            this.cost = new HashMap<>();
+            ActionManager.player = player;
     }
 
     protected boolean hasEnoughRessources(){
