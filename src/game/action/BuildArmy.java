@@ -16,9 +16,12 @@ import game.tuile.Earth;
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
+
+    /**
+     * build an army
+     */
     public BuildArmy(){ 
         super(player);
-       
         this.board = board;
         this.cost= new HashMap<>(){{put(Ressource.WOOD,1);
             put(Ressource.SHEEP,1); put(Ressource.ORE,1);
