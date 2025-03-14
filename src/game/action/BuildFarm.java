@@ -6,6 +6,10 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Farm;
 
+/*
+ * This class is used to build a farm on a tile
+ * It extends ActionManager and implements Action<PlayerDemeter>
+ */
 public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
 
     private Earth tuile;
@@ -16,7 +20,11 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
         this.cost.put(Ressource.WOOD, 1);  
         this.cost.put(Ressource.ORE, 1);   
     }
-
+    /**
+     * This method is used to build a farm on a tile
+     * @param player the player who wants to build the farm
+     * @throws NoMoreRessourcesException if the player doesn't have enough ressources to build the farm
+     */
     @Override
     public void act(PlayerDemeter player) throws NoMoreRessourcesException {
         //check if player has enough ressources to buy a farm

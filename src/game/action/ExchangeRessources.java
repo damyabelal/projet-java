@@ -22,6 +22,10 @@ public class ExchangeRessources implements Action<Player> {
         this.toReceive = toReceive;
     }
 
+
+    /**
+     * 
+     */
     @Override
     public void act(Player player) throws NoMoreRessourcesException {
         if (player.getRessourceAmount(toExchange) < 3) {

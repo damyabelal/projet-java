@@ -31,6 +31,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres>{
      * @return the army the player wants to upgrade
      */
     public Army ask(){
+        /// je ne suis pas sur si ce cast est la meilleure solution
         return lc.choose("Which army do you want to upgrade?", ((PlayerAres) this.player).getArmies());
     }
 

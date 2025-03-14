@@ -3,7 +3,10 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
-
+/**
+ * This class is used to play a thief
+ * its implements Action<PlayerDemeter>
+ */
 public class PlayThief implements Action<PlayerDemeter> {
 
     private Ressource ressource;
@@ -14,6 +17,12 @@ public class PlayThief implements Action<PlayerDemeter> {
         this.players = players;
     }
 
+
+    /**
+     * 
+     * @param playerOfThief 
+     * @throws NoMoreRessourcesException if the player doesn't have enough ressources to play the thief
+     */
     @Override
     public void act(PlayerDemeter playerOfThief) throws NoMoreRessourcesException {
         int totalStolen = 0;

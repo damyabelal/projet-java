@@ -3,6 +3,10 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 
+/**
+ * This class is used to display the warriors of every player
+ * it implements Action<PlayerAres>
+ */
 public class DisplayWarriors implements Action<PlayerAres>{
 
     private PlayerAres[]  lesjoueurs;
@@ -17,7 +21,9 @@ public class DisplayWarriors implements Action<PlayerAres>{
 
 
    
-    /** displays the warriors of every player
+    /**
+     *  displays the warriors of every player
+     * @param the player who make the action
      */
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {

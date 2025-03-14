@@ -4,6 +4,10 @@ import game.PlayerAres;
 import game.tuile.Ressource;
 import game.NoMoreRessourcesException;
 
+/*
+ * This class is used to buy a secret weapon
+ * it extends ActionManager and implements Action<PlayerAres>
+ */
 public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>{
 
 
@@ -12,7 +16,12 @@ public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>
         this.cost.put(Ressource.ORE, 1);
         this.cost.put(Ressource.WOOD, 1);
     }
-
+    /**
+     * buy a secret weapon if the player have enough ressources
+     * @param the player who make the action
+     * @throws NoMoreRessourcesException if the player doesn't have enough ressources to
+     * buy
+     */
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 

@@ -6,6 +6,11 @@ import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.tuile.Ressource;
 
+/*
+ * 
+ * This class is used to build a port on a tile
+ * It extends ActionManager and implements Action<Player>
+ */
 public class BuildPort implements Action<Player>{
 
     private Earth tuile;// the tile that we will place the port on
