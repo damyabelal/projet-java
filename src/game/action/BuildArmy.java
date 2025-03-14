@@ -20,8 +20,11 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         super(player);
        
         this.board = board;
-        this.cost= new HashMap<>(){{put(Ressource.WOOD,1);
-            put(Ressource.SHEEP,1); put(Ressource.ORE,1);
+
+        this.cost= new HashMap<>(){
+            {put(Ressource.WOOD,1);
+            put(Ressource.SHEEP,1); 
+            put(Ressource.ORE,1);
         }};
     }
 
@@ -62,10 +65,13 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         if (! this.hasEnoughRessources()){
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
+        if (!canBuildArmy(earth, player)){
+            throw new CantBuildException("conditions not met to build ana army here")
+        }
 
         this.removeRessources();
 
-       
+        Army army = new Army(earth,0 , 10);
 
         player.addArmy(new Army(null, 0));
 

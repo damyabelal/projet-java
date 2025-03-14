@@ -51,6 +51,20 @@ public class Player {
             this.playerTiles.add(tile);
         }
     }
+    /**
+     * returns the earth at the given position
+     * @param x 
+     * @param y
+     * @return the earth at (x,y) or null if not found
+     */
+    public Earth getEarth(int x,int y){
+        for(Earth tuile : this.playerTiles){
+            if(tuile.getPosition().getX() == x && tuile.getPosition().getY() == y){
+                return tuile;
+            }   
+        }
+        return null;
+    }
 
     /** 
      * returns the resources of player
