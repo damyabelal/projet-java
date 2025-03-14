@@ -16,17 +16,23 @@ import game.tuile.Earth;
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
-    public BuildArmy(){ 
+    private Earth earth;
+    public BuildArmy(Board board , PlayerAres player, Earth earth ){ 
         super(player);
-       
         this.board = board;
+        this.earth = earth ;
+
 
         this.cost= new HashMap<>(){
             {put(Ressource.WOOD,1);
             put(Ressource.SHEEP,1); 
             put(Ressource.ORE,1);
-        }};
-    }
+            
+            }
+        };
+    };
+    
+    
 
 
     /**
@@ -49,32 +55,34 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             }
 
         }
-        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding()) ;
+        return cptBuild >=2 && cptPort >= 1 ;
     }
         
    
         
 
     @Override
-    public void act(PlayerAres player) {
-
+    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
         }
-
-        if (! this.hasEnoughRessources()){
+    
+        if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
-        if (!canBuildArmy(earth, player)){
-            throw new CantBuildException("conditions not met to build ana army here")
+    
+        if (!canBuildArmy(this.earth, player)) {
+            throw new CantBuildException("conditions not met to build an army here");
         }
-
+    
         this.removeRessources();
+    
+        try {
+            Army army = new Army(null, 0, player);
+            player.addArmy(army);
+        
+        }catch(CantBuildException e){
+            throw new CantBuildException("Can't build an army here");
 
-        Army army = new Army(earth,0 , 10);
-
-        player.addArmy(new Army(null, 0));
-
-    }
-
-}
+        }
+    }}

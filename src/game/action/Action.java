@@ -1,5 +1,6 @@
 package game.action;
 import game.NoMoreRessourcesException;
+import game.CantBuildException;
 import game.Player;
 
 /**
@@ -13,5 +14,5 @@ public interface Action<T extends Player> {
      * @param player the player performing the action
      * @throws NoMoreRessourcesException 
      */
-    void act(T player) throws NoMoreRessourcesException;
+    void act(T player) throws NoMoreRessourcesException , CantBuildException;
 }
