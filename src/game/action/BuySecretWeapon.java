@@ -11,7 +11,7 @@ import game.NoMoreRessourcesException;
 public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>{
 
 
-    public BuySecretWeapon(){
+    public BuySecretWeapon(PlayerAres player){
         super(player);
         this.cost.put(Ressource.ORE, 1);
         this.cost.put(Ressource.WOOD, 1);

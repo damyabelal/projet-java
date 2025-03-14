@@ -10,7 +10,7 @@ import game.NoMoreRessourcesException;
 public class BuyWarriors extends ActionManager implements Action<PlayerAres> {
 
 
-    public BuyWarriors(){
+    public BuyWarriors(PlayerAres player){
         super(player);
         this.cost.put(Ressource.WEALTH, 2);
         this.cost.put(Ressource.SHEEP, 2);
