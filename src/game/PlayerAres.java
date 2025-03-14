@@ -24,7 +24,7 @@ public class  PlayerAres extends Player{
 
 
     }
-/** 
+    /** 
      * adds warriors to the army
      * @param nb number of warriors to add
      */
@@ -59,28 +59,59 @@ public class  PlayerAres extends Player{
      */
     
     
+     /**
+      * returns the number of secret weapons owned by this player
+      * @return int
+      */
     public  int getNbSecretWeapon(){
         return this.secretWeapon;
 
  
     }
+    /**
+     * removes an army from the list of armies
+     * @param army
+     */
+    public void removeArmy(Army army){
+        this.armies.remove(army);
+    }
      
+    /**
+     * adds a secret weapon to the player
+     */
     public void addSecretWeapon(){
         this.secretWeapon += 1 ;
     }
 
+   
+    /**
+     * returns the list of armies
+     * @return List<Army>
+     */
     public List<Army> getArmies(){
         return this.armies;
     }
 
+    /**
+     * adds an army to the list of armies
+     * @param army
+     */
     public void addArmy(Army army){
         this.armies.add(army);
     }
 
+    /**
+     * returns the list of camps
+     * @return List<Camp>
+     */
     public List<Camp> getCamps(){
         return this.camps;
     }
 
+    /**
+     * adds a camp to the list of camps
+     * @param camp
+     */
     public void addCamp(Camp camp){
         this.camps.add(camp);
     }

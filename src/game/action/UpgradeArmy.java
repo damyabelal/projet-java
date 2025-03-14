@@ -58,7 +58,11 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres>{
         Camp camp = new Camp(tuile, army.getNbWarriors(), player);
         tuile.setBuilding(camp);
         player.addCamp(camp);
-        // est ce que on doit faire un removeArmy() dans playerAres ??
+
+        player.removeArmy(army);
+        
+
+
         
 
 
