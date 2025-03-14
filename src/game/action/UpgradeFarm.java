@@ -1,41 +1,51 @@
 package game.action;
 
-
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.building.Building;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import listchooser.ListChooser;
 
-
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    public static ListChooser<Farm> lc;
+    private static ListChooser<Farm> lc;
     private Earth tuile;
 
-    public UpgradeFarm(PlayerDemeter player, Earth tuile) {
+    public UpgradeFarm(PlayerDemeter player) {
         super(player);
-        this.tuile = ask().getTuile();
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
+
+        lc = new ListChooser<>();
     }
 
-    public Farm ask(){
-        return lc.choose("Which farm do you want to upgrade?", this.player.getFarms());
+    public Farm ask() {
+        return lc.choose("Which farm do you want to upgrade?", ((PlayerDemeter) this.player).getFarms());
     }
 
     @Override
     public void act(PlayerDemeter player) throws NoMoreRessourcesException {
+        Farm chosenFarm = ask();
+
+        if (chosenFarm == null) {
+            System.out.println("No farm selected");
+            return;  
+        }
+        this.tuile = chosenFarm.getTuile(); 
+        
         if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to upgrade the farm");
         }
+
         this.removeRessources();
+        // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation vu qu'on fait un upgrade sur la meme tuile
+        this.tuile.removeBuilding();
+
         Exploitation exploitation = new Exploitation(this.tuile, player);
-        tuile.setBuilding(exploitation);
+        this.tuile.setBuilding(exploitation);
         player.addExploitation(exploitation);
 
 

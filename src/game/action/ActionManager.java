@@ -8,7 +8,7 @@ import game.tuile.Ressource;
 public abstract class ActionManager {
 
     protected HashMap<Ressource, Integer> cost;
-    protected static Player player;
+    protected Player player;
     
     /**
      * create a ActionManager
@@ -16,7 +16,7 @@ public abstract class ActionManager {
      */
         public ActionManager(Player player){
             this.cost = new HashMap<>();
-            ActionManager.player = player;
+            this.player = player;
     }
 
     /**
