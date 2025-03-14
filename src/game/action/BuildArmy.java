@@ -78,11 +78,15 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.removeRessources();
     
         try {
+            
             Army army = new Army(null, 0, player);
             player.addArmy(army);
         
         }catch(CantBuildException e){
+
             throw new CantBuildException("Can't build an army here");
 
         }
+
+
     }}
