@@ -49,6 +49,10 @@ public class Army extends Building{
     public int getNbWarriors(){
         return this.nbWarriors;
     }
+
+    public void addWarriors(int nb){
+        this.nbWarriors += nb;
+    }
    
     /**
      * return true if the army can be a camp

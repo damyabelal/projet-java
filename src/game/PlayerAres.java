@@ -12,7 +12,6 @@ public class  PlayerAres extends Player{
         private List<Army> armies;
         private List<Camp> camps;
         
-        
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
         public PlayerAres(String name){
                 super(name );
@@ -20,9 +19,6 @@ public class  PlayerAres extends Player{
                 this.secretWeapon=0;
                 this.armies = new ArrayList<>();
                 this.camps = new ArrayList<>();
-
-
-
     }
     /** 
      * adds warriors to the army
@@ -51,13 +47,7 @@ public class  PlayerAres extends Player{
      */
     public int getWarriors(){
         return this.warriors;
-
     }
-    /** returns the number of secret weapons owned by this player
-     * @return the number of secret weapons of this player
-     * 
-     */
-    
     
      /**
       * returns the number of secret weapons owned by this player
@@ -65,8 +55,6 @@ public class  PlayerAres extends Player{
       */
     public  int getNbSecretWeapon(){
         return this.secretWeapon;
-
- 
     }
     /**
      * removes an army from the list of armies
@@ -83,7 +71,6 @@ public class  PlayerAres extends Player{
         this.secretWeapon += 1 ;
     }
 
-   
     /**
      * returns the list of armies
      * @return List<Army>
