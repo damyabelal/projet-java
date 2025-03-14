@@ -13,10 +13,16 @@ import game.Board;
 import game.CantBuildException;
 import game.tuile.Earth;
 
+
+/*
+ * Build an army on the island
+ */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
     private Earth earth;
+
+   
     public BuildArmy(Board board , PlayerAres player, Earth earth ){  
         super(player);
         this.board = board;
@@ -60,7 +66,13 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         
    
         
-
+    /**
+     * Build an army on the island
+     * @param player
+     * @throws NoMoreRessourcesException
+     * @throws CantBuildException
+     * 
+     */
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         if (player.getWarriors() < 1) {

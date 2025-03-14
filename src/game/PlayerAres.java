@@ -82,7 +82,7 @@ public class  PlayerAres extends Player{
     }
 
     public void addCamp(Camp camp){
-        this.armies.add(camp);
+        this.camps.add(camp);
     }
 
 
