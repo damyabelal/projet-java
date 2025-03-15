@@ -27,7 +27,7 @@ public class PortTest{
   @BeforeEach
   void setUp(){
     board= new Board(4,4);
-    port = new Port(forest); 
+    port = new Port(forest, null); 
 
     pos= new Position(0,0);
     posbis=new Position(2,2);
