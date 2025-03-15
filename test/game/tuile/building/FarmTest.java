@@ -1,5 +1,5 @@
 package game.tuile.building;
-import game.Player;
+import game.PlayerDemeter;
 import game.tuile.Earth;
 
 import game.tuile.Ressource;
@@ -17,16 +17,15 @@ public class FarmTest{
     private Farm farm;
     private Earth tuile;
     
-    private Player player;
+    private PlayerDemeter player;
     private Ressource ressource;
   
     @BeforeEach
     void setUp(){
-      player = new Player("loulou");
+      player = new PlayerDemeter("loulou");
       ressource = Ressource.SHEEP;
       tuile = new Earth(ressource,"F");
-      
-      farm = new Farm(tuile, null);
+      farm = new Farm(tuile, player);
   
     }
     /*

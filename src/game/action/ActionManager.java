@@ -11,7 +11,7 @@ public abstract class ActionManager {
     protected Player player;
     
     /**
-     * create a ActionManager
+     * create an ActionManager
      * @param player
      */
         public ActionManager(Player player){

@@ -34,7 +34,7 @@ public class  PlayerAres extends Player{
                 this.camps = new ArrayList<>();
     }
     /** 
-     * adds warriors to the army
+     * adds warriors to the army of this player
      * @param nb number of warriors to add
      */
     public void addWarriors(int nb) {
@@ -42,7 +42,7 @@ public class  PlayerAres extends Player{
     }
 
     /** 
-     * removes nb  warriors from  the players army
+     * removes nb  warriors from  this player's army
      * @param nb number of warriors to remove
      * @exception NoMoreRessourcesException
      */
@@ -55,8 +55,8 @@ public class  PlayerAres extends Player{
         }
     }
 
-    /** return the number of warriors for this player 
-     *@return number of warriors belonging this this player
+    /** returns the number of warriors of this player 
+     *@return number of warriors belonging to this player
      */
     public Integer getWarriors(){
         return this.warriors;
@@ -78,14 +78,14 @@ public class  PlayerAres extends Player{
     }
      
     /**
-     * adds a secret weapon to the player
+     * adds a secret weapon to this player
      */
     public void addSecretWeapon(){
         this.secretWeapon += 1 ;
     }
 
     /**
-     * returns the list of armies
+     * returns the list of armies of this player
      * @return List<Army>
      */
     public List<Army> getArmies(){
@@ -93,7 +93,7 @@ public class  PlayerAres extends Player{
     }
 
     /**
-     * adds an army to the list of armies
+     * adds an army to the list of armies of this player
      * @param army
      */
     public void addArmy(Army army){
@@ -101,7 +101,7 @@ public class  PlayerAres extends Player{
     }
 
     /**
-     * returns the list of camps
+     * returns the list of camps of this player
      * @return List<Camp>
      */
     public List<Camp> getCamps(){
@@ -109,7 +109,7 @@ public class  PlayerAres extends Player{
     }
 
     /**
-     * adds a camp to the list of camps
+     * adds a camp to the list of camps of this player
      * @param camp
      */
     public void addCamp(Camp camp){
@@ -158,6 +158,7 @@ public class  PlayerAres extends Player{
         List<Action<PlayerAres>> actions = new ArrayList<>();
 
         /// on ajoute les actions possibles pour le joueur Ares 
+<<<<<<< HEAD
         actions.add(new BuildArmy(board, this, null));
 
         // verifier si le joueur a des armées
@@ -165,6 +166,10 @@ public class  PlayerAres extends Player{
             actions.add(new UpgradeArmy(this));
         }
         
+=======
+        actions.add(new BuildArmy(board, this));
+        actions.add(new UpgradeArmy(this));
+>>>>>>> 5747f6542e8d625334729cab373f54a29a3f228b
         actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
         // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 

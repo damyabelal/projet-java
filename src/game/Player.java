@@ -9,14 +9,15 @@ public class Player {
     private String name;
     protected HashMap<Ressource, Integer> ressources;
     protected  ArrayList<Earth> playerTiles;
+    private List<Port> ports;
 
     /** 
-     * creates a player with a name and initial resources
+     * creates a player with a name and the initial resources
      * @param name  name of the player
      */ 
     public Player(String name) {
         this.name = name;
-       
+        this.ports = new ArrayList<>();
         this.ressources = new HashMap<>();
         this.ressources.put(Ressource.WOOD, 0);
         this.ressources.put(Ressource.ORE, 0);
@@ -32,6 +33,22 @@ public class Player {
      */
     public String getName() {
         return this.name;
+    }
+
+    /**
+     * get the ports of the player
+     * @return List<Ports> the ports of the player
+     */
+    public List<Port> getPorts(){
+        return this.ports;
+    }
+
+    /**
+     * add a port to the player
+     * @param port the port to add
+     */
+    public void addPort(Port port){
+        this.ports.add(port);
     }
 
     /**
@@ -67,7 +84,7 @@ public class Player {
     }
 
     /** 
-     * returns the resources of player
+     * returns the resources of this player
      * @return resource map
      */
     public HashMap<Ressource, Integer> getResources() {
@@ -75,7 +92,7 @@ public class Player {
     }
     
     /** 
-     * adds a type of  resource to the player's stock
+     * adds given quantity of the  given type of resource to the player's stock 
      * @param resource the resource to add
      * @param nb amount to add
      */
@@ -84,7 +101,7 @@ public class Player {
     }
 
     /** 
-     * removes a type of resource from the player's stock
+     * removes the given quantity of the give type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
      * @exception NoMoreRessourcesException

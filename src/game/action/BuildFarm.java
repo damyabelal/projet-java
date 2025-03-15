@@ -38,10 +38,9 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
      * This method is used to build a farm on a tile
      * @param player the player who wants to build the farm
      * @throws NoMoreRessourcesException if the player doesn't have enough ressources to build the farm
-          * @throws IOException 
-          */
-         @Override
-         public void act(PlayerDemeter player) throws NoMoreRessourcesException, IOException {
+     * @throws IOException 
+    */
+    public void act(PlayerDemeter player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
         Tuile tile= this.board.getTile(choosenPosition); 
         //check if player has enough ressources to buy a farm
