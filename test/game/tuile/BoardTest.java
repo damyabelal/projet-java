@@ -239,7 +239,7 @@ public class BoardTest {
        
 
         Earth fieldTile = (Earth) board.getTile(posField);
-        fieldTile.setBuilding(new Port(fieldTile));
+        fieldTile.setBuilding(new Port(fieldTile, null));
         assertTrue(fieldTile.haveBuild());
 
         // Field tiles with buildings are not considered empty
