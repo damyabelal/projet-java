@@ -25,10 +25,18 @@ public class BuildPort implements Action<Player>{
     
     @Override
     public void act(Player player) throws NoMoreRessourcesException {
-       // si le joueurs a les ressources nécessaires alors on construit un port  
-
+       // si le joueurs a les ressources nécessaires alors on construit un port
+       Port port =new Port(null,player)  ;
+       // if the player has enough ressources to build a port then a port for this player will be build
+        if (player.hasEnoughRessources(port)){
        new Port(tuile , player);
+        }
 
+
+        else{
+            throw new NoMoreRessourcesException("Not enough ressources to build a port.");
+
+        }
 
     }
     

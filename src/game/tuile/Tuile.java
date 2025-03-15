@@ -8,7 +8,7 @@ public abstract class Tuile {
 
 
     /**
-     * Constructor for Tuile.
+     * Constructor of Tuile.
      *
      * @param symbol The symbol representing this tile.
      */    
@@ -26,7 +26,7 @@ public abstract class Tuile {
         return symbol;
     }   
 
-    /*
+    /**
      * return the position of the tile
      * @return the position
      */
