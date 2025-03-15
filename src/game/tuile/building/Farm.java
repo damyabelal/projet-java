@@ -1,4 +1,5 @@
 package game.tuile.building;
+import game.Player;
 import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -37,11 +38,11 @@ public class Farm extends Building{
 
     /**
      * return true if the farm can be a exploitation
-     * @param player the person who play
+     * @param player2 the person who play
      * @return boolean
      */
-    public boolean canBeExploitation(PlayerDemeter player){
-        return player.hasEnoughRessources(new Exploitation(tuile, player));
+    public boolean canBeExploitation(PlayerDemeter player2){
+        return player2.hasEnoughRessources(new Exploitation(tuile, player2));
     }
     
     /** evolve the farm into a exploitation
