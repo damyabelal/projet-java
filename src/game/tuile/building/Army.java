@@ -71,7 +71,7 @@ public class Army extends Building{
     
     public PlayerAres getPlayerAres(){
         return this.player;
-    }
+    }               
     
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
