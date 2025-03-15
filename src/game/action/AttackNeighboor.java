@@ -22,8 +22,24 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         return lc.choose("Who de you want to attack", this.ennemies);
     }
 
-    public Integer howMuchDice(Player player){
-        return 0;
+    public Integer howMuchDice(PlayerAres player){
+        int nbWarriors= player.getWarriors();
+        int res= 0;
+        if (player.getNbSecretWeapon()> 0){
+            res += 1;
+        }
+        if (nbWarriors>1 && nbWarriors<4){
+            res+= 1;
+        }
+        else{
+            if(nbWarriors<8){
+                res += 2;
+            }
+            else{
+                res += 3;
+            }
+        }
+        return res; 
     }
 
     public void act(PlayerAres player) throws NoMoreRessourcesException {
