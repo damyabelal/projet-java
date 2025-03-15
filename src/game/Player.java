@@ -11,7 +11,7 @@ public class Player {
     protected  ArrayList<Earth> playerTiles;
 
     /** 
-     * creates a player with a name and initial resources
+     * creates a player with a name and the initial resources
      * @param name  name of the player
      */ 
     public Player(String name) {
@@ -67,7 +67,7 @@ public class Player {
     }
 
     /** 
-     * returns the resources of player
+     * returns the resources of this player
      * @return resource map
      */
     public HashMap<Ressource, Integer> getResources() {
@@ -75,7 +75,7 @@ public class Player {
     }
     
     /** 
-     * adds a type of  resource to the player's stock
+     * adds given quantity of the  given type of resource to the player's stock 
      * @param resource the resource to add
      * @param nb amount to add
      */
@@ -84,7 +84,7 @@ public class Player {
     }
 
     /** 
-     * removes a type of resource from the player's stock
+     * removes the given quantity of the give type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
      * @exception NoMoreRessourcesException
