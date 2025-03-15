@@ -28,7 +28,7 @@ public class PlayerDemeter extends Player{
 
     }
     /**
-     * get the number of points that the demeter player has
+     * gets the number of points that the demeter player has
      * @param tile
      */
     public int getPoints() {
@@ -36,7 +36,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * get the number of thief that the demeter player has
+     * gets the number of thief that the demeter player has
      * @param tile
      */
     public int getNbThief(){
@@ -44,14 +44,14 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * add points to the demeter player
+     * adds the given number of points to the demeter player
      * @param nb int number of points to add
      */
     public void addPoints(int nb){
         this.points += 1;
     }
     /**
-     * add thief to the  demeter player
+     * adds a  thief to the  demeter player
      * @param nb int number of thief to add
      */
 
@@ -60,7 +60,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * get the farms of the demeter player
+     * gets the farms of the demeter player
      * @return List<Farm> the farms of the demeter player
      */
     public List<Farm> getFarms(){
@@ -68,7 +68,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * add a farm to the demeter player
+     * adds  a farm to the demeter player
      * @param farm the farm to add
      */
     public void addFarm(Farm farm){
@@ -76,7 +76,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * remove a farm from the demeter player
+     * removes a farm from the demeter player
      * @param farm the farm to remove
      */
     public void removeFarm(Farm farm){
@@ -85,7 +85,7 @@ public class PlayerDemeter extends Player{
 
 
     /**
-     * get the exploitations of the demeter player
+     * gets the exploitations of the demeter player
      * @return List<Exploitation> the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
@@ -93,7 +93,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * add an exploitation to the demeter player
+     * adds an exploitation to the demeter player
      * @param exploitation the exploitation to add
      */
     public void addExploitation(Exploitation exploitation){
