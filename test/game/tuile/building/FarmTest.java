@@ -26,7 +26,7 @@ public class FarmTest{
       ressource = Ressource.SHEEP;
       tuile = new Earth(ressource,"F");
       
-      farm = new Farm(tuile);
+      farm = new Farm(tuile, null);
   
     }
     /*
@@ -42,7 +42,7 @@ public class FarmTest{
      */
     @Test 
     void upGradeToExploitationShouldReturnNull(){
-      assertEquals(farm.upGradeToExploitation(player),null);
+      assertEquals(farm.upGradeToExploitation(),null);
 
 
   }
@@ -79,7 +79,7 @@ public class FarmTest{
     player.addRessource(sheep, 2);
     player.addRessource(wood, 2);
     player.addRessource(wealth, 2);
-    assertTrue(farm.upGradeToExploitation(player)!=null);
+    assertTrue(farm.upGradeToExploitation()!=null);
  
 }
 
