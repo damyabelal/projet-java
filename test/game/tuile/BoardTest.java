@@ -301,7 +301,7 @@ public class BoardTest {
         board.put(new Field(), new Position(4, 4));
         board.put(new Field(), new Position(4, 3));
  
-        List<List<Earth>> islands = board.findIslands(board);
+        List<List<Earth>> islands = board.findIslands();
 
         assertEquals(2, islands.size());
 
