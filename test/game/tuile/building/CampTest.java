@@ -3,7 +3,7 @@ package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+import game.CantBuildException;
 import game.tuile.Field;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,11 +16,11 @@ class CampTest{
   
 
  @BeforeEach
- void setUp(){
+ void setUp() throws CantBuildException{
  
   
   tuile = new Field();
-  camp = new Camp(tuile ,8);
+  camp = new Camp(tuile ,8, null);
 
  }
 /*
