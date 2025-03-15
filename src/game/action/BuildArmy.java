@@ -40,7 +40,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     };
     
     public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Farm?", this.board);
+        return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
     }
 
 
