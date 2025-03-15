@@ -15,7 +15,7 @@ public class ArmyTest {
 
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws CantBuildException {
         tuile = new Forest();
         player = new Player("Scott");
         army = new Army(tuile, 0, null);
@@ -25,9 +25,10 @@ public class ArmyTest {
 
     /**
      * Ensures the number of warriors does not exceed the maximum limit
-     */
-    @Test
-    void armyMaxWarriorsTest() {
+          * @throws CantBuildException 
+          */
+         @Test
+         void armyMaxWarriorsTest() throws CantBuildException {
         Army army1 = new Army(tuile, 10, null);
         assertEquals(5, army1.getNbWarriors(), "Army should have at most 5 warriors");
     }
@@ -69,8 +70,8 @@ public class ArmyTest {
      * Ensures that an army cannot add more warriors than available in stock */
     @Test 
     void addMoreWarriorsThanPossibleTest() throws NoMoreRessourcesException {
-        player.removeWarriors(30); // On met à zéro les warriors du joueur
-        assertThrows(NoMoreRessourcesException.class, () -> army.addWarriors(6, player));
+        playerAres.removeWarriors(30); // On met à zéro les warriors du joueur
+        assertThrows(NoMoreRessourcesException.class, () -> army.addWarriors(6));
         assertEquals(0, army.getNbWarriors());
     }
     
