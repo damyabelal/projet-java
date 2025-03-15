@@ -40,7 +40,7 @@ public class PlayThief implements Action<PlayerDemeter> {
         if (totalStolen > 0) {
             playerOfThief.addRessource(this.ressource, totalStolen);
         } else {
-            throw new NoMoreRessourcesException("There's not enough of this type ressource : " + this.ressource + " to steel");
+            throw new NoMoreRessourcesException("There is not enough of this type ressource : " + this.ressource + " to be able to steal");
         }
     }
 }
