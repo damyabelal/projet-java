@@ -1,6 +1,7 @@
 package game.action;
 
 import java.util.List;
+import java.util.Random;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
@@ -27,7 +28,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
      * @return the player who is going to be attack
      */
     public PlayerAres askNeighboor(){
-        return lc.choose("Who de you want to attack", this.ennemies);
+        return lc.choose("Who do you want to attack", this.ennemies);
     }
 
     /**
@@ -57,9 +58,32 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         return res; 
     }
 
+    public Integer dicesResult(Integer numberDices){
+        Random dice= new Random();
+        Integer result= 0; 
+        Integer i= numberDices;
+        while (i>0){
+            result += dice.nextInt(6)+1;;
+        }
+        return result;
+    }
+
     public void act(PlayerAres player) throws NoMoreRessourcesException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'act'");        
+        PlayerAres ennemy= askNeighboor();
+        // la somme des dés de chaque joueur
+        System.out.println(player.getName() + " VS " + ennemy.getName());
+        Integer ennemyRes= dicesResult(howMuchDice(ennemy));
+        Integer playerRes= dicesResult(howMuchDice(player));
+        PlayerAres loser;
+        if (ennemyRes< playerRes){
+            loser = ennemy;
+        }
+        else{
+            loser= player;
+        }
+        //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
+        // mon code est confus et à revoir 
+        loser.removeWarriors(1);
     }
     
 }
