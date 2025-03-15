@@ -1,4 +1,4 @@
-package game;
+    package game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class  PlayerAres extends Player{
     /** return the number of warriors for this player 
      *@return number of warriors belonging this this player
      */
-    public int getWarriors(){
+    public Integer getWarriors(){
         return this.warriors;
     }
     
