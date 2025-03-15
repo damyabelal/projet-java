@@ -117,6 +117,9 @@ public class  PlayerAres extends Player{
     }
 
 
+
+    
+
     /**
      * presents the user with a list of actions that the player can do
      * @param board the game board
@@ -143,6 +146,9 @@ public class  PlayerAres extends Player{
 
 
 
+
+
+
     /**
      * returns a list of actions that the player Ares can do
      * @param board
@@ -153,9 +159,15 @@ public class  PlayerAres extends Player{
 
         /// on ajoute les actions possibles pour le joueur Ares 
         actions.add(new BuildArmy(board, this, null));
-        actions.add(new UpgradeArmy(this));
+
+        // verifier si le joueur a des armées
+        if(!this.armies.isEmpty()){
+            actions.add(new UpgradeArmy(this));
+        }
+        
         actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
+        // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
         actions.add(new BuyWarriors(this));
         
         return actions;
