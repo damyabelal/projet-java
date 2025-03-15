@@ -37,22 +37,6 @@ public class BuildPort extends ActionManager implements Action<Player>{
     }
     
     @Override
-<<<<<<< HEAD
-    public void act(Player player) throws NoMoreRessourcesException {
-       // si le joueurs a les ressources nécessaires alors on construit un port
-       Port port =new Port(null,player)  ;
-       // if the player has enough ressources to build a port then a port for this player will be build
-        if (player.hasEnoughRessources(port)){
-       new Port(tuile , player);
-        }
-
-
-        else{
-            throw new NoMoreRessourcesException("Not enough ressources to build a port.");
-
-        }
-
-=======
     public void act(Player player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
         Tuile tile= this.board.getTile(choosenPosition);
@@ -63,7 +47,6 @@ public class BuildPort extends ActionManager implements Action<Player>{
         Port port = new Port((Earth) tile, player);
         tuile.setBuilding(port);
         player.addPort(port);
->>>>>>> 5015482bc6f3f69e79ab15d14c027d8d41ca4342
     }
     
 }
