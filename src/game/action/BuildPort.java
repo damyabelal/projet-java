@@ -6,7 +6,6 @@ import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Earth;
-import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.Position;
 import listchooser.ListChooser;

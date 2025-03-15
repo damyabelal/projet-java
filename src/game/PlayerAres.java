@@ -152,7 +152,7 @@ public class  PlayerAres extends Player{
         List<Action<PlayerAres>> actions = new ArrayList<>();
 
         /// on ajoute les actions possibles pour le joueur Ares 
-        actions.add(new BuildArmy(board, this, null));
+        actions.add(new BuildArmy(board, this));
         actions.add(new UpgradeArmy(this));
         actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
