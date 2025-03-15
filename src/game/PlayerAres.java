@@ -85,6 +85,13 @@ public class  PlayerAres extends Player{
     }
 
     /**
+     * adds a secret weapon to this player
+     */
+    public void removeSecretWeapon(){
+        this.secretWeapon -= 1 ;
+    }
+
+    /**
      * returns the list of armies of this player
      * @return List<Army>
      */
@@ -158,7 +165,6 @@ public class  PlayerAres extends Player{
         List<Action<PlayerAres>> actions = new ArrayList<>();
 
         /// on ajoute les actions possibles pour le joueur Ares 
-<<<<<<< HEAD
         actions.add(new BuildArmy(board, this, null));
 
         // verifier si le joueur a des armées
@@ -166,10 +172,6 @@ public class  PlayerAres extends Player{
             actions.add(new UpgradeArmy(this));
         }
         
-=======
-        actions.add(new BuildArmy(board, this));
-        actions.add(new UpgradeArmy(this));
->>>>>>> 5747f6542e8d625334729cab373f54a29a3f228b
         actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
         // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
