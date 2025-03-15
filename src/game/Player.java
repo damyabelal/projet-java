@@ -121,6 +121,18 @@ public class Player {
         return this.ressources.getOrDefault(resource, 0);
     }
 
+
+    public Integer getWarriors() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWarriors'");
+    }
+
+
+    public void addWarriors(int i) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'addWarriors'");
+    }
+
     
 }
 

@@ -2,6 +2,8 @@ package game.tuile;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import game.CantBuildException;
 import game.tuile.building.*;
 import static org.junit.Assert.assertTrue;
 
@@ -16,14 +18,14 @@ class EarthTest{
     private Ressource ressource2;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws CantBuildException {
       ressource1= Ressource.WOOD;
       ressource2=Ressource.WOOD;
 
       tuile1= new Earth(ressource1,"F");
       tuile2=new Earth(ressource2,"F");
       
-        army = new Army(tuile1 ,0);   
+        army = new Army(tuile1 ,0, null);   
         
     }
 
