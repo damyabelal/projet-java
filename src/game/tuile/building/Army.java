@@ -60,7 +60,7 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
-        try {
+        try {   
             return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
         } catch (CantBuildException e) {
             e.printStackTrace();
