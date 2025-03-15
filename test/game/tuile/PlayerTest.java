@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
+import game.PlayerAres;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import game.util.Position;
@@ -22,12 +23,14 @@ import game.util.Position;
 public class PlayerTest {
     private Player player;
     private Earth earth;
+    private PlayerAres playerAres;
 
     @BeforeEach
     // Create a player and a field tile
     void setUp() {
         player = new Player("TestPlayer");
         earth = new Field();
+        playerAres= new PlayerAres("mohamed");
     }
 
     // Test the player's initialization
@@ -47,7 +50,7 @@ public class PlayerTest {
     /// test the player removing warriors
     @Test
     void testRemoveWarriors() throws NoMoreRessourcesException {
-        player.removeWarriors(10);
+        playerAres.removeWarriors(10);
         assertEquals(20, player.getWarriors());
     }
 
@@ -55,9 +58,9 @@ public class PlayerTest {
     @Test // it should throw an exception
     void TestNoWarriorsToRemove() throws NoMoreRessourcesException{
         assertEquals(30, player.getWarriors());
-        player.removeWarriors(30); // removing the initial 30 warriors the player has
+        playerAres.removeWarriors(30); // removing the initial 30 warriors the player has
         assertEquals(0, player.getWarriors());
-        assertThrows(NoMoreRessourcesException.class ,()->{player.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
+        assertThrows(NoMoreRessourcesException.class ,()->{playerAres.removeWarriors(1);});//removing a warrior from player having 0 warriors should throw an exception
         
 
     }
@@ -81,7 +84,7 @@ public class PlayerTest {
     void testHasEnoughRessources(){
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 1);
-        Farm farm = new Farm(earth);
+        Farm farm = new Farm(earth, null);
         assertTrue(player.hasEnoughRessources(farm));
     }
     // test the player does not have enough resources
@@ -89,14 +92,14 @@ public class PlayerTest {
     void testHasEnoughRessourcesFail(){
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 1);
-        Exploitation exploitation = new Exploitation(earth);
+        Exploitation exploitation = new Exploitation(earth, null);
         assertFalse(player.hasEnoughRessources(exploitation));
     }
     // test the player building a farm
     @Test
     void testBuild() throws NoMoreRessourcesException{
         
-        Farm farm = new Farm(earth);
+        Farm farm = new Farm(earth, null);
         
 
         // a player trying to build with enough resources should return True
