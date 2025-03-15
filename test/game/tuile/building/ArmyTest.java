@@ -39,7 +39,7 @@ public class ArmyTest {
     void canBeCampWithWarriorsTest() throws NoMoreRessourcesException {
         assertFalse(army.canBeCamp(playerAres));
         playerAres.addWarriors(5);
-        army.addWarriors(5, player);
+        army.addWarriors(5);
         assertTrue(army.canBeCamp(playerAres));
     }
 
@@ -59,9 +59,9 @@ public class ArmyTest {
      */
     @Test
     void addWarriorsTest() throws NoMoreRessourcesException {
-        player.addWarriors(3);
+        playerAres.addWarriors(3);
         assertEquals(0, army.getNbWarriors());
-        army.addWarriors(3, player);
+        army.addWarriors(3);
         assertEquals(3, army.getNbWarriors());
     }
 
@@ -80,8 +80,8 @@ public class ArmyTest {
      */
     @Test
     void upGradeToCampTest() throws NoMoreRessourcesException {
-        player.addWarriors(5);
-        army.addWarriors(5, player);
+        playerAres.addWarriors(5);
+        army.addWarriors(5);
         assertTrue(army.canBeCamp(playerAres));
         assertNotNull(army.upGradeToCamp(playerAres));
         assertTrue(army.upGradeToCamp(playerAres) instanceof Camp);
