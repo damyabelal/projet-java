@@ -1,5 +1,4 @@
 package game.tuile.building;
-import game.Player;
 import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;

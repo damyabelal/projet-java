@@ -3,9 +3,13 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Ressource;
+import game.tuile.Tuile;
 import game.tuile.building.Army;
 import game.tuile.building.Port;
+import game.util.Position;
+import listchooser.ListChooser;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,15 +24,12 @@ import game.tuile.Earth;
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
-    private Earth earth;
+    public static ListChooser<Position> lc;
 
    
-    public BuildArmy(Board board , PlayerAres player, Earth earth ){  
+    public BuildArmy(Board board , PlayerAres player){  
         super(player);
         this.board = board;
-        this.earth = earth ;
-
-
         this.cost= new HashMap<>(){
             {put(Ressource.WOOD,1);
             put(Ressource.SHEEP,1); 
@@ -38,7 +39,9 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         };
     };
     
-    
+    public Position askCoordinate() throws IOException {
+        return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
+    }
 
 
     /**
@@ -71,10 +74,11 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
      * @param player
      * @throws NoMoreRessourcesException
      * @throws CantBuildException
-     * 
-     */
-    @Override
-    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
+     * @throws IOException
+    */
+    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
+        Position choosenPosition= askCoordinate();
+        Tuile tile= this.board.getTile(choosenPosition); 
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
         }
@@ -83,7 +87,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
     
-        if (!canBuildArmy(this.earth, player)) {
+        if (!canBuildArmy((Earth) tile, player)) {
             throw new CantBuildException("conditions not met to build an army here");
         }
     
@@ -91,7 +95,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     
         try {
 
-            Army army = new Army(null, 0, player);
+            Army army = new Army((Earth) tile, 0, player);
             player.addArmy(army);
         
         }catch(CantBuildException e){
