@@ -22,7 +22,7 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         private List<Army> armies;
         private List<Camp> camps;
-        private static ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+        private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
 
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
