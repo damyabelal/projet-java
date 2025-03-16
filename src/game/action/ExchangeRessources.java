@@ -11,8 +11,8 @@ public class ExchangeRessources implements Action<Player> {
 
     /**
      * creates an exchange action between two resources
-     * @param ressourceToExchange the resource to exchange (3 will be removed)
-     * @param ressourceToReceive the resource to receive (1 will be added)
+     * @param toExchange the resource to exchange (3 will be removed)
+     * @param toReceive the resource to receive (1 will be added)
      */
     public ExchangeRessources(Ressource toExchange , Ressource toReceive) {
         if ( toExchange == toReceive) {

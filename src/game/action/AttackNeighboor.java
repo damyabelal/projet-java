@@ -16,7 +16,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     /**
      * constructor of AttackNeighboor
      * @param player the player who attack
-     * @param ennemie a list of all the neighboor ennemies
+     * @param ennemies a list of all the neighboor ennemies
      */ 
     public AttackNeighboor(PlayerAres player, List<PlayerAres> ennemies){
         super(player); 
@@ -58,6 +58,11 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         return res; 
     }
 
+    /**
+     * return the sum of the dices thrown by the player
+     * @param numberDices
+     * @return the result of the dices
+     */
     public Integer dicesResult(Integer numberDices){
         Random dice= new Random();
         Integer result= 0; 
