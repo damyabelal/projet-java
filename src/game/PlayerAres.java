@@ -22,7 +22,7 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         private List<Army> armies;
         private List<Camp> camps;
-        private static ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+        private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
 
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
@@ -85,6 +85,13 @@ public class  PlayerAres extends Player{
     }
 
     /**
+     * adds a secret weapon to this player
+     */
+    public void removeSecretWeapon(){
+        this.secretWeapon -= 1 ;
+    }
+
+    /**
      * returns the list of armies of this player
      * @return List<Army>
      */
@@ -117,6 +124,9 @@ public class  PlayerAres extends Player{
     }
 
 
+
+    
+
     /**
      * presents the user with a list of actions that the player can do
      * @param board the game board
@@ -143,6 +153,9 @@ public class  PlayerAres extends Player{
 
 
 
+
+
+
     /**
      * returns a list of actions that the player Ares can do
      * @param board
@@ -153,9 +166,15 @@ public class  PlayerAres extends Player{
 
         /// on ajoute les actions possibles pour le joueur Ares 
         actions.add(new BuildArmy(board, this));
-        actions.add(new UpgradeArmy(this));
-        actions.add(new AttackNeighboor());
+
+        // verifier si le joueur a des armées
+        if(!this.armies.isEmpty()){
+            actions.add(new UpgradeArmy(this));
+        }
+        // il faut qu'on parle de la manière de créer la liste d'ennemies..... 
+        //actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
+        // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
         actions.add(new BuyWarriors(this));
         
         return actions;

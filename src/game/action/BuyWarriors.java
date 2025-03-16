@@ -18,7 +18,7 @@ public class BuyWarriors extends ActionManager implements Action<PlayerAres> {
     }
     /**
      * buy 5 warriors if the player have enough ressources
-     * @param the player who make the action    
+     * @param player the player who make the action    
      */
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 

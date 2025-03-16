@@ -18,7 +18,7 @@ public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>
     }
     /**
      * buy a secret weapon if the player have enough ressources
-     * @param the player who make the action
+     * @param player the player who make the action
      * @throws NoMoreRessourcesException if the player doesn't have enough ressources to
      * buy
      */

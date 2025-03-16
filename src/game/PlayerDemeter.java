@@ -1,9 +1,18 @@
 package game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import game.tuile.building.Farm;
+import game.tuile.building.Port;
+import listchooser.ListChooser;
+import game.action.Action;
+import game.action.BuildFarm;
+import game.action.ExchangeRessourcesPort;
+import game.action.PlayThief;
+import game.action.UpgradeFarm;
+import game.tuile.Earth;
 import game.tuile.building.Exploitation;
 
 public class PlayerDemeter extends Player{
@@ -12,6 +21,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
+    private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -85,7 +95,26 @@ public class PlayerDemeter extends Player{
 
 
     /**
+<<<<<<< HEAD
+     * check if the demeter player has a port in his tiles
+     * @return boolean true if the demeter player has a port in his tiles
+     */
+    public boolean hasPort(){
+
+        for(Earth  tile : this.getTiles()){
+            if(tile.haveBuild() && tile.getBuilding() instanceof Port){    
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * get the exploitations of the demeter player
+=======
      * gets the exploitations of the demeter player
+>>>>>>> 5747f6542e8d625334729cab373f54a29a3f228b
      * @return List<Exploitation> the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
@@ -100,6 +129,61 @@ public class PlayerDemeter extends Player{
         this.exploitations.add(exploitation);
 
     }
+
+    /**
+     * excute the action of the demeter player
+     * @param board
+     * @throws IOException
+     */
+    public void act(Board board) throws IOException {
+        
+        List<Action<PlayerDemeter>> demeterActions = actionsPlayer(board);
+        Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", demeterActions);
+
+        if(demeterAction != null){
+            try{
+                demeterAction.act(this);
+            }catch(NoMoreRessourcesException | CantBuildException e){
+                System.out.println(e.getMessage());
+            }
+        }else {
+            System.out.println("No action chosen");
+        }
+
+        
+    }
+
+
+
+
+    /**
+     * returns a list of actions that the demeter player can do
+     * @param board
+     * @return List<Action<PlayerDemeter>> the list of actions that the demeter player can do
+     */
+    public List<Action<PlayerDemeter>> actionsPlayer(Board board){
+        List<Action<PlayerDemeter>> actions = new ArrayList<>();
+        
+        actions.add(new BuildFarm(board, this));
+
+        if(!this.farms.isEmpty()){
+            actions.add(new UpgradeFarm(this));
+        }
+        if (this.hasPort()){
+            actions.add(new ExchangeRessourcesPort(null, null));
+
+        }
+
+        actions.add(new PlayThief(null, null));
+
+        if(this.nbThief > 0){
+            actions.add(new PlayThief(null, null));
+        }
+
+        return actions;
+    }
+
+
         
 
     
