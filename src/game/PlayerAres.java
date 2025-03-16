@@ -165,14 +165,14 @@ public class  PlayerAres extends Player{
         List<Action<PlayerAres>> actions = new ArrayList<>();
 
         /// on ajoute les actions possibles pour le joueur Ares 
-        actions.add(new BuildArmy(board, this, null));
+        actions.add(new BuildArmy(board, this));
 
         // verifier si le joueur a des armées
         if(!this.armies.isEmpty()){
             actions.add(new UpgradeArmy(this));
         }
-        
-        actions.add(new AttackNeighboor());
+        // il faut qu'on parle de la manière de créer la liste d'ennemies..... 
+        //actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));
         // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
         actions.add(new BuyWarriors(this));
