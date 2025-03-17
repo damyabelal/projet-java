@@ -6,7 +6,7 @@ public class Livrable3ares {
     
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("you have to give two positive setting");
+            System.out.println("You have to give two positive settings.");
             return;
         }
         int width = Integer.parseInt(args[0]);
