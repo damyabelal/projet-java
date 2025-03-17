@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.action.Action;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f232939 (ajout dans  PlayThief.)
 import game.action.BuildArmy;
 import game.action.BuySecretWeapon;
 import game.action.BuyWarriors;
@@ -167,9 +171,9 @@ public class  PlayerAres extends Player{
         actions.add(new BuildArmy(board, this));
 
         // verifier si le joueur a des armées
-        if(!this.armies.isEmpty()){
-            actions.add(new UpgradeArmy(this));
-        }
+        
+        actions.add(new UpgradeArmy(this));
+        
         // il faut qu'on parle de la manière de créer la liste d'ennemies..... 
         //actions.add(new AttackNeighboor());
         actions.add(new BuySecretWeapon(null));

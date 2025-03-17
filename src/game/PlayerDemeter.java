@@ -95,7 +95,6 @@ public class PlayerDemeter extends Player{
 
 
     /**
-<<<<<<< HEAD
      * check if the demeter player has a port in his tiles
      * @return boolean true if the demeter player has a port in his tiles
      */
@@ -112,9 +111,6 @@ public class PlayerDemeter extends Player{
 
     /**
      * get the exploitations of the demeter player
-=======
-     * gets the exploitations of the demeter player
->>>>>>> 5747f6542e8d625334729cab373f54a29a3f228b
      * @return List<Exploitation> the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
@@ -166,19 +162,19 @@ public class PlayerDemeter extends Player{
         
         actions.add(new BuildFarm(board, this));
 
-        if(!this.farms.isEmpty()){
-            actions.add(new UpgradeFarm(this));
-        }
-        if (this.hasPort()){
-            actions.add(new ExchangeRessourcesPort(null, null));
+        
+        actions.add(new UpgradeFarm(this));
+        
+        
+        actions.add(new ExchangeRessourcesPort(null, null));
 
-        }
+        
 
         actions.add(new PlayThief(null, null));
 
-        if(this.nbThief > 0){
-            actions.add(new PlayThief(null, null));
-        }
+        
+        actions.add(new PlayThief(null, null));
+        
 
         return actions;
     }
