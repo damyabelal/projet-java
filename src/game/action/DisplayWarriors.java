@@ -6,16 +6,21 @@ import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-import listchooser.ListChooser;
 import listchooser.RandomListChooser;
 
 public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {
 
-    private static RandomListChooser<String> lc;
+    private static RandomListChooser<Integer> lcNumber;
+    private static RandomListChooser<String> lcString;
+    private static RandomListChooser<Army> lcArmy;
+    private static RandomListChooser<Camp> lcCamp;
 
     public DisplayWarriors(PlayerAres player) {
         super(player);
-        lc = new RandomListChooser<>();
+        lcNumber = new RandomListChooser<>();
+        lcString = new RandomListChooser<>();
+        lcArmy = new RandomListChooser<>();
+        lcCamp = new RandomListChooser<>();
     }
 
     /**
@@ -25,7 +30,7 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
      * @return the number of warriors to add, or -1 if invalid
      */
     private int askWarrior(PlayerAres player) {
-        int add = lc.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+        int add = lcNumber.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
         if (add > player.getWarriors() ||add <= 0) {
             System.out.println("Invalid number of warriors");
             return -1; 
@@ -43,10 +48,10 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
         // ask if the player wants to add warriors to an army or a camp
-        String choice = lc.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
+        String choice = lcString.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
 
         if ("army".equalsIgnoreCase(choice)) {
-            Army army = lc.choose("Which army do you want to add warriors to?", player.getArmies());
+            Army army = lcArmy.choose("Which army do you want to add warriors to?", player.getArmies());
             if (army == null) {
                 System.out.println("No army selected");
                 return;
@@ -62,7 +67,7 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
 
         } else if ("camp".equalsIgnoreCase(choice)) {
             // choose a camp to add warriors to
-            Camp camp = lc.choose("Which camp do you want to add warriors to?", player.getCamps());
+            Camp camp = lcCamp.choose("Which camp do you want to add warriors to?", player.getCamps());
             if (camp == null) {
                 System.out.println("No camp selected");
                 return;
