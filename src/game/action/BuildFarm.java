@@ -11,6 +11,7 @@ import game.tuile.Tuile;
 import game.tuile.building.Farm;
 import game.util.Position;
 import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 
 /*
  * This class is used to build a farm on a tile
@@ -20,14 +21,14 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
 
     private Earth tuile;
     private Board board; 
-    public static ListChooser<Position> lc;
+    public static RandomListChooser<Position> lc;
 
     public BuildFarm(Board board, PlayerDemeter player) {
         super(player);  
         this.board= board;
         this.cost.put(Ressource.WOOD, 1);  
         this.cost.put(Ressource.ORE, 1);   
-        lc = new ListChooser<>();
+        lc = new RandomListChooser<>();
     }
 
     public Position askCoordinate() throws IOException {

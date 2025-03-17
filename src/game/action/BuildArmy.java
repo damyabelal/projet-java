@@ -8,6 +8,7 @@ import game.tuile.building.Army;
 import game.tuile.building.Port;
 import game.util.Position;
 import listchooser.InteractiveListChooser;
+import listchooser.RandomListChooser;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ import game.tuile.Earth;
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
-    public static InteractiveListChooser<Position> lc;
+    public static RandomListChooser<Position> lc;
 
    
     public BuildArmy(Board board , PlayerAres player){  
@@ -37,6 +38,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             
             }
         };
+        lc= new RandomListChooser<>(); 
     };
     
     public Position askCoordinate() throws IOException {

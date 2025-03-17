@@ -5,30 +5,30 @@ import java.util.Random;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.util.Position;
-import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
-    public static ListChooser<Position> lc;
-    public List<PlayerAres> ennemies;
-
-    /**
-     * constructor of AttackNeighboor
-     * @param player the player who attack
-     * @param ennemies a list of all the neighboor ennemies
-     */ 
-    public AttackNeighboor(PlayerAres player, List<PlayerAres> ennemies){
-        super(player); 
-        this.ennemies= ennemies;
-    }
-
-    /**
-     * ask the player which neighboor he wants to attack
-     * @return the player who is going to be attack
-     */
-    public PlayerAres askNeighboor(){
-        return lc.choose("Who do you want to attack", this.ennemies);
+    public RandomListChooser<PlayerAres> lc;
+        public List<PlayerAres> ennemies;
+    
+        /**
+         * constructor of AttackNeighboor
+         * @param player the player who attack
+         * @param ennemies a list of all the neighboor ennemies
+         */ 
+        public AttackNeighboor(PlayerAres player, List<PlayerAres> ennemies){
+            super(player); 
+            this.ennemies= ennemies;
+            lc= new RandomListChooser<PlayerAres>(); 
+        }
+    
+        /**
+         * ask the player which neighboor he wants to attack
+         * @return the player who is going to be attack
+         */
+        public PlayerAres askNeighboor(){
+            return lc.choose("Who do you want to attack", this.ennemies);
     }
 
     /**

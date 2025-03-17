@@ -9,18 +9,19 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
 import listchooser.InteractiveListChooser;
+import listchooser.RandomListChooser;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public static InteractiveListChooser<Army> lc;
+    public static RandomListChooser<Army> lc;
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        lc = new InteractiveListChooser<>();
+        lc = new RandomListChooser<>();
     }
 
     /**

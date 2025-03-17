@@ -7,10 +7,11 @@ import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import listchooser.InteractiveListChooser;
+import listchooser.RandomListChooser;
 
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    private static InteractiveListChooser<Farm> lc;
+    private static RandomListChooser<Farm> lc;
     private Earth tuile;
 
     public UpgradeFarm(PlayerDemeter player) {
@@ -19,7 +20,7 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
 
-        lc = new InteractiveListChooser<>();
+        lc = new RandomListChooser<>();
     }
 
     public Farm ask() {

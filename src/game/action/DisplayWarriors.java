@@ -7,14 +7,15 @@ import game.PlayerAres;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 
 public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {
 
-    private static ListChooser<String> lc;
+    private static RandomListChooser<String> lc;
 
     public DisplayWarriors(PlayerAres player) {
         super(player);
-        lc = new ListChooser<>();
+        lc = new RandomListChooser<>();
     }
 
     /**

@@ -9,6 +9,7 @@ import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.util.Position;
 import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 import game.tuile.Ressource;
 import game.tuile.Tuile;
 
@@ -22,7 +23,7 @@ public class BuildPort extends ActionManager implements Action<Player>{
     private Earth tuile;// the tile that we will place the port on
     protected HashMap<Ressource,Integer> cost;
     private Board board; 
-    public static ListChooser<Position> lc;
+    public static RandomListChooser<Position> lc;
 
     public BuildPort(Player player, Board board){
         super(player); 
@@ -30,6 +31,7 @@ public class BuildPort extends ActionManager implements Action<Player>{
         this.cost=new HashMap<>(){ { put(Ressource.WOOD,1);
         put(Ressource.SHEEP,2);
         }};
+        lc= new RandomListChooser<>(); 
         }
 
     public Position askCoordinate() throws IOException {
