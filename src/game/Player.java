@@ -9,14 +9,15 @@ public class Player {
     private String name;
     protected HashMap<Ressource, Integer> ressources;
     protected  ArrayList<Earth> playerTiles;
+    private List<Port> ports;
 
     /** 
-     * creates a player with a name and initial resources
+     * creates a player with a name and the initial resources
      * @param name  name of the player
      */ 
     public Player(String name) {
         this.name = name;
-       
+        this.ports = new ArrayList<>();
         this.ressources = new HashMap<>();
         this.ressources.put(Ressource.WOOD, 0);
         this.ressources.put(Ressource.ORE, 0);
@@ -35,10 +36,26 @@ public class Player {
     }
 
     /**
+     * get the ports of the player
+     * @return List<Ports> the ports of the player
+     */
+    public List<Port> getPorts(){
+        return this.ports;
+    }
+
+    /**
+     * add a port to the player
+     * @param port the port to add
+     */
+    public void addPort(Port port){
+        this.ports.add(port);
+    }
+
+    /**
      * getter for playerTiles
      * @return playerTiles
      */
-    public ArrayList<Earth> getPlayerTiles() {
+    public ArrayList<Earth> getTiles() {
         return this.playerTiles;
     }
 
@@ -46,14 +63,28 @@ public class Player {
      * adds a tile to the player's list of tiles
      * @param tile
      */
-    public void addPlayerTile(Earth tile) {
+    public void addTile(Earth tile) {
         if(!this.playerTiles.contains(tile)){
             this.playerTiles.add(tile);
         }
     }
+    /**
+     * returns the earth at the given position
+     * @param x 
+     * @param y
+     * @return the earth at (x,y) or null if not found
+     */
+    public Earth getEarth(int x,int y){
+        for(Earth tuile : this.playerTiles){
+            if(tuile.getPosition().getX() == x && tuile.getPosition().getY() == y){
+                return tuile;
+            }   
+        }
+        return null;
+    }
 
     /** 
-     * returns the resources of player
+     * returns the resources of this player
      * @return resource map
      */
     public HashMap<Ressource, Integer> getResources() {
@@ -61,7 +92,7 @@ public class Player {
     }
     
     /** 
-     * adds a type of  resource to the player's stock
+     * adds given quantity of the  given type of resource to the player's stock 
      * @param resource the resource to add
      * @param nb amount to add
      */
@@ -70,7 +101,7 @@ public class Player {
     }
 
     /** 
-     * removes a type of resource from the player's stock
+     * removes the given quantity of the give type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
      * @exception NoMoreRessourcesException
@@ -105,6 +136,18 @@ public class Player {
     */
     public int getRessourceAmount(Ressource resource) {
         return this.ressources.getOrDefault(resource, 0);
+    }
+
+
+    public Integer getWarriors() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getWarriors'");
+    }
+
+
+    public void addWarriors(int i) {
+      // TODO Auto-generated method stub
+      throw new UnsupportedOperationException("Unimplemented method 'addWarriors'");
     }
 
     

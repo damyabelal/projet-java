@@ -1,5 +1,5 @@
 package game.tuile.building;
-import game.Player;
+import game.PlayerDemeter;
 import game.tuile.Earth;
 
 import game.tuile.Ressource;
@@ -17,16 +17,15 @@ public class FarmTest{
     private Farm farm;
     private Earth tuile;
     
-    private Player player;
+    private PlayerDemeter player;
     private Ressource ressource;
   
     @BeforeEach
     void setUp(){
-      player = new Player("loulou");
+      player = new PlayerDemeter("loulou");
       ressource = Ressource.SHEEP;
       tuile = new Earth(ressource,"F");
-      
-      farm = new Farm(tuile);
+      farm = new Farm(tuile, player);
   
     }
     /*
@@ -42,7 +41,7 @@ public class FarmTest{
      */
     @Test 
     void upGradeToExploitationShouldReturnNull(){
-      assertEquals(farm.upGradeToExploitation(player),null);
+      assertEquals(farm.upGradeToExploitation(),null);
 
 
   }
@@ -79,7 +78,7 @@ public class FarmTest{
     player.addRessource(sheep, 2);
     player.addRessource(wood, 2);
     player.addRessource(wealth, 2);
-    assertTrue(farm.upGradeToExploitation(player)!=null);
+    assertTrue(farm.upGradeToExploitation()!=null);
  
 }
 

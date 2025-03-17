@@ -3,23 +3,44 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Ressource;
+import game.tuile.Tuile;
 import game.tuile.building.Army;
 import game.tuile.building.Port;
+import game.util.Position;
+import listchooser.ListChooser;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import game.Board;
 import game.CantBuildException;
 import game.tuile.Earth;
 
+
+/*
+ * Build an army on the island
+ */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    public BuildArmy(){ 
+    protected HashMap<Ressource,Integer> cost;
+    public static ListChooser<Position> lc;
+
+   
+    public BuildArmy(Board board , PlayerAres player){  
         super(player);
-        this.cost.put(Ressource.WOOD, 1);
-        this.cost.put(Ressource.SHEEP, 1);
-        this.cost.put(Ressource.WEALTH, 1);
         this.board = board;
+        this.cost= new HashMap<>(){
+            {put(Ressource.WOOD,1);
+            put(Ressource.SHEEP,1); 
+            put(Ressource.ORE,1);
+            
+            }
+        };
+    };
+    
+    public Position askCoordinate() throws IOException {
+        return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
     }
 
 
@@ -43,29 +64,45 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             }
 
         }
-        return cptBuild >=2 && cptPort >= 1 && player.hasEnoughRessources(earth.getBuilding()) ;
+        return cptBuild >=2 && cptPort >= 1 ;
     }
         
    
         
-
-    @Override
-    public void act(PlayerAres player) {
-
+    /**
+     * Build an army on the island
+     * @param player
+     * @throws NoMoreRessourcesException
+     * @throws CantBuildException
+     * @throws IOException
+    */
+    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
+        Position choosenPosition= askCoordinate();
+        Tuile tile= this.board.getTile(choosenPosition); 
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
         }
-
-        if (! this.hasEnoughRessources()){
+    
+        if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
-
+    
+        if (!canBuildArmy((Earth) tile, player)) {
+            throw new CantBuildException("conditions not met to build an army here");
+        }
+    
         this.removeRessources();
+    
+        try {
 
-       
+            Army army = new Army((Earth) tile, 0, player);
+            player.addArmy(army);
+        
+        }catch(CantBuildException e){
 
-        player.addArmy(new Army(null, 0));
+            throw new CantBuildException("Can't build an army here");
 
-    }
+        }
 
-}
+
+    }}

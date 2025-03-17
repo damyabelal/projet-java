@@ -3,37 +3,44 @@ package game.action;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
+/**
+ * This class is used to play a thief
+ * its implements Action<PlayerDemeter>
+ */
+public class PlayThief implements Action<PlayerDemeter> {
 
-public class PlayThief implements Action<PlayerDemeter>{
+    private Ressource ressource;
+    private PlayerDemeter[] players;
 
-    private Ressource ressource; // le type de ressource que this player veut voler
-    private PlayerDemeter[] players;// other players of the game that that the player of the thief wants to steal from
-
-
-
-    // en admettant que dans main on stock tout les joueurs dans un tableau
-    public PlayThief(Ressource ressource,PlayerDemeter[] playerofboard ){
-      this.ressource=ressource;
-      this.players=playerofboard;
-
-
-    }
-  
-  
-    /** steals the Ressource ressource from every player and adds them to the given  player's  PlayerOfThief inventory 
-   * @param ressource the type of ressource that the thief will steal and give to the given player
-  */
-  @Override
-  public void act(PlayerDemeter playerOfThief) throws NoMoreRessourcesException {
-  
-    
-    int amountToAdd=0;
-    for (int i=0 ; i<this.players.length ;i++){
-
-      amountToAdd+=this.players[i].getRessourceAmount(this.ressource);
+    public PlayThief(Ressource ressource, PlayerDemeter[] players) {
+        this.ressource = ressource;
+        this.players = players;
     }
 
-    playerOfThief.addRessource(this.ressource,amountToAdd);
-  }
 
+    /**
+     * 
+     * @param playerOfThief 
+     * @throws NoMoreRessourcesException if the player doesn't have enough ressources to play the thief
+     */
+    @Override
+    public void act(PlayerDemeter playerOfThief) throws NoMoreRessourcesException {
+        int totalStolen = 0;
+
+        for (int i = 0; i < this.players.length; i++) {
+            if (this.players[i] != playerOfThief) {
+                int stolen = this.players[i].getRessourceAmount(this.ressource);
+                if (stolen > 0) {
+                    totalStolen += stolen;
+                    this.players[i].removeRessource(this.ressource, stolen);
+                }
+            }
+        }
+
+        if (totalStolen > 0) {
+            playerOfThief.addRessource(this.ressource, totalStolen);
+        } else {
+            throw new NoMoreRessourcesException("There is not enough of this type ressource : " + this.ressource + " to be able to steal");
+        }
+    }
 }

@@ -239,7 +239,7 @@ public class BoardTest {
        
 
         Earth fieldTile = (Earth) board.getTile(posField);
-        fieldTile.setBuilding(new Port(fieldTile));
+        fieldTile.setBuilding(new Port(fieldTile, null));
         assertTrue(fieldTile.haveBuild());
 
         // Field tiles with buildings are not considered empty
@@ -301,7 +301,7 @@ public class BoardTest {
         board.put(new Field(), new Position(4, 4));
         board.put(new Field(), new Position(4, 3));
  
-        List<List<Earth>> islands = board.findIslands(board);
+        List<List<Earth>> islands = board.findIslands();
 
         assertEquals(2, islands.size());
 

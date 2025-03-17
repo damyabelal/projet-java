@@ -1,8 +1,5 @@
 package game.tuile.building;
 
-import java.util.*;
-
-
 import game.CantBuildException;
 
 import game.PlayerAres;
@@ -25,8 +22,8 @@ public class Army extends Building{
     * @throws CantBuildException 
     */
 
-    public Army(Earth tuile, int nbWarriors, PlayerAres player,HashMap<Ressource,Integer> cost) throws CantBuildException{
-        super(tuile, player, cost); 
+    public Army(Earth tuile, int nbWarriors, PlayerAres player) throws CantBuildException{
+        super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
             throw new CantBuildException("You cant build Army with nbWarriors  > 5");
         }
@@ -35,13 +32,10 @@ public class Army extends Building{
         }
         this.dimension = this.nbWarriors;
         this.symbol = SYMBOL;
-        //this.cost = new HashMap<>();  //comme on a mis le cost dans les constructeur de tout les classes qui héritent de building on doit egalement modifier ca
-        //this.cost.put(Ressource.WOOD,1);
-        //this.cost.put(Ressource.SHEEP, 1);
-        //this.cost.put(Ressource.WEALTH, 1);
+        this.cost.put(Ressource.WOOD,1);
+        this.cost.put(Ressource.SHEEP, 1);
+        this.cost.put(Ressource.WEALTH, 1);
         this.player = player;
-
-        this.cost=cost;
 
     }
     
@@ -55,6 +49,10 @@ public class Army extends Building{
     public int getNbWarriors(){
         return this.nbWarriors;
     }
+
+    public void addWarriors(int nb){
+        this.nbWarriors += nb;
+    }
    
     /**
      * return true if the army can be a camp
@@ -62,7 +60,7 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
-        try {
+        try {   
             return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
         } catch (CantBuildException e) {
             e.printStackTrace();
@@ -73,7 +71,7 @@ public class Army extends Building{
     
     public PlayerAres getPlayerAres(){
         return this.player;
-    }
+    }               
     
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army

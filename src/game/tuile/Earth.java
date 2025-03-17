@@ -1,6 +1,7 @@
 package game.tuile;
 import game.tuile.building.*;
 
+
 public class Earth extends Tuile {
 
     protected Ressource ressource;
@@ -54,4 +55,21 @@ public class Earth extends Tuile {
     public Building getBuilding() {
         return this.building;
     }
+    
+    /** 
+     * removes the building from this tile
+     * @return true if the building was removed, false if there was no building to remove
+     */
+    public boolean removeBuilding() {
+        if (this.haveBuild()) {
+            this.building = null;
+            System.out.println("The building has been removed");
+            return true;
+        } else {
+            System.out.println("No building to remove");
+            return false;
+        }
+    }
+
+
 }

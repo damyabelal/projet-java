@@ -1,5 +1,9 @@
 package game.action;
 import game.NoMoreRessourcesException;
+
+import java.io.IOException;
+
+import game.CantBuildException;
 import game.Player;
 
 /**
@@ -12,6 +16,7 @@ public interface Action<T extends Player> {
      * 
      * @param player the player performing the action
      * @throws NoMoreRessourcesException 
+     * @throws IOException 
      */
-    void act(T player) throws NoMoreRessourcesException;
+    void act(T player) throws NoMoreRessourcesException , CantBuildException, IOException;
 }

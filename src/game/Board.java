@@ -28,7 +28,7 @@ public Board(int width , int height){
             }
         }
     createBoard();
-    List<List<Earth>> islands = findIslands();
+    this.islands = findIslands();
 }
 
 
@@ -474,7 +474,7 @@ public void displayBuildings() {
      * @param visited
      * @return
      */
-    private static List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    private  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -489,7 +489,7 @@ public void displayBuildings() {
             island.add(current);
 
             //verifier les tuiles voisines
-            for (Tuile neighbour : getNeighbours(current.getPosition())){
+            for (Tuile neighbour : this.getNeighbours(current.getPosition())){
                 if (neighbour instanceof Earth){
                     Earth neighbourEarth = (Earth) neighbour;
 

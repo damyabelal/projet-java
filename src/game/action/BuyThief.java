@@ -3,23 +3,32 @@ import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
 
-public class BuyThief implements Action<PlayerDemeter>{
+/*
+ * This class is used to buy a thief
+ * it extends ActionManager and implements Action<PlayerDemeter> 
+ */
+public class BuyThief extends ActionManager implements Action<PlayerDemeter>{
+
+    public BuyThief(PlayerDemeter player){
+        super(player);
+        this.cost.put(Ressource.WOOD, 1);
+        this.cost.put(Ressource.ORE, 1);
+        this.cost.put(Ressource.WEALTH, 1);
+
+    }
 
     /*
      * buy a thief if the player have enough ressources
      * @param the player who make the action
      */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException{
-        int costWood = 1;
-        int costOre= 1;
-        int costWealth = 1;
-        if (player.getRessourceAmount(Ressource.ORE) < costOre ||
-            player.getRessourceAmount(Ressource.WOOD) < costWood ||
-            player.getRessourceAmount(Ressource.WEALTH) < costWealth){
-            throw new NoMoreRessourcesException("Not enough ressources to buy a secret weapon");
+
+        //check if player has enough ressources to buy a farm
+        if (! this.hasEnoughRessources()) {
+            throw new NoMoreRessourcesException("Not enough ressources to buy a thief");
         }
-        player.removeRessource(Ressource.ORE, costOre);
-        player.removeRessource(Ressource.WOOD, costWood);
+        // if he can we remove the cost from the player
+        this.removeRessources();
         player.addThiefs(1);
     }
     

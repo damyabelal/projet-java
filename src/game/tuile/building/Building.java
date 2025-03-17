@@ -25,13 +25,17 @@ public abstract class Building{
     /** create a building on a given tile
     * @param tuile the tile where we build the building
     */
-    public Building(Earth tuile, Player player,HashMap<Ressource ,Integer> cost){
+    public Building(Earth tuile, Player player){
         this.player = player;
         this.symbol = SYMBOL;
         this.dimension = 1;
         this.resourceMultiplier = 1;
         this.tuile = tuile ;
         this.cost = new HashMap<>();
+    }
+
+    public HashMap<Ressource, Integer> getCost(){
+        return this.cost;
     }
 
      
@@ -110,11 +114,7 @@ public abstract class Building{
     }
    
     /** 
-    * displays  super(player);
-        this.cost.put(Ressource.WOOD, 1);
-        this.cost.put(Ressource.SHEEP, 1);
-        this.cost.put(Ressource.WEALTH, 1);
-        this.board = board; the building's cost 
+    * displays cost
     * exemple: "Harbor, cost -> Sheep: 2, Wood: 1"
     */
     public void displayCost() {

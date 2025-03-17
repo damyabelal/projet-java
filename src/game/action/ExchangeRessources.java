@@ -11,8 +11,8 @@ public class ExchangeRessources implements Action<Player> {
 
     /**
      * creates an exchange action between two resources
-     * @param ressourceToExchange the resource to exchange (3 will be removed)
-     * @param ressourceToReceive the resource to receive (1 will be added)
+     * @param toExchange the resource to exchange (3 will be removed)
+     * @param toReceive the resource to receive (1 will be added)
      */
     public ExchangeRessources(Ressource toExchange , Ressource toReceive) {
         if ( toExchange == toReceive) {
@@ -22,6 +22,10 @@ public class ExchangeRessources implements Action<Player> {
         this.toReceive = toReceive;
     }
 
+
+    /**
+     * 
+     */
     @Override
     public void act(Player player) throws NoMoreRessourcesException {
         if (player.getRessourceAmount(toExchange) < 3) {

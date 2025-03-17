@@ -3,16 +3,23 @@ import game.PlayerAres;
 import game.tuile.Ressource;
 import game.NoMoreRessourcesException;
 
+/**
+ * This class is used to buy warriors
+ * it extends ActionManager and implements Action<PlayerAres>
+ */
 public class BuyWarriors extends ActionManager implements Action<PlayerAres> {
 
 
-    public BuyWarriors(){
+    public BuyWarriors(PlayerAres player){
         super(player);
         this.cost.put(Ressource.WEALTH, 2);
         this.cost.put(Ressource.SHEEP, 2);
         this.cost.put(Ressource.ORE, 1);
     }
-
+    /**
+     * buy 5 warriors if the player have enough ressources
+     * @param player the player who make the action    
+     */
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
         // we check if player has enough ressource to buy 5 warriors
