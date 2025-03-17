@@ -26,10 +26,10 @@ public class Livrable3ares {
 
         PlayerAres ares = new PlayerAres("ares");
 
-        ares.getResources().put(Ressource.WOOD, 10);
-        ares.getResources().put(Ressource.ORE, 10);
-        ares.getResources().put(Ressource.WEALTH, 10);
-        ares.getResources().put(Ressource.SHEEP, 10);
+        ares.addRessource(Ressource.WOOD, 10);
+        ares.addRessource(Ressource.ORE, 10);
+        ares.addRessource(Ressource.WEALTH, 10);
+        ares.addRessource(Ressource.SHEEP, 10);
 
         /*
    - construit une armée avec 1 guerrier
