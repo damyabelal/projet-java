@@ -1,4 +1,4 @@
-package game.tuile;
+package game.action;
 
 public class BuyWarriorsTest{
     
