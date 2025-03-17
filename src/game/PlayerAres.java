@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.action.Action;
-import game.action.AttackNeighboor;
 import game.action.BuildArmy;
 import game.action.BuySecretWeapon;
 import game.action.BuyWarriors;
