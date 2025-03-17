@@ -8,19 +8,19 @@ import game.CantBuildException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
-import listchooser.ListChooser;
+import listchooser.InteractiveListChooser;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public static ListChooser<Army> lc;
+    public static InteractiveListChooser<Army> lc;
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        lc = new ListChooser<>();
+        lc = new InteractiveListChooser<>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        ListChooser<String> methodChooser = new ListChooser<>();
+        InteractiveListChooser<String> methodChooser = new InteractiveListChooser<>();
         return methodChooser.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
     }
 

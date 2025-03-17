@@ -7,7 +7,7 @@ import game.tuile.Tuile;
 import game.tuile.building.Army;
 import game.tuile.building.Port;
 import game.util.Position;
-import listchooser.ListChooser;
+import listchooser.InteractiveListChooser;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ import game.tuile.Earth;
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
     protected HashMap<Ressource,Integer> cost;
-    public static ListChooser<Position> lc;
+    public static InteractiveListChooser<Position> lc;
 
    
     public BuildArmy(Board board , PlayerAres player){  
