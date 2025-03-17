@@ -17,14 +17,14 @@ import game.tuile.Tuile;
  * This class is used to build a port on a tile
  * It extends ActionManager and implements Action<Player>
  */
-public class BuildPort extends ActionManager implements Action<Player>{
+public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
     private Earth tuile;// the tile that we will place the port on
     protected HashMap<Ressource,Integer> cost;
     private Board board; 
     public static RandomListChooser<Position> lc;
 
-    public BuildPort(Player player, Board board){
+    public BuildPort(T player, Board board){
         super(player); 
         this.board= board; 
         this.cost=new HashMap<>(){ { put(Ressource.WOOD,1);
@@ -38,7 +38,7 @@ public class BuildPort extends ActionManager implements Action<Player>{
     }
     
     @Override
-    public void act(Player player) throws NoMoreRessourcesException, IOException {
+    public void act(T player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
         Tuile tile= this.board.getTile(choosenPosition);
         if (! this.hasEnoughRessources()) {

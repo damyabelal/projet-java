@@ -157,26 +157,22 @@ public class PlayerDemeter extends Player{
      * @param board
      * @return List<Action<PlayerDemeter>> the list of actions that the demeter player can do
      */
-    public List<Action<PlayerDemeter>> actionsPlayer(Board board){
-        List<Action<PlayerDemeter>> actions = new ArrayList<>();
-        
-        actions.add(new BuildFarm(board, this));
+    private List<Action<PlayerDemeter>> actionsPlayer(Board board){
+        List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
+
+        actionsDemeter.add(new BuildFarm(board, this));
 
         
-        actions.add(new UpgradeFarm(this));
+        actionsDemeter.add(new UpgradeFarm(this));
         
         
-        actions.add(new ExchangeRessourcesPort(null, null));
+        actionsDemeter.add(new ExchangeRessourcesPort(null, null));
 
         
-
-        actions.add(new PlayThief(null, null));
-
-        
-        actions.add(new PlayThief(null, null));
+        actionsDemeter.add(new PlayThief(null, null));
         
 
-        return actions;
+        return actionsDemeter;
     }
 
 

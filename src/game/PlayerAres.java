@@ -10,8 +10,10 @@ import game.action.Action;
 
 >>>>>>> f232939 (ajout dans  PlayThief.)
 import game.action.BuildArmy;
+import game.action.BuildPort;
 import game.action.BuySecretWeapon;
 import game.action.BuyWarriors;
+import game.action.ExchangeRessources;
 import game.action.UpgradeArmy;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
@@ -165,22 +167,25 @@ public class  PlayerAres extends Player{
      * @return List<Action<PlayerAres>>
      */
     private List<Action<PlayerAres>> actionsPlayer(Board board){
-        List<Action<PlayerAres>> actions = new ArrayList<>();
+        List<Action<PlayerAres>> aresActions = new ArrayList<>();
+        
+        aresActions.add(new BuildPort<PlayerAres>(null, board));
+        aresActions.add(new BuyWarriors<PlayerAres>(this));
+        aresActions.add(new ExchangeRessources <PlayerAres>(null, null));
 
         /// on ajoute les actions possibles pour le joueur Ares 
-        actions.add(new BuildArmy(board, this));
+        aresActions.add (new BuildArmy(board, this));
+        // verifier si le joueur a des armées 
 
-        // verifier si le joueur a des armées
-        
-        actions.add(new UpgradeArmy(this));
+        aresActions.add(new UpgradeArmy(this));  
         
         // il faut qu'on parle de la manière de créer la liste d'ennemies..... 
         //actions.add(new AttackNeighboor());
-        actions.add(new BuySecretWeapon(null));
+        aresActions.add(new BuySecretWeapon(null));
         // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
-        actions.add(new BuyWarriors(this));
         
-        return actions;
+        
+        return aresActions;
 
     }
 

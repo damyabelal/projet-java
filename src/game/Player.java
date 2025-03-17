@@ -138,6 +138,10 @@ public class Player {
         return this.ressources.getOrDefault(resource, 0);
     }
 
+    
+
+
+
 
 
     

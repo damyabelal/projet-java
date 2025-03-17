@@ -4,7 +4,7 @@ import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Ressource;
 
-public class ExchangeRessources implements Action<Player> {
+public class ExchangeRessources <T extends Player> implements Action<T> {
 
     private Ressource toExchange;
     private Ressource toReceive;
@@ -27,7 +27,7 @@ public class ExchangeRessources implements Action<Player> {
      * 
      */
     @Override
-    public void act(Player player) throws NoMoreRessourcesException {
+    public void act(T player) throws NoMoreRessourcesException {
         if (player.getRessourceAmount(toExchange) < 3) {
             throw new NoMoreRessourcesException("Not enough " + toExchange + " to exchange you need at least 3");
         }
