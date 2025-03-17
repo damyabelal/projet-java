@@ -8,7 +8,6 @@ import game.Player;
 import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.util.Position;
-import listchooser.ListChooser;
 import listchooser.RandomListChooser;
 import game.tuile.Ressource;
 import game.tuile.Tuile;

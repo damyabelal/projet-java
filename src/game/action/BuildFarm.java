@@ -10,7 +10,6 @@ import game.tuile.Ressource;
 import game.tuile.Tuile;
 import game.tuile.building.Farm;
 import game.util.Position;
-import listchooser.ListChooser;
 import listchooser.RandomListChooser;
 
 /*

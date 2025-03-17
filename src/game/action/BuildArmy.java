@@ -7,7 +7,6 @@ import game.tuile.Tuile;
 import game.tuile.building.Army;
 import game.tuile.building.Port;
 import game.util.Position;
-import listchooser.InteractiveListChooser;
 import listchooser.RandomListChooser;
 
 import java.io.IOException;
