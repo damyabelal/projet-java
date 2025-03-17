@@ -97,7 +97,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     
         try {
 
-            Army army = new Army((Earth) tile, 0, player);
+            Army army = new Army((Earth) tile, 1, player);
             player.addArmy(army);
         
         }catch(CantBuildException e){
