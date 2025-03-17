@@ -14,14 +14,16 @@ import listchooser.RandomListChooser;
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public static RandomListChooser<Army> lc;
+    public static RandomListChooser<Army> lcArmy;
+    public static RandomListChooser<Integer> lcInteger;
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        lc = new RandomListChooser<>();
+        lcArmy = new RandomListChooser<>();
+        lcInteger = new RandomListChooser<>();
     }
 
     /**
@@ -29,7 +31,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the army the player wants to upgrade
      */
     public Army askArmy() {
-        return lc.choose("Which army do you want to upgrade?", ((PlayerAres) this.player).getArmies());
+        return lcArmy.choose("Which army do you want to upgrade?", ((PlayerAres) this.player).getArmies());
     }
 
     /**
@@ -60,7 +62,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             if (chosenArmy.getNbWarriors() != 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
-            int add = lc.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+            int add = lcInteger.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
             chosenArmy.addWarriors(add);
 
         } else {
