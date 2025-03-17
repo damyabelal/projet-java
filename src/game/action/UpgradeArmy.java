@@ -50,6 +50,10 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         // ask the player how they want to upgrade
         String method = askUpgradeMethod();
 
+        // check if the player has selected an army
+        if (chosenArmy == null) {
+            throw new IllegalArgumentException("No army selected");
+        }
         // check if the player has enough resources
         if ("resources".equalsIgnoreCase(method)) {
             if (!this.hasEnoughRessources()) {
