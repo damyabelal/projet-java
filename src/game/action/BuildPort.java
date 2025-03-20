@@ -10,7 +10,6 @@ import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.util.Position;
 import game.tuile.Ressource;
-import game.tuile.Tuile;
 
 /*
  * 
@@ -19,7 +18,6 @@ import game.tuile.Tuile;
  */
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
-    private Earth tuile;// the tile that we will place the port on
     protected HashMap<Ressource,Integer> cost;
     private Board board; 
     public static RandomListChooser<Position> lc;
