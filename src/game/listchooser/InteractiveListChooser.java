@@ -1,11 +1,11 @@
-package listchooser;
+package game.listchooser;
 
 import java.io.IOException;
 import java.util.List;
 
 import game.Board;
+import game.listchooser.util.Input;
 import game.util.Position;
-import listchooser.util.Input;
 
 public class InteractiveListChooser<T> implements ListChooser<T>{
 

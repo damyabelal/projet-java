@@ -1,4 +1,4 @@
-package listchooser.util;
+package game.listchooser.util;
 import java.util.Scanner;
 
 /**

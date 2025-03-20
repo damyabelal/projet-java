@@ -2,11 +2,11 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
-import listchooser.RandomListChooser;
 
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 

@@ -168,7 +168,7 @@ public class PlayerDemeter extends Player{
         actionsDemeter.add(new UpgradeFarm(this));
         
         
-        actionsDemeter.add(new ExchangeRessourcesPort(null, null));
+        actionsDemeter.add(new ExchangeRessourcesPort());
 
         
         actionsDemeter.add(new PlayThief(null, null));

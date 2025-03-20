@@ -5,12 +5,12 @@ import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Tuile;
 import game.tuile.building.Farm;
 import game.util.Position;
-import listchooser.RandomListChooser;
 
 /*
  * This class is used to build a farm on a tile

@@ -5,10 +5,10 @@ import java.util.HashMap;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.util.Position;
-import listchooser.RandomListChooser;
 import game.tuile.Ressource;
 import game.tuile.Tuile;
 
