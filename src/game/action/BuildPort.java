@@ -40,13 +40,13 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
-        Tuile tile= this.board.getTile(choosenPosition);
+        Earth tile= (Earth) this.board.getTile(choosenPosition);
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to build the farm");
         }
         this.removeRessources();
         Port port = new Port((Earth) tile, player);
-        tuile.setBuilding(port);
+        tile.setBuilding(port);
         player.addPort(port);
     }
     
