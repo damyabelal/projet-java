@@ -8,7 +8,6 @@ import game.PlayerDemeter;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.Tuile;
 import game.tuile.building.Farm;
 import game.util.Position;
 
