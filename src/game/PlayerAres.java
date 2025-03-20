@@ -169,8 +169,9 @@ public class  PlayerAres extends Player{
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
         
         aresActions.add(new BuildPort<PlayerAres>(null, board));
-        aresActions.add(new BuyWarriors<PlayerAres>(this));
-        aresActions.add(new ExchangeRessources <PlayerAres>(null, null));
+        aresActions.add(new BuyWarriors(this));
+        aresActions.add(new ExchangeRessources <PlayerAres>(this));
+
 
         /// on ajoute les actions possibles pour le joueur Ares 
         aresActions.add (new BuildArmy(board, this));

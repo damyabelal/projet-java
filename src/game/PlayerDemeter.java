@@ -22,7 +22,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private ListChooser<Action<PlayerAres>> lc;
+    private ListChooser<Action<PlayerDemeter>> lc;
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -168,7 +168,7 @@ public class PlayerDemeter extends Player{
         actionsDemeter.add(new UpgradeFarm(this));
         
         
-        actionsDemeter.add(new ExchangeRessourcesPort());
+        actionsDemeter.add(new ExchangeRessourcesPort(this));
 
         
         actionsDemeter.add(new PlayThief(null, null));
