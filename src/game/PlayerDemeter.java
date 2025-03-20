@@ -6,12 +6,13 @@ import java.util.List;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
-import listchooser.ListChooser;
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
 import game.action.PlayThief;
 import game.action.UpgradeFarm;
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Exploitation;
 
@@ -21,7 +22,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+    private ListChooser<Action<PlayerAres>> lc;
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -34,6 +35,7 @@ public class PlayerDemeter extends Player{
             this.nbThief = 0; 
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
+            lc= new InteractiveListChooser<>(); 
            
 
     }

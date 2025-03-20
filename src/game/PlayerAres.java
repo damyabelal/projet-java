@@ -1,14 +1,11 @@
-    package game;
+package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import game.action.Action;
-<<<<<<< HEAD
-=======
 
->>>>>>> f232939 (ajout dans  PlayThief.)
 import game.action.BuildArmy;
 import game.action.BuildPort;
 import game.action.BuySecretWeapon;
@@ -17,7 +14,8 @@ import game.action.ExchangeRessources;
 import game.action.UpgradeArmy;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-import listchooser.ListChooser;
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
 
 
 public class  PlayerAres extends Player{
@@ -27,7 +25,7 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         private List<Army> armies;
         private List<Camp> camps;
-        private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+        private ListChooser<Action<PlayerAres>> lc; 
 
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
@@ -37,6 +35,7 @@ public class  PlayerAres extends Player{
                 this.secretWeapon=0;
                 this.armies = new ArrayList<>();
                 this.camps = new ArrayList<>();
+                lc= new InteractiveListChooser<Action<PlayerAres>>(); 
     }
     /** 
      * adds warriors to the army of this player

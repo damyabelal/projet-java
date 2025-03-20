@@ -2,25 +2,30 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.listchooser.ListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.building.Army;
 import java.util.List;
 import game.CantBuildException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
-import listchooser.ListChooser;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
     public static ListChooser<Army> lc;
+    public static ListChooser<String> lString; 
+    public static ListChooser<Integer> lnumb; 
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        lc = new ListChooser<>();
+        lc = new RandomListChooser<>();
+        lString = new RandomListChooser<>();
+        lnumb= new RandomListChooser<>(); 
     }
 
     /**
@@ -36,8 +41,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        ListChooser<String> methodChooser = new ListChooser<>();
-        return methodChooser.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        return lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
     }
 
     @Override
@@ -63,7 +67,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             if (chosenArmy.getNbWarriors() != 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
-            int add = lc.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+            int add = lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
             chosenArmy.addWarriors(add);
 
         } else {
