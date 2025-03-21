@@ -7,12 +7,14 @@ import java.util.List;
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
 import game.action.PlayThief;
 import game.action.UpgradeFarm;
 import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 
 public class PlayerDemeter extends Player{
@@ -21,7 +23,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+    private ListChooser<Action<PlayerDemeter>> lc = new RandomListChooser<>();
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -132,7 +134,7 @@ public class PlayerDemeter extends Player{
      * @throws IOException
      */
     public void act(Board board) throws IOException {
-        
+        ListChooser<Action<PlayerDemeter>> lc = new listchooser.RandomListChooser<>();
         List<Action<PlayerDemeter>> demeterActions = actionsPlayer(board);
         Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", demeterActions);
 
@@ -166,7 +168,7 @@ public class PlayerDemeter extends Player{
         actionsDemeter.add(new UpgradeFarm(this));
         
         
-        actionsDemeter.add(new ExchangeRessourcesPort(null, null));
+        actionsDemeter.add(new ExchangeRessourcesPort((Ressource) null,(Ressource) null));
 
         
         actionsDemeter.add(new PlayThief(null, null));
