@@ -6,11 +6,6 @@ import java.util.List;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
-<<<<<<< HEAD
-import listchooser.ListChooser;
-import listchooser.RandomListChooser;
-=======
->>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
@@ -28,11 +23,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-<<<<<<< HEAD
-    private ListChooser<Action<PlayerDemeter>> lc = new RandomListChooser<>();
-=======
     private ListChooser<Action<PlayerDemeter>> lc;
->>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -144,7 +135,7 @@ public class PlayerDemeter extends Player{
      * @throws IOException
      */
     public void act(Board board) throws IOException {
-        ListChooser<Action<PlayerDemeter>> lc = new listchooser.RandomListChooser<>();
+        
         List<Action<PlayerDemeter>> demeterActions = actionsPlayer(board);
         Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", demeterActions);
 
@@ -178,11 +169,7 @@ public class PlayerDemeter extends Player{
         actionsDemeter.add(new UpgradeFarm(this));
         
         
-<<<<<<< HEAD
-        actionsDemeter.add(new ExchangeRessourcesPort((Ressource) null,(Ressource) null));
-=======
         actionsDemeter.add(new ExchangeRessourcesPort(this));
->>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
         
         actionsDemeter.add(new PlayThief(null, null));
