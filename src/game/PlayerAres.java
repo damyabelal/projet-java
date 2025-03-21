@@ -63,7 +63,7 @@ public class  PlayerAres extends Player{
     /** returns the number of warriors of this player 
      *@return number of warriors belonging to this player
      */
-    public Integer getWarriors(){
+    public int getWarriors(){
         return this.warriors;
     }
     
