@@ -24,7 +24,7 @@ public class Livrable3ares {
         board.display();
 
 
-        PlayerAres ares = new PlayerAres("ares");
+        PlayerAres ares = new PlayerAres("ares",board);
 
         ares.addRessource(Ressource.WOOD, 10);
         ares.addRessource(Ressource.ORE, 10);

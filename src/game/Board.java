@@ -545,6 +545,29 @@ public void displayBuildings() {
 
 
     }
+    
+    /**
+     * Retrieves a random buildable tile from the board.
+     * A buildable tile is an instance of Earth that does not have a building on it.
+     * 
+     * @return a random Earth object that is buildable, or null if no buildable tiles are available.
+     */
+    public Earth getRandomBuildableTile(){
+        Random random = new Random();
+        List<Earth> buildableEarths = new ArrayList<>();
+
+        for (List<Earth> island : this.islands ){
+            for(Earth tile : island){
+                if(!tile.haveBuild()){
+                    buildableEarths.add(tile);
+                }
+            }
+        }
+        if (!buildableEarths.isEmpty()){
+            return buildableEarths.get(random.nextInt(buildableEarths.size()));
+        }
+        return null;
+    }
 
 
 
