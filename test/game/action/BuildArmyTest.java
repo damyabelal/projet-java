@@ -58,25 +58,26 @@ public class BuildArmyTest{
         foret2=new Forest();
         foret3=new Forest();
         sea= new Sea();
-        // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
-        camp1=new Camp(foret1,6,player);
-        camp2=new Camp(foret2,6,player);
-        port =new Port(null, player);
         // mise en place d'une ile dans le coin superieure gauche du board
         board.put(foret1,pos1);
         board.put(foret2,pos2);
         board.put(foret3,pos3);
         board.put(sea,pos4);
         
+        // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
+        camp1=new Camp(foret1,6,player);
+        camp2=new Camp(foret2,6,player);
+        // la tuile foret2 est a cote d'une tuile mer donc on peut y placer un port
+        port =new Port(foret2, player);
         
-        actionBuild= new BuildPort(player, board);
-
-
+        
+        
+        
     }
-
+    
     @Test
     void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
-        board.put(farm1,pos1)
+        
         assertTrue(player.getArmies().isEmpty());
         actionBuild.act(player);
         actionBuild.act(player);
