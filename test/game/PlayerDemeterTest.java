@@ -2,30 +2,22 @@ package game;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.action.BuildFarm;
-import game.tuile.Earth;
-import game.tuile.Field;
 import game.tuile.Ressource;
-import game.tuile.building.Farm;
 
 public class PlayerDemeterTest {
 
     private PlayerDemeter player;
-    private Earth earth;
     private Board board; 
 
     @BeforeEach
     // Create a player and a field tile
     void setUp() {
         player = new PlayerDemeter("TestPlayer");
-        earth = new Field();
         board= new Board(5, 5); 
     }
 

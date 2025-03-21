@@ -1,16 +1,8 @@
 package game;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import game.tuile.Earth;
-import game.tuile.Field;
 
 public class PlayerAresTest {
     
