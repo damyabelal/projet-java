@@ -104,10 +104,14 @@ public class Livrable3ares {
 
         }
         //6. échange 3 ressources contre une
+        //par defuat cett action demand a l'utilisateur de choisir les ressource a echanger mais comme 
+        // dans le livrable3 on ne veut pas d'intersection avec l'utilisateur je s
         System.out.println("===> ares échange 3 WOOD contre 1 ORE");
         ExchangeRessources<PlayerAres> exchange = new ExchangeRessources<>(ares);
+        Ressource r1 = Ressource.WOOD;
+        Ressource r2 = Ressource.ORE;
         try {
-            exchange.act(ares, Ressource.WOOD, Ressource.ORE);
+            exchange.act(ares,r1,r2);
         } catch (Exception e) {
             System.out.println("Erreur lors de l'échange : " + e.getMessage());
         }
