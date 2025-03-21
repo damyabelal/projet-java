@@ -35,6 +35,9 @@ public class BuildArmyTest{
     private Port port;
     private Position pos1;
     private Position pos2;
+    private Position pos3;
+    private Position pos4;
+
 
     @BeforeEach
     void setUp(){
@@ -42,9 +45,16 @@ public class BuildArmyTest{
         board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
         action= new BuildArmy(board, player); 
         pos1=new Position(0,0);
+        pos2=new Position(1,0);
+        pos3=new Position(0,1);
+        pos4= new Position(1,1);
+        sea= new Sea();
+        port =new Port(null, player);
+
+        
+        actionBuild= new BuildPort(player, board);
 
 
-        actionBuild= new BuildPort(player, board); 
     }
 
     @Test
