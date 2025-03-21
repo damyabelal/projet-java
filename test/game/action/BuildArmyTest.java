@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 import game.Board;
 import game.CantBuildException;
@@ -23,65 +23,71 @@ import game.util.Position;
 
 public class BuildArmyTest{
     
-    private Board board; 
-    private PlayerAres player; 
-    private Action<PlayerAres> action; 
-    private Action<PlayerAres> actionBuild; 
-    // creation de tuile qui vont servir pour creer une ile de le board parceque comme le board est creer de facon  aleatoire on 
-    //veut etre sur que il y a une ile qui respecte les conditions pour poser une armee sur le plateau
-    private Forest foret1;
-    private Forest foret2;
-    private Forest foret3;
- 
-    private Sea sea;
-    private Port port;
-    private Position pos1;
-    private Position pos2;
-    private Position pos3;
-    private Position pos4;
-
-    private Camp camp1;
-    private Camp camp2;
-
-
-    @BeforeEach
-    void setUp() throws CantBuildException{
-        
-        board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
-        player = new PlayerAres("Ares",board);
-        action= new BuildArmy(board, player); 
-        pos1=new Position(0,0);
-        pos2=new Position(1,0);
-        pos3=new Position(0,1);
-        pos4= new Position(1,1);
-        foret1=new Forest();
-        foret2=new Forest();
-        foret3=new Forest();
-        sea= new Sea();
-        // mise en place d'une ile dans le coin superieure gauche du board
-        board.put(foret1,pos1);
-        board.put(foret2,pos2);
-        board.put(foret3,pos3);
-        board.put(sea,pos4);
-        
-        // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
-        camp1=new Camp(foret1,6,player);
-        camp2=new Camp(foret2,6,player);
-        // la tuile foret2 est a cote d'une tuile mer donc on peut y placer un port
-        port =new Port(foret2, player);
-        
-        
-        
-        
-    }
+       
+        private Board board; 
+        private PlayerAres player; 
+        private Action<PlayerAres> action; 
+        private Action<PlayerAres> actionBuild; 
+        // creation de tuile qui vont servir pour creer une ile de le board parceque comme le board est creer de facon  aleatoire on 
+        //veut etre sur que il y a une ile qui respecte les conditions pour poser une armee sur le plateau
+        private Forest foret1;
+        private Forest foret2;
+        private Forest foret3;
+     
+        private Sea sea;
+        private Port port;
+        private Position pos1;
+        private Position pos2;
+        private Position pos3;
+        private Position pos4;
     
-    @Test
-    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+        private Camp camp1;
+        private Camp camp2;
+    
+    
+        @BeforeEach
+        void setUp() throws CantBuildException{
+            
+            board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
+            player = new PlayerAres("Ares",board);
+            action= new BuildArmy(board, player); 
+            pos1=new Position(0,0);
+            pos2=new Position(1,0);
+            pos3=new Position(0,1);
+            pos4= new Position(1,1);
+            foret1=new Forest();
+            foret2=new Forest();
+            foret3=new Forest();
+            sea= new Sea();
+            // mise en place d'une ile dans le coin superieure gauche du board
+            board.put(foret1,pos1);
+            board.put(foret2,pos2);
+            board.put(foret3,pos3);
+            board.put(sea,pos4);
+            
+            // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
+            camp1=new Camp(foret1,6,player);
+            camp2=new Camp(foret2,6,player);
+            // la tuile foret2 est a cote d'une tuile mer donc on peut y placer un port
+            port =new Port(foret2, player);
+            
+            
+            
+            
+        }
         
-        assertTrue(player.getArmies().isEmpty());
-        actionBuild.act(player);
-        actionBuild.act(player);
-        assertTrue( player.getPorts().size() == 2);
+        @Test
+        void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+            
+            assertTrue(player.getArmies().isEmpty());
+            actionBuild.act(player);
+            //  the player player should have a port in his inventory of ports
+            assertTrue( player.getPorts().size() == 1);
+            // initialising a list that would store both the player's camps
+            ArrayList<Camp> listcamps= new ArrayList<>();
+            listcamps.add(camp1);
+            listcamps.add(camp2);
+            assertTrue(player.getCamps()==listcamps);
         // en fait il faut ajouter dur la meme ile et c'est pas forcément le cas car ici je les
         // pose aléatoirement, je m'en occupe plus tard
         action.act(player);
