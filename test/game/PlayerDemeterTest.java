@@ -9,20 +9,24 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.action.BuildFarm;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Ressource;
+import game.tuile.building.Farm;
 
 public class PlayerDemeterTest {
 
     private PlayerDemeter player;
     private Earth earth;
+    private Board board; 
 
     @BeforeEach
     // Create a player and a field tile
     void setUp() {
         player = new PlayerDemeter("TestPlayer");
         earth = new Field();
+        board= new Board(5, 5); 
     }
 
     // Test the player's initialization
@@ -45,6 +49,20 @@ public class PlayerDemeterTest {
     void thiefTest(){
         player.addThiefs(2);
         assertEquals(player.getNbThief(), 2);
+    }
+
+     @Test
+    void testBuild() throws NoMoreRessourcesException, IOException{
+        BuildFarm buildfarm=new BuildFarm(board, player);
+        // a player trying to build with enough resources should return True
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.ORE, 1);
+        assertTrue(player.getFarms().isEmpty());
+        buildfarm.act(player);
+        assertTrue(! player.getFarms().isEmpty());
+        // after building a farm  using one wood and one ore , the player's ressources should diminish
+        assertTrue(player.getResources().get(Ressource.WOOD)==0);
+        assertTrue(player.getResources().get(Ressource.ORE)==0);
     }
 
     
