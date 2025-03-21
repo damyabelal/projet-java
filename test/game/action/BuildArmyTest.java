@@ -16,6 +16,7 @@ import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Forest;
 import game.tuile.Sea;
+import game.tuile.building.Camp;
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.Position;
@@ -39,9 +40,12 @@ public class BuildArmyTest{
     private Position pos3;
     private Position pos4;
 
+    private Camp camp1;
+    private Camp camp2;
+
 
     @BeforeEach
-    void setUp(){
+    void setUp() throws CantBuildException{
         
         board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
         player = new PlayerAres("Ares",board);
@@ -53,15 +57,17 @@ public class BuildArmyTest{
         foret1=new Forest();
         foret2=new Forest();
         foret3=new Forest();
-       
         sea= new Sea();
+        // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
+        camp1=new Camp(foret1,6,player);
+        camp2=new Camp(foret2,6,player);
         port =new Port(null, player);
         // mise en place d'une ile dans le coin superieure gauche du board
         board.put(foret1,pos1);
         board.put(foret2,pos2);
         board.put(foret3,pos3);
         board.put(sea,pos4);
-
+        
         
         actionBuild= new BuildPort(player, board);
 
