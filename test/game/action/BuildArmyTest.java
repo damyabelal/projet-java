@@ -42,19 +42,26 @@ public class BuildArmyTest{
 
     @BeforeEach
     void setUp(){
-        player = new PlayerAres("Ares");
-
+        
         board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
+        player = new PlayerAres("Ares",board);
         action= new BuildArmy(board, player); 
         pos1=new Position(0,0);
         pos2=new Position(1,0);
         pos3=new Position(0,1);
         pos4= new Position(1,1);
-        farm1=new Farm(board.getTile(pos1),player);
-        farm2=new Farm();
+        foret1=new Forest();
+        foret2=new Forest();
+        foret3=new Forest();
+       
         sea= new Sea();
         port =new Port(null, player);
-        
+        // mise en place d'une ile dans le coin superieure gauche du board
+        board.put(foret1,pos1);
+        board.put(foret2,pos2);
+        board.put(foret3,pos3);
+        board.put(sea,pos4);
+
         
         actionBuild= new BuildPort(player, board);
 
