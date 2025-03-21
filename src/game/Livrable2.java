@@ -23,7 +23,7 @@ public class Livrable2 {
 
     }
    private static void placeBuildings(Board board) throws CantBuildException {
-    PlayerAres ares = new PlayerAres("ares");
+    PlayerAres ares = new PlayerAres("ares",board);
     PlayerDemeter demeter = new PlayerDemeter("demeter");
 
     List<Position> buildableTiles = board.getBuildablePositions();

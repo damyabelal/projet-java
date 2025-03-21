@@ -10,6 +10,11 @@ import game.CantBuildException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
+<<<<<<< HEAD
+import listchooser.ListChooser;
+import listchooser.RandomListChooser;
+=======
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
@@ -24,8 +29,11 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
         lc = new RandomListChooser<>();
+<<<<<<< HEAD
+=======
         lString = new RandomListChooser<>();
         lnumb= new RandomListChooser<>(); 
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
     }
 
     /**
@@ -41,12 +49,18 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
+<<<<<<< HEAD
+        final ListChooser<String> methodChooser = new   RandomListChooser<>();
+        return methodChooser.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+=======
         return lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
     }
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         Army chosenArmy = askArmy();
+        ListChooser<Integer> lc = new RandomListChooser<>();
 
         // ask the player how they want to upgrade
         String method = askUpgradeMethod();

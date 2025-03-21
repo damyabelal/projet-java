@@ -477,7 +477,7 @@ public void displayBuildings() {
      * @param visited a set of Earth tiles that have already been visited
      * @return a list of Earth tiles representing the explored island
      */
-    private  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    public List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -519,7 +519,7 @@ public void displayBuildings() {
      *
      * @return a list of islands, where each island is represented as a list of Earth tiles.
      */
-    private List<List<Earth>> findIslands(){
+    public List<List<Earth>> findIslands(){
         List<List<Earth>> islands = new ArrayList<>();
         Set<Earth> visited = new HashSet<>();
 
@@ -544,6 +544,29 @@ public void displayBuildings() {
         return islands;
 
 
+    }
+    
+    /**
+     * Retrieves a random buildable tile from the board.
+     * A buildable tile is an instance of Earth that does not have a building on it.
+     * 
+     * @return a random Earth object that is buildable, or null if no buildable tiles are available.
+     */
+    public Earth getRandomBuildableTile(){
+        Random random = new Random();
+        List<Earth> buildableEarths = new ArrayList<>();
+
+        for (List<Earth> island : this.islands ){
+            for(Earth tile : island){
+                if(!tile.haveBuild()){
+                    buildableEarths.add(tile);
+                }
+            }
+        }
+        if (!buildableEarths.isEmpty()){
+            return buildableEarths.get(random.nextInt(buildableEarths.size()));
+        }
+        return null;
     }
 
 

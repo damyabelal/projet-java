@@ -14,6 +14,7 @@ import game.action.UpgradeFarm;
 import game.listchooser.InteractiveListChooser;
 import game.listchooser.ListChooser;
 import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 
 public class PlayerDemeter extends Player{
@@ -60,7 +61,7 @@ public class PlayerDemeter extends Player{
      * @param nb int number of points to add
      */
     public void addPoints(int nb){
-        this.points += 1;
+        this.points += nb;
     }
     /**
      * adds a  thief to the  demeter player
@@ -68,7 +69,7 @@ public class PlayerDemeter extends Player{
      */
 
     public void addThiefs(int nb){
-        this.nbThief += 1;
+        this.nbThief += nb ;
     }
 
     /**
