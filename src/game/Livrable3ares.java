@@ -1,10 +1,13 @@
 package game;
 
 import java.util.List;
-
+import game.CantBuildException;
+import game.NoMoreRessourcesException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
+import game.tuile.building.Port;
+import game.action.*;
 
 public class Livrable3ares {
     
@@ -46,38 +49,67 @@ public class Livrable3ares {
          */
 
         // 1. Build an army with 1 warrior
+        System.out.println("===> arres veut construire une armee avec 1 guerrier");
         try {
-            System.out.println("===> arres veut construire une armee avec 1 guerrier");
-            Earth tile1 = board.getRandomBuildableTile();
-            Army army = new Army(tile1, 1, ares);
-            ares.addArmy(army);
-        } catch (Exception e) {
-            System.out.println("An error occurred while building the army: " + e.getMessage());
-            e.printStackTrace();
-        }
+            BuildArmy buildArmyAction = new BuildArmy(board, ares);
+            buildArmyAction.act(ares);
 
+        } catch (CantBuildException e) {
+            System.out.println("An error occurred while building the army: " + e.getMessage());
+           
+        }
         //2. add warriors 
         System.out.println("----> ares ajoute des guerriers jusqu'à 5");
         try {
             List<Army> armies = ares.getArmies();
             if (!armies.isEmpty()) {
             Army army = armies.get(0);
-            army.addWarriors(4);
+            army.addWarriors(5-army.getNbWarriors());
             } else {
             System.out.println("No armies found to add warriors to.");
             }
         } catch (Exception e) {
             System.out.println("An error occurred while adding warriors: " + e.getMessage());
+           
+        }
+        
+
+        //3. upgradeArmy 
+        System.err.println("ares fait évoluer son armée en camp");
+        UpgradeArmy upgradeArmyAction = new UpgradeArmy(ares);
+        try {
+            upgradeArmyAction.act(ares);
+            
+        } catch (Exception e) {
+            System.out.println("An error occurred while upgrading the army to camp: " + e.getMessage());
             e.printStackTrace();
         }
 
-        //3. upgradeArmy 
-        
-
-    }
+        //4. acheter 5 guerriers 
+        System.out.println("----> ares achète 5 guerriers");
+        try {
+            ares.addWarriors(5);
+        } catch (Exception e) {
+            System.out.println("An error occurred while buying warriors: " + e.getMessage());
+            
+        }
     
+        //5. BuildPort
+        System.out.println("----> ares construit un port");
+        BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(ares, board);
+        try {
+            buildPort.act(ares);
+        } catch (CantBuildException e) {
+            System.out.println("An error occurred while buying warriors: " + e.getMessage());
 
+        }
+        //6. échange 3 ressources contre une
+        System.out.println("===> ares échange 3 WOOD contre 1 ORE");
+        ExchangeRessources<PlayerAres> exchange = new ExchangeRessources<>(ares);
+        try {
+            exchange.act(ares, Ressource.WOOD, Ressource.ORE);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'échange : " + e.getMessage());
+        }
+    }
 }
-
-
-
