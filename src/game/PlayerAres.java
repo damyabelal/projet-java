@@ -1,4 +1,4 @@
-    package game;
+package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +14,13 @@ import game.action.ExchangeRessources;
 import game.action.UpgradeArmy;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+<<<<<<< HEAD
 import listchooser.ListChooser;
 import listchooser.RandomListChooser;
+=======
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
 
 public class  PlayerAres extends Player{
@@ -25,10 +30,130 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         private List<Army> armies;
         private List<Camp> camps;
+<<<<<<< HEAD
         private ListChooser<Action<PlayerAres>> lc = new RandomListChooser<>();
         private List<Action<PlayerAres>> actionsAres = new ArrayList<>();
         private Board board;
         
+=======
+        private ListChooser<Action<PlayerAres>> lc; 
+
+        
+        // initialies a new playerares with 30 warriors , a name and zero secret weapons
+        public PlayerAres(String name){
+                super(name );
+                this.warriors=30;
+                this.secretWeapon=0;
+                this.armies = new ArrayList<>();
+                this.camps = new ArrayList<>();
+                lc= new InteractiveListChooser<Action<PlayerAres>>(); 
+    }
+    /** 
+     * adds warriors to the army of this player
+     * @param nb number of warriors to add
+     */
+    public void addWarriors(int nb) {
+        this.warriors += nb;
+    }
+
+    /** 
+     * removes nb  warriors from  this player's army
+     * @param nb number of warriors to remove
+     * @exception NoMoreRessourcesException
+     */
+    public void removeWarriors(int nb) throws NoMoreRessourcesException{
+        if ((this.warriors- nb) <0){
+            throw new NoMoreRessourcesException("you have less than "+nb+" warriors"); 
+        }
+        else{
+            this.warriors -= nb;
+        }
+    }
+
+    /** returns the number of warriors of this player 
+     *@return number of warriors belonging to this player
+     */
+    public Integer getWarriors(){
+        return this.warriors;
+    }
+    
+     /**
+      * returns the number of secret weapons owned by this player
+      * @return int
+      */
+    public  int getNbSecretWeapon(){
+        return this.secretWeapon;
+    }
+    /**
+     * removes an army from the list of armies
+     * @param army
+     */
+    public void removeArmy(Army army){
+        this.armies.remove(army);
+    }
+     
+    /**
+     * adds a secret weapon to this player
+     */
+    public void addSecretWeapon(){
+        this.secretWeapon += 1 ;
+    }
+
+    /**
+     * adds a secret weapon to this player
+     */
+    public void removeSecretWeapon(){
+        this.secretWeapon -= 1 ;
+    }
+
+    /**
+     * returns the list of armies of this player
+     * @return List<Army>
+     */
+    public List<Army> getArmies(){
+        return this.armies;
+    }
+
+    /**
+     * adds an army to the list of armies of this player
+     * @param army
+     */
+    public void addArmy(Army army){
+        this.armies.add(army);
+    }
+
+    /**
+     * returns the list of camps of this player
+     * @return List<Camp>
+     */
+    public List<Camp> getCamps(){
+        return this.camps;
+    }
+
+    /**
+     * adds a camp to the list of camps of this player
+     * @param camp
+     */
+    public void addCamp(Camp camp){
+        this.camps.add(camp);
+    }
+
+
+
+    
+
+    /**
+     * presents the user with a list of actions that the player can do
+     * @param board the game board
+     */
+    public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException{
+        List<Action<PlayerAres>> actions = actionsPlayer(board);
+        Action<PlayerAres> action = lc.choose("Choose an action", actions);
+       
+        if(action != null){
+            try{
+                action.act(this);
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
                 
                 // initialies a new playerares with 30 warriors , a name and zero secret weapons
                 public PlayerAres(String name , Board board){
@@ -47,6 +172,7 @@ public class  PlayerAres extends Player{
                 this.warriors += nb;
             }
         
+<<<<<<< HEAD
             /** 
              * removes nb  warriors from  this player's army
              * @param nb number of warriors to remove
@@ -176,6 +302,15 @@ public class  PlayerAres extends Player{
         
                 /// on ajoute les actions possibles pour le joueur Ares 
                 aresActions.add (new BuildArmy(this.board, this));
+=======
+        aresActions.add(new BuildPort<PlayerAres>(null, board));
+        aresActions.add(new BuyWarriors(this));
+        aresActions.add(new ExchangeRessources <PlayerAres>(this));
+
+
+        /// on ajoute les actions possibles pour le joueur Ares 
+        aresActions.add (new BuildArmy(board, this));
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
         // verifier si le joueur a des armées 
 
         aresActions.add(new UpgradeArmy(this));  

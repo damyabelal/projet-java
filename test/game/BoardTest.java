@@ -1,5 +1,10 @@
-package game.tuile;
-import game.Board;
+package game;
+import game.tuile.Earth;
+import game.tuile.Field;
+import game.tuile.Forest;
+import game.tuile.Mountain;
+import game.tuile.Sea;
+import game.tuile.Tuile;
 import game.tuile.building.Port;
 import game.util.*;
 

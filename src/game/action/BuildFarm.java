@@ -5,12 +5,11 @@ import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.Tuile;
 import game.tuile.building.Farm;
 import game.util.Position;
-import listchooser.RandomListChooser;
 
 /*
  * This class is used to build a farm on a tile
@@ -18,7 +17,6 @@ import listchooser.RandomListChooser;
  */
 public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    private Earth tuile;
     private Board board; 
     public static RandomListChooser<Position> lc;
 
@@ -42,7 +40,7 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
     */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
-        Tuile tile= this.board.getTile(choosenPosition); 
+        Earth tile= (Earth) this.board.getTile(choosenPosition); 
         //check if player has enough ressources to buy a farm
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to build the farm");
@@ -53,7 +51,7 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
         // we build the farm on the tile he wants
         Farm farm = new Farm((Earth) tile, player);
         // we set the farm on the tile
-        tuile.setBuilding(farm);
+        tile.setBuilding(farm);
         // we add the tile to the player's tile list
         player.addFarm(farm);
     }

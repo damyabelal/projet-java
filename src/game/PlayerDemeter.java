@@ -6,13 +6,18 @@ import java.util.List;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+<<<<<<< HEAD
 import listchooser.ListChooser;
 import listchooser.RandomListChooser;
+=======
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
 import game.action.PlayThief;
 import game.action.UpgradeFarm;
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
@@ -23,7 +28,11 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
+<<<<<<< HEAD
     private ListChooser<Action<PlayerDemeter>> lc = new RandomListChooser<>();
+=======
+    private ListChooser<Action<PlayerDemeter>> lc;
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -36,6 +45,7 @@ public class PlayerDemeter extends Player{
             this.nbThief = 0; 
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
+            lc= new InteractiveListChooser<>(); 
            
 
     }
@@ -60,7 +70,7 @@ public class PlayerDemeter extends Player{
      * @param nb int number of points to add
      */
     public void addPoints(int nb){
-        this.points += 1;
+        this.points += nb;
     }
     /**
      * adds a  thief to the  demeter player
@@ -68,7 +78,7 @@ public class PlayerDemeter extends Player{
      */
 
     public void addThiefs(int nb){
-        this.nbThief += 1;
+        this.nbThief += nb ;
     }
 
     /**
@@ -168,7 +178,11 @@ public class PlayerDemeter extends Player{
         actionsDemeter.add(new UpgradeFarm(this));
         
         
+<<<<<<< HEAD
         actionsDemeter.add(new ExchangeRessourcesPort((Ressource) null,(Ressource) null));
+=======
+        actionsDemeter.add(new ExchangeRessourcesPort(this));
+>>>>>>> 76a233f8ecf1b06fe069cfd6aa07cd432d2dfba5
 
         
         actionsDemeter.add(new PlayThief(null, null));

@@ -5,12 +5,11 @@ import java.util.HashMap;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Port;
 import game.util.Position;
-import listchooser.RandomListChooser;
 import game.tuile.Ressource;
-import game.tuile.Tuile;
 
 /*
  * 
@@ -19,7 +18,6 @@ import game.tuile.Tuile;
  */
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
-    private Earth tuile;// the tile that we will place the port on
     protected HashMap<Ressource,Integer> cost;
     private Board board; 
     public static RandomListChooser<Position> lc;
@@ -40,13 +38,13 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
-        Tuile tile= this.board.getTile(choosenPosition);
+        Earth tile= (Earth) this.board.getTile(choosenPosition);
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to build the farm");
         }
         this.removeRessources();
         Port port = new Port((Earth) tile, player);
-        tuile.setBuilding(port);
+        tile.setBuilding(port);
         player.addPort(port);
     }
     
