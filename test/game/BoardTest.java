@@ -1,5 +1,4 @@
 package game;
-import game.Board;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Forest;
