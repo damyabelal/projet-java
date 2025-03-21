@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.action.Action;
-<<<<<<< HEAD
-=======
 
->>>>>>> f232939 (ajout dans  PlayThief.)
 import game.action.BuildArmy;
 import game.action.BuildPort;
 import game.action.BuySecretWeapon;
@@ -18,6 +15,7 @@ import game.action.UpgradeArmy;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import listchooser.ListChooser;
+import listchooser.RandomListChooser;
 
 
 public class  PlayerAres extends Player{
@@ -27,16 +25,18 @@ public class  PlayerAres extends Player{
         private int secretWeapon;
         private List<Army> armies;
         private List<Camp> camps;
-        private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+        private ListChooser<Action<PlayerAres>> lc = new RandomListChooser<>();
+        private List<Action<PlayerAres>> actionsAres = new ArrayList<>();
 
         
         // initialies a new playerares with 30 warriors , a name and zero secret weapons
-        public PlayerAres(String name){
-                super(name );
+        public PlayerAres(String name , Board board){
+                super(name,board);
                 this.warriors=30;
                 this.secretWeapon=0;
                 this.armies = new ArrayList<>();
                 this.camps = new ArrayList<>();
+                this.actionsAres = this.actionsPlayer();
     }
     /** 
      * adds warriors to the army of this player
@@ -137,7 +137,7 @@ public class  PlayerAres extends Player{
      * @param board the game board
      */
     public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException{
-        List<Action<PlayerAres>> actions = actionsPlayer(board);
+        List<Action<PlayerAres>> actions = actionsPlayer();
         Action<PlayerAres> action = lc.choose("Choose an action", actions);
        
         if(action != null){
@@ -166,22 +166,23 @@ public class  PlayerAres extends Player{
      * @param board
      * @return List<Action<PlayerAres>>
      */
-    private List<Action<PlayerAres>> actionsPlayer(Board board){
+    private List<Action<PlayerAres>> actionsPlayer(){
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
         
-        aresActions.add(new BuildPort<PlayerAres>(null, board));
+        aresActions.add(new BuildPort<PlayerAres>(this, this.board));
         aresActions.add(new BuyWarriors<PlayerAres>(this));
         aresActions.add(new ExchangeRessources <PlayerAres>(null, null));
 
         /// on ajoute les actions possibles pour le joueur Ares 
-        aresActions.add (new BuildArmy(board, this));
+        aresActions.add (new BuildArmy(this.board, this));
         // verifier si le joueur a des armées 
 
         aresActions.add(new UpgradeArmy(this));  
         
         // il faut qu'on parle de la manière de créer la liste d'ennemies..... 
         //actions.add(new AttackNeighboor());
-        aresActions.add(new BuySecretWeapon(null));
+        aresActions.add(new BuySecretWeapon(this));
+        
         // est ce que le joueur a suffisamment de ressources pour acheter des guerriers !!!!? 
         
         
