@@ -1,4 +1,4 @@
-package listchooser;
+package game.listchooser;
 
 import java.util.List;
 

@@ -493,11 +493,28 @@ liste des réflexions et choses à modifier du livrable 2:
 ## Semaine 9
 
 ### Ce qui a été réalisé
+- Réalisation de la classe RandomListChooser.java et implementation de celle-ci dans les actions : Par exemple dans BuildArmy on utilise celle-ci pour choisir une tuile aleatoirement pour construis l'armée car la saisie au clavier n'est pas autorisé pour le livrable 3
+
+- Début de création des fichiers tests 
+
+- Modification de PlayerAres et PlayerDemeter : ajout des methodes qui permettent de contruire la liste des actions pour chaque player et utilisation de celle-ci dans le constructeur
+
+- Mise à jour de l'UML 
 
 ### Difficultés rencontrées
 
+- Résolution de problèmes liées a ListChooser par rapport au typage
+
 ### Objectifs pour la semaine
 
+- Finalisation d'écriture des fichiers tests 
+- Finalisation d'écriture des livrables : Livrable3ares, Livrable3demeter 
+- Completion de la documentation 
+- Debut d'écriture du fichier readme pour le livrable3
+
+
+
+![ l'uml ACRTION ](/index/uml_semaine9.png "UML Action ")
 ## Semaine 10
 
 ### Ce qui a été réalisé

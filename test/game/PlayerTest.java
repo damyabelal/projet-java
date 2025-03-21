@@ -1,0 +1,70 @@
+package game;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import game.tuile.Earth;
+import game.tuile.Field;
+import game.tuile.Ressource;
+import game.tuile.building.Exploitation;
+import game.tuile.building.Farm;
+
+
+
+
+public class PlayerTest {
+    private Player player;
+    private Earth earth;
+
+    @BeforeEach
+    // Create a player and a field tile
+    void setUp() {
+        player = new Player("TestPlayer");
+        earth = new Field();
+    }
+
+    // Test the player's initialization
+    @Test
+    void testPlayerInit() {
+        assertEquals("TestPlayer", player.getName());
+        assertEquals(0, player.getResources().get(Ressource.WOOD));// puisque la tuile est une field 
+
+    }
+    // test the player adding warriors
+    
+    
+    // test the player adding resources
+    @Test
+    void testPlayerAddResources() {
+        player.addRessource(Ressource.WOOD, 10);
+        assertEquals(10, player.getResources().get(Ressource.WOOD));
+    }
+
+    // test the player removing resources
+    @Test
+    void testPlayerRemoveResources()  throws NoMoreRessourcesException{
+        player.addRessource(Ressource.WOOD, 10);
+        player.removeRessource(Ressource.WOOD, 5);
+        assertEquals(5, player.getResources().get(Ressource.WOOD));
+    }
+    // test the player has enough resources
+    @Test
+    void testHasEnoughRessources(){
+        player.addRessource(Ressource.WOOD, 2);
+        player.addRessource(Ressource.ORE, 1);
+        Farm farm = new Farm(earth, null);
+        assertTrue(player.hasEnoughRessources(farm));
+    }
+    // test the player does not have enough resources
+    @Test
+    void testHasEnoughRessourcesFail(){
+        player.addRessource(Ressource.WOOD, 2);
+        player.addRessource(Ressource.ORE, 1);
+        Exploitation exploitation = new Exploitation(earth, null);
+        assertFalse(player.hasEnoughRessources(exploitation));
+    }
+
+
+}

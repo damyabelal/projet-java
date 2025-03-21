@@ -468,13 +468,16 @@ public void displayBuildings() {
 
     
     
+   
     /**
-     * 
-     * @param Start
-     * @param visited
-     * @return
+     * Explores an island starting from a given Earth tile and returns a list of all connected Earth tiles.
+     * This method uses a breadth-first search (BFS) algorithm to traverse the island.
+     *
+     * @param Start the starting Earth tile from which the exploration begins
+     * @param visited a set of Earth tiles that have already been visited
+     * @return a list of Earth tiles representing the explored island
      */
-    public  List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
+    public List<Earth> exploreIsland(Earth Start  , Set<Earth> visited){
 
         List<Earth> island = new ArrayList<>();
         Queue<Earth> queue = new LinkedList<>();
@@ -505,10 +508,16 @@ public void displayBuildings() {
 
     } 
 
+
+
+    
     /**
-     * 
-     * @param board
-     * @return
+     * Finds and returns a list of islands on the board. An island is defined as a 
+     * contiguous group of Earth tiles. This method iterates through all the tiles 
+     * on the board, and for each Earth tile that has not been visited, it explores 
+     * the island starting from that tile and adds it to the list of islands.
+     *
+     * @return a list of islands, where each island is represented as a list of Earth tiles.
      */
     public List<List<Earth>> findIslands(){
         List<List<Earth>> islands = new ArrayList<>();
@@ -535,6 +544,29 @@ public void displayBuildings() {
         return islands;
 
 
+    }
+    
+    /**
+     * Retrieves a random buildable tile from the board.
+     * A buildable tile is an instance of Earth that does not have a building on it.
+     * 
+     * @return a random Earth object that is buildable, or null if no buildable tiles are available.
+     */
+    public Earth getRandomBuildableTile(){
+        Random random = new Random();
+        List<Earth> buildableEarths = new ArrayList<>();
+
+        for (List<Earth> island : this.islands ){
+            for(Earth tile : island){
+                if(!tile.haveBuild()){
+                    buildableEarths.add(tile);
+                }
+            }
+        }
+        if (!buildableEarths.isEmpty()){
+            return buildableEarths.get(random.nextInt(buildableEarths.size()));
+        }
+        return null;
     }
 
 

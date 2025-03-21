@@ -6,13 +6,15 @@ import java.util.List;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
-import listchooser.ListChooser;
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
 import game.action.PlayThief;
 import game.action.UpgradeFarm;
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 
 public class PlayerDemeter extends Player{
@@ -21,7 +23,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private ListChooser<Action<PlayerAres>> lc = new ListChooser<>();
+    private ListChooser<Action<PlayerDemeter>> lc;
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -34,6 +36,7 @@ public class PlayerDemeter extends Player{
             this.nbThief = 0; 
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
+            lc= new InteractiveListChooser<>(); 
            
 
     }
@@ -58,7 +61,7 @@ public class PlayerDemeter extends Player{
      * @param nb int number of points to add
      */
     public void addPoints(int nb){
-        this.points += 1;
+        this.points += nb;
     }
     /**
      * adds a  thief to the  demeter player
@@ -66,7 +69,7 @@ public class PlayerDemeter extends Player{
      */
 
     public void addThiefs(int nb){
-        this.nbThief += 1;
+        this.nbThief += nb ;
     }
 
     /**
@@ -95,7 +98,6 @@ public class PlayerDemeter extends Player{
 
 
     /**
-<<<<<<< HEAD
      * check if the demeter player has a port in his tiles
      * @return boolean true if the demeter player has a port in his tiles
      */
@@ -112,9 +114,6 @@ public class PlayerDemeter extends Player{
 
     /**
      * get the exploitations of the demeter player
-=======
-     * gets the exploitations of the demeter player
->>>>>>> 5747f6542e8d625334729cab373f54a29a3f228b
      * @return List<Exploitation> the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
@@ -161,26 +160,22 @@ public class PlayerDemeter extends Player{
      * @param board
      * @return List<Action<PlayerDemeter>> the list of actions that the demeter player can do
      */
-    public List<Action<PlayerDemeter>> actionsPlayer(Board board){
-        List<Action<PlayerDemeter>> actions = new ArrayList<>();
+    private List<Action<PlayerDemeter>> actionsPlayer(Board board){
+        List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
+
+        actionsDemeter.add(new BuildFarm(board, this));
+
         
-        actions.add(new BuildFarm(board, this));
+        actionsDemeter.add(new UpgradeFarm(this));
+        
+        
+        actionsDemeter.add(new ExchangeRessourcesPort(this));
 
-        if(!this.farms.isEmpty()){
-            actions.add(new UpgradeFarm(this));
-        }
-        if (this.hasPort()){
-            actions.add(new ExchangeRessourcesPort(null, null));
+        
+        actionsDemeter.add(new PlayThief(null, null));
+        
 
-        }
-
-        actions.add(new PlayThief(null, null));
-
-        if(this.nbThief > 0){
-            actions.add(new PlayThief(null, null));
-        }
-
-        return actions;
+        return actionsDemeter;
     }
 
 

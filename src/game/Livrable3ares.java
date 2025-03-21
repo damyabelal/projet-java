@@ -1,12 +1,19 @@
 package game;
 
+import java.util.List;
+import game.CantBuildException;
+import game.NoMoreRessourcesException;
+import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.tuile.building.Army;
+import game.tuile.building.Port;
+import game.action.*;
 
 public class Livrable3ares {
     
     public static void main(String[] args) {
         if (args.length < 2) {
-            System.out.println("you have to give two positive setting");
+            System.out.println("You have to give two positive settings.");
             return;
         }
         int width = Integer.parseInt(args[0]);
@@ -24,26 +31,89 @@ public class Livrable3ares {
         board.display();
 
 
-        PlayerAres ares = new PlayerAres("ares");
+        PlayerAres ares = new PlayerAres("ares",board);
 
-        ares.getResources().put(Ressource.WOOD, 10);
-        ares.getResources().put(Ressource.ORE, 10);
-        ares.getResources().put(Ressource.WEALTH, 10);
-        ares.getResources().put(Ressource.SHEEP, 10);
+        ares.addRessource(Ressource.WOOD, 10);
+        ares.addRessource(Ressource.ORE, 10);
+        ares.addRessource(Ressource.WEALTH, 10);
+        ares.addRessource(Ressource.SHEEP, 10);
 
         /*
-   - construit une armée avec 1 guerrier
-   - ajoute des guerriers à son armée pour arriver à 5
-   - fait évoluer son armée en un camp
-   - achète 5 guerriers
-   - construit un port
-   - échange 3 ressources contre une
-   - achète une arme secrète
+        1- construit une armée avec 1 guerrier
+        2- ajoute des guerriers à son armée pour arriver à 5
+        3- fait évoluer son armée en un camp
+        4- achète 5 guerriers
+        5- construit un port
+        6- échange 3 ressources contre une
+        7- achète une arme secrète
          */
-    }
+
+        // 1. Build an army with 1 warrior
+        System.out.println("===> arres veut construire une armee avec 1 guerrier");
+        try {
+            BuildArmy buildArmyAction = new BuildArmy(board, ares);
+            buildArmyAction.act(ares);
+
+        } catch (CantBuildException e) {
+            System.out.println("An error occurred while building the army: " + e.getMessage());
+           
+        }
+        //2. add warriors 
+        System.out.println("----> ares ajoute des guerriers jusqu'à 5");
+        try {
+            List<Army> armies = ares.getArmies();
+            if (!armies.isEmpty()) {
+            Army army = armies.get(0);
+            army.addWarriors(5-army.getNbWarriors());
+            } else {
+            System.out.println("No armies found to add warriors to.");
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while adding warriors: " + e.getMessage());
+           
+        }
+        
+
+        //3. upgradeArmy 
+        System.err.println("ares fait évoluer son armée en camp");
+        UpgradeArmy upgradeArmyAction = new UpgradeArmy(ares);
+        try {
+            upgradeArmyAction.act(ares);
+            
+        } catch (Exception e) {
+            System.out.println("An error occurred while upgrading the army to camp: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        //4. acheter 5 guerriers 
+        System.out.println("----> ares achète 5 guerriers");
+        try {
+            ares.addWarriors(5);
+        } catch (Exception e) {
+            System.out.println("An error occurred while buying warriors: " + e.getMessage());
+            
+        }
     
+        //5. BuildPort
+        System.out.println("----> ares construit un port");
+        BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(ares, board);
+        try {
+            buildPort.act(ares);
+        } catch (CantBuildException e) {
+            System.out.println("An error occurred while buying warriors: " + e.getMessage());
 
+        }
+        //6. échange 3 ressources contre une
+        //par defuat cett action demand a l'utilisateur de choisir les ressource a echanger mais comme 
+        // dans le livrable3 on ne veut pas d'intersection avec l'utilisateur je s
+        System.out.println("===> ares échange 3 WOOD contre 1 ORE");
+        ExchangeRessources<PlayerAres> exchange = new ExchangeRessources<>(ares);
+        Ressource r1 = Ressource.WOOD;
+        Ressource r2 = Ressource.ORE;
+        try {
+            exchange.act(ares,r1,r2);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'échange : " + e.getMessage());
+        }
+    }
 }
-
-
-

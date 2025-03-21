@@ -17,8 +17,6 @@ class CampTest{
 
  @BeforeEach
  void setUp() throws CantBuildException{
- 
-  
   tuile = new Field();
   camp = new Camp(tuile ,8, null);
 

@@ -25,10 +25,10 @@ public class Livrable3demeter {
 
         PlayerDemeter demeter = new PlayerDemeter("demeter");
 
-        demeter.getResources().put(Ressource.WOOD, 10);
-        demeter.getResources().put(Ressource.ORE, 10);
-        demeter.getResources().put(Ressource.WEALTH, 10);
-        demeter.getResources().put(Ressource.SHEEP, 10);
+        demeter.addRessource(Ressource.WOOD, 10);
+        demeter.addRessource(Ressource.ORE, 10);
+        demeter.addRessource(Ressource.WEALTH, 10);
+        demeter.addRessource(Ressource.SHEEP, 10);
 
         /*
     - construit une ferme

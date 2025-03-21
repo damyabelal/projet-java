@@ -2,15 +2,15 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
-import listchooser.ListChooser;
 
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    private static ListChooser<Farm> lc;
+    private static RandomListChooser<Farm> lc;
     private Earth tuile;
 
     public UpgradeFarm(PlayerDemeter player) {
@@ -19,7 +19,7 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
 
-        lc = new ListChooser<>();
+        lc = new RandomListChooser<>();
     }
 
     public Farm ask() {
