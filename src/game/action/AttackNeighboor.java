@@ -6,11 +6,15 @@ import java.util.Random;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
+import game.tuile.Earth;
+import game.tuile.building.Army;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
     public RandomListChooser<PlayerAres> lc;
     public List<PlayerAres> enemies;
+    public Earth tile;
+   
     
         /**
          * constructor of AttackNeighboor
@@ -27,7 +31,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          * ask the player which neighboor he wants to attack
          * @return the player who is going to be attack
          */
-        public PlayerAres askNeighboor() {
+        public PlayerAres askNeighbor() {
             if (this.enemies.isEmpty()) {
                 System.out.println("No enemies available to attack.");
                 return null;
@@ -75,7 +79,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException {
-        PlayerAres ennemy= askNeighboor();
+        PlayerAres ennemy= askNeighbor();
         // la somme des dés de chaque joueur
         System.out.println(player.getName() + " VS " + ennemy.getName());
         Integer ennemyRes= dicesResult(howMuchDice(ennemy));
@@ -89,7 +93,17 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         }
         //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
         // mon code est confus et à revoir 
-        loser.removeWarriors(1);
-    }
+
+        if (loser.getWarriors()>=1){
+            
+          loser.removeWarriors(1);
+        }
+        else if (loser.getArmies().size()>=1){
+            List<Army> listarmies=loser.getArmies();
+            loser.removeArmy(listarmies.get(0));
+
+        }
     
+    
+}
 }
