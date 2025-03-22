@@ -48,8 +48,8 @@ public class Livrable3ares {
 
         // 1. Build an army with 1 warrior
         System.out.println("===> arres veut construire une armee avec 1 guerrier");
+        BuildArmy buildArmyAction = new BuildArmy(board, ares);
         try {
-            BuildArmy buildArmyAction = new BuildArmy(board, ares);
             buildArmyAction.act(ares);
 
         } catch (Exception e) {
@@ -57,6 +57,7 @@ public class Livrable3ares {
            
         } 
 
+        board.display();
 
         //2. add warriors 
         System.out.println("----> ares ajoute des guerriers jusqu'à 5");
@@ -73,9 +74,10 @@ public class Livrable3ares {
            
         }
         
+        board.display();
 
         //3. upgradeArmy 
-        System.err.println("ares fait évoluer son armée en camp");
+        System.out.println("ares fait évoluer son armée en camp");
         UpgradeArmy upgradeArmyAction = new UpgradeArmy(ares);
         try {
             upgradeArmyAction.act(ares);
@@ -85,7 +87,7 @@ public class Livrable3ares {
             e.printStackTrace();
         }
 
-
+        board.display();
 
         //4. acheter 5 guerriers 
         System.out.println("----> ares achète 5 guerriers");
@@ -95,6 +97,8 @@ public class Livrable3ares {
             System.out.println("An error occurred while buying warriors: " + e.getMessage());
             
         }
+
+        board.display();
     
         //5. BuildPort
         System.out.println("----> ares construit un port");
@@ -106,7 +110,7 @@ public class Livrable3ares {
 
         } 
 
-
+        board.display();
 
         //6. échange 3 ressources contre une
         System.out.println("===> ares échange 3 WOOD contre 1 ORE");
@@ -117,7 +121,7 @@ public class Livrable3ares {
             System.out.println("Erreur lors de l'échange : " + e.getMessage());
         }
 
-
+        board.display();
 
         //7. achète une arme secrète
         BuySecretWeapon buy = new BuySecretWeapon(ares);
@@ -126,5 +130,7 @@ public class Livrable3ares {
         } catch (Exception e) {
             System.out.println("Erreur lors de l'achat : " + e.getMessage());
         }
+
+        board.display();
     }
 }
