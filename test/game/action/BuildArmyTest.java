@@ -49,7 +49,7 @@ public class BuildArmyTest{
         void setUp() throws CantBuildException{
             
             board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
-            player = new PlayerAres("Ares",board);
+            player = new PlayerAres("Ares");
             action= new BuildArmy(board, player); 
             pos1=new Position(0,0);
             pos2=new Position(1,0);

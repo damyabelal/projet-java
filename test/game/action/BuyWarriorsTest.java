@@ -19,7 +19,7 @@ public class BuyWarriorsTest{
     @BeforeEach
     void setUp(){
         player = new PlayerAres("cool");
-        action= new BuyWarriors(player); 
+        action = new BuyWarriors<>(player);
     }
 
     @Test

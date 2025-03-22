@@ -11,9 +11,9 @@ import listchooser.RandomListChooser;
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public static RandomListChooser<Army> lc;
-    public static RandomListChooser<String> lString; 
-    public static RandomListChooser<Integer> lnumb; 
+    public RandomListChooser<Army> lc;
+    public RandomListChooser<String> lString; 
+    public RandomListChooser<Integer> lnumb; 
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
@@ -72,10 +72,11 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         this.tuile = chosenArmy.getTuile(); 
 
+        Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors() , player);
+
         this.tuile.removeBuilding();
         player.removeArmy(chosenArmy); 
 
-        Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors(), player);
         this.tuile.setBuilding(camp);
         player.addCamp(camp);
 
