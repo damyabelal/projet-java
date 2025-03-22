@@ -1,13 +1,21 @@
 package game.action;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-import game.Board;
-import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
-import game.tuile.Ressource;
 
 
 public class ExchangeRessourcesTest{
 
+  private PlayerDemeter player1;
+  private PlayerDemeter player2;
+  private ExchangeRessources action;
+  
+
+  void setUp(){
+
+    player1=new PlayerDemeter("jul");
+    player2=new PlayerDemeter("moustafa");
+    action= new ExchangeRessources<>(player1);
+
+
+}
     
 }
