@@ -1,13 +1,11 @@
 package game;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import game.action.*;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-import listchooser.ListChooser;
 import listchooser.RandomListChooser;
 
 
@@ -17,19 +15,18 @@ public class PlayerAres extends Player {
     private int secretWeapon;
     private List<Army> armies;
     private List<Camp> camps;
-    private List<Action<PlayerAres>> actionsAres = new ArrayList<>();
-    private Board board;
-    private RandomListChooser <Action<PlayerDemeter>> lc;
-
-
-    // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
+    private RandomListChooser<Action<PlayerAres>> lc;
+    private List<Action<PlayerAres>> actionsAres;
+    
+    
+        // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
     public PlayerAres(String name) {
         super(name);
         this.warriors = 30;
         this.secretWeapon = 0;
         this.armies = new ArrayList<>();
         this.camps = new ArrayList<>();
-        this.actionsAres = this.actionsPlayer();
+        this.actionsAres = new ArrayList<>();
         lc = new RandomListChooser<>(); 
     }
 
@@ -129,9 +126,10 @@ public class PlayerAres extends Player {
      * @param board the game board
      */
     public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException {
-        List<Action<PlayerAres>> aresActions = actionsPlayer();
-        Action<PlayerAres> action = lc.choose("Choose an action", aresActions);
-
+        if (this.actionsAres.isEmpty()) { 
+            this.actionsAres = actionsPlayer(board);
+        }
+        Action<PlayerAres> action = lc.choose("Choose an action", this.actionsAres);
         if (action != null) {
             try {
                 action.act(this);
@@ -142,23 +140,26 @@ public class PlayerAres extends Player {
             System.out.println("No action chosen");
         }
     }
+    
 
     /**
      * returns a list of actions that the player Ares can do
      * @param board
      * @return List<Action<PlayerAres>>
      */
-    private List<Action<PlayerAres>> actionsPlayer() {
+    private List<Action<PlayerAres>> actionsPlayer(Board board) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
 
-        aresActions.add(new BuildPort<PlayerAres>(this, this.board));
-        aresActions.add(new BuyWarriors<PlayerAres>(this));
+        aresActions.add(new BuildPort<PlayerAres>(this, board));
         aresActions.add(new ExchangeRessources<PlayerAres>(this));
 
         // add possible actions for player Ares
-        aresActions.add(new BuildArmy(this.board, this));
+        aresActions.add(new BuildArmy(board, this));
         aresActions.add(new UpgradeArmy(this));
         aresActions.add(new BuySecretWeapon(this));
+        aresActions.add(new BuyWarriors<PlayerAres>(this));
+        aresActions.add(new DisplayWarriors(this));
+        aresActions.add(new AttackNeighboor(this, null));
 
         return aresActions;
     }

@@ -16,6 +16,8 @@ public class PlayerDemeter extends Player{
     private List<Farm> farms;
     private List<Exploitation> exploitations;
     private RandomListChooser <Action<PlayerDemeter>> lc;
+    private List<Action<PlayerDemeter>> actionsDemeter;
+
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -28,12 +30,12 @@ public class PlayerDemeter extends Player{
             this.nbThief = 0; 
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
+            this.actionsDemeter = new ArrayList<>();
             lc = new RandomListChooser<>(); 
     }
 
     /**
      * gets the number of points that the demeter player has
-     * @param tile
      */
     public int getPoints() {
         return this.points;
@@ -41,7 +43,6 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the number of thief that the demeter player has
-     * @param tile
      */
     public int getNbThief(){
         return this.nbThief;
@@ -123,17 +124,17 @@ public class PlayerDemeter extends Player{
      * @throws IOException
      */
     public void act(Board board) throws IOException {
-        
-        List<Action<PlayerDemeter>> demeterActions = actionsPlayer(board);
-        Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", demeterActions);
-
-        if(demeterAction != null){
-            try{
+        if (this.actionsDemeter.isEmpty()) { 
+            this.actionsDemeter = actionsPlayer(board);
+        }
+        Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", this.actionsDemeter);
+        if (demeterAction != null) {
+            try {
                 demeterAction.act(this);
-            }catch(NoMoreRessourcesException | CantBuildException e){
+            } catch (NoMoreRessourcesException | CantBuildException e) {
                 System.out.println(e.getMessage());
             }
-        }else {
+        } else {
             System.out.println("No action chosen");
         }
     }
@@ -145,9 +146,15 @@ public class PlayerDemeter extends Player{
      */
     private List<Action<PlayerDemeter>> actionsPlayer(Board board){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
-        actionsDemeter.add(new BuildFarm(board, this));
+
+        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board));
+        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this));
+
+        // add possibles actions for player Demeter
         actionsDemeter.add(new UpgradeFarm(this));
         actionsDemeter.add(new ExchangeRessourcesPort(this));
+        actionsDemeter.add(new BuildFarm(board, this));
+        actionsDemeter.add(new BuyThief(this));
         actionsDemeter.add(new PlayThief(null, null));
         return actionsDemeter;
     }
