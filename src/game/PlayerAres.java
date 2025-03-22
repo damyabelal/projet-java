@@ -1,17 +1,10 @@
-    package game;
+package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.action.Action;
-
-import game.action.BuildArmy;
-import game.action.BuildPort;
-import game.action.BuySecretWeapon;
-import game.action.BuyWarriors;
-import game.action.ExchangeRessources;
-import game.action.UpgradeArmy;
+import game.action.*;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import listchooser.ListChooser;
@@ -24,18 +17,20 @@ public class PlayerAres extends Player {
     private int secretWeapon;
     private List<Army> armies;
     private List<Camp> camps;
-    private ListChooser<Action<PlayerAres>> lc = new RandomListChooser<>();
     private List<Action<PlayerAres>> actionsAres = new ArrayList<>();
     private Board board;
+    private RandomListChooser <Action<PlayerDemeter>> lc;
+
 
     // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
-    public PlayerAres(String name, Board board) {
+    public PlayerAres(String name) {
         super(name);
         this.warriors = 30;
         this.secretWeapon = 0;
         this.armies = new ArrayList<>();
         this.camps = new ArrayList<>();
         this.actionsAres = this.actionsPlayer();
+        lc = new RandomListChooser<>(); 
     }
 
     /**
@@ -134,8 +129,8 @@ public class PlayerAres extends Player {
      * @param board the game board
      */
     public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException {
-        List<Action<PlayerAres>> actions = actionsPlayer();
-        Action<PlayerAres> action = lc.choose("Choose an action", actions);
+        List<Action<PlayerAres>> aresActions = actionsPlayer();
+        Action<PlayerAres> action = lc.choose("Choose an action", aresActions);
 
         if (action != null) {
             try {
