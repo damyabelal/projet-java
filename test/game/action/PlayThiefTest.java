@@ -25,6 +25,7 @@ public class PlayThiefTest{
   }  
 
   void StealingARessourceThatTheyDontHaveShouldThrowException() throws NoMoreRessourcesException{
+    actionvoler=new PlayThief(Ressource.WOOD, null);
     assertTrue(player1.getRessourceAmount(Ressource.WOOD)==0);
     assertTrue(player2.getRessourceAmount(Ressource.WOOD)==0);
     assertThrows(NoMoreRessourcesException.class,()->actionvoler.act(player2));
@@ -37,9 +38,21 @@ public class PlayThiefTest{
     actionvoler.act(player2);
     assertTrue(player1.getRessourceAmount(Ressource.WOOD)==0);
     assertTrue(player2.getRessourceAmount(Ressource.WOOD)==2);
+    }
+
+
+  void TheThiefShouldStealTheRessourcesOfEveryPlayer() throws NoMoreRessourcesException{
+    PlayerDemeter player3 = new PlayerDemeter("yann");
+    player1.addRessource(Ressource.WOOD, 4);
+    player3.addRessource(Ressource.WOOD, 3);
+    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==4);
+    assertTrue(player3.getRessourceAmount(Ressource.WOOD)==3);
+    actionvoler.act(player2);
+    assertTrue(player2.getRessourceAmount(Ressource.WOOD)==7);
     
 
-    
+
+
 
   }
 }
