@@ -1,9 +1,7 @@
 package game;
 
 import java.io.IOException;
-import java.util.List;
 import game.tuile.Ressource;
-import game.tuile.building.Army;
 import game.action.*;
 
 public class Livrable3ares {
