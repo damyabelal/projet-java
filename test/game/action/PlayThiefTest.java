@@ -35,7 +35,9 @@ public class PlayThiefTest{
     player1.addRessource(Ressource.WOOD, 2);
     assertTrue(player1.getRessourceAmount(Ressource.WOOD)==2);
     actionvoler.act(player2);
-
+    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==0);
+    assertTrue(player2.getRessourceAmount(Ressource.WOOD)==2);
+    
 
     
 
