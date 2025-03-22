@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import game.Board;
-import game.util.Position;
+import game.util.Position; 
 
 public class RandomListChooser<T> implements ListChooser<T>{
 
