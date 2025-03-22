@@ -6,15 +6,13 @@ import java.util.List;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+import listchooser.InteractiveListChooser; 
 import game.action.Action;
 import game.action.BuildFarm;
 import game.action.ExchangeRessourcesPort;
 import game.action.PlayThief;
 import game.action.UpgradeFarm;
-import game.listchooser.InteractiveListChooser;
-import game.listchooser.ListChooser;
 import game.tuile.Earth;
-import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 
 public class PlayerDemeter extends Player{
@@ -23,7 +21,7 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private ListChooser<Action<PlayerDemeter>> lc;
+    private listchooser.InteractiveListChooser <Action<PlayerDemeter>> lc;
 
     /** 
      * creates a demeter player with a name and number of points and number of thiefs that he has
@@ -37,9 +35,8 @@ public class PlayerDemeter extends Player{
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
             lc= new InteractiveListChooser<>(); 
-           
-
     }
+
     /**
      * gets the number of points that the demeter player has
      * @param tile
@@ -67,7 +64,6 @@ public class PlayerDemeter extends Player{
      * adds a  thief to the  demeter player
      * @param nb int number of thief to add
      */
-
     public void addThiefs(int nb){
         this.nbThief += nb ;
     }
@@ -102,7 +98,6 @@ public class PlayerDemeter extends Player{
      * @return boolean true if the demeter player has a port in his tiles
      */
     public boolean hasPort(){
-
         for(Earth  tile : this.getTiles()){
             if(tile.haveBuild() && tile.getBuilding() instanceof Port){    
                 return true;
@@ -126,7 +121,6 @@ public class PlayerDemeter extends Player{
      */
     public void addExploitation(Exploitation exploitation){
         this.exploitations.add(exploitation);
-
     }
 
     /**
@@ -148,12 +142,7 @@ public class PlayerDemeter extends Player{
         }else {
             System.out.println("No action chosen");
         }
-
-        
     }
-
-
-
 
     /**
      * returns a list of actions that the demeter player can do
@@ -162,24 +151,10 @@ public class PlayerDemeter extends Player{
      */
     private List<Action<PlayerDemeter>> actionsPlayer(Board board){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
-
         actionsDemeter.add(new BuildFarm(board, this));
-
-        
         actionsDemeter.add(new UpgradeFarm(this));
-        
-        
         actionsDemeter.add(new ExchangeRessourcesPort(this));
-
-        
         actionsDemeter.add(new PlayThief(null, null));
-        
-
         return actionsDemeter;
     }
-
-
-        
-
-    
 }
