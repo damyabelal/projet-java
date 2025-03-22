@@ -14,7 +14,6 @@ import java.util.*;
  */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    protected HashMap<Ressource,Integer> cost;
     public static RandomListChooser<Position> lc;
 
    
@@ -26,7 +25,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.ORE,1);
         lc= new RandomListChooser<>(); 
     }
-       
+
     
     public Position askCoordinate() throws IOException {
         return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
@@ -76,12 +75,15 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
     
-        if (!canBuildArmy((Earth) tile, player)) {
-            throw new CantBuildException("conditions not met to build an army here");
-        }
+        //if (!canBuildArmy((Earth) tile, player)) {
+        //    throw new CantBuildException("conditions not met to build an army here");
+        //}
     
         this.removeRessources();
-    
+
+        Army army = new Army((Earth) tile, 1, player);
+        player.addArmy(army);
+    /* 
         try {
 
             Army army = new Army((Earth) tile, 1, player);
@@ -92,6 +94,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             throw new CantBuildException("Can't build an army here");
 
         }
+            */
 
 
     }}

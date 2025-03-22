@@ -33,7 +33,11 @@ public class RandomListChooser<T> implements ListChooser<T>{
 			System.out.print(", " + (index++) + " - " + element);
 		}
 		System.out.println("]");
-		return list.get(random.nextInt(list.size()));
+        int i= random.nextInt(list.size()); 
+        //while (i==0){
+        //    i= random.nextInt(list.size()); 
+        //}
+		return list.get(i);
     }
 
     /**
