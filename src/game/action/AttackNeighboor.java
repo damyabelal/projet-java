@@ -10,16 +10,16 @@ import game.listchooser.RandomListChooser;
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
     public RandomListChooser<PlayerAres> lc;
-    public List<PlayerAres> ennemies;
+    public List<PlayerAres> enemies;
     
         /**
          * constructor of AttackNeighboor
-         * @param player the player who attack
-         * @param ennemies a list of all the neighboor ennemies
+         * @param player the player who wants to attack
+         * @param enemies the list of all the neighboring enemies
          */ 
-        public AttackNeighboor(PlayerAres player, List<PlayerAres> ennemies){
+        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies){
             super(player); 
-            this.ennemies= ennemies;
+            this.enemies= enemies;
             lc= new RandomListChooser<PlayerAres>(); 
         }
     
@@ -28,15 +28,15 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          * @return the player who is going to be attack
          */
         public PlayerAres askNeighboor() {
-            if (this.ennemies.isEmpty()) {
+            if (this.enemies.isEmpty()) {
                 System.out.println("No enemies available to attack.");
                 return null;
             }
-            return lc.choose("Who do you want to attack", this.ennemies);
+            return lc.choose("Who do you want to attack", this.enemies);
         }
         
     /**
-     * return how much dice a player can throw based on the number of warriors he have 
+     * return how many dices a player can throw based on the number of warriors he has 
      * and if he have a secret weapon
      * @param player
      * @return the number of dice
