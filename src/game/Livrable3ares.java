@@ -24,9 +24,9 @@ public class Livrable3ares {
         System.out.println("--------------------");
         System.out.println("--------ARES--------");
         System.out.println("--------------------");
+        System.out.println("\n"); 
 
         Board board = new Board(width, height);
-        board.display();
 
 
         PlayerAres ares = new PlayerAres("ares");
@@ -82,12 +82,14 @@ public class Livrable3ares {
             e.printStackTrace();
         }
 
-        board.display();
         System.out.println("\n"); 
+
+
         //4. acheter 5 guerriers 
         System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  achète 5 guerriers");
+        BuyWarriors<PlayerAres> buyWarriorsAction= new BuyWarriors<PlayerAres>(ares); 
         try {
-            ares.addWarriors(5);
+            buyWarriorsAction.act(ares);
         } catch (Exception e) {
             System.out.println("An error occurred while buying warriors: " + e.getMessage());
             
@@ -105,7 +107,7 @@ public class Livrable3ares {
 
         } 
 
-        board.display();
+        
         System.out.println("\n"); 
 
         //6. échange 3 ressources contre une
@@ -129,5 +131,9 @@ public class Livrable3ares {
         }
 
         System.out.println("\n"); 
+
+        board.display();
+
+
     }
 }

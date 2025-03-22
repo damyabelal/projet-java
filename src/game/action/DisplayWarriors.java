@@ -50,6 +50,7 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
         // ask if the player wants to add warriors to an army or a camp
         String choice = lcString.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
 
+
         if ("army".equalsIgnoreCase(choice)) {
             Army army = lcArmy.choose("Which army do you want to add warriors to?", player.getArmies());
             if (army == null) {

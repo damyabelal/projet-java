@@ -67,6 +67,10 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
         Position choosenPosition= askCoordinate();
         Tuile tile= this.board.getTile(choosenPosition); 
+
+        // plus tard il faudra demander au joueur combien de warriors il veut ajouter
+
+
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
         }
@@ -79,12 +83,16 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         //    throw new CantBuildException("conditions not met to build an army here");
         //}
     
-        this.removeRessources();
 
+        this.removeRessources();
+        // 1 par défaut, à faire évoluer plus tard
         Army army = new Army((Earth) tile, 1, player);
         player.addArmy(army);
 
-        System.out.println(player.getName() +": "+player.getResources()+ " build a army on position "+ choosenPosition);
+        // plein de 1 à changer plus tard ici aussi
+        player.removeWarriors(1); 
+
+        System.out.println(player.getName() +": "+player.getResources()+ " build a army with 1 warrior on position "+ choosenPosition);
     /* 
         try {
 
