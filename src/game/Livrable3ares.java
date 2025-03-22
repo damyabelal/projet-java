@@ -7,6 +7,7 @@ import game.tuile.building.Army;
 import game.action.*;
 
 public class Livrable3ares {
+
     
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
@@ -47,8 +48,9 @@ public class Livrable3ares {
 
 
         // 1. Build an army with 1 warrior
-        System.out.println("===> arres veut construire une armee avec 1 guerrier");
+        System.out.println("===> arres "+ ares.getResources()+ " veut construire une armee avec 1 guerrier");
         BuildArmy buildArmyAction = new BuildArmy(board, ares);
+
         try {
             buildArmyAction.act(ares);
 
