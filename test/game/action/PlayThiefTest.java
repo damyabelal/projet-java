@@ -11,7 +11,6 @@ public class PlayThiefTest{
   // creating 2 players so that player1 could steal the ressources of the second player
   private PlayerDemeter player1;
   private PlayerDemeter player2;
-  private Board board;
   private PlayThief actionvoler;
 
   
