@@ -2,18 +2,21 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.tuile.building.*;
-import java.util.*;
+import game.listchooser.ListChooser;
+import game.listchooser.RandomListChooser;
+import game.tuile.building.Army;
+import java.util.List;
 import game.CantBuildException;
-import game.tuile.*;
-import listchooser.RandomListChooser;
+import game.tuile.Earth;
+import game.tuile.Ressource;
+import game.tuile.building.Camp;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public RandomListChooser<Army> lc;
-    public RandomListChooser<String> lString; 
-    public RandomListChooser<Integer> lnumb; 
+    public static ListChooser<Army> lc;
+    public static ListChooser<String> lString; 
+    public static ListChooser<Integer> lnumb; 
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
@@ -21,6 +24,8 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
         lc = new RandomListChooser<>();
+        lString = new RandomListChooser<>();
+        lnumb= new RandomListChooser<>(); 
     }
 
     /**
@@ -36,18 +41,18 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        final RandomListChooser <String> methodChooser = new RandomListChooser<>();
-        return methodChooser.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        return lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
     }
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         Army chosenArmy = askArmy();
-       
+        ListChooser<Integer> lc = new RandomListChooser<>();
+
         // ask the player how they want to upgrade
         String method = askUpgradeMethod();
 
-        // check if the player has an army to upgrade
+        // check if the player has  an army to upgrade
         if (chosenArmy == null) {
             throw new IllegalArgumentException("No army selected");
         }
@@ -72,11 +77,10 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         this.tuile = chosenArmy.getTuile(); 
 
-        Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors() , player);
-
         this.tuile.removeBuilding();
         player.removeArmy(chosenArmy); 
 
+        Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors(), player);
         this.tuile.setBuilding(camp);
         player.addCamp(camp);
 

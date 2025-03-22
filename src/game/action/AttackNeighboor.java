@@ -5,7 +5,7 @@ import java.util.Random;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 

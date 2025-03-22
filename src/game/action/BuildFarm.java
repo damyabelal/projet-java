@@ -6,7 +6,7 @@ import game.*;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.Position;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 
 /*
  * This class is used to build a farm on a tile

@@ -4,7 +4,7 @@ import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.*;

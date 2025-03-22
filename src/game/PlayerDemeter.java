@@ -6,7 +6,7 @@ import java.util.List;
 
 import game.tuile.building.*;
 import game.tuile.*;
-import listchooser.RandomListChooser; 
+import game.listchooser.RandomListChooser; 
 import game.action.*;
 
 public class PlayerDemeter extends Player{
