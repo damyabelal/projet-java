@@ -62,6 +62,9 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
         Port port = new Port((Earth) tile, player);
         tile.setBuilding(port);
         player.addPort(port);
+
+        System.out.println(player.getName() +": "+player.getResources()+ " build a port on position "+ choosenPosition);
+    
     }
     
 }

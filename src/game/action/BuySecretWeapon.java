@@ -32,6 +32,7 @@ public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>
         this.removeRessources();
         // we add a secret weapon to the player's weapons stock
         player.addSecretWeapon();
+        System.out.println(player.getName()+ " "+ player.getResources()+" (" +player.getWarriors()+ " warriors) now have a secret weapon");
     }
 
 

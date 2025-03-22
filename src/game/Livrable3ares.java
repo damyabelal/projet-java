@@ -1,9 +1,7 @@
 package game;
 
 import java.io.IOException;
-import java.util.List;
 import game.tuile.Ressource;
-import game.tuile.building.Army;
 import game.action.*;
 
 public class Livrable3ares {
@@ -24,9 +22,9 @@ public class Livrable3ares {
         System.out.println("--------------------");
         System.out.println("--------ARES--------");
         System.out.println("--------------------");
+        System.out.println("\n"); 
 
         Board board = new Board(width, height);
-        board.display();
 
 
         PlayerAres ares = new PlayerAres("ares");
@@ -48,7 +46,7 @@ public class Livrable3ares {
 
 
         // 1. Build an army with 1 warrior
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  veut construire une armee avec 1 guerrier");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  veut construire une armee avec 1 guerrier");
         BuildArmy buildArmyAction = new BuildArmy(board, ares);
 
         try {
@@ -61,7 +59,7 @@ public class Livrable3ares {
         System.out.println("\n"); 
 
         //2. add warriors 
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  ajoute des guerriers jusqu'à 5");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  ajoute des guerriers jusqu'à 5");
         DisplayWarriors displayWarriorsAction= new DisplayWarriors(ares); 
         try {
             displayWarriorsAction.act(ares);
@@ -72,7 +70,7 @@ public class Livrable3ares {
         System.out.println("\n"); 
 
         //3. upgradeArmy 
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  fait évoluer son armée en camp");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  fait évoluer son armée en camp");
         UpgradeArmy upgradeArmyAction = new UpgradeArmy(ares);
         try {
             upgradeArmyAction.act(ares);
@@ -82,12 +80,13 @@ public class Livrable3ares {
             e.printStackTrace();
         }
 
-        board.display();
         System.out.println("\n"); 
+
         //4. acheter 5 guerriers 
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  achète 5 guerriers");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  achète 5 guerriers");
+        BuyWarriors<PlayerAres> buyWarriorsAction= new BuyWarriors<PlayerAres>(ares); 
         try {
-            ares.addWarriors(5);
+            buyWarriorsAction.act(ares);
         } catch (Exception e) {
             System.out.println("An error occurred while buying warriors: " + e.getMessage());
             
@@ -96,7 +95,7 @@ public class Livrable3ares {
         System.out.println("\n"); 
     
         //5. BuildPort
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  construit un port");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  construit un port");
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(ares, board);
         try {
             buildPort.act(ares);            
@@ -105,11 +104,11 @@ public class Livrable3ares {
 
         } 
 
-        board.display();
+        
         System.out.println("\n"); 
 
         //6. échange 3 ressources contre une
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  échange 3 WOOD contre 1 ORE");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  échange 3 WOOD contre 1 ORE");
         ExchangeRessources<PlayerAres> exchange = new ExchangeRessources<>(ares);
         try {
             exchange.act(ares);
@@ -120,7 +119,7 @@ public class Livrable3ares {
         System.out.println("\n"); 
 
         //7. achète une arme secrète
-        System.out.println("===> arres "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  achète une arme secrète");
+        System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  achète une arme secrète");
         BuySecretWeapon buy = new BuySecretWeapon(ares);
         try {
             buy.act(ares);
@@ -129,5 +128,9 @@ public class Livrable3ares {
         }
 
         System.out.println("\n"); 
+
+        board.display();
+
+
     }
 }

@@ -27,10 +27,15 @@ public class RandomListChooser<T> implements ListChooser<T>{
 			return null;
 		}
 		System.out.println(msg);
-		System.out.print("[0 - none");
-		int index = 1;
+		int index = 0;
 		for (T element : list) {
-			System.out.print(", " + (index++) + " - " + element);
+            if (index==0){
+                System.out.print("[" + (index) + " - " + element);
+                index++; 
+            }
+            else{
+			    System.out.print(", " + (index++) + " - " + element);
+            }
 		}
 		System.out.println("]");
         int i= random.nextInt(list.size()); 

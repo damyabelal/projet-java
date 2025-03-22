@@ -1,11 +1,13 @@
 package game.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
 import game.tuile.building.Army;
+import game.tuile.building.Building;
 import game.tuile.building.Camp;
 
 public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {
@@ -38,17 +40,46 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
         return add;
     }
 
+    private Army ask(PlayerAres player) {
+        ArrayList<Army> list= new ArrayList<>(); 
+        for (Army element : player.getArmies()) {
+			list.add(element); 
+		}
+        /* 
+        for (Camp element : player.getCamps()) {
+			list.add(element); 
+		}
+        */
+        return lcArmy.choose("Where do you want to display warriors?", list);
+    }
+
+
     /**
      * Displays the warriors in army or camp
      * This allows the player to add warriors to an army or camp
      * 
      * @param player the player who performs the action
      */
+    public void act(PlayerAres player) throws NoMoreRessourcesException {
+        Army choosenBuild= ask(player);
+        int add= 5;
+        player.removeWarriors(add);
+        choosenBuild.addWarriors(add);
+        System.out.println(add + " warriors has been added to the army");
+
+
+    }
+
+
+
+    /* 
+    
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
         // ask if the player wants to add warriors to an army or a camp
         String choice = lcString.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
+
 
         if ("army".equalsIgnoreCase(choice)) {
             Army army = lcArmy.choose("Which army do you want to add warriors to?", player.getArmies());
@@ -85,4 +116,5 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
             System.out.println("Invalid choice please choose either 'army' or 'camp'");
         }
     }
+    */
 }
