@@ -56,5 +56,6 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
         }
         player.removeRessource(toExchange,3);
         player.addRessource(toReceive, 1);
+        System.out.println("3 "+ toExchange+ " were exchanged far 1 "+ toReceive);
     }
 }
