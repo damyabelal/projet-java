@@ -28,8 +28,8 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         }
     
         /**
-         * ask the player which neighboor he wants to attack
-         * @return the player who is going to be attack
+         * ask the player which neighbor he wants to attack
+         * @return the player  to be attacked
          */
         public PlayerAres askNeighbor() {
             if (this.enemies.isEmpty()) {
@@ -40,8 +40,8 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         }
         
     /**
-     * return how many dices a player can throw based on the number of warriors he has 
-     * and if he have a secret weapon
+     * returns how many dices a player can throw based on the number of warriors he has 
+     * and wether or not  he has a secret weapon
      * @param player
      * @return the number of dice
      */
@@ -64,7 +64,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     
 
     /**
-     * return the sum of the dices thrown by the player
+     * returns the sum of the dices thrown by the player
      * @param numberDices
      * @return the result of the dices
      */
