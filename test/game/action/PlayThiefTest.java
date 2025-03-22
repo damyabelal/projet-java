@@ -1,16 +1,9 @@
 package game.action;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-import java.io.IOException;
 
 import game.Board;
-import game.CantBuildException;
 import game.NoMoreRessourcesException;
-import game.PlayerAres;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
 
@@ -37,4 +30,14 @@ public class PlayThiefTest{
     assertThrows(NoMoreRessourcesException.class,()->actionvoler.act(player2));
   }
 
+
+  void StealingARessourceThatTheyHaveShouldWord() throws NoMoreRessourcesException{
+    player1.addRessource(Ressource.WOOD, 2);
+    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==2);
+    actionvoler.act(player2);
+
+
+    
+
+  }
 }
