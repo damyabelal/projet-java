@@ -1,22 +1,13 @@
 package game.action;
 
-import game.NoMoreRessourcesException;
-import game.PlayerAres;
-import game.tuile.Ressource;
-import game.tuile.Tuile;
-import game.tuile.building.Army;
-import game.tuile.building.Port;
+import game.*;
+import game.tuile.*;
+import game.tuile.building.*;
 import game.util.Position;
-import game.listchooser.RandomListChooser;
+import listchooser.RandomListChooser;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-
-import game.Board;
-import game.CantBuildException;
-import game.tuile.Earth;
-
+import java.util.*;
 
 /*
  * Build an army on the island
@@ -30,15 +21,12 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     public BuildArmy(Board board , PlayerAres player){  
         super(player);
         this.board = board;
-        this.cost= new HashMap<>(){
-            {put(Ressource.WOOD,1);
-            put(Ressource.SHEEP,1); 
-            put(Ressource.ORE,1);
-            
-            }
-        };
+        this.cost.put(Ressource.WOOD,1);
+        this.cost.put(Ressource.SHEEP,1); 
+        this.cost.put(Ressource.ORE,1);
         lc= new RandomListChooser<>(); 
-    };
+    }
+       
     
     public Position askCoordinate() throws IOException {
         return lc.chooseCoordinate("Where do you want to build a Army?", this.board);

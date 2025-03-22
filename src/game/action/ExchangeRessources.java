@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import game.NoMoreRessourcesException;
 import game.Player;
-import game.listchooser.RandomListChooser;
+import listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
 public class ExchangeRessources <T extends Player> extends ActionManager implements Action<T> {

@@ -2,21 +2,18 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.tuile.building.Army;
-import java.util.List;
+import game.tuile.building.*;
+import java.util.*;
 import game.CantBuildException;
-import game.tuile.Earth;
-import game.tuile.Ressource;
-import game.tuile.building.Camp;
-import listchooser.ListChooser;
+import game.tuile.*;
 import listchooser.RandomListChooser;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
-    public static ListChooser<Army> lc;
-    public static ListChooser<String> lString; 
-    public static ListChooser<Integer> lnumb; 
+    public static RandomListChooser<Army> lc;
+    public static RandomListChooser<String> lString; 
+    public static RandomListChooser<Integer> lnumb; 
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
@@ -39,19 +36,18 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        final ListChooser<String> methodChooser = new   RandomListChooser<>();
+        final RandomListChooser <String> methodChooser = new RandomListChooser<>();
         return methodChooser.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
     }
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         Army chosenArmy = askArmy();
-        ListChooser<Integer> lc = new RandomListChooser<>();
-
+       
         // ask the player how they want to upgrade
         String method = askUpgradeMethod();
 
-        // check if the player has  an army to upgrade
+        // check if the player has an army to upgrade
         if (chosenArmy == null) {
             throw new IllegalArgumentException("No army selected");
         }

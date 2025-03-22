@@ -4,7 +4,7 @@ import java.util.List;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import listchooser.RandomListChooser;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 

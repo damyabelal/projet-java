@@ -1,18 +1,13 @@
 package game.action;
-import java.io.IOException;
-import java.util.HashMap;
 
+import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
-import game.listchooser.RandomListChooser;
-import game.tuile.Earth;
-import game.tuile.building.Port;
-import game.util.Direction;
-import game.util.Position;
-import game.tuile.Ressource;
-import game.tuile.Sea;
-import game.tuile.Tuile;
+import listchooser.RandomListChooser;
+import game.tuile.*;
+import game.tuile.building.*;
+import game.util.*;
 
 /*
  * 
@@ -21,18 +16,16 @@ import game.tuile.Tuile;
  */
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
-    protected HashMap<Ressource,Integer> cost;
     private Board board; 
     public static RandomListChooser<Position> lc;
 
     public BuildPort(T player, Board board){
         super(player); 
         this.board= board; 
-        this.cost=new HashMap<>(){ { put(Ressource.WOOD,1);
-        put(Ressource.SHEEP,2);
-        }};
+        this.cost.put(Ressource.WOOD,1);
+        this.cost.put(Ressource.SHEEP,2);
         lc= new RandomListChooser<>(); 
-        }
+    }
 
     public Position askCoordinate() throws IOException {
         return lc.chooseCoordinate("Where do you want to build a Port?", this.board);

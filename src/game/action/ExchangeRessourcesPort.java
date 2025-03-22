@@ -5,7 +5,7 @@ import java.util.Arrays;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
-import game.listchooser.RandomListChooser;
+import listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
 public class ExchangeRessourcesPort extends ActionManager implements Action<PlayerDemeter>{

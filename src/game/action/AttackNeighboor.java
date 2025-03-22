@@ -5,12 +5,12 @@ import java.util.Random;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import listchooser.RandomListChooser;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
     public RandomListChooser<PlayerAres> lc;
-        public List<PlayerAres> ennemies;
+    public List<PlayerAres> ennemies;
     
         /**
          * constructor of AttackNeighboor
@@ -27,36 +27,37 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          * ask the player which neighboor he wants to attack
          * @return the player who is going to be attack
          */
-        public PlayerAres askNeighboor(){
+        public PlayerAres askNeighboor() {
+            if (this.ennemies.isEmpty()) {
+                System.out.println("No enemies available to attack.");
+                return null;
+            }
             return lc.choose("Who do you want to attack", this.ennemies);
-    }
-
+        }
+        
     /**
      * return how much dice a player can throw based on the number of warriors he have 
      * and if he have a secret weapon
      * @param player
      * @return the number of dice
      */
-    public Integer howMuchDice(PlayerAres player){
-        int nbWarriors= player.getWarriors();
-        int res= 0;
-        if (player.getNbSecretWeapon()> 0){
+    public Integer howMuchDice(PlayerAres player) {
+        int nbWarriors = player.getWarriors();
+        int res = 0;
+        if (player.getNbSecretWeapon() > 0) {
             player.removeSecretWeapon();
             res += 1;
         }
-        if (nbWarriors>1 && nbWarriors<4){
-            res+= 1;
+        if (nbWarriors >= 1 && nbWarriors < 4) {
+            res += 1;
+        } else if (nbWarriors < 8) {
+            res += 2;
+        } else {
+            res += 3;
         }
-        else{
-            if(nbWarriors<8){
-                res += 2;
-            }
-            else{
-                res += 3;
-            }
-        }
-        return res; 
+        return res;
     }
+    
 
     /**
      * return the sum of the dices thrown by the player
@@ -64,14 +65,14 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
      * @return the result of the dices
      */
     public Integer dicesResult(Integer numberDices){
-        Random dice= new Random();
-        Integer result= 0; 
-        Integer i= numberDices;
-        while (i>0){
-            result += dice.nextInt(6)+1;;
+        Random dice = new Random();
+        int result = 0;
+        for (int i = 0; i < numberDices; i++) {
+            result += dice.nextInt(6) + 1;
         }
         return result;
     }
+    
 
     public void act(PlayerAres player) throws NoMoreRessourcesException {
         PlayerAres ennemy= askNeighboor();
