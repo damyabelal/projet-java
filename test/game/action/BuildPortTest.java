@@ -11,6 +11,7 @@ import game.Board;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.tuile.Ressource;
 
 public class  BuildPortTest{
 
@@ -23,6 +24,10 @@ public class  BuildPortTest{
         player = new PlayerAres("Marco");
         board= new Board(5, 5); 
         action= new BuildPort<PlayerAres>(player, board); 
+       
+       // ajout des ressources nessessaires pour construire un port
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 2);
     }
 
     @Test
