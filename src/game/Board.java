@@ -117,13 +117,15 @@ public void display(){
 
     
     System.out.println("        ");
-
+    String abs= ""; 
     for (int i= 0; i< w; i++){
-        System.out.println("   "+i+"   ");
+        abs= abs+ ("   "+i+"   ");
     }
+    System.out.println(abs);
+
     for (int x = 0; x < w; x++) {
         if(x==0){
-            System.out.print("|-----|");
+            System.out.print(" |-----|");
         }
         else {
             System.out.print("------|");
@@ -147,7 +149,7 @@ public void display(){
         System.out.println(); 
         // We put a separating line between the lines but not the last one.
         if (y<h-1){
-            System.out.print("|");
+            System.out.print(" |");
             for (int x = 0; x < w; x++) {
                 if(x==0){
                 System.out.print("_____|");}
@@ -159,7 +161,7 @@ public void display(){
     }
     for (int x = 0; x < w; x++) {
             if(x==0){
-                System.out.print("|-----|");
+                System.out.print(" |-----|");
             }
             else {
                 System.out.print("------|");
