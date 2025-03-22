@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import game.Board;
-import game.util.Position;
+import game.util.Position; 
 
 public class RandomListChooser<T> implements ListChooser<T>{
 
@@ -33,7 +33,11 @@ public class RandomListChooser<T> implements ListChooser<T>{
 			System.out.print(", " + (index++) + " - " + element);
 		}
 		System.out.println("]");
-		return list.get(random.nextInt(list.size()));
+        int i= random.nextInt(list.size()); 
+        //while (i==0){
+        //    i= random.nextInt(list.size()); 
+        //}
+		return list.get(i);
     }
 
     /**

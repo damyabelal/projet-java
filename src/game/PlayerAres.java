@@ -6,7 +6,7 @@ import java.util.*;
 import game.action.*;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 
 
 public class PlayerAres extends Player {

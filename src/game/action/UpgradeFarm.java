@@ -1,7 +1,7 @@
 package game.action;
 
 import game.*;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 

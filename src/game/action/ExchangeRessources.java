@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import game.NoMoreRessourcesException;
 import game.Player;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
 public class ExchangeRessources <T extends Player> extends ActionManager implements Action<T> {
@@ -56,5 +56,6 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
         }
         player.removeRessource(toExchange,3);
         player.addRessource(toReceive, 1);
+        System.out.println("3 "+ toExchange+ " were exchanged far 1 "+ toReceive);
     }
 }

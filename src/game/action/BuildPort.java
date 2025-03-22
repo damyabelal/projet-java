@@ -4,7 +4,7 @@ import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
-import listchooser.RandomListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.*;
@@ -41,14 +41,8 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
         if (!(board.getTile(pos) instanceof Earth)) {
             return false;
         }
-        for (Direction d : Direction.values()) {
-            Position neighbor = pos.next(d);
-            Tuile neighborTile = board.getTile(neighbor);
-            if (neighborTile instanceof Sea && board.nbSeaTiles(pos) >= 2) {
-                return true;
-            }
-        }
-        return false;
+        return board.nbSeaTiles(pos) >= 2;
+   
     }
     
     @Override
