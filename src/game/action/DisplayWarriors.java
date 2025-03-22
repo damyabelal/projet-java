@@ -57,7 +57,9 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
                 return;
             }
 
-            int add = askWarrior(player);  
+            //int add = askWarrior(player);  
+            //pour le livrable 3 on poseras:
+            int add= 5; 
             if (add == -1) return; 
 
             // add warriors to the selected army

@@ -83,6 +83,8 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
 
         Army army = new Army((Earth) tile, 1, player);
         player.addArmy(army);
+
+        System.out.println(player.getName() +": "+player.getResources()+ " build a army on position "+ choosenPosition);
     /* 
         try {
 
