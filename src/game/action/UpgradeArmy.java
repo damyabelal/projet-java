@@ -84,16 +84,14 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         this.tuile = chosenArmy.getTuile(); 
 
-        //this.tuile.removeBuilding();
-        //player.removeArmy(chosenArmy); 
+        this.tuile.removeBuilding();
+        player.removeArmy(chosenArmy); 
 
-
-        //Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors(), player);
+        Camp camp = chosenArmy.upGradeToCamp(player);
         
-        //this.tuile.setBuilding(camp);
-        //player.addCamp(camp);
+        this.tuile.setBuilding(camp);
+        player.addCamp(camp);
 
-        chosenArmy.upGradeToCamp(player);
 
         System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" wariors)");
 

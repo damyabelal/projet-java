@@ -39,7 +39,7 @@ public class PlayerDemeterTest {
 
     @Test
     void thiefTest(){
-        player.addThiefs(2);
+        player.addThief();
         assertEquals(player.getNbThief(), 2);
     }
 

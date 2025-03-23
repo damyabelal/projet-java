@@ -7,7 +7,6 @@ import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
 import game.tuile.building.Army;
-import game.tuile.building.Building;
 import game.tuile.building.Camp;
 
 public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {

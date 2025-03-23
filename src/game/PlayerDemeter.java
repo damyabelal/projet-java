@@ -59,8 +59,8 @@ public class PlayerDemeter extends Player{
      * adds a  thief to the  demeter player
      * @param nb int number of thief to add
      */
-    public void addThiefs(int nb){
-        this.nbThief += nb ;
+    public void addThief(){
+        this.nbThief += 1 ;
     }
 
     /**
