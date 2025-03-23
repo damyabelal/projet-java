@@ -260,7 +260,7 @@ public class BoardTest {
 
 
 
-@Test
+    @Test
     void testExploreIsland(){
        Board board = new Board(5, 5);
         for (int x=0; x<5; x++){
@@ -313,16 +313,65 @@ public class BoardTest {
 
 
         
+
+
     }
+
+
+    
     @Test
     void testGetTile() {
     Position pos = new Position(1, 1);
     Forest forest = new Forest();
     board.put(forest, pos);
     assertEquals(forest, board.getTile(pos));
-}
+    }
 
+
+    @Test
+    void testGetNeighbours() {
+    Position pos = new Position(2, 2);
+    board.put(new Forest(), pos);
+    List<Tuile> neighbours = board.getNeighbours(pos);
+    assertEquals(4, neighbours.size()); // centre → 4 voisins
+    }
+    /**
+     * tests the getIsmand() method to ensure that a tile correctly bemlongs to a group of connected earth tils 
+     */
+    @Test
+    void testGetIsland() {
+    Board board = new Board(5, 5);
     
-
-
-}
+        
+    for (int x = 0; x < 5; x++) {
+        for (int y = 0; y < 5; y++) {
+            board.put(new Sea(), new Position(x, y));
+        }
+    }
+    
+       
+    board.put(new Forest(), new Position(1, 1));
+    board.put(new Field(), new Position(1, 2));
+    board.put(new Mountain(), new Position(2, 2));
+    
+       
+    board.put(new Field(), new Position(4, 4));
+    board.put(new Field(), new Position(4, 3));
+    
+       
+    List<List<Earth>> islands = board.findIslands();
+    board.islands = islands ;
+    
+        
+    Earth e1 = (Earth) board.getTile(new Position(1, 1));
+    Earth e2 = (Earth) board.getTile(new Position(1, 2));
+    
+       
+    List<Earth> island = board.getIsland(e1);
+    
+    assertNotNull(island);
+    assertTrue(island.contains(e1));
+    assertTrue(island.contains(e2));
+    assertEquals(3, island.size());
+    }
+}    

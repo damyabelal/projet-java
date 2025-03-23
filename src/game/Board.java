@@ -11,7 +11,7 @@ public class Board{
     private int width;
     private int height;
     private Tuile[][] grid;
-    public List<List<Earth>> islands ; 
+    public List<List<Earth>> islands  ; 
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
@@ -28,7 +28,7 @@ public Board(int width , int height){
             }
         }
     createBoard();
-    this.islands = findIslands();
+    this.islands = this.findIslands();
 }
 
 
