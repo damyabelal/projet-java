@@ -68,7 +68,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         } else if ("warriors".equalsIgnoreCase(method)) {
             // check if the army has 5 warriors to upgrade
-            if (chosenArmy.getNbWarriors() != 5) {
+            if (chosenArmy.getNbWarriors() >= 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
             int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
@@ -80,13 +80,18 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         this.tuile = chosenArmy.getTuile(); 
 
-        this.tuile.removeBuilding();
-        player.removeArmy(chosenArmy); 
+        //this.tuile.removeBuilding();
+        //player.removeArmy(chosenArmy); 
 
-        Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors(), player);
-        this.tuile.setBuilding(camp);
-        player.addCamp(camp);
 
+        //Camp camp = new Camp(this.tuile, chosenArmy.getNbWarriors(), player);
+        
+        //this.tuile.setBuilding(camp);
+        //player.addCamp(camp);
+
+        chosenArmy.upGradeToCamp(player);
+
+        System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" wariors)");
 
     }
 }
