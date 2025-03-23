@@ -140,12 +140,16 @@ public class Livrable3ares {
                         "Army(ies):"+ ares.getArmies()+"\n"+//
                         "Camp(s):" +ares.getCamps());
 
+        System.out.println("\n"); 
+
        System.out.println("===> liste des tuiles ");
         for(Earth t: ares.getTiles()){ 
             System.out.println(t.getPosition()); 
         }
 
+        System.out.println("\n"); 
 
+        board.display();
 
 
     }

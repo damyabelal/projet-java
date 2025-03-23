@@ -73,6 +73,7 @@ public class PlayerAres extends Player {
      */
     public void removeArmy(Army army) {
         this.armies.remove(army);
+        this.playerTiles.remove(army.getTuile()); 
     }
 
     /**
