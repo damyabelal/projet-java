@@ -61,7 +61,7 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
         player.removeRessource(toExchange, 2);
         player.addRessource(toReceive, 1);
     
-
+        System.out.println("2 "+ toExchange+ " were exchanged for 1 "+ toReceive);
 
     }
     

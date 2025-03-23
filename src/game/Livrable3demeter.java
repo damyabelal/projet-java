@@ -51,7 +51,7 @@ public class Livrable3demeter {
         */
 
         //1. Build a farm
-        System.out.println("===> demeter veut construire une ferme");
+        System.out.println("===> demeter "+ demeter.getResources()+ "veut construire une ferme");
         try {
             BuildFarm buildFarmAction = new BuildFarm(board, demeter);
             buildFarmAction.act(demeter);
@@ -63,7 +63,7 @@ public class Livrable3demeter {
         System.out.println("\n"); 
 
         //2. Upgrade a farm to an exploitation
-        System.out.println("===> demeter veut faire évoluer une ferme en une exploitation");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut faire évoluer une ferme en une exploitation");
         UpgradeFarm upgradeFarmAction = new UpgradeFarm(demeter);
         try {
             if (! demeter.getFarms().isEmpty()) {
@@ -78,7 +78,7 @@ public class Livrable3demeter {
         System.out.println("\n"); 
 
         //3. build a port 
-        System.out.println("===> demeter veut construire un port");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut construire un port");
         try {
             BuildPort<PlayerDemeter> buildPortAction = new BuildPort<PlayerDemeter >(demeter, board);
             buildPortAction.act(demeter);
@@ -90,7 +90,7 @@ public class Livrable3demeter {
 
 
         //4. exchange 3 resources for 1
-        System.out.println("===> demeter veut échanger 3 ressources contre une");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 3 ressources contre une");
         ExchangeRessources<PlayerDemeter> exchangeRessourcesAction = new ExchangeRessources<PlayerDemeter>(demeter);
         try {
             exchangeRessourcesAction.act(demeter);
@@ -102,7 +102,7 @@ public class Livrable3demeter {
 
 
         //5. exchange 2 resources for 1 with his port
-        System.out.println("===> demeter veut échanger 2 ressources contre une grâce à son port");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 2 ressources contre une grâce à son port");
         ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(demeter);
         try {
             exchangeRessourcesPortAction.act(demeter);
@@ -114,7 +114,7 @@ public class Livrable3demeter {
 
 
         //6. buy a thief
-        System.out.println("===> demeter veut acheter un voleur");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut acheter un voleur");
         BuyThief buyThiefAction = new BuyThief(demeter);
         try {
             buyThiefAction.act(demeter);

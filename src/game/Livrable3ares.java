@@ -131,8 +131,6 @@ public class Livrable3ares {
 
         System.out.println("\n"); 
 
-        board.display();
-
         // affichage des bâtiments et des tuiles du joueurs
 
         System.out.println("===> liste des bâtiments \n" + //
