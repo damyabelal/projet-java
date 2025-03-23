@@ -22,7 +22,8 @@ public class ExchangeRessourcesTest {
     }
 
     /**
-     * Tests a valid exchange: 3 WOOD ➜ 1 ORE
+     * Tests a valid exchange: 3 WOOD et 1 ORE
+     * @throws Exception 
      */
     @Test
     void testValidExchange() throws Exception {

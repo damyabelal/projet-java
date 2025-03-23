@@ -314,5 +314,15 @@ public class BoardTest {
 
         
     }
+    @Test
+    void testGetTile() {
+    Position pos = new Position(1, 1);
+    Forest forest = new Forest();
+    board.put(forest, pos);
+    assertEquals(forest, board.getTile(pos));
+}
+
+    
+
 
 }
