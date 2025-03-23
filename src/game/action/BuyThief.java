@@ -29,7 +29,7 @@ public class BuyThief extends ActionManager implements Action<PlayerDemeter>{
         }
         // if he can we remove the cost from the player
         this.removeRessources();
-        player.addThiefs(1);
+        player.addThief();
     }
     
 }
