@@ -45,12 +45,16 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
 
         this.removeRessources();
         // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation vu qu'on fait un upgrade sur la meme tuile
-        this.tuile.removeBuilding();
-        player.removeFarm(chosenFarm);
+        //this.tuile.removeBuilding();
+        
 
-        Exploitation exploitation = new Exploitation(this.tuile, player);
-        this.tuile.setBuilding(exploitation);
-        player.addExploitation(exploitation);
+        chosenFarm.upGradeToExploitation(); 
+
+        //Exploitation exploitation = new Exploitation(this.tuile, player);
+        //this.tuile.setBuilding(exploitation);
+        //player.addExploitation(exploitation);
+
+        System.out.println("The farm evolved into a exploitation");
 
 
     }
