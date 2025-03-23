@@ -103,6 +103,7 @@ public class PlayerAres extends Player {
      */
     public void addArmy(Army army) {
         this.armies.add(army);
+        this.playerTiles.add(army.getTuile()); 
     }
 
     /**
@@ -119,6 +120,7 @@ public class PlayerAres extends Player {
      */
     public void addCamp(Camp camp) {
         this.camps.add(camp);
+        this.playerTiles.add(camp.getTuile()); 
     }
 
     /**

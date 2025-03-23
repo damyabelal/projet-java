@@ -49,6 +49,7 @@ public class Player {
      */
     public void addPort(Port port){
         this.ports.add(port);
+        this.playerTiles.add(port.getTuile()); 
     }
 
     /**
