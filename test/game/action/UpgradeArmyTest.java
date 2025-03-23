@@ -15,7 +15,7 @@ public class UpgradeArmyTest {
     private UpgradeArmy upgradeArmyAction;
 
     @BeforeEach
-    void setUp() throws CantBuildException {
+    void setUp() throws NoMoreRessourcesException, CantBuildException {
         player = new PlayerAres("cool");
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 3);
@@ -33,10 +33,10 @@ public class UpgradeArmyTest {
     }
 
     @Test
-    void testUpgradeArmyNotEnoughResources() throws NoMoreRessourcesException {
+    void testUpgradeArmyNotEnoughResources() throws CantBuildException, NoMoreRessourcesException{
         player.removeRessource(Ressource.WOOD, 2);
         player.removeRessource(Ressource.ORE, 3);
-        assertThrows(NoMoreRessourcesException.class, () -> upgradeArmyAction.act(player));
+        assertThrows(CantBuildException.class, () -> upgradeArmyAction.act(player));
     }
 
     @Test

@@ -7,7 +7,7 @@ import game.tuile.building.*;
 
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    private static RandomListChooser<Farm> lc;
+    private RandomListChooser<Farm> lc;
     private Earth tuile;
 
     public UpgradeFarm(PlayerDemeter player) {
@@ -16,7 +16,7 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
 
-        lc = new RandomListChooser<>();
+        this.lc = new RandomListChooser<>();
     }
 
     public Farm ask() {
