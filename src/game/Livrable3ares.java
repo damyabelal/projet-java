@@ -131,6 +131,15 @@ public class Livrable3ares {
 
         board.display();
 
+        // affichage des bâtiments et des tuiles du joueurs
+
+        System.out.println("===> liste des bâtiments "+ ares.getPorts()+ ares.getCamps());
+
+        //TODO ca fonctionne pas 
+        System.out.println("===> liste des tuiles " + ares.getTiles());
+
+
+
 
     }
 }
