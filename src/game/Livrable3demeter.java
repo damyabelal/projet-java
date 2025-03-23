@@ -5,11 +5,9 @@ import game.action.BuildPort;
 import game.action.BuyThief;
 import game.action.ExchangeRessources;
 import game.action.ExchangeRessourcesPort;
-import game.action.PlayThief;
 import game.action.UpgradeFarm;
 import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.building.Farm;
 
 public class Livrable3demeter {
     

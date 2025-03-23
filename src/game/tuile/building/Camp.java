@@ -15,7 +15,6 @@ import game.tuile.Ressource;
 public class Camp extends Army{
     
     private static final String SYMBOL = "c";     //"  "
-    private static int nbWarriorsMax = 10000000;
 
     /**
      * creates a Camp on the given tile with a set number of warriors
