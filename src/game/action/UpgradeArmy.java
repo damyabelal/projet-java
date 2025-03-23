@@ -72,7 +72,11 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
             int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+            if (player.getWarriors() < add){
+                throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
+            }
             chosenArmy.addWarriors(add);
+            player.removeWarriors(add);
 
         } else {
             throw new IllegalArgumentException("Invalid upgrade method");
