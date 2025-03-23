@@ -1,5 +1,7 @@
 package game.action;
 
+import java.util.List;
+
 import game.*;
 import game.listchooser.RandomListChooser;
 import game.tuile.*;
@@ -20,7 +22,11 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
     }
 
     public Farm ask() {
-        return lc.choose("Which farm do you want to upgrade?", ((PlayerDemeter) this.player).getFarms());
+        List<Farm> farms = ((PlayerDemeter) this.player).getFarms();
+        if (farms.isEmpty()) {
+            throw new IllegalArgumentException("No farms available to upgrade.");
+        }
+        return lc.choose("Which farm do you want to upgrade?", farms);
     }
 
     @Override

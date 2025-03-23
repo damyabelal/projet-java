@@ -33,7 +33,11 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the army the player wants to upgrade
      */
     public Army askArmy() {
-        return this.lc.choose("Which army do you want to upgrade?", ((PlayerAres) this.player).getArmies());
+        List<Army> armies = ((PlayerAres) this.player).getArmies();
+        if (armies.isEmpty()) {
+            throw new IllegalArgumentException("No armies available to upgrade");
+    }
+        return this.lc.choose("Which army do you want to upgrade?", armies);
     }
 
     /**
