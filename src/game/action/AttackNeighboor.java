@@ -6,38 +6,42 @@ import java.util.Random;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
+import game.tuile.Earth;
+import game.tuile.building.Army;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
     public RandomListChooser<PlayerAres> lc;
-    public List<PlayerAres> ennemies;
+    public List<PlayerAres> enemies;
+    public Earth tile;
+   
     
         /**
          * constructor of AttackNeighboor
-         * @param player the player who attack
-         * @param ennemies a list of all the neighboor ennemies
+         * @param player the player who wants to attack
+         * @param enemies the list of all the neighboring enemies
          */ 
-        public AttackNeighboor(PlayerAres player, List<PlayerAres> ennemies){
+        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies){
             super(player); 
-            this.ennemies= ennemies;
+            this.enemies= enemies;
             lc= new RandomListChooser<PlayerAres>(); 
         }
     
         /**
-         * ask the player which neighboor he wants to attack
-         * @return the player who is going to be attack
+         * ask the player which neighbor he wants to attack
+         * @return the player  to be attacked
          */
-        public PlayerAres askNeighboor() {
-            if (this.ennemies.isEmpty()) {
+        public PlayerAres askNeighbor() {
+            if (this.enemies.isEmpty()) {
                 System.out.println("No enemies available to attack.");
                 return null;
             }
-            return lc.choose("Who do you want to attack", this.ennemies);
+            return lc.choose("Who do you want to attack", this.enemies);
         }
         
     /**
-     * return how much dice a player can throw based on the number of warriors he have 
-     * and if he have a secret weapon
+     * returns how many dices a player can throw based on the number of warriors he has 
+     * and wether or not  he has a secret weapon
      * @param player
      * @return the number of dice
      */
@@ -60,7 +64,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     
 
     /**
-     * return the sum of the dices thrown by the player
+     * returns the sum of the dices thrown by the player
      * @param numberDices
      * @return the result of the dices
      */
@@ -75,7 +79,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException {
-        PlayerAres ennemy= askNeighboor();
+        PlayerAres ennemy= askNeighbor();
         // la somme des dés de chaque joueur
         System.out.println(player.getName() + " VS " + ennemy.getName());
         Integer ennemyRes= dicesResult(howMuchDice(ennemy));
@@ -89,7 +93,17 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         }
         //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
         // mon code est confus et à revoir 
-        loser.removeWarriors(1);
-    }
+
+        if (loser.getWarriors()>=1){
+            
+          loser.removeWarriors(1);
+        }
+        else if (loser.getArmies().size()>=1){
+            List<Army> listarmies=loser.getArmies();
+            loser.removeArmy(listarmies.get(0));
+
+        }
     
+    
+}
 }
