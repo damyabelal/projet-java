@@ -7,7 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.action.BuildFarm;
+import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.tuile.building.Exploitation;
+import game.tuile.building.Farm;
+import game.tuile.building.Port;
 
 public class PlayerDemeterTest {
 
@@ -43,7 +47,7 @@ public class PlayerDemeterTest {
         assertEquals(player.getNbThief(), 2);
     }
 
-     @Test
+    @Test
     void testBuild() throws NoMoreRessourcesException, IOException{
         BuildFarm buildfarm=new BuildFarm(board, player);
         // a player trying to build with enough resources should return True
@@ -54,8 +58,53 @@ public class PlayerDemeterTest {
         assertTrue(! player.getFarms().isEmpty());
         // after building a farm  using one wood and one ore , the player's ressources should diminish
         assertTrue(player.getResources().get(Ressource.WOOD)==0);
-        assertTrue(player.getResources().get(Ressource.ORE)==0);
+        assertTrue(player.getResources().get(Ressource.ORE) == 0);
+        }
+
+    @Test
+    void testRemoveFarm() {
+        Earth earth = new Earth(Ressource.SHEEP, null);
+        Farm farm = new Farm(earth, player);
+        player.addFarm(farm);
+        assertTrue(player.getFarms().contains(farm));
+
+        player.removeFarm(farm);
+        assertFalse(player.getFarms().contains(farm));
+        assertFalse(player.getTiles().contains(farm.getTuile()));
     }
+
+
+
+    @Test
+    void testAddExploitation() {
+        Earth earth = new Earth(Ressource.SHEEP, null);
+        Exploitation ex = new Exploitation(earth, player);
+        player.addExploitation(ex);
+
+        assertTrue(player.getExploitations().contains(ex));
+        assertTrue(player.getTiles().contains(ex.getTuile()));
+    }
+
+    @Test
+    void testHasPort() {
+        Earth earth = new Earth(Ressource.SHEEP, null);
+        earth.setPosition(new game.util.Position(1, 1));
+        Port port = new Port(earth, player);
+        earth.setBuilding(port);
+
+        player.addPort(port); 
+
+        assertTrue(player.hasPort());
+    }
+
+    
+
+
+
+
+
+
+
 
     
 }

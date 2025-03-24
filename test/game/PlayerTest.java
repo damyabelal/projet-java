@@ -88,4 +88,5 @@ public class PlayerTest {
 
         assertTrue(player.getPorts().contains(port)); 
         assertTrue(player.getTiles().contains(earth)); 
+    }
 }
