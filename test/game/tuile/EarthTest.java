@@ -1,8 +1,6 @@
 package game.tuile;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import game.CantBuildException;
 import game.tuile.building.*;
 import static org.junit.Assert.assertTrue;

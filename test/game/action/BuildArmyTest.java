@@ -68,7 +68,7 @@ public class BuildArmyTest{
             //  creation of a port and two camps to be placed on the island created earlier.
             camp1=new Camp(foret1,6,player);
             camp2=new Camp(foret2,6,player);
-            // the tile foret2 is placed beside a sea tile so we can place a port on it 
+            // the tile foret2 is placed beside a sea tile so we can place a port on it      
             port =new Port(foret2, player);
             
             
