@@ -11,7 +11,7 @@ public abstract class ActionManager {
     protected Player player;
     
     /**
-     * create an ActionManager
+     * creates an ActionManager for the given player
      * @param player
      */
         public ActionManager(Player player){
@@ -20,7 +20,7 @@ public abstract class ActionManager {
     }
 
     /**
-     * check if the the player have at least the cost in his inventary
+     * checks if the the player has enough ressources in his inventory
      * @return true if he have enough, false otherwise
      */
     protected boolean hasEnoughRessources(){
@@ -33,7 +33,7 @@ public abstract class ActionManager {
     }
 
     /**
-     * remove the ressource from the player inventary
+     * removes the ressource from the player's inventary
      * @throws NoMoreRessourcesException
      */
     protected void removeRessources() throws NoMoreRessourcesException{
