@@ -12,7 +12,7 @@ public class Player {
     private List<Port> ports;
 
     /** 
-     * creates a player with a name and the initial resources
+     * creates a player with the given name and the initial resources
      * @param name  name of the player
      */ 
     public Player(String name) {
@@ -36,7 +36,7 @@ public class Player {
     }
 
     /**
-     * get the ports of the player
+     * gets the ports of this player
      * @return List<Ports> the ports of the player
      */
     public List<Port> getPorts(){
@@ -44,7 +44,7 @@ public class Player {
     }
 
     /**
-     * add a port to the player
+     * adds the given port to this player
      * @param port the port to add
      */
     public void addPort(Port port){
@@ -61,7 +61,7 @@ public class Player {
     }
 
     /**
-     * adds a tile to the player's list of tiles
+     * adds the given tile to the player's list of tiles
      * @param tile
      */
     public void addTile(Earth tile) {
@@ -85,7 +85,7 @@ public class Player {
     }
 
     /** 
-     * returns the resources of this player
+     * returns the ressources of this player
      * @return resource map
      */
     public HashMap<Ressource, Integer> getResources() {
@@ -93,7 +93,7 @@ public class Player {
     }
     
     /** 
-     * adds given quantity of the  given type of resource to the player's stock 
+     * adds the given amount of the  given type of resource to the player's stock 
      * @param resource the resource to add
      * @param nb amount to add
      */
@@ -102,7 +102,7 @@ public class Player {
     }
 
     /** 
-     * removes the given quantity of the give type of resource from the player's stock
+     * removes the given amount of the give type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
      * @exception NoMoreRessourcesException
@@ -131,9 +131,9 @@ public class Player {
 
 
     /**
-    * returns the amount of a specific resource the player has
-    * @param resource the resource type
-    * @return the amount of the resource
+    * returns the amount of the given ressource the player owns
+    * @param resource the ressource type
+    * @return the amount of the ressource
     */
     public int getRessourceAmount(Ressource resource) {
         return this.ressources.getOrDefault(resource, 0);

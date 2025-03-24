@@ -32,8 +32,8 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
     }
 
     /**
-     * return true if the port can be placed at the given position , false otherwise
-     * @param pos the position where we want to place it on 
+     * returns true if the port can be placed on the given position , false otherwise
+     * @param pos the position where we want to place the port on 
      * @param board the board of the game
      * @return true if the port can be placed at the given position , false otherwise
      */
@@ -45,6 +45,10 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
    
     }
     
+
+
+    /**
+     */
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
         Position choosenPosition= askCoordinate();
