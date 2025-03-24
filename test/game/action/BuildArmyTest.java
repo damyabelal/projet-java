@@ -17,7 +17,6 @@ import game.PlayerAres;
 import game.tuile.Forest;
 import game.tuile.Sea;
 import game.tuile.building.Camp;
-import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.Position;
 
@@ -28,14 +27,13 @@ public class BuildArmyTest{
         private PlayerAres player; 
         private Action<PlayerAres> action; 
         private Action<PlayerAres> actionBuild; 
-        // creation de tuile qui vont servir pour creer une ile de le board parceque comme le board est creer de facon  aleatoire on 
-        //veut etre sur que il y a une ile qui respecte les conditions pour poser une armee sur le plateau
+        // creating an island that will respect so we can be sure that there are at least 
+        //an island that meets the conditions for building an army since the board is created randomly
         private Forest foret1;
         private Forest foret2;
         private Forest foret3;
      
         private Sea sea;
-        private Port port;
         private Position pos1;
         private Position pos2;
         private Position pos3;

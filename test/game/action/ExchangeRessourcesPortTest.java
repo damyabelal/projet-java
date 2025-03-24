@@ -60,7 +60,7 @@ public class ExchangeRessourcesPortTest{
     }
 
     /**
-     * Test a successful respurce exchange using a port 
+     * Tests a successful ressource exchange using a port 
      * @throws Exception
      */
     @Test 

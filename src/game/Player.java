@@ -12,7 +12,7 @@ public class Player {
     private List<Port> ports;
 
     /** 
-     * creates a player with the given name and the initial resources
+     * creates a player with the given name and the initial ressources
      * @param name  name of the player
      */ 
     public Player(String name) {
