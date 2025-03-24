@@ -17,7 +17,6 @@ import game.PlayerAres;
 import game.tuile.Forest;
 import game.tuile.Sea;
 import game.tuile.building.Camp;
-import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.Position;
 
@@ -28,8 +27,8 @@ public class BuildArmyTest{
         private PlayerAres player; 
         private Action<PlayerAres> action; 
         private Action<PlayerAres> actionBuild; 
-        // creation de tuile qui vont servir pour creer une ile de le board parceque comme le board est creer de facon  aleatoire on 
-        //veut etre sur que il y a une ile qui respecte les conditions pour poser une armee sur le plateau
+        // creating an island that will respect so we can be sure that there are at least 
+        //an island that meets the conditions for building an army since the board is created randomly
         private Forest foret1;
         private Forest foret2;
         private Forest foret3;
@@ -48,7 +47,7 @@ public class BuildArmyTest{
         @BeforeEach
         void setUp() throws CantBuildException{
             
-            board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
+            board= new Board(5, 5); //creates a random board for the game
             player = new PlayerAres("Ares");
             action= new BuildArmy(board, player); 
             pos1=new Position(0,0);
@@ -59,16 +58,16 @@ public class BuildArmyTest{
             foret2=new Forest();
             foret3=new Forest();
             sea= new Sea();
-            // mise en place d'une ile dans le coin superieure gauche du board
+            // placing a tile at the left upper corner of the board
             board.put(foret1,pos1);
             board.put(foret2,pos2);
             board.put(foret3,pos3);
             board.put(sea,pos4);
             
-            // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
+            //  creation of a port and two camps to be placed on the island created earlier.
             camp1=new Camp(foret1,6,player);
             camp2=new Camp(foret2,6,player);
-            // la tuile foret2 est a cote d'une tuile mer donc on peut y placer un port
+            // the tile foret2 is placed beside a sea tile so we can place a port on it      
             port =new Port(foret2, player);
             
             

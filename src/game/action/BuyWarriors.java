@@ -17,18 +17,18 @@ public class BuyWarriors<T extends PlayerAres> extends ActionManager implements 
     }
 
     /**
-     * Buy 5 warriors if the player has enough resources
-     * @param player the player who makes the action    
+     * Buys 5 warriors if the player has enough resources
+     * @param player the player who wants to buy ressources    
      */
     public void act(PlayerAres player) throws NoMoreRessourcesException {
 
-        // Check if player has enough resources to buy 5 warriors
+        // Checks if player has enough ressources to buy 5 warriors
         if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to add 5 warriors");
         }
         this.removeRessources();
         
-        // Add 5 warriors to the player's warriors stock
+        // if the player has enough ressources ,adds 5 warriors to the player's warriors stock
         player.addWarriors(5);
         System.out.println("4 warriors were purchased"); 
     }

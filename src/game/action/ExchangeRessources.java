@@ -21,15 +21,15 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
     }
 
     /**
-     * ask the player which ressource he wants to exchange
+     * asks the player what type of  ressource he wants to exchange
      * @return the ressource
      */
     public Ressource askExchangeRessources()  {
-        return lc.choose("What ressources do you want to exhange?", Arrays.asList(Ressource.values()));
+        return lc.choose("What ressource do you want to exchange?", Arrays.asList(Ressource.values()));
     }
 
     /**
-     * ask the player which ressource he wants to receive in exchange
+     * asks the player which ressource he wants to receive in exchange
      * @return the ressource
      */
     public Ressource askReceiveRessources(){
@@ -38,8 +38,8 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
 
 
     /**
-     * First, ask the player which ressource he wants to exchange, then ask him which one he
-     * wants te receive in exhange. If all the conditions are met, the exchange take place.  
+     * first, asks the player which ressource he wants to exchange, then asks  which one he
+     * wants te receive in exchange. If all the conditions are met, the exchange takes place.  
      */
     @Override
     public void act(T player) throws NoMoreRessourcesException {

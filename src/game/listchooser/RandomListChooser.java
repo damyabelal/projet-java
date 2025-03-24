@@ -46,7 +46,7 @@ public class RandomListChooser<T> implements ListChooser<T>{
     }
 
     /**
-     * ask the player on which tile he want to act 
+     * asks the player on which tile he wants to act 
      * @param msg the prompt message
      * @param board the board for this game
      * @return the choosen position
