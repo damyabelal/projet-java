@@ -50,7 +50,7 @@ public class UpgradeArmyTest {
     }
 
     @Test
-    void testUpgradeArmyWithTooFewWarriors() throws CantBuildException {
+    void testUpgradeArmyWithNotEnoughWarriors() throws CantBuildException {
         Army army = new Army(new Forest(), 4, player);
         player.addArmy(army);
         assertThrows(CantBuildException.class, () -> upgradeArmyAction.act(player));

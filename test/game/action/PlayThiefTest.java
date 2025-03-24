@@ -21,7 +21,7 @@ public class PlayThiefTest {
     }
 
     @Test
-    void shouldThrowWhenNoRessource() throws NoMoreRessourcesException {
+    void shouldThrowExceptionWhenNoRessources() throws NoMoreRessourcesException {
         PlayerDemeter[] listPlayers = {player2};
         actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
         
