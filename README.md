@@ -539,9 +539,19 @@ liste des réflexions et choses à modifier du livrable 2:
 
 ### Ce qui a été réalisé
 
+- Résolution des problèmes qui conçernent les livrables (on avait pas réussi à afficher les upgades sur le plateau)
+- Début de rédaction du readme de la section livrable 3
+- Rédaction des tests unitaires de la classe BuildArmy 
+- Amélioration de la javadoc pour le rendu du livrable 
+
 ### Difficultés rencontrées
 
+- Réflexion sur cette condition de construction : pour construire une armée ou un port sur une île qu’on n’occupe pas encore, il faut disposer d’au moins un port sur une île qu’on occupe déjà
+
 ### Objectifs pour la semaine
+
+- Completion des tests unitaires manquants 
+- Completion du readme ainsi que la section des commandes qui permettent d'exécuter le livrable
 
 ## Semaine 11
 
