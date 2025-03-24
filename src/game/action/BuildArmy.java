@@ -22,7 +22,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.board = board;
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP,1); 
-        this.cost.put(Ressource.ORE,1);
+        this.cost.put(Ressource.WEALTH,1);
         lc= new RandomListChooser<>(); 
     }
 

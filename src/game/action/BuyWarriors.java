@@ -30,7 +30,7 @@ public class BuyWarriors<T extends PlayerAres> extends ActionManager implements 
         
         // Add 5 warriors to the player's warriors stock
         player.addWarriors(5);
-        System.out.println("5 warriors were purchased"); 
+        System.out.println("4 warriors were purchased"); 
     }
 }
 

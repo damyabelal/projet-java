@@ -13,8 +13,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
 
     /**
      * creates an exchange action between two resources
-     * @param toExchange the resource to exchange (3 will be removed)
-     * @param toReceive the resource to receive (1 will be added)
+     * @param player the player who proceed the exchange
      */
     public ExchangeRessources(Player player) {
         super(player); 
