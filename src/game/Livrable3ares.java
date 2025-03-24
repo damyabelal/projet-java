@@ -147,7 +147,7 @@ public class Livrable3ares {
 
         System.out.println("\n"); 
 
-        board.display();
+        board.display();  
 
 
     }
