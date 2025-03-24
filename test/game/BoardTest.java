@@ -360,12 +360,22 @@ public class BoardTest {
     
         Earth e1 = (Earth) board.getTile(new Position(1, 1));
         Earth e2 = (Earth) board.getTile(new Position(1, 2));
+        Earth e3 = (Earth) board.getTile(new Position(2, 2));
+        Earth e4 = (Earth) board.getTile(new Position(4, 4));
+        Earth e5 = (Earth) board.getTile(new Position(4, 3));
     
         List<Earth> island = board.getIsland(e1);
-    
+        List<Earth> island2 = board.getIsland(e4);
+        
+        assertTrue(2==islands.size());
+
         assertNotNull(island);
         assertTrue(island.contains(e1));
         assertTrue(island.contains(e2));
+        assertTrue(island.contains(e3));
+        
+        assertTrue(island2.contains(e4));
+        assertTrue(island2.contains(e5));
         assertEquals(3, island.size());
     }
 }

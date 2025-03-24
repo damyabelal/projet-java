@@ -32,9 +32,12 @@ public class Army extends Building{
         }
         this.dimension = this.nbWarriors;
         this.symbol = SYMBOL;
+        
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WEALTH, 1);
+
+
         this.player = player;
 
     }
