@@ -29,7 +29,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     }
 
     /**
-     * Ask the player which army they want to upgrade
+     * Asks the player which army he wants to upgrade
      * @return the army the player wants to upgrade
      */
     public Army askArmy() {
@@ -41,7 +41,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     }
 
     /**
-     * Ask the player how they want to upgrade the army
+     * Asks the player how they want to upgrade the army: by adding warriors or by using ressources
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
@@ -52,14 +52,14 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         Army chosenArmy = askArmy();
 
-        // ask the player how they want to upgrade
+        // asks the player how he wants to upgrade the army 
         String method = askUpgradeMethod();
 
-        // check if the player has  an army to upgrade
+        // checks if the player has  an army to upgrade
         if (chosenArmy == null) {
             throw new IllegalArgumentException("No army selected");
         }
-        // check if the player has enough resources
+        // checks if the player has enough ressources
         if ("resources".equalsIgnoreCase(method)) {
             if (!this.hasEnoughRessources()) {
                 throw new NoMoreRessourcesException("Not enough resources to upgrade the army");
@@ -67,7 +67,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             this.removeRessources();
 
         } else if ("warriors".equalsIgnoreCase(method)) {
-            // check if the army has 5 warriors to upgrade
+            // checks if the army has 5 warriors to upgrade
             if (chosenArmy.getNbWarriors() >= 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
@@ -93,7 +93,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         player.addCamp(camp);
 
 
-        System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" wariors)");
+        System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" warriors)");
 
     }
 }
