@@ -68,7 +68,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         } else if ("warriors".equalsIgnoreCase(method)) {
             // check if the army has 5 warriors to upgrade
-            if (chosenArmy.getNbWarriors() >= 5) {
+            if (chosenArmy.getNbWarriors() < 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
             int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));

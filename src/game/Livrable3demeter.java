@@ -8,6 +8,7 @@ import game.action.ExchangeRessourcesPort;
 import game.action.UpgradeFarm;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.tuile.building.Exploitation;
 
 public class Livrable3demeter {
     
