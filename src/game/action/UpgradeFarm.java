@@ -17,7 +17,6 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
-
         this.lc = new RandomListChooser<>();
     }
 
@@ -37,24 +36,21 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
             System.out.println("No farm selected");
             return;  
         }
-        this.tuile = chosenFarm.getTuile(); 
+        
         
         if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to upgrade the farm");
         }
 
         this.removeRessources();
-        // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation 
-        //vu qu'on fait un upgrade sur la meme tuile
-        //this.tuile.removeBuilding();
-        
-
-        chosenFarm.upGradeToExploitation(); 
-
-        //Exploitation exploitation = new Exploitation(this.tuile, player);
-        //this.tuile.setBuilding(exploitation);
-        //player.addExploitation(exploitation);
-
+        // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation vu qu'on fait un upgrade sur la meme tuile
+        this.tuile = chosenFarm.getTuile(); 
+        this.tuile.removeBuilding();
+        player.removeFarm(chosenFarm);
+        Exploitation exploitation = chosenFarm.upGradeToExploitation();
+        this.tuile.setBuilding(exploitation);
+        player.addExploitation(exploitation);
+ 
         System.out.println("The farm evolved into a exploitation");
 
 

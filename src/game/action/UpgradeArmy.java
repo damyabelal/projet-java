@@ -45,7 +45,9 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        return this.lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        String res=  this.lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        System.out.println(res);
+        return res; 
     }
 
     @Override
@@ -67,16 +69,16 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             this.removeRessources();
 
         } else if ("warriors".equalsIgnoreCase(method)) {
-            // checks if the army has 5 warriors to upgrade
-            if (chosenArmy.getNbWarriors() >= 5) {
-                throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
-            }
-            int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
-            if (player.getWarriors() < add){
-                throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
-            }
-            chosenArmy.addWarriors(add);
-            player.removeWarriors(add);
+            // check if the army has 5 warriors to upgrade
+            //if (chosenArmy.getNbWarriors() < 5) {
+            //    throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
+            //}
+            //int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+            //if (player.getWarriors() < add){
+            //    throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
+            //}
+            //chosenArmy.addWarriors(add);
+            //player.removeWarriors(add);
 
         } else {
             throw new IllegalArgumentException("Invalid upgrade method");

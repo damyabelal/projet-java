@@ -53,11 +53,11 @@ public class Farm extends Building{
     */
     public Exploitation upGradeToExploitation() {
         if (this.canBeExploitation(player)) {
-            player.removeFarm(this);
-            this.getTuile().removeBuilding();
+            //player.removeFarm(this);
+            //this.getTuile().removeBuilding();
             Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayerDemeter());
-            this.getTuile().setBuilding(exploitation);
-            player.addExploitation(exploitation);
+            //this.getTuile().setBuilding(exploitation);
+            //player.addExploitation(exploitation);
             return exploitation;
         } else {
             System.out.println("Not enough resources");
