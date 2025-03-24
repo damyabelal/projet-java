@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.tuile.building.Army;
+import game.tuile.building.Camp;
+
 public class PlayerAresTest {
     
     private PlayerAres player;
@@ -36,4 +39,56 @@ public class PlayerAresTest {
         
 
     }
+    @Test
+    void testSecretWeaponAddRemove() {
+        assertEquals(0, player.getNbSecretWeapon());
+
+        player.addSecretWeapon();
+        assertEquals(1, player.getNbSecretWeapon());
+
+        player.removeSecretWeapon();
+        assertEquals(0, player.getNbSecretWeapon());
+    }
+
+
+    @Test
+    void testAddArmy() throws Exception {
+        Army army = new Army(null, 3, player);
+        player.addArmy(army);
+
+        assertTrue(player.getArmies().contains(army));
+        assertTrue(player.getTiles().contains(army.getTuile()));
+    }
+
+
+
+    @Test
+    void testRemoveArmy() throws Exception{
+        Army army = new Army(null, 2, player);
+        player.addArmy(army);
+        assertEquals(1, player.getArmies().size());
+
+        player.removeArmy(army);
+        assertEquals(0, player.getArmies().size());
+        assertFalse(player.getTiles().contains(army.getTuile()));
+    }
+
+    @Test
+    void testAddCamp()throws Exception {
+        Camp camp = new Camp(null, 5, player);
+        player.addCamp(camp);
+
+        assertTrue(player.getCamps().contains(camp));
+        assertTrue(player.getTiles().contains(camp.getTuile()));
+    }
+
+
+
+
+
+
+
+
+
+
 }
