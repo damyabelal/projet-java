@@ -48,7 +48,7 @@ public class BuildArmyTest{
         @BeforeEach
         void setUp() throws CantBuildException{
             
-            board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
+            board= new Board(5, 5); //creates a random board for the game
             player = new PlayerAres("Ares");
             action= new BuildArmy(board, player); 
             pos1=new Position(0,0);
@@ -59,16 +59,16 @@ public class BuildArmyTest{
             foret2=new Forest();
             foret3=new Forest();
             sea= new Sea();
-            // mise en place d'une ile dans le coin superieure gauche du board
+            // placing a tile at the left upper corner of the board
             board.put(foret1,pos1);
             board.put(foret2,pos2);
             board.put(foret3,pos3);
             board.put(sea,pos4);
             
-            // creation d'un port et deux camps pour les placer sur l'ile.Tout trois appartiennent au joueur player
+            //  creation of a port and two camps to be placed on the island created earlier.
             camp1=new Camp(foret1,6,player);
             camp2=new Camp(foret2,6,player);
-            // la tuile foret2 est a cote d'une tuile mer donc on peut y placer un port
+            // the tile foret2 is placed beside a sea tile so we can place a port on it 
             port =new Port(foret2, player);
             
             
