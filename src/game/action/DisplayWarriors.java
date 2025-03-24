@@ -61,7 +61,7 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
      */
     public void act(PlayerAres player) throws NoMoreRessourcesException {
         Army choosenBuild= ask(player);
-        int add= 5;
+        int add= 4;
         player.removeWarriors(add);
         choosenBuild.addWarriors(add);
         System.out.println(add + " warriors has been added to the army");

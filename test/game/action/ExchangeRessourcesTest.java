@@ -1,10 +1,6 @@
 package game.action;
 import game.PlayerDemeter;
-
-
-
 import game.NoMoreRessourcesException;
-import game.PlayerDemeter;
 import game.tuile.Ressource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,7 +51,7 @@ public class ExchangeRessourcesTest {
      * Tests exception when trying to exchange the same resource.
      */
     @Test
-    void testSameResourceExchangeThrows() {
+    void SameRessourceExchangeShouldThrowException() {
         player.addRessource(Ressource.WOOD, 3);
 
         ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player) {
@@ -77,7 +73,7 @@ public class ExchangeRessourcesTest {
      * Tests exception when the player has less than 3 of the resource to exchange.
      */
     @Test
-    void testNotEnoughResourcesThrows() {
+    void NotEnoughResourcesShouldThrowException() {
         player.addRessource(Ressource.WOOD, 2);
 
         ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player) {

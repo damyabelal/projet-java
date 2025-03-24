@@ -2,7 +2,6 @@ package game.action;
 
 import game.Board;
 import game.CantBuildException;
-import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -52,7 +51,7 @@ public class ExchangeRessourcesPortTest{
     
             @Override
             public Ressource askReceiveRessources() {
-                return Ressource.WOOD; // même ressource = erreur attendue
+                return Ressource.WOOD; // exchanging the same ressource should throw an error
             }
 
         };
@@ -61,7 +60,7 @@ public class ExchangeRessourcesPortTest{
     }
 
     /**
-     * Test a successful respurce exchange using a port 
+     * Tests a successful ressource exchange using a port 
      * @throws Exception
      */
     @Test 

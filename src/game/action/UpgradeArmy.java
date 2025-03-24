@@ -29,7 +29,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     }
 
     /**
-     * Ask the player which army they want to upgrade
+     * Asks the player which army he wants to upgrade
      * @return the army the player wants to upgrade
      */
     public Army askArmy() {
@@ -41,25 +41,27 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     }
 
     /**
-     * Ask the player how they want to upgrade the army
+     * Asks the player how they want to upgrade the army: by adding warriors or by using ressources
      * @return the method chosen by the player (either 'warriors' or 'resources')
      */
     public String askUpgradeMethod() {
-        return this.lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        String res=  this.lString.choose("Do you want to upgrade by adding warriors or using resources?", List.of("warriors", "resources"));
+        System.out.println(res);
+        return res; 
     }
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException {
         Army chosenArmy = askArmy();
 
-        // ask the player how they want to upgrade
+        // asks the player how he wants to upgrade the army 
         String method = askUpgradeMethod();
 
-        // check if the player has  an army to upgrade
+        // checks if the player has  an army to upgrade
         if (chosenArmy == null) {
             throw new IllegalArgumentException("No army selected");
         }
-        // check if the player has enough resources
+        // checks if the player has enough ressources
         if ("resources".equalsIgnoreCase(method)) {
             if (!this.hasEnoughRessources()) {
                 throw new NoMoreRessourcesException("Not enough resources to upgrade the army");
@@ -68,15 +70,15 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         } else if ("warriors".equalsIgnoreCase(method)) {
             // check if the army has 5 warriors to upgrade
-            if (chosenArmy.getNbWarriors() >= 5) {
-                throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
-            }
-            int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
-            if (player.getWarriors() < add){
-                throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
-            }
-            chosenArmy.addWarriors(add);
-            player.removeWarriors(add);
+            //if (chosenArmy.getNbWarriors() < 5) {
+            //    throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
+            //}
+            //int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+            //if (player.getWarriors() < add){
+            //    throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
+            //}
+            //chosenArmy.addWarriors(add);
+            //player.removeWarriors(add);
 
         } else {
             throw new IllegalArgumentException("Invalid upgrade method");
@@ -93,7 +95,7 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         player.addCamp(camp);
 
 
-        System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" wariors)");
+        System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" warriors)");
 
     }
 }

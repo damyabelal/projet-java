@@ -18,16 +18,16 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
     }
 
      /**
-     * ask the player which ressource he wants to exchange
-     * @return the ressource
+     * asks the player which ressource he wants to exchange
+     * @return the ressource the player wants to exchange
      */
     public Ressource askExchangeRessources()  {
         return lc.choose("What ressources do you want to exhange?", Arrays.asList(Ressource.values()));
     }
 
     /**
-     * ask the player which ressource he wants to receive in exchange
-     * @return the ressource
+     * asks the player which ressource he wants to receive in exchange
+     * @return the ressource the player wants to receive in exchange
      */
     public Ressource askReceiveRessources(){
         return lc.choose("What ressource do you want in exchange?", Arrays.asList(Ressource.values())); 
@@ -35,8 +35,8 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
 
 
     /**
-     * First, ask the player which ressource he wants to exchange, then ask him which one he
-     * wants te receive in exhange. If all the conditions are met, the exchange take place. 
+     * First, asks the player which ressource he wants to exchange, then ask him which one he
+     * wants te receive in exhange. If all the conditions are met, the exchange takes place. 
      * The conditions are different from ExchangeRessources
      */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException , CantBuildException{

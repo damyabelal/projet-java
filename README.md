@@ -307,6 +307,26 @@ Pour cause de problèmes technique les émojis ont disparuts de l'affichage. On 
 
 ## Livrable 3
 
+On a choisi de modéliser les actions en utilisant une interface Action qui dispose de la methode act() qui sera 
+redéfini proprement à chaque action, cette méthode prend en paramètre un player de type paramétré <T> pour differencier les joueurs des actions associées au jeu Ares et au jeu Demeter 
+
+De plus, on a choisi de rajouter une classe abstraite ActionManager qui est caracterisé par le coût de l'action et le type du joueur qui execute l'action. Cette classe dispose des methodes qui seront utiles dans la modélisation des actions qui nécessite un paiement (utilisation des ressources du joueur). Elle dispose des méthodes : 
+
+- hasEnoughRessources() qui verifie si le joueur a suffisament de ressources pour se permettre de payer le coût de l'action concernée
+
+- removeRessources() qui parcout le coût de l'action et et la soustrait des ressources du joueur
+
+On a crée une classe Player qui sera commune pour PlayerAres et PlayerDemeter (héritage), un player est caractérisé par son nom, ses ressources, sa liste de ports, la liste des tuiles dont il dispose sur les quelles il a construit un batiment. Initialement ces listes sont vides, on pensait que c'était pas nécessaire de rajouter un attribut liste des bâtiments du joueur car depuis sa liste tuile on peut récupérer ces bâtiments en questions
+
+PlayerAres hérite de Player, il dispose donc de ses attributs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Ares, c'est à dire son nombre de guerriers initialement à 30, son nombre d'armes secrète, sa liste d'armées , sa liste de camps , sa liste des actions..ect
+
+PlayerDemeter hérite de Player, il dispose aussi de ses attributrs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Demeter, c'est à dire son nombre de points au cour du jeu, son nombre de voleur, sa liste de fermes, sa lite d'exploitations , sa liste des actions.. ect
+
+Pour les actions qui nécessitent un paiement (utlisation des ressources du joueur) tel que BuySecretWeapon, BuyThief, BuyWarriors on vérifie si le joueur a suffisament de ressources pour l'action en question si c'est le cas on effectue l'action si ce n'est pas le cas on génère une erreur (throws  NoMoreRessourcesException)
+
+Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort
+
+
 ### Atteinte des objectifs
 
 ### Difficultés restant à résoudre

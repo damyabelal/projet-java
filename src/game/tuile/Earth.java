@@ -9,8 +9,8 @@ public class Earth extends Tuile {
     protected Building building; 
 
     /** 
-     * initializes a new Earth tile with a given resource and symbol
-     * @param ressource the resource type of this tile
+     * initializes a new Earth tile with a given ressource and symbol
+     * @param ressource the ressource type of this tile
      * @param symbol the symbol representing this tile
      */
     public Earth(Ressource ressource, String symbol) {
@@ -37,8 +37,8 @@ public class Earth extends Tuile {
     }
 
     /** 
-     * set a building to this tile if no building has been constructed on it
-     * @param building the building to place on the tile
+     * sets the given building to this tile if no building has been constructed on it
+     * @param building the building to be  place on the tile
      */
     public void setBuilding(Building building) {
         if (this.haveBuild()){
@@ -50,7 +50,7 @@ public class Earth extends Tuile {
 
     /** 
      * returns the building on this tile, or null if there is none
-     * @return the building or null if no building is placed
+     * @return the building or null if no building  placed
      */
     public Building getBuilding() {
         return this.building;

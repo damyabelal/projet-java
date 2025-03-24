@@ -191,7 +191,6 @@ public class BuildArmyTest{
             
             Port port = new Port(tuile3, player);
             tuile2.setBuilding(port);
-           
             
             board.islands= board.findIslands();
 

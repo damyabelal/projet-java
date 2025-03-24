@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.*;
 
 /*
- * Build an army on the island
+ * Builds an army on the island
  */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
@@ -33,12 +33,12 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
 
     
     public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
+        return lc.chooseCoordinate("Where do you want to build an Army?", this.board);
     }
 
 
     /**
-     * Check if the player can build an army if in the island there are at least 2 buildings and 1 port
+     * Checks if the player can build an army , which means if he has at least a port and two building placed on an island
      * @param earth
      * @param player
      * @return boolean
@@ -47,8 +47,12 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         int cptBuild = 0;
         int cptPort = 0;
         List<Earth> island = board.getIsland(earth);
+<<<<<<< HEAD
         
         for (Earth tuile : island){
+=======
+        for (Earth tuile : island){ 
+>>>>>>> ec21b9f89ef0738b2e0ea5964580349a6c529a8d
             if(tuile.haveBuild()){
 
                 cptBuild++;
