@@ -34,6 +34,7 @@ public class BuildArmyTest{
         private Forest foret3;
      
         private Sea sea;
+        private Port port;
         private Position pos1;
         private Position pos2;
         private Position pos3;
