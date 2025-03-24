@@ -47,12 +47,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         int cptBuild = 0;
         int cptPort = 0;
         List<Earth> island = board.getIsland(earth);
-<<<<<<< HEAD
-        
-        for (Earth tuile : island){
-=======
         for (Earth tuile : island){ 
->>>>>>> ec21b9f89ef0738b2e0ea5964580349a6c529a8d
             if(tuile.haveBuild()){
 
                 cptBuild++;
