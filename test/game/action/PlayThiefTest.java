@@ -47,4 +47,12 @@ public class PlayThiefTest {
         assertEquals(15, player2.getRessourceAmount(Ressource.WOOD));
     }
 
+    @Test
+    void shouldThrowExceptionWhenPlayerHasNoThief() {
+        player1.addRessource(Ressource.WOOD, 10);
+        PlayerDemeter[] listPlayers = {player1};
+        actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
+        assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player1));
+    }
+
   }
