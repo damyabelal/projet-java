@@ -324,9 +324,9 @@ PlayerDemeter hérite de Player, il dispose aussi de ses attributrs et méthodes
 
 Pour les actions qui nécessitent un paiement (utlisation des ressources du joueur) tel que BuySecretWeapon, BuyThief, BuyWarriors on vérifie si le joueur a suffisament de ressources pour l'action en question si c'est le cas on effectue l'action si ce n'est pas le cas on génère une erreur (throws  NoMoreRessourcesException)
 
-Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort
+Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort on vérifie également si le joueur a suffisament de ressources ainsi que d'autres conditions de construction (par exemple pour buildArmy on peut construire soit avec les ressources du joueur soit en ajoutant des guerriers dans l'armée, pour buildPort on verifie la condition de : le port ne peut être créé que sur une tuile voisine de la mer..ect )
 
-### Diagramme UML pour le Livrable2 :
+### Diagramme UML pour le Livrable 3 :
 ![ l'uml des actions](/index/UMLAction2.png "UML des actions")
 
 ![ l'uml du listchooser](/index/UMLListchooser.png "UML du listchooser")
