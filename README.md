@@ -328,9 +328,9 @@ Pour les actions qui nécessitent la construction des batiments (build) tel que 
 
 ### Diagramme UML pour le Livrable2 :
 ![ l'uml des actions](/index/UMLAction2.png "UML des actions")
-[mieux voir l'uml]
 
 ![ l'uml du listchooser](/index/UMLListchooser.png "UML du listchooser")
+
 [l'uml des actions et du listchooser](https://lucid.app/lucidchart/5902e73f-4322-4aba-922a-fc3bb0dea9c7/edit?invitationId=inv_0bf26132-d019-489c-bff7-d16ef601bbf9)
 
 l'uml des précédents livrable est toujours visible [ici](https://lucid.app/lucidchart/38cc81c5-70a7-4213-a395-4649bfcfe868/edit?invitationId=inv_a5bb74cc-7cd8-4e37-9fc7-9fcbdb7c63b1)
