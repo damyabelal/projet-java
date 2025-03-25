@@ -571,6 +571,21 @@ public void displayBuildings() {
         return null;
     }
 
+    public List<Earth> coastalTiles(){
+        List<Earth> res= new ArrayList<>(); 
+        for (List<Earth> t : this.getIslands()){
+            for ( Earth e : t){
+                for (Direction d : Direction.values()) {
+                    Position neighbor = e.getPosition().next(d);
+                    Tuile neighborTile = getTile(neighbor);
+                    if (neighborTile instanceof Sea && this.nbSeaTiles(e.getPosition()) >= 2) {
+                        res.add(e); 
+                    }
+                }
+            }
+        }
+        return res; 
+    }
 
 
 
