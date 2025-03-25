@@ -46,6 +46,9 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     public  boolean canBuildArmy(Earth earth, PlayerAres player) {
         int cptBuild = 0;
         int cptPort = 0;
+        if (player.getArmies().size() <= 2){
+            return true; 
+        }
         List<Earth> island = board.getIsland(earth);
         for (Earth tuile : island){ 
             if(tuile.haveBuild()){
@@ -101,7 +104,6 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
 
         System.out.println(player.getName() +": "+player.getResources()+ " build a army with 1 warrior on position "+ choosenPosition);
     
-        player.addArmy(army);
             
 
 

@@ -16,7 +16,6 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
     private ListChooser<Army> lc;
     private ListChooser<String> lString; 
-    private ListChooser<Integer> lnumb; 
     private Earth tuile;  
 
     public UpgradeArmy(PlayerAres player) {
@@ -25,7 +24,6 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.ORE, 3);
         this.lc = new RandomListChooser<>();
         this.lString = new RandomListChooser<>();
-        this.lnumb= new RandomListChooser<>(); 
     }
 
     /**

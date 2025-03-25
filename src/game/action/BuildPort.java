@@ -1,8 +1,6 @@
 package game.action;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import game.Board;
 import game.NoMoreRessourcesException;
