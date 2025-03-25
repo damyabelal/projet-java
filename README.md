@@ -316,15 +316,107 @@ De plus, on a choisi de rajouter une classe abstraite ActionManager qui est cara
 
 - removeRessources() qui parcout le coût de l'action et et la soustrait des ressources du joueur
 
-On a crée une classe Player qui sera commune pour PlayerAres et PlayerDemeter (héritage), un player est caractérisé par son nom, ses ressources, sa liste de ports, la liste des tuiles dont il dispose sur les quelles il a construit un batiment. Initialement ces listes sont vides, on pensait que c'était pas nécessaire de rajouter un attribut liste des bâtiments du joueur car depuis sa liste tuile on peut récupérer ces bâtiments en questions
+On a crée une classe Player qui sera commune pour PlayerAres et PlayerDemeter (héritage), un player est caractérisé par son nom, ses ressources, sa liste de ports, sa liste des tuiles sur les quelles il a construit ses batiments. Initialement ces listes sont vides, on jugeait que c'était pas nécessaire de rajouter un attribut liste des bâtiments pour le joueur car depuis sa liste de tuiles on peut récupérer ces bâtiments en question
 
 PlayerAres hérite de Player, il dispose donc de ses attributs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Ares, c'est à dire son nombre de guerriers initialement à 30, son nombre d'armes secrète, sa liste d'armées , sa liste de camps , sa liste des actions..ect
 
-PlayerDemeter hérite de Player, il dispose aussi de ses attributrs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Demeter, c'est à dire son nombre de points au cour du jeu, son nombre de voleur, sa liste de fermes, sa lite d'exploitations , sa liste des actions.. ect
+PlayerDemeter hérite de Player, il dispose aussi de ses attributrs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Demeter, c'est à dire son nombre de points au cour du jeu, son nombre de voleurs, sa liste de fermes, sa lite d'exploitations , sa liste des actions.. ect
 
-Pour les actions qui nécessitent un paiement (utlisation des ressources du joueur) tel que BuySecretWeapon, BuyThief, BuyWarriors on vérifie si le joueur a suffisament de ressources pour l'action en question si c'est le cas on effectue l'action si ce n'est pas le cas on génère une erreur (throws  NoMoreRessourcesException)
+- Pour les actions qui nécessitent un paiement (utlisation des ressources du joueur) tel que BuySecretWeapon, BuyThief, BuyWarriors on vérifie si le joueur a suffisament de ressources pour l'action en question si c'est le cas on effectue l'action si ce n'est pas le cas on génère une erreur (throws NoMoreRessourcesException)
 
-Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort on vérifie également si le joueur a suffisament de ressources ainsi que d'autres conditions de construction (par exemple pour buildArmy on peut construire soit avec les ressources du joueur soit en ajoutant des guerriers dans l'armée, pour buildPort on verifie la condition de : le port ne peut être créé que sur une tuile voisine de la mer..ect )
+- Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort on vérifie également si le joueur a suffisament de ressources ainsi que d'autres conditions de construction (par exemple pour buildPort on verifie la condition de : le port ne peut être créé que sur une tuile voisine de la mer..ect )
+
+- Pour les actions qui nécessitent les upgrades tel que UpgradeFarm et UpgradeArmy permettent respectivement d'améliorer une ferme en exploitation et une armée en camp. Elles héritent de ActionManager car elles nécessitent des ressources. UpgradeFarm consomme WOOD, WEALTH et SHEEP pour remplacer une ferme par une exploitation. UpgradeArmy offre deux options : payer en WOOD et ORE ou ajouter des guerriers. Dans les deux cas, le bâtiment initial est supprimé et remplacé par sa version améliorée. Si les conditions ne sont pas remplies, une exception est levée (NoMoreRessourcesException)
+
+- Pour les actions qui nécessitent des échanges de ressources : ExchangeRessources permet à un joueur d'échanger 3 unités d'une ressource contre 1 d'une autre. ExchangeRessourcesPort, spécifique à PlayerDemeter, nécessite un port et échange 2 unités contre 1. Si les conditions ne sont pas remplies, des exceptions sont levées
+
+ #### A propos de RandomListChooser :
+
+ On a crée la classe RandomListChooser<T> qui permet de choisir un élément au hasard dans une liste, elle a deux méthodes principales :
+
+choose(String msg, List<? extends T> list) : elle affiche un message et choisit aléatoirement un élément dans la liste si la liste est vide elle renvoie null
+
+chooseCoordinate(String msg, Board board) : elle choisit une position aléatoire sur le plateau de jeu et vérifie si la position est valide et ou l'on peut construire
+
+Ce choix de modélisation sert à simuler des choix automatiques pour le joueur comme choisir une ressource ou une position de bâtiment ou un nombre de guerriers à rajouter.. ect
+
+### Les commandes  : 
+
+### 1.1 Compilation des sources du package game.tuile
+
+javac -sourcepath src src/game/tuile/*.java -d classes
+
+### 1.2 Compilation des sources du package game.util 
+
+javac -sourcepath src src/game/util/*.java -d classes
+
+### 1.3 Compilation des sources du package game
+
+javac -sourcepath src src/game/*.java -d classes
+
+### 1.4 Compilation des sources du package game.tuile.building
+
+javac -sourcepath src src/game/tuile/building/*.java -d classes
+
+### 1.5 Compilation des sources du package game.action
+
+javac -sourcepath src src/game/action/*.java -d classes
+
+### 2.1 Exécution du livrable 3 Ares :
+
+java -classpath classes game.Livrable3ares a b 
+
+### 2.2 Exécution du livrable 3 Demeter :
+
+java -classpath classes game.Livrable3demeter a b 
+
+ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau et le minimum est 10)
+
+### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
+
+javadoc -d docs -sourcepath src src/game/tuile/*.java
+
+javadoc -d docs -sourcepath src src/game/util/*.java
+
+javadoc -d docs -sourcepath src src/game/*.java
+
+javadoc -d docs -sourcepath src src/game/tuile/building*.java
+
+javadoc -d docs -sourcepath src src/game/action/*.java
+
+
+### 5.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 5.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 5.2 Compilation des tests du package game.tuile.building
+
+javac -classpath junit-console.jar:classes test/game/tuile/building*.java
+
+### 5.3 Compilation des tests du package game.action
+
+javac -classpath junit-console.jar:classes test/game/action/*.java
+
+### 4. Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6.Créer les Archives JAR
+
+jar cvfe livrable3ares.jar game.Livrable3ares -C classes .
+
+jar cvfe livrable3demeter.jar game.Livrable3demeter -C classes .
+
+### 7.Exécuter les Archives JAR
+
+java -jar livrable3ares.jar
+
+java -jar livrable3demeter.jar
+
 
 ### Diagramme UML pour le Livrable 3 :
 ![ l'uml des actions](/index/UMLAction2.png "UML des actions")
