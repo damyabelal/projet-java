@@ -312,9 +312,9 @@ redéfini proprement à chaque action, cette méthode prend en paramètre un pla
 
 De plus, on a choisi de rajouter une classe abstraite ActionManager qui est caracterisé par le coût de l'action et le type du joueur qui execute l'action. Cette classe dispose des methodes qui seront utiles dans la modélisation des actions qui nécessite un paiement (utilisation des ressources du joueur). Elle dispose des méthodes : 
 
-- hasEnoughRessources() qui verifie si le joueur a suffisament de ressources pour se permettre de payer le coût de l'action concernée
+hasEnoughRessources() qui verifie si le joueur a suffisament de ressources pour se permettre de payer le coût de l'action concernée
 
-- removeRessources() qui parcout le coût de l'action et et la soustrait des ressources du joueur
+removeRessources() qui parcout le coût de l'action et et la soustrait des ressources du joueur
 
 On a crée une classe Player qui sera commune pour PlayerAres et PlayerDemeter (héritage), un player est caractérisé par son nom, ses ressources, sa liste de ports, sa liste des tuiles sur les quelles il a construit ses batiments. Initialement ces listes sont vides, on jugeait que c'était pas nécessaire de rajouter un attribut liste des bâtiments pour le joueur car depuis sa liste de tuiles on peut récupérer ces bâtiments en question
 
@@ -427,9 +427,18 @@ java -jar livrable3demeter.jar
 
 l'uml des précédents livrable est toujours visible [ici](https://lucid.app/lucidchart/38cc81c5-70a7-4213-a395-4649bfcfe868/edit?invitationId=inv_a5bb74cc-7cd8-4e37-9fc7-9fcbdb7c63b1)
 
+
 ### Atteinte des objectifs
 
+Les principaux objectifs du livrable 3 ont été réalisés, les actions de base comme l'échange de ressources, la construction de bâtiments et les améliorations de fermes et d'armées, l'achat de guerriers et de voleurs fonctionnent correctement pour les joueurs Ares et Demeter, la gestion des ressources et des conditions d'actions a été mise en place
+
 ### Difficultés restant à résoudre
+
+- Il reste à améliorer l'affichage des actions : il faudra plus tard afficher uniquement les actions que le joueur peut réellement effectuer
+
+-  Le système de choix aléatoires pourrait être amélioré pour éviter les choix répétitifs
+
+- L'affichage du plateau pourrait être amélioré en ajoutant des couleurs pour le rendre plus lisible
 
 ## Livrable 4
 
