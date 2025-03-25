@@ -434,6 +434,8 @@ Les principaux objectifs du livrable 3 ont été réalisés, les actions de base
 
 ### Difficultés restant à résoudre
 
+- Il reste à améliorer l'action Attack Neighboor 
+
 - Il reste à améliorer l'affichage des actions : il faudra plus tard afficher uniquement les actions que le joueur peut réellement effectuer
 
 -  Le système de choix aléatoires pourrait être amélioré pour éviter les choix répétitifs

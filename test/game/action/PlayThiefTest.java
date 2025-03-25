@@ -31,4 +31,20 @@ public class PlayThiefTest {
         assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player2));
     }
 
+    @Test
+    void shouldStealRessourcesSuccessfully() throws NoMoreRessourcesException {
+        player1.addRessource(Ressource.WOOD, 10);
+        player2.addRessource(Ressource.WOOD, 5);
+
+        player2.addThief();
+        
+        PlayerDemeter[] listPlayers = {player1, player2};
+        actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
+        
+        actionVoler.act(player2);
+
+        assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
+        assertEquals(15, player2.getRessourceAmount(Ressource.WOOD));
+    }
+
   }
