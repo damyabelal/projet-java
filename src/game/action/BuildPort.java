@@ -1,6 +1,9 @@
 package game.action;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
@@ -17,7 +20,7 @@ import game.util.*;
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
     private Board board; 
-    public static RandomListChooser<Position> lc;
+    public static RandomListChooser<Earth> lc;
 
     public BuildPort(T player, Board board){
         super(player); 
@@ -27,8 +30,8 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
         lc= new RandomListChooser<>(); 
     }
 
-    public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Port?", this.board);
+    public Earth askCoordinate() throws IOException {
+        return lc.choose("Where do you want to build a Port?",this.board.coastalTiles());
     }
 
     /**
@@ -51,23 +54,21 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
      */
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
-        Position choosenPosition= askCoordinate();
-        Earth tile= (Earth) this.board.getTile(choosenPosition);
-
+        Earth choosenTile= askCoordinate();
 
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to build a farm.");
         }
-        if(!canPlacePort(choosenPosition, board)){
+        if(!canPlacePort(choosenTile.getPosition(), board)){
             throw new NoMoreRessourcesException("There should be at least two neighboring sea tiles.");
         }
 
         this.removeRessources();
-        Port port = new Port((Earth) tile, player);
-        tile.setBuilding(port);
+        Port port = new Port(choosenTile, player);
+        choosenTile.setBuilding(port);
         player.addPort(port);
 
-        System.out.println(player.getName() +": "+player.getResources()+ " build a port on the position "+ choosenPosition);
+        System.out.println(player.getName() +": "+player.getResources()+ " build a port on the position "+ choosenTile.getPosition());
     
     }
     
