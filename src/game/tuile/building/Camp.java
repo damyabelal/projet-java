@@ -34,7 +34,7 @@ public class Camp extends Army{
     }
 
     public String toString(){
-        return "Camp ("+ this.getNbWarriors()+ "warriors ) " + this.tuile.getPosition(); 
+        return "Camp ("+ this.getNbWarriors()+ " warriors) " + this.tuile.getPosition(); 
     }
 
 

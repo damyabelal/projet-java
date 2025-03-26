@@ -43,7 +43,7 @@ public class Army extends Building{
     }
 
     public String toString(){
-        return "Army " + this.tuile.getPosition(); 
+        return "Army ("+ this.getNbWarriors()+ " warriors) " + this.tuile.getPosition(); 
     }
     
     public String getName(){
