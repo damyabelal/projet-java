@@ -449,7 +449,6 @@ public void displayBuildings() {
 /**
      * return the number of sea tiles around the port
      * @param pos
-     * @param board
      * @return int the number of sea tiles around the port
      */
     public int nbSeaTiles(Position pos) {
