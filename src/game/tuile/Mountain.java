@@ -7,4 +7,9 @@ public class Mountain extends Earth{
         super(Ressource.ORE, SYMBOL);
 
     }
+
+    public String toString(){
+        return "Mountain "; 
+    }
+
 }

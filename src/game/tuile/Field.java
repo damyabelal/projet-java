@@ -8,4 +8,9 @@ public class Field extends Earth {
     public Field(){
         super(Ressource.WEALTH,SYMBOL);
     }
+
+    public String toString(){
+        return "Field "; 
+    }
+
 }

@@ -110,6 +110,5 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         System.out.println("The army evolved into a camp ("+ chosenArmy.getNbWarriors()+" warriors)");
 
     }
-
     
 }

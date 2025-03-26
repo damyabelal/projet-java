@@ -7,4 +7,8 @@ public class Forest extends Earth{
        super(Ressource.WOOD,SYMBOL); 
     }
 
+    public String toString(){
+        return "Forest "; 
+    }
+
 }
