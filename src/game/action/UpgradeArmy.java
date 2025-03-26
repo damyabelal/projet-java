@@ -2,7 +2,6 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.ListChooser;
 import game.listchooser.RandomListChooser;
 import game.tuile.building.Army;
 import java.util.List;
@@ -13,11 +12,11 @@ import game.tuile.building.Camp;
 
 
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
-
-    private ListChooser<Army> lc;
-    private ListChooser<String> lString; 
-    private Earth tuile;  
-    private ListChooser<Integer> lnumb;
+    
+    private Earth tuile; 
+    private RandomListChooser<Army> lc;
+    private RandomListChooser<String> lString;  
+    private RandomListChooser<Integer> lnumb;
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
@@ -25,7 +24,8 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
         this.cost.put(Ressource.ORE, 3);
         this.lString = new RandomListChooser<>();
         this.lnumb = new RandomListChooser<>();
-        this.lString = new RandomListChooser<>();
+        this.lc = new RandomListChooser<>();
+       
     }
 
     /**
@@ -44,9 +44,9 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
      * @param max the maximum number of warriors the player can add
      * @return the number of warriors to add
      */
-    public int askNumberOfWarriors(int max) {
+    public int askNumberOfWarriors() {
         List<Integer> options = new java.util.ArrayList<>();
-        for (int i = 1; i <= max; i++) {
+        for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
             options.add(i);
         }
         return this.lnumb.choose("How many warriors do you want to add?", options);
@@ -85,10 +85,10 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             if (chosenArmy.getNbWarriors() < 5) {
                 throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
             }
-            int add = askNumberOfWarriors(player.getWarriors());
+            int add = askNumberOfWarriors();
             if (player.getWarriors() < add){
                 throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
-            }
+             }
             chosenArmy.addWarriors(add);
             player.removeWarriors(add);
 
