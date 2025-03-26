@@ -23,6 +23,11 @@ public class Farm extends Building{
         this.player = player;
     }
 
+    public String toString(){
+        return "Farm " + this.tuile.getPosition(); 
+    }
+
+
     /** 
      * returns the name of the building
      */

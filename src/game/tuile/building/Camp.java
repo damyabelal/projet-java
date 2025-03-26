@@ -33,6 +33,11 @@ public class Camp extends Army{
 
     }
 
+    public String toString(){
+        return "Camp ("+ this.getNbWarriors()+ "warriors ) " + this.tuile.getPosition(); 
+    }
+
+
     /**
      * returns the number of additional warriors that were added beyond the normal Army limit
      *

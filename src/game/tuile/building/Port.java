@@ -24,6 +24,9 @@ public class Port extends Building{
         this.cost.put(Ressource.SHEEP,2);
     }
     
+    public String toString(){
+        return "Port " + this.tuile.getPosition(); 
+    }
 
     /**
      * return true if the port can be placed at the given position , false otherwise
