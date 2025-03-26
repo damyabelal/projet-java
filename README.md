@@ -230,7 +230,7 @@ javadoc -d docs -sourcepath src src/game/util/*.java
 
 javadoc -d docs -sourcepath src src/game/*.java
 
-javadoc -d docs -sourcepath src src/game/tuile/building*.java
+javadoc -d docs -sourcepath src src/game/tuile/building/*.java
 
 
 ### 5.1 Compilation des tests du package game.tuile
@@ -380,7 +380,7 @@ javadoc -d docs -sourcepath src src/game/util/*.java
 
 javadoc -d docs -sourcepath src src/game/*.java
 
-javadoc -d docs -sourcepath src src/game/tuile/building*.java
+javadoc -d docs -sourcepath src src/game/tuile/building/*.java
 
 javadoc -d docs -sourcepath src src/game/action/*.java
 
