@@ -51,11 +51,11 @@ public class Farm extends Building{
     /** evolves the farm into a exploitation
     * @return the new exploitation if the farm can be upgraded null otherwise
     */
-    public Exploitation upGradeToExploitation() {
+    public Exploitation upGradeToExploitation(PlayerDemeter player ) {
         if (this.canBeExploitation(player)) {
             //player.removeFarm(this);
             //this.getTuile().removeBuilding();
-            Exploitation exploitation = new Exploitation(this.getTuile(), this.getPlayerDemeter());
+            Exploitation exploitation = new Exploitation(this.getTuile(), player );
             //this.getTuile().setBuilding(exploitation);
             //player.addExploitation(exploitation);
             return exploitation;

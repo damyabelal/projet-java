@@ -1,6 +1,7 @@
 package game.action;
 
 import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -37,10 +38,15 @@ public class UpgradeFarmTest{
         assertTrue(player.getExploitations().isEmpty());
         assertThrows(NoMoreRessourcesException.class, () -> upgrade.act(player)); 
         assertTrue(! player.getFarms().isEmpty());
+
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.WEALTH, 1);
         player.addRessource(Ressource.SHEEP, 1);
+
+        
+
         upgrade.act(player);
+        
         assertTrue(! player.getExploitations().isEmpty());
     }
 

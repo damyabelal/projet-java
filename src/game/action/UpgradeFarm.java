@@ -42,12 +42,20 @@ public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> 
             throw new NoMoreRessourcesException("Not enough resources to upgrade the farm");
         }
 
-        this.removeRessources();
+       
         // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation vu qu'on fait un upgrade sur la meme tuile
-        this.tuile = chosenFarm.getTuile(); 
-        this.tuile.removeBuilding();
+       
+        
+        
+        Exploitation exploitation = chosenFarm.upGradeToExploitation(player);
+        if (exploitation == null){
+            return;
+        }
+        this.removeRessources();
+        this.tuile = chosenFarm.getTuile();
+        this.tuile.removeBuilding(); 
         player.removeFarm(chosenFarm);
-        Exploitation exploitation = chosenFarm.upGradeToExploitation();
+
         this.tuile.setBuilding(exploitation);
         player.addExploitation(exploitation);
  

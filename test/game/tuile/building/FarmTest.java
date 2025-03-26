@@ -41,7 +41,7 @@ public class FarmTest{
      */
     @Test 
     void upGradeToExploitationShouldReturnNull(){
-      assertEquals(farm.upGradeToExploitation(),null);
+      assertEquals(farm.upGradeToExploitation(player),null);
 
 
   }
@@ -78,7 +78,7 @@ public class FarmTest{
     player.addRessource(sheep, 2);
     player.addRessource(wood, 2);
     player.addRessource(wealth, 2);
-    assertTrue(farm.upGradeToExploitation()!=null);
+    assertTrue(farm.upGradeToExploitation(player)!=null);
  
 }
 

@@ -50,12 +50,12 @@ public class UpgradeArmyTest {
         
        
         public String askUpgradeMethod() {
-            return "warriors"; // force le chemin "guerriers"
+            return "warriors"; 
         }
 
         
         public Army askArmy() {
-            return army; // sélectionne l'armée du test
+            return army; 
         } 
         };
 
@@ -81,17 +81,17 @@ public class UpgradeArmyTest {
         upgradeArmyAction = new UpgradeArmy(player) {
             @Override
             public String askUpgradeMethod() {
-            return "warriors";
+                return "warriors";
             }
 
             @Override
             public Army askArmy() {
-            return army;
+                return army;
             }
 
             @Override
             public int askNumberOfWarriors(int max) {
-            return 2; // Simulates choosing 2 warriors
+                return 2; 
             }
         };
         assertThrows(CantBuildException.class, () -> upgradeArmyAction.act(player));
