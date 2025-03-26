@@ -17,12 +17,14 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     private ListChooser<Army> lc;
     private ListChooser<String> lString; 
     private Earth tuile;  
+    private ListChooser<Integer> lnumb;
 
     public UpgradeArmy(PlayerAres player) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        this.lc = new RandomListChooser<>();
+        this.lString = new RandomListChooser<>();
+        this.lnumb = new RandomListChooser<>();
         this.lString = new RandomListChooser<>();
     }
 
@@ -36,6 +38,18 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
             throw new IllegalArgumentException("No armies available to upgrade");
     }
         return this.lc.choose("Which army do you want to upgrade?", armies);
+    }
+    /**
+     * asks the player how many warriors ther want to add
+     * @param max the maximum number of warriors the player can add
+     * @return the number of warriors to add
+     */
+    public int askNumberOfWarriors(int max) {
+        List<Integer> options = new java.util.ArrayList<>();
+        for (int i = 1; i <= max; i++) {
+            options.add(i);
+        }
+        return this.lnumb.choose("How many warriors do you want to add?", options);
     }
 
     /**
@@ -68,15 +82,15 @@ public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
 
         } else if ("warriors".equalsIgnoreCase(method)) {
             // check if the army has 5 warriors to upgrade
-            //if (chosenArmy.getNbWarriors() < 5) {
-            //    throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
-            //}
-            //int add = this.lnumb.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
-            //if (player.getWarriors() < add){
-            //    throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
-            //}
-            //chosenArmy.addWarriors(add);
-            //player.removeWarriors(add);
+            if (chosenArmy.getNbWarriors() < 5) {
+                throw new CantBuildException("To upgrade an army to a camp, the army must have 5 warriors");
+            }
+            int add = askNumberOfWarriors(player.getWarriors());
+            if (player.getWarriors() < add){
+                throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
+            }
+            chosenArmy.addWarriors(add);
+            player.removeWarriors(add);
 
         } else {
             throw new IllegalArgumentException("Invalid upgrade method");

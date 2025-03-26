@@ -52,9 +52,16 @@ public class Army extends Building{
     public int getNbWarriors(){
         return this.nbWarriors;
     }
-
+    /**
+     * 
+     */
     public void addWarriors(int nb){
-        this.nbWarriors += nb;
+        //on doit verifier l'ajout ne depasse pas 5
+        if (this.nbWarriors + nb > nbWarriorsMax) {
+            this.nbWarriors = nbWarriorsMax;
+        } else {
+            this.nbWarriors += nb;
+        }
     }
    
     /**
@@ -63,6 +70,7 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
+        
         try {   
             return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
         } catch (CantBuildException e) {
