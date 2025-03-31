@@ -1,6 +1,8 @@
 package game.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
@@ -22,7 +24,13 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
      * @return the ressource the player wants to exchange
      */
     public Ressource askExchangeRessources()  {
-        return lc.choose("What ressources do you want to exhange?", Arrays.asList(Ressource.values()));
+        List<Ressource> ressources= new ArrayList<>();
+        for (Ressource r : Arrays.asList(Ressource.values())){
+            if (player.getRessourceAmount(r)>1){
+                ressources.add(r); 
+            }
+        }
+        return lc.choose("What ressources do you want to exhange?",ressources);
     }
 
     /**
