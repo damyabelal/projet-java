@@ -667,10 +667,25 @@ liste des réflexions et choses à modifier du livrable 2:
 ## Semaine 11
 
 ### Ce qui a été réalisé
+On as corriger quelques test et discuter sur la mise en forme du prochain livrable.
+Entretien sur le livrable3, petit compte rendu ci dessous: 
+
+- faire des sous-package actionDemeter et actionAres
+- régler le display du plateau (il y a un petit décallage dans l'affichage)
+- vérification sur les échange de ressources posible
+- ne pas utiliser utiliser instanceof dans l'échange avec le port
+- division de upgrade Army en upgradeWithWarriors et upgradeWithRessources
+- mettre un type paramétré pour le player dans ActionManager (correction dans AskWarrior)
+- remplacé certaines exception par nos propres exception 
+- suppression de la méthode chooseCoordinate de ListChooser
+- ajouter listChooser en paramètre des actions (pour pouvoir choisir la manière interactive ou random)
 
 ### Difficultés rencontrées
+Certains test ne passait plus dans building (ArmyTest), il sont maintenant de nouveau fonctionnels.
+
 
 ### Objectifs pour la semaine
+On voudrais amélirorer l'affichage, faire les corrections necessaire suite à ce qui as été dit à l'entretien et commencé à écrire les boucles de jeu. 
 
 ## Semaine 12
 
