@@ -587,6 +587,19 @@ public void displayBuildings() {
     }
 
 
+    public List<Earth> buildableTiles(){
+        List<Earth> res= new ArrayList<>(); 
+        for (List<Earth> t : this.getIslands()){
+            for ( Earth e : t){
+                if (!e.haveBuild()){
+                   res.add(e); 
+                }
+            }
+        }
+        return res; 
+    }
+
+
 
 
 
