@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    public static RandomListChooser<Position> lc;
+    public static RandomListChooser<Earth> lc;
     public List<Earth> earthList;
 
    
@@ -32,8 +32,8 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
 
 
     
-    public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build an Army?", this.board);
+    public Earth askCoordinate() throws IOException {
+        return lc.choose("Where do you want to build an Army?", this.board.buildableTiles());
     }
 
 
@@ -73,7 +73,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
      * @throws IOException
     */
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
-        Position choosenPosition= askCoordinate();
+        Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
 
         // plus tard il faudra demander au joueur combien de warriors il veut ajouter

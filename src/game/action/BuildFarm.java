@@ -15,7 +15,7 @@ import game.listchooser.RandomListChooser;
 public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
 
     private Board board; 
-    public static RandomListChooser<Position> lc;
+    public static RandomListChooser<Earth> lc;
 
     public BuildFarm(Board board, PlayerDemeter player) {
         super(player);  
@@ -25,8 +25,8 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
         lc = new RandomListChooser<>();
     }
 
-    public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Farm?", this.board);
+    public Earth askCoordinate() throws IOException {
+        return lc.choose("Where do you want to build a Farm?", this.board.buildableTiles());
     }
 
     /**
@@ -36,7 +36,7 @@ public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
      * @throws IOException 
     */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException, IOException {
-        Position choosenPosition= askCoordinate();
+        Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
         //checks if player has enough ressources to build a farm
         if (! this.hasEnoughRessources()) {
