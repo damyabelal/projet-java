@@ -1,7 +1,7 @@
 package game.tuile.building;
 
 import game.CantBuildException;
-
+import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -59,14 +59,13 @@ public class Army extends Building{
     /**
      * 
      */
-    public void addWarriors(int nb){
-        //on doit verifier l'ajout ne depasse pas 5
-        if (this.nbWarriors + nb > nbWarriorsMax) {
-            this.nbWarriors = nbWarriorsMax;
-        } else {
-            this.nbWarriors += nb;
+    public void addWarriors(int nb) throws NoMoreRessourcesException{
+        if (this.player.getWarriors() < nb){
+            throw new NoMoreRessourcesException("You dont have enough warriors");
         }
+        this.nbWarriors += nb;
     }
+    
    
     /**
      * return true if the army can be a camp
