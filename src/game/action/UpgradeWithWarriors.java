@@ -31,10 +31,35 @@ public class UpgradeWithWarriors extends ActionManager implements Action<PlayerA
    
   }
 
+   /**
+     * Asks the player which army he wants to upgrade
+     * @return the army the player wants to upgrade
+     */
+    public Army askArmy() {
+      List<Army> armies = ((PlayerAres) this.player).getArmies();
+      if (armies.isEmpty()) {
+          throw new IllegalArgumentException("No armies available to upgrade");
+  }
+      return (Army) this.lc.choose("Which army do you want to upgrade?", armies);
+  }
+
   @Override
   public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'act'");
+  }
+
+   /**
+     * asks the player how many warriors ther want to add
+     * @param max the maximum number of warriors the player can add
+     * @return the number of warriors to add
+     */
+    public int askNumberOfWarriors() {
+      List<Integer> options = new java.util.ArrayList<>();
+      for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
+          options.add(i);
+      }
+      return (int) this.lnumb.choose("How many warriors do you want to add?", options);
   }
 
 }
