@@ -31,10 +31,25 @@ public UpgradeWithRessources(PlayerAres player) {
    
 }
 
+
+
 @Override
 public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
   // TODO Auto-generated method stub
   throw new UnsupportedOperationException("Unimplemented method 'act'");
 }
 
+
+
+    /**
+     * Asks the player which army he wants to upgrade
+     * @return the army the player wants to upgrade
+     */
+    public Army askArmy() {
+      List<Army> armies = ((PlayerAres) this.player).getArmies();
+      if (armies.isEmpty()) {
+          throw new IllegalArgumentException("No armies available to upgrade");
+  }
+      return this.lc.choose("Which army do you want to upgrade?", armies);
+  }
 }
