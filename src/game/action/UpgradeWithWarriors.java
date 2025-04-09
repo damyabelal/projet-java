@@ -16,9 +16,9 @@ import game.tuile.building.Camp;
 public class UpgradeWithWarriors extends ActionManager implements Action<PlayerAres> {
 
   private Army army;
-  private RandomListChooser lString;
-  private RandomListChooser lnumb;
-  private RandomListChooser lc;
+  private RandomListChooser<String> lString;
+  private RandomListChooser<Integer> lnumb;
+  private RandomListChooser<Army> lc;
 
   // army is the army that the given player player wants to upgrade
   public UpgradeWithWarriors(Player player) {
@@ -43,23 +43,26 @@ public class UpgradeWithWarriors extends ActionManager implements Action<PlayerA
       return (Army) this.lc.choose("Which army do you want to upgrade?", armies);
   }
 
+  
+  /**
+   * asks the player how many warriors ther want to add
+   * @param max the maximum number of warriors the player can add
+   * @return the number of warriors to add
+   */
+  public int askNumberOfWarriors() {
+    List<Integer> options = new java.util.ArrayList<>();
+    for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
+      options.add(i);
+    }
+    return (int) this.lnumb.choose("How many warriors do you want to add?", options);
+  }
+  
+
+
+
   @Override
   public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'act'");
   }
-
-   /**
-     * asks the player how many warriors ther want to add
-     * @param max the maximum number of warriors the player can add
-     * @return the number of warriors to add
-     */
-    public int askNumberOfWarriors() {
-      List<Integer> options = new java.util.ArrayList<>();
-      for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
-          options.add(i);
-      }
-      return (int) this.lnumb.choose("How many warriors do you want to add?", options);
-  }
-
 }
