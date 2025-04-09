@@ -52,4 +52,17 @@ public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildEx
   }
       return this.lc.choose("Which army do you want to upgrade?", armies);
   }
+
+  /**
+     * asks the player how many warriors ther want to add
+     * @param max the maximum number of warriors the player can add
+     * @return the number of warriors to add
+     */
+    public int askNumberOfWarriors() {
+      List<Integer> options = new java.util.ArrayList<>();
+      for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
+          options.add(i);
+      }
+      return this.lnumb.choose("How many warriors do you want to add?", options);
+  }
 }
