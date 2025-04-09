@@ -17,15 +17,13 @@ public class UpgradeWithRessources extends ActionManager implements Action<Playe
 private Earth tuile; 
 
 
-private RandomListChooser<Army> lc;
-private RandomListChooser<String> lString;  
+private RandomListChooser<Army> lc; 
 private RandomListChooser<Integer> lnumb;
 
 public UpgradeWithRessources(PlayerAres player) {
     super(player);
     this.cost.put(Ressource.WOOD, 2);
     this.cost.put(Ressource.ORE, 3);
-    this.lString = new RandomListChooser<>();
     this.lnumb = new RandomListChooser<>();
     this.lc = new RandomListChooser<>();
    
