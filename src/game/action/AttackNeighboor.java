@@ -20,6 +20,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          * constructor of AttackNeighboor
          * @param player the player who wants to attack
          * @param enemies the list of all the neighboring enemies
+         * @param tile the tile that the player wants to attack // on en a besoin car un joueur dans la plus part du temps a plusiers tuile et il faut savoir laquelle attaquer
          */ 
         public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies){
             super(player); 
