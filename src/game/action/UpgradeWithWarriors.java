@@ -15,8 +15,7 @@ import game.tuile.building.Camp;
 
 public class UpgradeWithWarriors extends ActionManager implements Action<PlayerAres> {
 
-  private Army army;
-  private RandomListChooser<String> lString;
+
   private RandomListChooser<Integer> lnumb;
   private RandomListChooser<Army> lc;
   private Earth tuile;
@@ -26,7 +25,7 @@ public class UpgradeWithWarriors extends ActionManager implements Action<PlayerA
     super(player);
     this.cost.put(Ressource.WOOD, 2);
     this.cost.put(Ressource.ORE, 3);
-    this.lString = new RandomListChooser<>();
+ 
     this.lnumb = new RandomListChooser<>();
     this.lc = new RandomListChooser<>();
    
