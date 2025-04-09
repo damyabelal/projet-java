@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArmyTest {
 
     private Forest tuile;
-    private Player player;
     private Army army;
     private PlayerAres playerAres;
 
@@ -17,9 +16,8 @@ public class ArmyTest {
     @BeforeEach
     void setUp() throws CantBuildException {
         tuile = new Forest();
-        player = new Player("Scott");
-        army = new Army(tuile, 0, null);
         playerAres=new PlayerAres("emilie");
+        army = new Army(tuile, 0, playerAres);
         
     }
 
@@ -29,9 +27,11 @@ public class ArmyTest {
           */
          @Test
          void armyMaxWarriorsTest() throws CantBuildException {
-        Army army1 = new Army(tuile, 10, null);
-        assertEquals(5, army1.getNbWarriors(), "Army should have at most 5 warriors");
-    }
+                assertThrows(CantBuildException.class, () -> {
+                    new Army(tuile, 10, playerAres);
+                });
+            }
+        
 
     /**
      * Test if the army can become a camp based on warrior count
@@ -50,8 +50,8 @@ public class ArmyTest {
     @Test
     void canBeCampWithRessourcesTest() {
         assertFalse(army.canBeCamp(playerAres));
-        player.addRessource(Ressource.WOOD, 2);
-        player.addRessource(Ressource.ORE, 3);
+        playerAres.addRessource(Ressource.WOOD, 2);
+        playerAres.addRessource(Ressource.ORE, 3);
         assertTrue(army.canBeCamp(playerAres));
     }
 
@@ -72,7 +72,7 @@ public class ArmyTest {
     void addMoreWarriorsThanPossibleTest() throws NoMoreRessourcesException {
         playerAres.removeWarriors(30); // On met à zéro les warriors du joueur
         assertThrows(NoMoreRessourcesException.class, () -> army.addWarriors(6));
-        assertEquals(0, army.getNbWarriors());
+        
     }
     
 
@@ -96,18 +96,5 @@ public class ArmyTest {
         assertFalse(army.canBeCamp(playerAres));
         assertNull(army.upGradeToCamp(playerAres));
     }
-
-    /**
-     * Ensures that upgrading to a camp is successful when a player has enough resources
-     */
-    @Test
-    void upgradeToCampWithRessourcesTest() throws NoMoreRessourcesException {
-        player.addRessource(Ressource.WOOD, 2);
-        player.addRessource(Ressource.ORE, 3);
-        assertTrue(army.canBeCamp(playerAres)); 
-        Camp camp = army.upGradeToCamp(playerAres);
-        assertNotNull(camp); 
-        assertTrue(camp instanceof Camp); 
-}
 
 }

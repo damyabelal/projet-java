@@ -11,7 +11,7 @@ public class PlayThief implements Action<PlayerDemeter> {
 
     private Ressource ressource;
     private PlayerDemeter[] players;
-
+    //builds a new PlayThief action with the given players demeter on the board and the given ressource type that the thief will steal
     public PlayThief(Ressource ressource, PlayerDemeter[] players) {
         this.ressource = ressource;
         this.players = players;
@@ -19,7 +19,7 @@ public class PlayThief implements Action<PlayerDemeter> {
 
 
     /**
-     * 
+     * the thief steals the type of ressource in the constructor from every player on the board and gives it the given playerOfThief
      * @param playerOfThief 
      * @throws NoMoreRessourcesException if the player doesn't have enough ressources to play the thief
      */
@@ -44,7 +44,7 @@ public class PlayThief implements Action<PlayerDemeter> {
         if (totalStolen > 0) {
             playerOfThief.addRessource(this.ressource, totalStolen);
         } else {
-            throw new NoMoreRessourcesException("There is not enough of this type ressource : " + this.ressource + " to be able to steal");
+            throw new NoMoreRessourcesException("There is not enough of this type of ressource : " + this.ressource + " to be able to steal");
         }
     }
 }

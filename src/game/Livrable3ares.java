@@ -1,6 +1,8 @@
 package game;
 
 import java.io.IOException;
+
+import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.action.*;
 
@@ -129,7 +131,23 @@ public class Livrable3ares {
 
         System.out.println("\n"); 
 
-        board.display();
+        // affichage des bâtiments et des tuiles du joueurs
+
+        System.out.println("===> liste des bâtiments \n" + //
+                        "Port(s): "+ ares.getPorts()+ "\n"+ //
+                        "Army(ies):"+ ares.getArmies()+"\n"+//
+                        "Camp(s):" +ares.getCamps());
+
+        System.out.println("\n"); 
+
+       System.out.println("===> liste des tuiles ");
+        for(Earth t: ares.getTiles()){ 
+            System.out.println(t.getPosition()); 
+        }
+
+        System.out.println("\n"); 
+
+        board.display();  
 
 
     }

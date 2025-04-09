@@ -17,19 +17,24 @@ public class BuyThief extends ActionManager implements Action<PlayerDemeter>{
 
     }
 
-    /*
-     * buy a thief if the player have enough ressources
-     * @param the player who make the action
+    /**
+     * buys a thief if the player has enough ressources
+     * @param the player who wants to buy a thief
      */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException{
 
-        //check if player has enough ressources to buy a farm
+        // checks if player has enough ressources to buy a thief
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to buy a thief");
         }
-        // if he can we remove the cost from the player
+        // if the player has enough ressources , removes the thief's cost from the player
         this.removeRessources();
-        player.addThiefs(1);
+        player.addThief();
+
+        System.out.println(player.getName()+ " "+ player.getResources()+ " now have a thief");
+        
     }
+    
+    
     
 }

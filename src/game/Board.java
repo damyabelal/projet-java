@@ -11,7 +11,7 @@ public class Board{
     private int width;
     private int height;
     private Tuile[][] grid;
-    public List<List<Earth>> islands ; 
+    public List<List<Earth>> islands  ; 
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
@@ -28,7 +28,7 @@ public Board(int width , int height){
             }
         }
     createBoard();
-    this.islands = findIslands();
+    this.islands = this.findIslands();
 }
 
 
@@ -449,7 +449,6 @@ public void displayBuildings() {
 /**
      * return the number of sea tiles around the port
      * @param pos
-     * @param board
      * @return int the number of sea tiles around the port
      */
     public int nbSeaTiles(Position pos) {
@@ -571,6 +570,34 @@ public void displayBuildings() {
         return null;
     }
 
+    public List<Earth> coastalTiles(){
+        List<Earth> res= new ArrayList<>(); 
+        for (List<Earth> t : this.getIslands()){
+            for ( Earth e : t){
+                for (Direction d : Direction.values()) {
+                    Position neighbor = e.getPosition().next(d);
+                    Tuile neighborTile = getTile(neighbor);
+                    if (neighborTile instanceof Sea && this.nbSeaTiles(e.getPosition()) >= 2) {
+                        res.add(e); 
+                    }
+                }
+            }
+        }
+        return res; 
+    }
+
+
+    public List<Earth> buildableTiles(){
+        List<Earth> res= new ArrayList<>(); 
+        for (List<Earth> t : this.getIslands()){
+            for ( Earth e : t){
+                if (!e.haveBuild()){
+                   res.add(e); 
+                }
+            }
+        }
+        return res; 
+    }
 
 
 

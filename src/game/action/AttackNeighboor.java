@@ -12,6 +12,7 @@ import game.tuile.building.Army;
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
     public RandomListChooser<PlayerAres> lc;
+    public PlayerAres  player ;
     public List<PlayerAres> enemies;
     public Earth tile;
    
@@ -24,6 +25,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          */ 
         public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies){
             super(player); 
+
             this.enemies= enemies;
             lc= new RandomListChooser<PlayerAres>(); 
         }
@@ -46,7 +48,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
      * @param player
      * @return the number of dice
      */
-    public Integer howMuchDice(PlayerAres player) {
+    public int howMuchDice(PlayerAres player) {
         int nbWarriors = player.getWarriors();
         int res = 0;
         if (player.getNbSecretWeapon() > 0) {

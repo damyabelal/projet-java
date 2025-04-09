@@ -1,6 +1,7 @@
 package game.action;
 
 import java.io.IOException;
+
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
@@ -11,13 +12,13 @@ import game.util.*;
 
 /*
  * 
- * This class is used to build a port on a tile
+ * builds a port on a tile
  * It extends ActionManager and implements Action<Player>
  */
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
     private Board board; 
-    public static RandomListChooser<Position> lc;
+    public static RandomListChooser<Earth> lc;
 
     public BuildPort(T player, Board board){
         super(player); 
@@ -27,15 +28,15 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
         lc= new RandomListChooser<>(); 
     }
 
-    public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Port?", this.board);
+    public Earth askCoordinate() throws IOException {
+        return lc.choose("Where do you want to build a Port?",this.board.coastalTiles());
     }
 
     /**
-     * return true if the port can be placed at the given position , false otherwise
-     * @param pos the position where we want to place it on 
+     * returns true if the port can be placed on the given position , false otherwise
+     * @param pos the position where we want to place the port on 
      * @param board the board of the game
-     * @return true if the port can be placed at the given position , false otherwise
+     * @return true if the port can be placed on the given position , false otherwise
      */
     public boolean canPlacePort(Position pos, Board board) {
         if (!(board.getTile(pos) instanceof Earth)) {
@@ -45,25 +46,27 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
    
     }
     
+
+
+    /**
+     */
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
-        Position choosenPosition= askCoordinate();
-        Earth tile= (Earth) this.board.getTile(choosenPosition);
-
+        Earth choosenTile= askCoordinate();
 
         if (! this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough ressources to build the farm");
+            throw new NoMoreRessourcesException("Not enough ressources to build a farm.");
         }
-        if(!canPlacePort(choosenPosition, board)){
-            throw new NoMoreRessourcesException("il faut avoir au moins deux 2 tuiles mer autour");
+        if(!canPlacePort(choosenTile.getPosition(), board)){
+            throw new NoMoreRessourcesException("There should be at least two neighboring sea tiles.");
         }
 
         this.removeRessources();
-        Port port = new Port((Earth) tile, player);
-        tile.setBuilding(port);
+        Port port = new Port(choosenTile, player);
+        choosenTile.setBuilding(port);
         player.addPort(port);
 
-        System.out.println(player.getName() +": "+player.getResources()+ " build a port on position "+ choosenPosition);
+        System.out.println(player.getName() +": "+player.getResources()+ " build a port on the position "+ choosenTile.getPosition());
     
     }
     

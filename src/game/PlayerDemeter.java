@@ -59,8 +59,8 @@ public class PlayerDemeter extends Player{
      * adds a  thief to the  demeter player
      * @param nb int number of thief to add
      */
-    public void addThiefs(int nb){
-        this.nbThief += nb ;
+    public void addThief(){
+        this.nbThief += 1 ;
     }
 
     /**
@@ -77,6 +77,7 @@ public class PlayerDemeter extends Player{
      */
     public void addFarm(Farm farm){
         this.farms.add(farm);
+        this.playerTiles.add(farm.getTuile()); 
     }
 
     /**
@@ -85,6 +86,7 @@ public class PlayerDemeter extends Player{
      */
     public void removeFarm(Farm farm){
         this.farms.remove(farm);
+        this.playerTiles.remove(farm.getTuile()); 
     }
 
 
@@ -116,6 +118,7 @@ public class PlayerDemeter extends Player{
      */
     public void addExploitation(Exploitation exploitation){
         this.exploitations.add(exploitation);
+        this.playerTiles.add(exploitation.getTuile()); 
     }
 
     /**

@@ -10,11 +10,12 @@ import java.io.IOException;
 import java.util.*;
 
 /*
- * Build an army on the island
+ * Builds an army on the island
  */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    public static RandomListChooser<Position> lc;
+    public static RandomListChooser<Earth> lc;
+    public List<Earth> earthList;
 
    
     public BuildArmy(Board board , PlayerAres player){  
@@ -22,27 +23,34 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         this.board = board;
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP,1); 
-        this.cost.put(Ressource.ORE,1);
+        this.cost.put(Ressource.WEALTH,1);
         lc= new RandomListChooser<>(); 
+        earthList = new ArrayList<>();
+
     }
 
+
+
     
-    public Position askCoordinate() throws IOException {
-        return lc.chooseCoordinate("Where do you want to build a Army?", this.board);
+    public Earth askCoordinate() throws IOException {
+        return lc.choose("Where do you want to build an Army?", this.board.buildableTiles());
     }
 
 
     /**
-     * Check if the player can build an army if in the island there are at least 2 buildings and 1 port
+     * Checks if the player can build an army , which means if he has at least a port and two building placed on an island
      * @param earth
      * @param player
      * @return boolean
      */
-    private boolean canBuildArmy(Earth earth, PlayerAres player) {
+    public  boolean canBuildArmy(Earth earth, PlayerAres player) {
         int cptBuild = 0;
         int cptPort = 0;
+        if (player.getArmies().size() <= 2){
+            return true; 
+        }
         List<Earth> island = board.getIsland(earth);
-        for (Earth tuile : island){
+        for (Earth tuile : island){ 
             if(tuile.haveBuild()){
 
                 cptBuild++;
@@ -65,7 +73,7 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
      * @throws IOException
     */
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
-        Position choosenPosition= askCoordinate();
+        Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
 
         // plus tard il faudra demander au joueur combien de warriors il veut ajouter
@@ -79,9 +87,9 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
             throw new NoMoreRessourcesException("Not enough resources to build an Army");
         }
     
-        //if (!canBuildArmy((Earth) tile, player)) {
-        //    throw new CantBuildException("conditions not met to build an army here");
-        //}
+        if (!canBuildArmy((Earth) tile, player)) {
+            throw new CantBuildException("conditions not met to build an army here");
+        }
     
 
         this.removeRessources();
@@ -95,18 +103,8 @@ public class BuildArmy extends ActionManager implements Action<PlayerAres> {
         player.removeWarriors(1); 
 
         System.out.println(player.getName() +": "+player.getResources()+ " build a army with 1 warrior on position "+ choosenPosition);
-    /* 
-        try {
-
-            Army army = new Army((Earth) tile, 1, player);
-            player.addArmy(army);
-        
-        }catch(CantBuildException e){
-
-            throw new CantBuildException("Can't build an army here");
-
-        }
-            */
+    
+            
 
 
     }}

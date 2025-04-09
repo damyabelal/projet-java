@@ -1,7 +1,7 @@
 package game.tuile.building;
 
 import game.CantBuildException;
-
+import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -32,11 +32,18 @@ public class Army extends Building{
         }
         this.dimension = this.nbWarriors;
         this.symbol = SYMBOL;
+        
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP, 1);
         this.cost.put(Ressource.WEALTH, 1);
+
+
         this.player = player;
 
+    }
+
+    public String toString(){
+        return "Army ("+ this.getNbWarriors()+ " warriors) " + this.tuile.getPosition(); 
     }
     
     public String getName(){
@@ -49,10 +56,16 @@ public class Army extends Building{
     public int getNbWarriors(){
         return this.nbWarriors;
     }
-
-    public void addWarriors(int nb){
+    /**
+     * 
+     */
+    public void addWarriors(int nb) throws NoMoreRessourcesException{
+        if (this.player.getWarriors() < nb){
+            throw new NoMoreRessourcesException("You dont have enough warriors");
+        }
         this.nbWarriors += nb;
     }
+    
    
     /**
      * return true if the army can be a camp
@@ -60,6 +73,7 @@ public class Army extends Building{
      * @return boolean
      */
     public boolean canBeCamp(PlayerAres player){
+        
         try {   
             return this.getNbWarriors() >= 5 || player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
         } catch (CantBuildException e) {

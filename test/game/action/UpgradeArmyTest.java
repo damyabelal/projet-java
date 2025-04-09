@@ -15,25 +15,46 @@ public class UpgradeArmyTest {
     private UpgradeArmy upgradeArmyAction;
 
     @BeforeEach
-    void setUp() throws CantBuildException {
+    void setUp() throws NoMoreRessourcesException, CantBuildException {
         player = new PlayerAres("cool");
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 3);
         Army army = new Army(new Forest(), 5, player);
         player.addArmy(army);
         upgradeArmyAction = new UpgradeArmy(player);
-    }
+        }
 
-    @Test
-    void testUpgradeArmyWithResources() throws NoMoreRessourcesException, CantBuildException {
+        @Test
+        void testUpgradeArmyWithResources() throws NoMoreRessourcesException, CantBuildException {
         assertEquals(0, player.getCamps().size());
+        
+        upgradeArmyAction = new UpgradeArmy(player) {
+            @Override
+            public String askUpgradeMethod() {
+                return "resources";
+            }
+        };
         upgradeArmyAction.act(player);
         assertEquals(1, player.getCamps().size());
         assertTrue(player.getCamps().get(0) instanceof Camp);
     }
 
     @Test
-    void testUpgradeArmyNotEnoughResources() throws NoMoreRessourcesException {
+    void testUpgradeArmyNotEnoughResources() throws CantBuildException, NoMoreRessourcesException{
+        Army army = new Army(null, 5, player);
+        player.addArmy(army);
+
+        upgradeArmyAction = new UpgradeArmy(player) {
+            @Override
+            public String askUpgradeMethod() {
+                return "resources";
+            }
+            @Override
+            public Army askArmy() {
+                return army;
+            }
+        };
+        
         player.removeRessource(Ressource.WOOD, 2);
         player.removeRessource(Ressource.ORE, 3);
         assertThrows(NoMoreRessourcesException.class, () -> upgradeArmyAction.act(player));
@@ -41,18 +62,50 @@ public class UpgradeArmyTest {
 
     @Test
     void testUpgradeArmyWithWarriors() throws NoMoreRessourcesException, CantBuildException {
+
         Army army = player.getArmies().get(0);
+        player.addWarriors(4);
+        upgradeArmyAction = new UpgradeArmy(player){
+            
+        public String askUpgradeMethod() {
+            return "warriors"; 
+        }
+
+        public Army askArmy() {
+            return army; 
+        } 
+        };
+
         assertEquals(5, army.getNbWarriors());
         upgradeArmyAction.act(player);
-        assertTrue(army.getNbWarriors() > 5);
+        
+        assertNotNull(player.getCamps().get(0));
         assertEquals(1, player.getCamps().size());  
-        assertTrue(player.getCamps().get(0) instanceof Camp);  
+        Camp camp = player.getCamps().get(0);
+        assertNotNull(camp);
+        assertTrue(camp instanceof Camp);
+        assertTrue(camp.getNbWarriors() >= 5);
+
     }
 
-    @Test
-    void testUpgradeArmyWithTooFewWarriors() throws CantBuildException {
+        @Test
+        void testUpgradeArmyWithNotEnoughWarriors() throws CantBuildException {
         Army army = new Army(new Forest(), 4, player);
         player.addArmy(army);
+        upgradeArmyAction = new UpgradeArmy(player) {
+            @Override
+            public String askUpgradeMethod() {
+                return "warriors";
+            }
+            @Override
+            public Army askArmy() {
+                return army;
+            }
+            @Override
+            public int askNumberOfWarriors() {
+                return 2; 
+            }
+        };
         assertThrows(CantBuildException.class, () -> upgradeArmyAction.act(player));
+        }
     }
-}

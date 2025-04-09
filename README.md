@@ -230,7 +230,7 @@ javadoc -d docs -sourcepath src src/game/util/*.java
 
 javadoc -d docs -sourcepath src src/game/*.java
 
-javadoc -d docs -sourcepath src src/game/tuile/building*.java
+javadoc -d docs -sourcepath src src/game/tuile/building/*.java
 
 
 ### 5.1 Compilation des tests du package game.tuile
@@ -307,9 +307,140 @@ Pour cause de problèmes technique les émojis ont disparuts de l'affichage. On 
 
 ## Livrable 3
 
+On a choisi de modéliser les actions en utilisant une interface Action qui dispose de la methode act() qui sera 
+redéfini proprement à chaque action, cette méthode prend en paramètre un player de type paramétré <T> pour differencier les joueurs des actions associées au jeu Ares et au jeu Demeter 
+
+De plus, on a choisi de rajouter une classe abstraite ActionManager qui est caracterisé par le coût de l'action et le type du joueur qui execute l'action. Cette classe dispose des methodes qui seront utiles dans la modélisation des actions qui nécessite un paiement (utilisation des ressources du joueur). Elle dispose des méthodes : 
+
+hasEnoughRessources() qui verifie si le joueur a suffisament de ressources pour se permettre de payer le coût de l'action concernée
+
+removeRessources() qui parcout le coût de l'action et et la soustrait des ressources du joueur
+
+On a crée une classe Player qui sera commune pour PlayerAres et PlayerDemeter (héritage), un player est caractérisé par son nom, ses ressources, sa liste de ports, sa liste des tuiles sur les quelles il a construit ses batiments. Initialement ces listes sont vides, on jugeait que c'était pas nécessaire de rajouter un attribut liste des bâtiments pour le joueur car depuis sa liste de tuiles on peut récupérer ces bâtiments en question
+
+PlayerAres hérite de Player, il dispose donc de ses attributs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Ares, c'est à dire son nombre de guerriers initialement à 30, son nombre d'armes secrète, sa liste d'armées , sa liste de camps , sa liste des actions..ect
+
+PlayerDemeter hérite de Player, il dispose aussi de ses attributrs et méthodes de base. On a rajouté tout ce qui peut concerner un player du jeu Demeter, c'est à dire son nombre de points au cour du jeu, son nombre de voleurs, sa liste de fermes, sa lite d'exploitations , sa liste des actions.. ect
+
+- Pour les actions qui nécessitent un paiement (utlisation des ressources du joueur) tel que BuySecretWeapon, BuyThief, BuyWarriors on vérifie si le joueur a suffisament de ressources pour l'action en question si c'est le cas on effectue l'action si ce n'est pas le cas on génère une erreur (throws NoMoreRessourcesException)
+
+- Pour les actions qui nécessitent la construction des batiments (build) tel que BuildArmy, BuildFarm, BuildPort on vérifie également si le joueur a suffisament de ressources ainsi que d'autres conditions de construction (par exemple pour buildPort on verifie la condition de : le port ne peut être créé que sur une tuile voisine de la mer..ect )
+
+- Pour les actions qui nécessitent les upgrades tel que UpgradeFarm et UpgradeArmy permettent respectivement d'améliorer une ferme en exploitation et une armée en camp. Elles héritent de ActionManager car elles nécessitent des ressources. UpgradeFarm consomme WOOD, WEALTH et SHEEP pour remplacer une ferme par une exploitation. UpgradeArmy offre deux options : payer en WOOD et ORE ou ajouter des guerriers. Dans les deux cas, le bâtiment initial est supprimé et remplacé par sa version améliorée. Si les conditions ne sont pas remplies, une exception est levée (NoMoreRessourcesException)
+
+- Pour les actions qui nécessitent des échanges de ressources : ExchangeRessources permet à un joueur d'échanger 3 unités d'une ressource contre 1 d'une autre. ExchangeRessourcesPort, spécifique à PlayerDemeter, nécessite un port et échange 2 unités contre 1. Si les conditions ne sont pas remplies, des exceptions sont levées
+
+ #### A propos de RandomListChooser :
+
+ On a crée la classe RandomListChooser<T> qui permet de choisir un élément au hasard dans une liste, elle a deux méthodes principales :
+
+choose(String msg, List<? extends T> list) : elle affiche un message et choisit aléatoirement un élément dans la liste si la liste est vide elle renvoie null
+
+chooseCoordinate(String msg, Board board) : elle choisit une position aléatoire sur le plateau de jeu et vérifie si la position est valide et ou l'on peut construire
+
+Ce choix de modélisation sert à simuler des choix automatiques pour le joueur comme choisir une ressource ou une position de bâtiment ou un nombre de guerriers à rajouter.. ect
+
+### Les commandes  : 
+
+### 1.1 Compilation des sources du package game.tuile
+
+javac -sourcepath src src/game/tuile/*.java -d classes
+
+### 1.2 Compilation des sources du package game.util 
+
+javac -sourcepath src src/game/util/*.java -d classes
+
+### 1.3 Compilation des sources du package game
+
+javac -sourcepath src src/game/*.java -d classes
+
+### 1.4 Compilation des sources du package game.tuile.building
+
+javac -sourcepath src src/game/tuile/building/*.java -d classes
+
+### 1.5 Compilation des sources du package game.action
+
+javac -sourcepath src src/game/action/*.java -d classes
+
+### 2.1 Exécution du livrable 3 Ares :
+
+java -classpath classes game.Livrable3ares a b 
+
+### 2.2 Exécution du livrable 3 Demeter :
+
+java -classpath classes game.Livrable3demeter a b 
+
+ou a et b seront saisie par l'utilisateur (ils désignent les valeurs width et height du plateau et le minimum est 10)
+
+### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
+
+javadoc -d docs -sourcepath src src/game/tuile/*.java
+
+javadoc -d docs -sourcepath src src/game/util/*.java
+
+javadoc -d docs -sourcepath src src/game/*.java
+
+javadoc -d docs -sourcepath src src/game/tuile/building/*.java
+
+javadoc -d docs -sourcepath src src/game/action/*.java
+
+
+### 5.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 5.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 5.2 Compilation des tests du package game.tuile.building
+
+javac -classpath junit-console.jar:classes test/game/tuile/building*.java
+
+### 5.3 Compilation des tests du package game.action
+
+javac -classpath junit-console.jar:classes test/game/action/*.java
+
+### 4. Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6.Créer les Archives JAR
+
+jar cvfe livrable3ares.jar game.Livrable3ares -C classes .
+
+jar cvfe livrable3demeter.jar game.Livrable3demeter -C classes .
+
+### 7.Exécuter les Archives JAR
+
+java -jar livrable3ares.jar
+
+java -jar livrable3demeter.jar
+
+
+### Diagramme UML pour le Livrable 3 :
+![ l'uml des actions](/index/UMLAction2.png "UML des actions")
+
+![ l'uml du listchooser](/index/UMLListchooser.png "UML du listchooser")
+
+[l'uml des actions et du listchooser](https://lucid.app/lucidchart/5902e73f-4322-4aba-922a-fc3bb0dea9c7/edit?invitationId=inv_0bf26132-d019-489c-bff7-d16ef601bbf9)
+
+l'uml des précédents livrable est toujours visible [ici](https://lucid.app/lucidchart/38cc81c5-70a7-4213-a395-4649bfcfe868/edit?invitationId=inv_a5bb74cc-7cd8-4e37-9fc7-9fcbdb7c63b1)
+
+
 ### Atteinte des objectifs
 
+Les principaux objectifs du livrable 3 ont été réalisés, les actions de base comme l'échange de ressources, la construction de bâtiments et les améliorations de fermes et d'armées, l'achat de guerriers et de voleurs fonctionnent correctement pour les joueurs Ares et Demeter, la gestion des ressources et des conditions d'actions a été mise en place
+
 ### Difficultés restant à résoudre
+
+- Il reste à améliorer l'action Attack Neighboor 
+
+- Il reste à améliorer l'affichage des actions : il faudra plus tard afficher uniquement les actions que le joueur peut réellement effectuer
+
+-  Le système de choix aléatoires pourrait être amélioré pour éviter les choix répétitifs
+
+- L'affichage du plateau pourrait être amélioré en ajoutant des couleurs pour le rendre plus lisible
 
 ## Livrable 4
 
@@ -519,17 +650,42 @@ liste des réflexions et choses à modifier du livrable 2:
 
 ### Ce qui a été réalisé
 
+- Résolution des problèmes qui conçernent les livrables (on avait pas réussi à afficher les upgades sur le plateau)
+- Début de rédaction du readme de la section livrable 3
+- Rédaction des tests unitaires de la classe BuildArmy 
+- Amélioration de la javadoc pour le rendu du livrable 
+
 ### Difficultés rencontrées
 
+- Réflexion sur cette condition de construction : pour construire une armée ou un port sur une île qu’on n’occupe pas encore, il faut disposer d’au moins un port sur une île qu’on occupe déjà
+
 ### Objectifs pour la semaine
+
+- Completion des tests unitaires manquants 
+- Completion du readme ainsi que la section des commandes qui permettent d'exécuter le livrable
 
 ## Semaine 11
 
 ### Ce qui a été réalisé
+On as corriger quelques test et discuter sur la mise en forme du prochain livrable.
+Entretien sur le livrable3, petit compte rendu ci dessous: 
+
+- faire des sous-package actionDemeter et actionAres
+- régler le display du plateau (il y a un petit décallage dans l'affichage)
+- vérification sur les échange de ressources posible
+- ne pas utiliser utiliser instanceof dans l'échange avec le port
+- division de upgrade Army en upgradeWithWarriors et upgradeWithRessources
+- mettre un type paramétré pour le player dans ActionManager (correction dans AskWarrior)
+- remplacé certaines exception par nos propres exception 
+- suppression de la méthode chooseCoordinate de ListChooser
+- ajouter listChooser en paramètre des actions (pour pouvoir choisir la manière interactive ou random)
 
 ### Difficultés rencontrées
+Certains test ne passait plus dans building (ArmyTest), il sont maintenant de nouveau fonctionnels.
+
 
 ### Objectifs pour la semaine
+On voudrais amélirorer l'affichage, faire les corrections necessaire suite à ce qui as été dit à l'entretien et commencé à écrire les boucles de jeu. 
 
 ## Semaine 12
 

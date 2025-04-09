@@ -5,10 +5,9 @@ import game.action.BuildPort;
 import game.action.BuyThief;
 import game.action.ExchangeRessources;
 import game.action.ExchangeRessourcesPort;
-import game.action.PlayThief;
 import game.action.UpgradeFarm;
+import game.tuile.Earth;
 import game.tuile.Ressource;
-import game.tuile.building.Farm;
 
 public class Livrable3demeter {
     
@@ -27,9 +26,11 @@ public class Livrable3demeter {
         System.out.println("---------------------");
         System.out.println("-------DEMETER-------");
         System.out.println("---------------------");
+        System.out.println("\n"); 
+
         
         Board board = new Board(width, height);
-        board.display();
+        
 
         PlayerDemeter demeter = new PlayerDemeter("demeter");
 
@@ -48,7 +49,7 @@ public class Livrable3demeter {
         */
 
         //1. Build a farm
-        System.out.println("===> demeter veut construire une ferme");
+        System.out.println("===> demeter "+ demeter.getResources()+ "veut construire une ferme");
         try {
             BuildFarm buildFarmAction = new BuildFarm(board, demeter);
             buildFarmAction.act(demeter);
@@ -57,8 +58,10 @@ public class Livrable3demeter {
         }
 
 
+        System.out.println("\n"); 
+
         //2. Upgrade a farm to an exploitation
-        System.out.println("===> demeter veut faire évoluer une ferme en une exploitation");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut faire évoluer une ferme en une exploitation");
         UpgradeFarm upgradeFarmAction = new UpgradeFarm(demeter);
         try {
             if (! demeter.getFarms().isEmpty()) {
@@ -70,10 +73,10 @@ public class Livrable3demeter {
             System.out.println("An error occurred while upgrading the farm: " + e.getMessage());
         }
 
-
+        System.out.println("\n"); 
 
         //3. build a port 
-        System.out.println("===> demeter veut construire un port");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut construire un port");
         try {
             BuildPort<PlayerDemeter> buildPortAction = new BuildPort<PlayerDemeter >(demeter, board);
             buildPortAction.act(demeter);
@@ -81,11 +84,11 @@ public class Livrable3demeter {
             System.out.println("An error occurred while building the port: " + e.getMessage());
         }
 
-
+        System.out.println("\n"); 
 
 
         //4. exchange 3 resources for 1
-        System.out.println("===> demeter veut échanger 3 ressources contre une");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 3 ressources contre une");
         ExchangeRessources<PlayerDemeter> exchangeRessourcesAction = new ExchangeRessources<PlayerDemeter>(demeter);
         try {
             exchangeRessourcesAction.act(demeter);
@@ -93,9 +96,11 @@ public class Livrable3demeter {
             System.out.println("An error occurred while exchanging resources: " + e.getMessage());
         }
 
+        System.out.println("\n"); 
+
 
         //5. exchange 2 resources for 1 with his port
-        System.out.println("===> demeter veut échanger 2 ressources contre une grâce à son port");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 2 ressources contre une grâce à son port");
         ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(demeter);
         try {
             exchangeRessourcesPortAction.act(demeter);
@@ -103,14 +108,19 @@ public class Livrable3demeter {
             System.out.println("An error occurred while exchanging resources with the port: " + e.getMessage());
         }
 
+        System.out.println("\n"); 
+
+
         //6. buy a thief
-        System.out.println("===> demeter veut acheter un voleur");
+        System.out.println("===> demeter "+ demeter.getResources()+ " veut acheter un voleur");
         BuyThief buyThiefAction = new BuyThief(demeter);
         try {
             buyThiefAction.act(demeter);
         } catch (Exception e) {
             System.out.println("An error occurred while buying a thief: " + e.getMessage());
         }
+
+        System.out.println("\n"); 
 
 
         //7. play a thief je sais pas si on doit faire cette action ou pas 
@@ -127,9 +137,21 @@ public class Livrable3demeter {
             System.out.println("An error occurred while playing a thief: " + e.getMessage());
         }*/
         
+        System.out.println("===> liste des bâtiments \n" + //
+                        "Port(s): "+ demeter.getPorts()+ "\n"+ //
+                        "Farm(s):"+ demeter.getFarms()+"\n"+//
+                        "Exploitation(s):" +demeter.getExploitations());
 
+        System.out.println("\n"); 
 
+       System.out.println("===> liste des tuiles ");
+        for(Earth t: demeter.getTiles()){ 
+            System.out.println(t.getPosition()); 
+        }
 
+        System.out.println("\n");
+
+        board.display();
     
 
     }

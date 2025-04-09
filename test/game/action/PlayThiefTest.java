@@ -1,62 +1,58 @@
 package game.action;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-import game.Board;
+
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.tuile.Ressource;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class PlayThiefTest{
-  // creating 2 players so that player1 could steal the ressources of the second player
-  private PlayerDemeter player1;
-  private PlayerDemeter player2;
-  private Board board;
-  private PlayThief actionvoler;
+import static org.junit.jupiter.api.Assertions.*;
 
-  
+public class PlayThiefTest {
 
-  void setUp(){
-    player1= new PlayerDemeter("lucie");
-    player2=new PlayerDemeter("luca");
-    board=new Board(5,5);
+    private PlayerDemeter player1;
+    private PlayerDemeter player2;
+    private PlayThief actionVoler;
 
-
-  }  
-
-  void StealingARessourceThatTheyDontHaveShouldThrowException() throws NoMoreRessourcesException{
-    PlayerDemeter[] listplayers={player2};
-    actionvoler=new PlayThief(Ressource.WOOD, listplayers);
-    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==0);
-    assertTrue(player2.getRessourceAmount(Ressource.WOOD)==0);
-    assertThrows(NoMoreRessourcesException.class,()->actionvoler.act(player2));
-  }
-
-
-  void StealingARessourceThatTheyHaveShouldWord() throws NoMoreRessourcesException{
-    PlayerDemeter[] listplayers={player2};
-    actionvoler=new PlayThief(Ressource.WOOD, listplayers);
-    player1.addRessource(Ressource.WOOD, 2);
-    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==2);
-    actionvoler.act(player2);
-    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==0);
-    assertTrue(player2.getRessourceAmount(Ressource.WOOD)==2);
+    @BeforeEach
+    void setUp() {
+        player1 = new PlayerDemeter("lucie");
+        player2 = new PlayerDemeter("luca");
     }
 
+    @Test
+    void shouldThrowExceptionWhenNoRessources() throws NoMoreRessourcesException {
+        PlayerDemeter[] listPlayers = {player2};
+        actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
+        
+        assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
+        assertEquals(0, player2.getRessourceAmount(Ressource.WOOD));
+        
+        assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player2));
+    }
 
-  void TheThiefShouldStealTheRessourcesOfEveryPlayer() throws NoMoreRessourcesException{
-    PlayerDemeter player3 = new PlayerDemeter("yann");
-    PlayerDemeter[] listplayers={player2,player3};
-    actionvoler=new PlayThief(Ressource.WOOD, listplayers);
-    player1.addRessource(Ressource.WOOD, 4);
-    player3.addRessource(Ressource.WOOD, 3);
-    assertTrue(player1.getRessourceAmount(Ressource.WOOD)==4);
-    assertTrue(player3.getRessourceAmount(Ressource.WOOD)==3);
-    actionvoler.act(player2);
-    assertTrue(player2.getRessourceAmount(Ressource.WOOD)==7);
-    
+    @Test
+    void shouldStealRessourcesSuccessfully() throws NoMoreRessourcesException {
+        player1.addRessource(Ressource.WOOD, 10);
+        player2.addRessource(Ressource.WOOD, 5);
 
+        player2.addThief();
+        
+        PlayerDemeter[] listPlayers = {player1, player2};
+        actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
+        
+        actionVoler.act(player2);
 
+        assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
+        assertEquals(15, player2.getRessourceAmount(Ressource.WOOD));
+    }
 
+    @Test
+    void shouldThrowExceptionWhenPlayerHasNoThief() {
+        player1.addRessource(Ressource.WOOD, 10);
+        PlayerDemeter[] listPlayers = {player1};
+        actionVoler = new PlayThief(Ressource.WOOD, listPlayers);
+        assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player1));
+    }
 
   }
-}

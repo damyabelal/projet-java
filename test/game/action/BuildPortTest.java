@@ -30,14 +30,14 @@ public class  BuildPortTest{
         board= new Board(5, 5); 
         action= new BuildPort<PlayerAres>(player, board); 
        
-       // ajout des ressources nessessaires pour construire un port
+       // giving the player enough ressources to be able to build a port
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.SHEEP, 2);
     }
 
     @Test
     /**
-     * test if the position is valid to build a port 
+     * tests if the position is valid to build a port on it
      */
     void isValidPositionTest(){
 

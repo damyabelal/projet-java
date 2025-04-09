@@ -8,4 +8,9 @@ public class Pasture extends Earth{
  public Pasture(){
     super(Ressource.SHEEP,SYMBOL);
  }
+
+ public String toString(){
+   return "Pasture "; 
+}
+
 }

@@ -25,12 +25,16 @@ public class BuyThiefTest{
 
     @Test
     void actTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+        // before buying a thief, the player has no thieves
         assertTrue(player.getNbThief()==0);
-        assertThrows(NoMoreRessourcesException.class, () -> action.act(player)); 
+        // the player has no ressources ,so if he attempts to buy a thief , it should throw an exception
+        assertThrows(NoMoreRessourcesException.class, () -> action.act(player));
+        //giving the player enough ressources so he could buy a thief 
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.ORE, 1);
         player.addRessource(Ressource.WEALTH, 1);
         action.act(player);
+        // after buying a thief , the player has one thief in his inventory of thieves
         assertTrue(player.getNbThief()==1);
     }
 

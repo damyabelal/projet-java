@@ -10,6 +10,7 @@ import game.tuile.Field;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
+import game.util.Position;
 
 
 
@@ -29,12 +30,9 @@ public class PlayerTest {
     @Test
     void testPlayerInit() {
         assertEquals("TestPlayer", player.getName());
-        assertEquals(0, player.getResources().get(Ressource.WOOD));// puisque la tuile est une field 
-
+        assertEquals(0, player.getResources().get(Ressource.WOOD)); // puisque la tuile est une field
     }
-    // test the player adding warriors
-    
-    
+
     // test the player adding resources
     @Test
     void testPlayerAddResources() {
@@ -44,27 +42,51 @@ public class PlayerTest {
 
     // test the player removing resources
     @Test
-    void testPlayerRemoveResources()  throws NoMoreRessourcesException{
+    void testPlayerRemoveResources() throws NoMoreRessourcesException {
         player.addRessource(Ressource.WOOD, 10);
         player.removeRessource(Ressource.WOOD, 5);
         assertEquals(5, player.getResources().get(Ressource.WOOD));
     }
+
     // test the player has enough resources
     @Test
-    void testHasEnoughRessources(){
+    void testHasEnoughRessources() {
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 1);
         Farm farm = new Farm(earth, null);
         assertTrue(player.hasEnoughRessources(farm));
     }
+
     // test the player does not have enough resources
     @Test
-    void testHasEnoughRessourcesFail(){
+    void testHasEnoughRessourcesFail() {
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 1);
         Exploitation exploitation = new Exploitation(earth, null);
         assertFalse(player.hasEnoughRessources(exploitation));
     }
 
+    @Test
+    void testAddTile() {
+        player.addTile(earth);
+        assertTrue(player.getTiles().contains(earth));
+    }
 
+    @Test
+    void testGetEarthByPosition() {
+        earth.setPosition(new Position(2, 3));
+        player.addTile(earth);
+        Earth result = player.getEarth(2, 3);
+        assertEquals(earth, result);
+    }
+
+    @Test
+    void testAddPort() {
+        earth.setPosition(new game.util.Position(0, 0));
+        game.tuile.building.Port port = new game.tuile.building.Port(earth, player);
+        player.addPort(port);
+
+        assertTrue(player.getPorts().contains(port)); 
+        assertTrue(player.getTiles().contains(earth)); 
+    }
 }

@@ -1,5 +1,4 @@
 package game.listchooser;
-
 import java.util.List;
 
 public interface ListChooser<T> {
@@ -12,4 +11,6 @@ public interface ListChooser<T> {
 	 * @return The chosen item.
 	 */
 	public T choose(String msg, List<? extends T> list);
+
+	
 } 

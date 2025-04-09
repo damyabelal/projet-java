@@ -1,11 +1,6 @@
 package game.listchooser;
-
-import java.io.IOException;
 import java.util.List;
-
-import game.Board;
 import game.listchooser.util.Input;
-import game.util.Position;
 
 public class InteractiveListChooser<T> implements ListChooser<T>{
 
@@ -42,31 +37,4 @@ public class InteractiveListChooser<T> implements ListChooser<T>{
         }
         return list.get(choice - 1);
     }
-    
-    /**
-     * ask the player on which tile he want to act 
-     * @param msg the prompt message
-     * @param board the board for this game
-     * @return the choosen position
-     * @throws IOException
-     */
-    public Position chooseCoordinate(String msg, Board board) throws IOException {
-		int choice = -1;
-        int x;
-        int y; 
-        Position pos = null; 
-		while ((choice == 0) ) {
-			System.out.println(msg);
-			x = Input.readInt();
-            y= Input.readInt(); 
-            pos= new Position(x,y);
-            if (!board.isValidPosition(pos) || !board.isBuildable(pos)){
-				System.out.println("Please, enter a valid coordinate " );
-			}
-            else{
-                choice= 1; 
-            }
-		}
-		return pos;
-	}
 }

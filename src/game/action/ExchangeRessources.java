@@ -1,6 +1,8 @@
 package game.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import game.NoMoreRessourcesException;
 import game.Player;
@@ -13,8 +15,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
 
     /**
      * creates an exchange action between two resources
-     * @param toExchange the resource to exchange (3 will be removed)
-     * @param toReceive the resource to receive (1 will be added)
+     * @param player the player who proceed the exchange
      */
     public ExchangeRessources(Player player) {
         super(player); 
@@ -22,15 +23,21 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
     }
 
     /**
-     * ask the player which ressource he wants to exchange
+     * asks the player what type of  ressource he wants to exchange
      * @return the ressource
      */
     public Ressource askExchangeRessources()  {
-        return lc.choose("What ressources do you want to exhange?", Arrays.asList(Ressource.values()));
+        List<Ressource> ressources= new ArrayList<>();
+        for (Ressource r : Arrays.asList(Ressource.values())){
+            if (player.getRessourceAmount(r)>2){
+                ressources.add(r); 
+            }
+        }
+        return lc.choose("What ressource do you want to exchange?", ressources);
     }
 
     /**
-     * ask the player which ressource he wants to receive in exchange
+     * asks the player which ressource he wants to receive in exchange
      * @return the ressource
      */
     public Ressource askReceiveRessources(){
@@ -39,8 +46,8 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
 
 
     /**
-     * First, ask the player which ressource he wants to exchange, then ask him which one he
-     * wants te receive in exhange. If all the conditions are met, the exchange take place.  
+     * first, asks the player which ressource he wants to exchange, then asks  which one he
+     * wants te receive in exchange. If all the conditions are met, the exchange takes place.  
      */
     @Override
     public void act(T player) throws NoMoreRessourcesException {
@@ -56,6 +63,6 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
         }
         player.removeRessource(toExchange,3);
         player.addRessource(toReceive, 1);
-        System.out.println("3 "+ toExchange+ " were exchanged far 1 "+ toReceive);
+        System.out.println("3 "+ toExchange+ " were exchanged for 1 "+ toReceive);
     }
 }

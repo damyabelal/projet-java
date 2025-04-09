@@ -37,10 +37,13 @@ public class UpgradeFarmTest{
         assertTrue(player.getExploitations().isEmpty());
         assertThrows(NoMoreRessourcesException.class, () -> upgrade.act(player)); 
         assertTrue(! player.getFarms().isEmpty());
+
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.WEALTH, 1);
         player.addRessource(Ressource.SHEEP, 1);
+        
         upgrade.act(player);
+        
         assertTrue(! player.getExploitations().isEmpty());
     }
 

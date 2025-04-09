@@ -1,6 +1,8 @@
 package game.action;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
@@ -18,16 +20,22 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
     }
 
      /**
-     * ask the player which ressource he wants to exchange
-     * @return the ressource
+     * asks the player which ressource he wants to exchange
+     * @return the ressource the player wants to exchange
      */
     public Ressource askExchangeRessources()  {
-        return lc.choose("What ressources do you want to exhange?", Arrays.asList(Ressource.values()));
+        List<Ressource> ressources= new ArrayList<>();
+        for (Ressource r : Arrays.asList(Ressource.values())){
+            if (player.getRessourceAmount(r)>1){
+                ressources.add(r); 
+            }
+        }
+        return lc.choose("What ressources do you want to exhange?",ressources);
     }
 
     /**
-     * ask the player which ressource he wants to receive in exchange
-     * @return the ressource
+     * asks the player which ressource he wants to receive in exchange
+     * @return the ressource the player wants to receive in exchange
      */
     public Ressource askReceiveRessources(){
         return lc.choose("What ressource do you want in exchange?", Arrays.asList(Ressource.values())); 
@@ -35,8 +43,8 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
 
 
     /**
-     * First, ask the player which ressource he wants to exchange, then ask him which one he
-     * wants te receive in exhange. If all the conditions are met, the exchange take place. 
+     * First, asks the player which ressource he wants to exchange, then ask him which one he
+     * wants te receive in exhange. If all the conditions are met, the exchange takes place. 
      * The conditions are different from ExchangeRessources
      */
     public void act(PlayerDemeter player) throws NoMoreRessourcesException , CantBuildException{
@@ -61,7 +69,7 @@ public class ExchangeRessourcesPort extends ActionManager implements Action<Play
         player.removeRessource(toExchange, 2);
         player.addRessource(toReceive, 1);
     
-
+        System.out.println("2 "+ toExchange+ " were exchanged for 1 "+ toReceive);
 
     }
     
