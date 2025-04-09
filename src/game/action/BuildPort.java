@@ -5,7 +5,7 @@ import java.io.IOException;
 import game.Board;
 import game.NoMoreRessourcesException;
 import game.Player;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.*;
@@ -18,14 +18,14 @@ import game.util.*;
 public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
 
     private Board board; 
-    public static RandomListChooser<Earth> lc;
+    public ListChooser<Earth> lc;
 
-    public BuildPort(T player, Board board){
+    public BuildPort(T player, Board board, ListChooser<Earth> lc){
         super(player); 
         this.board= board; 
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP,2);
-        lc= new RandomListChooser<>(); 
+        this.lc= lc; 
     }
 
     public Earth askCoordinate() throws IOException {

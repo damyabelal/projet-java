@@ -2,7 +2,7 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 import java.util.List;
 import game.CantBuildException;
@@ -14,17 +14,17 @@ import game.tuile.building.Camp;
 public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
     
     private Earth tuile; 
-    private RandomListChooser<Army> lc;
-    private RandomListChooser<String> lString;  
-    private RandomListChooser<Integer> lnumb;
+    private ListChooser<Army> lc;
+    private ListChooser<String> lString;  
+    private ListChooser<Integer> lnumb;
 
-    public UpgradeArmy(PlayerAres player) {
+    public UpgradeArmy(PlayerAres player, ListChooser<Army> lc, ListChooser<String> lString, ListChooser<Integer> lnumb) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.ORE, 3);
-        this.lString = new RandomListChooser<>();
-        this.lnumb = new RandomListChooser<>();
-        this.lc = new RandomListChooser<>();
+        this.lString = lString;
+        this.lnumb = lnumb ;
+        this.lc = lc;
        
     }
 

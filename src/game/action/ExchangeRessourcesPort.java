@@ -7,16 +7,16 @@ import java.util.List;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 
 public class ExchangeRessourcesPort extends ActionManager implements Action<PlayerDemeter>{
 
-    public static RandomListChooser<Ressource> lc; 
+    public ListChooser<Ressource> lc; 
 
-    public ExchangeRessourcesPort(PlayerDemeter player){
+    public ExchangeRessourcesPort(PlayerDemeter player, ListChooser<Ressource> lc){
         super(player);
-        lc = new RandomListChooser<>(); 
+        this.lc = lc; 
     }
 
      /**

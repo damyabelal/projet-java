@@ -6,20 +6,20 @@ import java.util.List;
 
 import game.NoMoreRessourcesException;
 import game.Player;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 
 public class ExchangeRessources <T extends Player> extends ActionManager implements Action<T> {
 
-    private static RandomListChooser<Ressource> lc; 
+    private ListChooser<Ressource> lc; 
 
     /**
      * creates an exchange action between two resources
      * @param player the player who proceed the exchange
      */
-    public ExchangeRessources(Player player) {
+    public ExchangeRessources(Player player, ListChooser<Ressource> lc) {
         super(player); 
-        lc= new RandomListChooser<>(); 
+        this.lc= lc; 
     }
 
     /**

@@ -3,21 +3,21 @@ package game.action;
 import java.util.List;
 
 import game.*;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 
 public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
 
-    private RandomListChooser<Farm> lc;
+    private ListChooser<Farm> lc;
     private Earth tuile;
 
-    public UpgradeFarm(PlayerDemeter player) {
+    public UpgradeFarm(PlayerDemeter player, ListChooser<Farm> lc) {
         super(player);
         this.cost.put(Ressource.WOOD, 2);
         this.cost.put(Ressource.WEALTH, 1);
         this.cost.put(Ressource.SHEEP, 1);
-        this.lc = new RandomListChooser<>();
+        this.lc =lc;
     }
 
     public Farm ask() {

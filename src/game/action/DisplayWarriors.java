@@ -5,23 +5,23 @@ import java.util.List;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 
 public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {
 
-    private static RandomListChooser<Integer> lcNumber;
-    private static RandomListChooser<String> lcString;
-    private static RandomListChooser<Army> lcArmy;
-    private static RandomListChooser<Camp> lcCamp;
+    private ListChooser<Integer> lcNumber;
+    private ListChooser<String> lcString;
+    private ListChooser<Army> lcArmy;
+    private ListChooser<Camp> lcCamp;
 
-    public DisplayWarriors(PlayerAres player) {
+    public DisplayWarriors(PlayerAres player, ListChooser<Integer> lcNumber, ListChooser<String> lcString, ListChooser<Army> lcArmy, ListChooser<Camp> lcCamp) {
         super(player);
-        lcNumber = new RandomListChooser<>();
-        lcString = new RandomListChooser<>();
-        lcArmy = new RandomListChooser<>();
-        lcCamp = new RandomListChooser<>();
+        this.lcNumber = lcNumber;
+        this.lcString = lcString;
+        this.lcArmy = lcArmy;
+        this.lcCamp = lcCamp;
     }
 
     /**

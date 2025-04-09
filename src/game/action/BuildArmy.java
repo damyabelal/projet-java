@@ -4,7 +4,7 @@ import game.*;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.Position;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 
 import java.io.IOException;
 import java.util.*;
@@ -14,17 +14,17 @@ import java.util.*;
  */
 public class BuildArmy extends ActionManager implements Action<PlayerAres> {
     private Board board;
-    public static RandomListChooser<Earth> lc;
+    public ListChooser<Earth> lc;
     public List<Earth> earthList;
 
    
-    public BuildArmy(Board board , PlayerAres player){  
+    public BuildArmy(Board board , PlayerAres player, ListChooser<Earth> lc){  
         super(player);
         this.board = board;
         this.cost.put(Ressource.WOOD,1);
         this.cost.put(Ressource.SHEEP,1); 
         this.cost.put(Ressource.WEALTH,1);
-        lc= new RandomListChooser<>(); 
+        this.lc= lc; 
         earthList = new ArrayList<>();
 
     }

@@ -5,13 +5,13 @@ import java.util.Random;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Army;
 
 public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
 
-    public RandomListChooser<PlayerAres> lc;
+    public ListChooser<PlayerAres> lc;
     public PlayerAres  player ;
     public List<PlayerAres> enemies;
     public Earth tile;
@@ -23,11 +23,10 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
          * @param enemies the list of all the neighboring enemies
          * @param tile the tile that the player wants to attack // on en a besoin car un joueur dans la plus part du temps a plusiers tuile et il faut savoir laquelle attaquer
          */ 
-        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies){
+        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies, ListChooser<PlayerAres> lc){
             super(player); 
-
             this.enemies= enemies;
-            lc= new RandomListChooser<PlayerAres>(); 
+            this.lc= lc; 
         }
     
         /**

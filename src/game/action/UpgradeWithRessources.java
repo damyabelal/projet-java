@@ -2,7 +2,7 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 
 import java.io.IOException;
@@ -17,15 +17,15 @@ public class UpgradeWithRessources extends ActionManager implements Action<Playe
 private Earth tuile; 
 
 
-private RandomListChooser<Army> lc; 
-private RandomListChooser<Integer> lnumb;
+private ListChooser<Army> lc; 
+private ListChooser<Integer> lnumb;
 
-public UpgradeWithRessources(PlayerAres player) {
+public UpgradeWithRessources(PlayerAres player, ListChooser<Army> lc, ListChooser<Integer> lnumb) {
     super(player);
     this.cost.put(Ressource.WOOD, 2);
     this.cost.put(Ressource.ORE, 3);
-    this.lnumb = new RandomListChooser<>();
-    this.lc = new RandomListChooser<>();
+    this.lnumb = lnumb;
+    this.lc = lc;
    
 }
 
