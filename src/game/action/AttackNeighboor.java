@@ -3,6 +3,7 @@ package game.action;
 import java.util.List;
 import java.util.Random;
 
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.ListChooser;
@@ -33,10 +34,9 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
          * ask the player which neighbor he wants to attack
          * @return the player  to be attacked
          */
-        public PlayerAres askNeighbor() {
+        public PlayerAres askNeighbor() throws InvalidChoiceException {
             if (this.enemies.isEmpty()) {
-                System.out.println("No enemies available to attack.");
-                return null;
+                throw new InvalidChoiceException("No enemies to attack");
             }
             return lc.choose("Who do you want to attack", this.enemies);
         }
@@ -80,13 +80,16 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     }
     
 
-    public void act(PlayerAres player) throws NoMoreRessourcesException {
+    public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
         PlayerAres ennemy= askNeighbor();
         // la somme des dés de chaque joueur
         System.out.println(player.getName() + " VS " + ennemy.getName());
         Integer ennemyRes= dicesResult(howMuchDice(ennemy));
         Integer playerRes= dicesResult(howMuchDice(player));
         PlayerAres loser;
+
+       
+        
         if (ennemyRes< playerRes){
             loser = ennemy;
         }

@@ -32,7 +32,7 @@ public class BuildArmy extends ActionManager <PlayerAres>implements Action<Playe
 
 
     
-    public Earth askCoordinate() throws IOException {
+    public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build an Army?", this.board.buildableTiles());
     }
 
@@ -72,7 +72,7 @@ public class BuildArmy extends ActionManager <PlayerAres>implements Action<Playe
      * @throws CantBuildException
      * @throws IOException
     */
-    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
+    public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, InvalidChoiceException {
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
 

@@ -1,7 +1,5 @@
 package game.action;
 
-import java.io.IOException;
-
 import game.*;
 import game.tuile.*;
 import game.tuile.building.*;
@@ -25,7 +23,7 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         this.lc = lc;
     }
 
-    public Earth askCoordinate() throws IOException {
+    public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build a Farm?", this.board.buildableTiles());
     }
 
@@ -33,9 +31,9 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
      * builds a farm on a tile for the given player
      * @param player the player who wants to build the farm
      * @throws NoMoreRessourcesException if the player doesn't have enough ressources to build the farm
-     * @throws IOException 
+     * @throws InvalidChoiceException
     */
-    public void act(PlayerDemeter player) throws NoMoreRessourcesException, IOException {
+    public void act(PlayerDemeter player) throws NoMoreRessourcesException, InvalidChoiceException {
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
         //checks if player has enough ressources to build a farm

@@ -5,9 +5,9 @@ import game.PlayerAres;
 import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 
-import java.io.IOException;
 import java.util.List;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
@@ -30,20 +30,20 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
    * 
    * @return the army the player wants to upgrade
    */
-  public Army askArmy() {
+  public Army askArmy() throws InvalidChoiceException{
     List<Army> armies = ((PlayerAres) this.player).getArmies();
     if (armies.isEmpty()) {
-      throw new IllegalArgumentException("No armies available to upgrade");
+      throw new InvalidChoiceException("No armies available to upgrade");
     }
     return this.lc.choose("Which army do you want to upgrade?", armies);
   }
 
   @Override
-  public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
+  public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, InvalidChoiceException {
     Army chosenArmy = askArmy();
     // checks if the player has an army to upgrade
     if (chosenArmy == null) {
-      throw new IllegalArgumentException("No army selected");
+      throw new InvalidChoiceException("No army selected");
     }
     // checks if the player has enough ressources
 
@@ -51,10 +51,10 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
       throw new NoMoreRessourcesException("Not enough resources to upgrade the army");
     }
 
-    else {
-      this.removeRessources();
+    
+    this.removeRessources();
 
-    }
+  
 
     this.tuile = chosenArmy.getTuile();
 

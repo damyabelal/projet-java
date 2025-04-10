@@ -1,8 +1,9 @@
 package game.action;
 
-import java.io.IOException;
 
 import game.Board;
+import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.Player;
 import game.listchooser.ListChooser;
@@ -28,7 +29,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         this.lc= lc; 
     }
 
-    public Earth askCoordinate() throws IOException {
+    public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build a Port?",this.board.coastalTiles());
     }
 
@@ -46,14 +47,14 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
     }
 
     @Override
-    public void act(T player) throws NoMoreRessourcesException, IOException {
+    public void act(T player) throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{
         Earth choosenTile= askCoordinate();
 
         if (! this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough ressources to build a farm.");
         }
         if(!canPlacePort(choosenTile.getPosition(), board)){
-            throw new NoMoreRessourcesException("There should be at least two neighboring sea tiles.");
+            throw new CantBuildException("There should be at least two neighboring sea tiles.");
         }
 
         this.removeRessources();

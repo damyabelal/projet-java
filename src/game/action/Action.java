@@ -1,7 +1,7 @@
 package game.action;
 import game.NoMoreRessourcesException;
 
-import java.io.IOException;
+import game.InvalidChoiceException;
 
 import game.CantBuildException;
 import game.Player;
@@ -18,5 +18,5 @@ public interface Action<T extends Player> {
      * @throws NoMoreRessourcesException 
      * @throws IOException 
      */
-    void act(T player) throws NoMoreRessourcesException , CantBuildException, IOException;
+    void act(T player) throws NoMoreRessourcesException , CantBuildException, InvalidChoiceException;
 }

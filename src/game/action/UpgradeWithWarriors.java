@@ -6,10 +6,11 @@ import game.PlayerAres;
 import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
@@ -35,7 +36,7 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    * 
    * @return the army the player wants to upgrade
    */
-  public Army askArmy() {
+  public Army askArmy() throws InvalidChoiceException {
     List<Army> armies = ((PlayerAres) this.player).getArmies();
     if (armies.isEmpty()) {
       throw new IllegalArgumentException("No armies available to upgrade");
@@ -58,14 +59,14 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
   }
 
   @Override
-  public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, IOException {
+  public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException,InvalidChoiceException{
     Army chosenArmy = askArmy();
 
     // asks the player how he wants to upgrade the army
 
     // checks if the player has an army to upgrade
     if (chosenArmy == null) {
-      throw new IllegalArgumentException("No army selected");
+      throw new InvalidChoiceException("No army selected");
     }
 
     // check if the army has 5 warriors to upgrade
