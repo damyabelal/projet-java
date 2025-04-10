@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
-
 import game.Board;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
 
@@ -23,159 +23,133 @@ import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.Position;
 
-public class BuildArmyTest{
-    
-       
-        private Board board; 
-        private PlayerAres player; 
-        
-        // creation de tuile qui vont servir pour creer une ile de le board parceque comme le board est creer de facon  aleatoire on 
-        //veut etre sur que il y a une ile qui respecte les conditions pour poser une armee sur le plateau
-       
-    
-    
-    
-        @BeforeEach
-        void setUp() throws CantBuildException{
-            
-            board= new Board(5, 5); //creation d'un plateau de maniere aleatoire
-            player = new PlayerAres("Ares");
+public class BuildArmyTest {
 
-            
-            
-            
-            for (int x=0; x<5; x++){
-                for (int y=0; y<5; y++){
-                    board.put(new Sea(), new Position(x, y));
-                    }
+    private Board board;
+    private PlayerAres player;
+
+    // creation de tuile qui vont servir pour creer une ile de le board parceque
+    // comme le board est creer de facon aleatoire on
+    // veut etre sur que il y a une ile qui respecte les conditions pour poser une
+    // armee sur le plateau
+
+    @BeforeEach
+    void setUp() throws CantBuildException {
+
+        board = new Board(5, 5); // creation d'un plateau de maniere aleatoire
+        player = new PlayerAres("Ares");
+
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 5; y++) {
+                board.put(new Sea(), new Position(x, y));
             }
-
-            //mettre une tuile Earth au centre de 4 tuiles Earth
-            Position pos = new Position(2, 2);
-            Earth tuile = new Field();
-            board.put(tuile, pos);
-
-            Position pos1 = new Position(2, 1);
-            Earth tuile1 = new Field();
-            board.put(tuile1, pos1);
-
-            Position pos2 = new Position(1, 2);
-            Earth tuile2 = new Field();
-            board.put(tuile2, pos2);
-            
-            Position pos3 = new Position(3, 2);
-            Earth tuile3 = new Field();
-            board.put(tuile3, pos3);
-    
-
-            Position pos4 = new Position(2, 3);
-            Earth earth = new Field();
-            board.put(earth, pos4);
-
-            
-            
-            Farm farm = new Farm(tuile,null);
-            tuile.setBuilding(farm);
-
-            
-            Farm farm1 = new Farm(tuile1, null);
-            tuile1.setBuilding(farm1);
-            
-            
-            Port port = new Port(tuile3, player);
-            tuile3.setBuilding(port);
-            
-            board.islands= board.findIslands();
-
         }
-        
-        @Test
-        void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
-           
 
-            
+        // mettre une tuile Earth au centre de 4 tuiles Earth
+        Position pos = new Position(2, 2);
+        Earth tuile = new Field();
+        board.put(tuile, pos);
 
-            BuildArmy actionBuild = new BuildArmy(board, player);
-            board.islands = board.findIslands();
-            player.addRessource(Ressource.WOOD,1);
-            player.addRessource(Ressource.SHEEP, 1);
-            player.addRessource(Ressource.WEALTH, 1);
+        Position pos1 = new Position(2, 1);
+        Earth tuile1 = new Field();
+        board.put(tuile1, pos1);
 
-            
-            assertTrue(player.getArmies().isEmpty());
-            actionBuild.act(player);
-            assertTrue(! player.getArmies().isEmpty());
-        }
-        
-        @Test
-        void canBuildArmyTest(){
-            board = new Board(5, 5);
-            for (int x=0; x<5; x++){
-                for (int y=0; y<5; y++){
-                    board.put(new Sea(), new Position(x, y));
-                    }
+        Position pos2 = new Position(1, 2);
+        Earth tuile2 = new Field();
+        board.put(tuile2, pos2);
+
+        Position pos3 = new Position(3, 2);
+        Earth tuile3 = new Field();
+        board.put(tuile3, pos3);
+
+        Position pos4 = new Position(2, 3);
+        Earth earth = new Field();
+        board.put(earth, pos4);
+
+        Farm farm = new Farm(tuile, null);
+        tuile.setBuilding(farm);
+
+        Farm farm1 = new Farm(tuile1, null);
+        tuile1.setBuilding(farm1);
+
+        Port port = new Port(tuile3, player);
+        tuile3.setBuilding(port);
+
+        board.islands = board.findIslands();
+
+    }
+
+    @Test
+    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException {
+
+        BuildArmy actionBuild = new BuildArmy(board, player, new RandomListChooser<>());
+        board.islands = board.findIslands();
+        player.addRessource(Ressource.WOOD, 1);
+        player.addRessource(Ressource.SHEEP, 1);
+        player.addRessource(Ressource.WEALTH, 1);
+
+        assertTrue(player.getArmies().isEmpty());
+        actionBuild.act(player);
+        assertTrue(!player.getArmies().isEmpty());
+    }
+
+    @Test
+    void canBuildArmyTest() {
+        board = new Board(5, 5);
+        for (int x = 0; x < 5; x++) {
+            for (int y = 0; y < 5; y++) {
+                board.put(new Sea(), new Position(x, y));
             }
-
-            //mettre une tuile Earth au centre de 4 tuiles Earth
-            Position pos = new Position(2, 2);
-            Earth tuile = new Field();
-            board.put(tuile, pos);
-
-            Position pos1 = new Position(2, 1);
-            Earth tuile1 = new Field();
-            board.put(tuile1, pos1);
-
-            Position pos2 = new Position(1, 2);
-            Earth tuile2 = new Field();
-            board.put(tuile2, pos2);
-            
-            Position pos3 = new Position(3, 2);
-            Earth tuile3 = new Field();
-            board.put(tuile3, pos3);
-    
-
-            Position pos4 = new Position(2, 3);
-            Earth earth = new Field();
-            board.put(earth, pos4);
-
-            
-            
-            Farm farm = new Farm(tuile,null);
-            tuile.setBuilding(farm);
-
-            
-            Farm farm1 = new Farm(tuile1, null);
-            tuile1.setBuilding(farm1);
-            
-            
-            Port port = new Port(tuile3, player);
-            tuile3.setBuilding(port);
-            
-            board.islands= board.findIslands();
-
-            BuildArmy buildArmy = new BuildArmy(board, player);
-
-
-            assertTrue(buildArmy.canBuildArmy(earth,player));
-
-
         }
 
-        @Test
-        void testNoMoreRessourcesException()throws Exception{
-            BuildArmy action = new BuildArmy(board, player);
+        // mettre une tuile Earth au centre de 4 tuiles Earth
+        Position pos = new Position(2, 2);
+        Earth tuile = new Field();
+        board.put(tuile, pos);
 
-             // vider le stock de guerriers
-            player.removeWarriors(player.getWarriors());
+        Position pos1 = new Position(2, 1);
+        Earth tuile1 = new Field();
+        board.put(tuile1, pos1);
 
-            // s'assurer que l'exception est bien levée
-            assertThrows(NoMoreRessourcesException.class, () -> {action.act(player);});
+        Position pos2 = new Position(1, 2);
+        Earth tuile2 = new Field();
+        board.put(tuile2, pos2);
 
-        }
+        Position pos3 = new Position(3, 2);
+        Earth tuile3 = new Field();
+        board.put(tuile3, pos3);
 
-        
+        Position pos4 = new Position(2, 3);
+        Earth earth = new Field();
+        board.put(earth, pos4);
 
+        Farm farm = new Farm(tuile, null);
+        tuile.setBuilding(farm);
 
+        Farm farm1 = new Farm(tuile1, null);
+        tuile1.setBuilding(farm1);
 
+        Port port = new Port(tuile3, player);
+        tuile3.setBuilding(port);
+
+        board.islands = board.findIslands();
+
+        BuildArmy buildArmy = new BuildArmy(board, player, new RandomListChooser<>());
+
+        assertTrue(buildArmy.canBuildArmy(earth, player));
+    }
+
+    @Test
+    void testNoMoreRessourcesException() throws Exception {
+        BuildArmy action = new BuildArmy(board, player, new RandomListChooser<>());
+        // vider le stock de guerriers
+        player.removeWarriors(player.getWarriors());
+
+        // s'assurer que l'exception est bien levée
+        assertThrows(NoMoreRessourcesException.class, () -> {
+            action.act(player);
+        });
+
+    }
 
 }
