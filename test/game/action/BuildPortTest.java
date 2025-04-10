@@ -13,6 +13,7 @@ import game.Board;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
@@ -28,7 +29,7 @@ public class  BuildPortTest{
     void setUp(){
         player = new PlayerAres("Marco");
         board= new Board(5, 5); 
-        action= new BuildPort<PlayerAres>(player, board); 
+        action= new BuildPort<PlayerAres>(player, board, new RandomListChooser<>()); 
        
        // giving the player enough ressources to be able to build a port
         player.addRessource(Ressource.WOOD, 1);

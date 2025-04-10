@@ -12,6 +12,7 @@ import game.Board;
 import game.CantBuildException;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
 public class BuildFarmTest{
@@ -24,7 +25,7 @@ public class BuildFarmTest{
     void setUp(){
         player = new PlayerDemeter("kiwi");
         board= new Board(5, 5); 
-        action= new BuildFarm(board, player); 
+        action= new BuildFarm(board, player, new RandomListChooser<>()); 
     }
 
     @Test

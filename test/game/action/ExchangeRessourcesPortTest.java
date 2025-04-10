@@ -3,6 +3,7 @@ package game.action;
 import game.Board;
 import game.CantBuildException;
 import game.PlayerDemeter;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
@@ -24,9 +25,7 @@ public class ExchangeRessourcesPortTest{
     @BeforeEach
     public void setUp(){
         player = new PlayerDemeter("test");
-        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player);
-        
-        
+        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new RandomListChooser<>());
     }
 
 
@@ -36,14 +35,12 @@ public class ExchangeRessourcesPortTest{
         player.addRessource(Ressource.ORE, 1);
 
         assertThrows(CantBuildException.class, () -> {exchangeRessourcesPortAction.act(player);});
-    
-    
     }
 
     @Test
     void testExchageWithSameRessource() {
     
-        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(player){
+        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new RandomListChooser<>()){
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -78,24 +75,19 @@ public class ExchangeRessourcesPortTest{
         Position pos1 = new Position(2, 1);
         Earth portTile =  new Earth(Ressource.ORE, null);
         board.put(portTile, pos1);
-
-
-
         
         Port port = new Port(portTile, player);
         portTile.setBuilding(port);
         player.addPort(port);
         player.addTile(portTile);
-       
-       
-       
+    
         player.addRessource(Ressource.WOOD, 3);
         player.addRessource(Ressource.ORE, 1);
 
         int beforeWood =player.getRessourceAmount(Ressource.WOOD);
         int beforeOre = player.getRessourceAmount(Ressource.ORE);
 
-        ExchangeRessourcesPort testAction = new ExchangeRessourcesPort(player){
+        ExchangeRessourcesPort testAction = new ExchangeRessourcesPort(player, new RandomListChooser<>()){
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -110,7 +102,6 @@ public class ExchangeRessourcesPortTest{
         testAction.act(player);
         assertEquals(beforeWood-2, player.getRessourceAmount(Ressource.WOOD));
         assertEquals(beforeOre+1, player.getRessourceAmount(Ressource.ORE));
-
     }
 
 }
