@@ -119,6 +119,7 @@ public void display(){
     System.out.println("        ");
     String abs= ""; 
     for (int i= 0; i< w; i++){
+        
         abs= abs+ ("   "+i+"   ");
     }
     System.out.println(abs);

@@ -2,9 +2,9 @@ package game;
 
 import game.action.BuildPort;
 import game.action.ExchangeRessources;
-import game.action.ExchangeRessourcesPort;
 import game.action.actionDemeter.BuildFarm;
 import game.action.actionDemeter.BuyThief;
+import game.action.actionDemeter.ExchangeRessourcesPort;
 import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
