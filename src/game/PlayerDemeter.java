@@ -95,12 +95,7 @@ public class PlayerDemeter extends Player{
      * @return boolean true if the demeter player has a port in his tiles
      */
     public boolean hasPort(){
-        for(Earth  tile : this.getTiles()){
-            if(tile.haveBuild() && tile.getBuilding() instanceof Port){    
-                return true;
-            }
-        }
-        return false;
+        return !this.getPlayerPorts().isEmpty();
     }
 
 

@@ -61,6 +61,14 @@ public class Player {
     }
 
     /**
+     * getter for ports
+     * @return ports
+     */
+    public List<Port> getPlayerPorts() {
+        return this.ports;
+    }
+
+    /**
      * adds the given tile to the player's list of tiles
      * @param tile
      */
