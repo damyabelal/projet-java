@@ -1,8 +1,0 @@
-package game;
-
-public class InvalidChoiceException extends Exception {
-    public InvalidChoiceException(String message) {
-        super(message);
-    }
-    
-}
