@@ -9,14 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.Board;
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.action.actionDemeter.BuildFarm;
 import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class UpgradeFarmTest{
 

@@ -3,12 +3,12 @@ package game.action;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.action.actionDemeter.BuyThief;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;

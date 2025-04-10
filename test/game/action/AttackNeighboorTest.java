@@ -1,9 +1,9 @@
 package game.action;
 
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.action.actionAres.AttackNeighboor;
 import game.listchooser.RandomListChooser;
+import game.util.NoMoreRessourcesException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,6 +2,7 @@ package game;
 
 import java.util.*;
 import game.tuile.building.*;
+import game.util.NoMoreRessourcesException;
 import game.tuile.*;
 
 public class Player {

@@ -9,9 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.io.IOException;
 
 import game.Board;
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.action.actionAres.BuildArmy;
 import game.listchooser.RandomListChooser;
@@ -23,6 +20,9 @@ import game.tuile.Sea;
 
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
 public class BuildArmyTest {

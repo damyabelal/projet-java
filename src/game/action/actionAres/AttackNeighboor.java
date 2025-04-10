@@ -3,14 +3,14 @@ package game.action.actionAres;
 import java.util.List;
 import java.util.Random;
 
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.action.Action;
 import game.action.ActionManager;
 import game.listchooser.ListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Army;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class AttackNeighboor extends ActionManager<PlayerAres> implements Action<PlayerAres>{
 

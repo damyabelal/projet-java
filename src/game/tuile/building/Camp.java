@@ -1,12 +1,13 @@
 package game.tuile.building;
 
 import java.util.HashMap;
-import game.CantBuildException;
+
 import game.PlayerAres;
 
 
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
 
 
 /*

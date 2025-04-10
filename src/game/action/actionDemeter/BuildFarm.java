@@ -5,6 +5,8 @@ import game.action.Action;
 import game.action.ActionManager;
 import game.tuile.*;
 import game.tuile.building.*;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 import game.listchooser.ListChooser;
 

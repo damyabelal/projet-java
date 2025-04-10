@@ -1,8 +1,9 @@
 package game.action;
 import game.PlayerDemeter;
 import game.listchooser.RandomListChooser;
-import game.NoMoreRessourcesException;
 import game.tuile.Ressource;
+import game.util.NoMoreRessourcesException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

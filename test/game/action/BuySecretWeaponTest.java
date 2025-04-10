@@ -7,12 +7,12 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.action.actionAres.BuySecretWeapon;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class BuySecretWeaponTest{
 

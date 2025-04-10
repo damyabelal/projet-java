@@ -4,7 +4,7 @@ import game.PlayerAres;
 import game.action.Action;
 import game.action.ActionManager;
 import game.tuile.Ressource;
-import game.NoMoreRessourcesException;
+import game.util.NoMoreRessourcesException;
 
 /*
  * buys a secret weapon

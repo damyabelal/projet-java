@@ -3,8 +3,8 @@ package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.CantBuildException;
 import game.tuile.Field;
+import game.util.CantBuildException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

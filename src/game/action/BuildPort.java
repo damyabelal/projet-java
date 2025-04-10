@@ -2,9 +2,6 @@ package game.action;
 
 
 import game.Board;
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.Player;
 import game.listchooser.ListChooser;
 import game.tuile.*;

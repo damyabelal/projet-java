@@ -1,10 +1,10 @@
 package game.tuile.building;
 
-import game.CantBuildException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.NoMoreRessourcesException;
 
 /*
  * A class to create a Army

@@ -6,6 +6,9 @@ import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
+import game.util.CantBuildException;
+import game.util.NoMoreRessourcesException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

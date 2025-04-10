@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+import game.util.NoMoreRessourcesException;
 
 public class PlayerAresTest {
     

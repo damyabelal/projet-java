@@ -1,10 +1,8 @@
 package game.action;
-import game.NoMoreRessourcesException;
-
-import game.InvalidChoiceException;
-
-import game.CantBuildException;
 import game.Player;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 /**
  * represents an action that can be done by a player

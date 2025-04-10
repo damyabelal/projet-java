@@ -10,14 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.Board;
-import game.CantBuildException;
-import game.InvalidChoiceException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
 public class  BuildPortTest{

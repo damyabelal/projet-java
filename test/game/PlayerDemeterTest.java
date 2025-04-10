@@ -13,6 +13,8 @@ import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class PlayerDemeterTest {
 

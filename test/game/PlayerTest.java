@@ -10,6 +10,7 @@ import game.tuile.Field;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
 

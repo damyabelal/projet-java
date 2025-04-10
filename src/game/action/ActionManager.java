@@ -1,9 +1,9 @@
 package game.action;
 import java.util.HashMap;
 
-import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Ressource;
+import game.util.NoMoreRessourcesException;
 
 public abstract class ActionManager <T extends Player>{
 

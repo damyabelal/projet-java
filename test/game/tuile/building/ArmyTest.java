@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import game.*;
 import game.tuile.*;
+import game.util.CantBuildException;
+import game.util.NoMoreRessourcesException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArmyTest {

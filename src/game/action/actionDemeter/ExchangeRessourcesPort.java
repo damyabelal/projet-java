@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import game.CantBuildException;
-import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
 import game.action.Action;
 import game.action.ActionManager;
 import game.listchooser.ListChooser;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.NoMoreRessourcesException;
 
 public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter>{
 

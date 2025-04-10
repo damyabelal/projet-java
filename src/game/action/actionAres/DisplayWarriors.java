@@ -1,13 +1,14 @@
 package game.action.actionAres;
 
 import java.util.List;
-import game.NoMoreRessourcesException;
+
 import game.PlayerAres;
 import game.action.Action;
 import game.action.ActionManager;
 import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+import game.util.NoMoreRessourcesException;
 
 public class DisplayWarriors extends ActionManager<PlayerAres> implements Action<PlayerAres> {
 

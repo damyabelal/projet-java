@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import game.NoMoreRessourcesException;
 import game.Player;
 import game.listchooser.ListChooser;
 import game.tuile.Ressource;
+import game.util.NoMoreRessourcesException;
 
 public class ExchangeRessources <T extends Player> extends ActionManager<T> implements Action<T> {
 
