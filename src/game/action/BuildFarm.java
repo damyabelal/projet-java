@@ -12,7 +12,7 @@ import game.listchooser.ListChooser;
  * This class is used to build a farm on a tile
  * It extends ActionManager and implements Action<PlayerDemeter>
  */
-public class BuildFarm extends ActionManager implements Action<PlayerDemeter> {
+public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<PlayerDemeter> {
 
     private Board board; 
     public ListChooser<Earth> lc;

@@ -1,7 +1,7 @@
 package game.action;
 
 import game.NoMoreRessourcesException;
-import game.Player;
+
 import game.PlayerAres;
 import game.listchooser.ListChooser;
 import game.tuile.building.Army;
@@ -14,14 +14,14 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
 
-public class UpgradeWithWarriors extends ActionManager implements Action<PlayerAres> {
+public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Action<PlayerAres> {
 
   private ListChooser<Integer> lnumb;
   private ListChooser<Army> lc;
   private Earth tuile;
 
   // army is the army that the given player player wants to upgrade
-  public UpgradeWithWarriors(Player player, ListChooser<Integer> lnumb, ListChooser<Army> lc) {
+  public UpgradeWithWarriors(PlayerAres player, ListChooser<Integer> lnumb, ListChooser<Army> lc) {
     super(player);
     this.cost.put(Ressource.WOOD, 2);
     this.cost.put(Ressource.ORE, 3);

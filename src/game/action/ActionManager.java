@@ -5,16 +5,16 @@ import game.NoMoreRessourcesException;
 import game.Player;
 import game.tuile.Ressource;
 
-public abstract class ActionManager {
+public abstract class ActionManager <T extends Player>{
 
     protected HashMap<Ressource, Integer> cost;
-    protected Player player;
+    protected T player;
     
     /**
      * creates an ActionManager for the given player
      * @param player
      */
-        public ActionManager(Player player){
+        public ActionManager(T player){
             this.cost = new HashMap<>();
             this.player = player;
     }

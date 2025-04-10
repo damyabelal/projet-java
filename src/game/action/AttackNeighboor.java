@@ -9,7 +9,7 @@ import game.listchooser.ListChooser;
 import game.tuile.Earth;
 import game.tuile.building.Army;
 
-public class AttackNeighboor extends ActionManager implements Action<PlayerAres>{
+public class AttackNeighboor extends ActionManager<PlayerAres> implements Action<PlayerAres>{
 
     public ListChooser<PlayerAres> lc;
     public PlayerAres  player ;

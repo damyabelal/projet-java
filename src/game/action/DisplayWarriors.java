@@ -7,7 +7,7 @@ import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 
-public class DisplayWarriors extends ActionManager implements Action<PlayerAres> {
+public class DisplayWarriors extends ActionManager<PlayerAres> implements Action<PlayerAres> {
 
     private ListChooser<Integer> lcNumber;
     private ListChooser<String> lcString;

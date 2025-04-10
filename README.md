@@ -673,7 +673,7 @@ Entretien sur le livrable3, petit compte rendu ci dessous:
 - faire des sous-package actionDemeter et actionAres
 - régler le display du plateau (il y a un petit décallage dans l'affichage)
 - vérification sur les échange de ressources posible
-- ne pas utiliser utiliser instanceof dans l'échange avec le port
+- ne pas utiliser utiliser instanceof dans l'échange avec le port 
 - division de upgrade Army en upgradeWithWarriors et upgradeWithRessources
 - mettre un type paramétré pour le player dans ActionManager (correction dans AskWarrior)
 - remplacé certaines exception par nos propres exception 

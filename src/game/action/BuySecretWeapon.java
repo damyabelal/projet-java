@@ -8,7 +8,7 @@ import game.NoMoreRessourcesException;
  * buys a secret weapon
  * it extends ActionManager and implements Action<PlayerAres>
  */
-public class BuySecretWeapon extends ActionManager implements Action<PlayerAres>{
+public class BuySecretWeapon extends ActionManager<PlayerAres> implements Action<PlayerAres>{
 
 
     public BuySecretWeapon(PlayerAres player){

@@ -12,7 +12,7 @@ import java.util.*;
 /*
  * Builds an army on the island
  */
-public class BuildArmy extends ActionManager implements Action<PlayerAres> {
+public class BuildArmy extends ActionManager <PlayerAres>implements Action<PlayerAres> {
     private Board board;
     public ListChooser<Earth> lc;
     public List<Earth> earthList;

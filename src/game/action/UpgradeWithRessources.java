@@ -12,7 +12,7 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Camp;
 
-public class UpgradeWithRessources extends ActionManager implements Action<PlayerAres> {
+public class UpgradeWithRessources extends ActionManager<PlayerAres> implements Action<PlayerAres> {
   private Earth tuile;
 
   private ListChooser<Army> lc;

@@ -9,7 +9,7 @@ import game.Player;
 import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 
-public class ExchangeRessources <T extends Player> extends ActionManager implements Action<T> {
+public class ExchangeRessources <T extends Player> extends ActionManager<T> implements Action<T> {
 
     private ListChooser<Ressource> lc; 
 
@@ -17,7 +17,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager impleme
      * creates an exchange action between two resources
      * @param player the player who proceed the exchange
      */
-    public ExchangeRessources(Player player, ListChooser<Ressource> lc) {
+    public ExchangeRessources(T player, ListChooser<Ressource> lc) {
         super(player); 
         this.lc= lc; 
     }

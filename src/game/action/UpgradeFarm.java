@@ -7,7 +7,7 @@ import game.listchooser.ListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 
-public class UpgradeFarm extends ActionManager implements Action<PlayerDemeter> {
+public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter> {
 
     private ListChooser<Farm> lc;
     private Earth tuile;

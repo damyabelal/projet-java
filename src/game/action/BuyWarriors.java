@@ -7,7 +7,7 @@ import game.NoMoreRessourcesException;
  * This class is used to buy warriors
  * it extends ActionManager and implements Action<PlayerAres>
  */
-public class BuyWarriors<T extends PlayerAres> extends ActionManager implements Action<T> {
+public class BuyWarriors<T extends PlayerAres> extends ActionManager<T> implements Action<T> {
 
     public BuyWarriors(T player) {
         super(player);

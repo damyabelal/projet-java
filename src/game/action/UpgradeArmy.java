@@ -11,7 +11,7 @@ import game.tuile.Ressource;
 import game.tuile.building.Camp;
 
 
-public class UpgradeArmy extends ActionManager implements Action<PlayerAres> {
+public class UpgradeArmy extends ActionManager<PlayerAres> implements Action<PlayerAres> {
     
     private Earth tuile; 
     private ListChooser<Army> lc;

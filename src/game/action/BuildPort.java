@@ -15,7 +15,7 @@ import game.util.*;
  * builds a port on a tile
  * It extends ActionManager and implements Action<Player>
  */
-public class BuildPort <T extends Player > extends ActionManager implements Action<T>{
+public class BuildPort <T extends Player > extends ActionManager<T> implements Action<T>{
 
     private Board board; 
     public ListChooser<Earth> lc;

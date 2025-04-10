@@ -7,7 +7,7 @@ import game.tuile.Ressource;
  * This class is used to buy a thief
  * it extends ActionManager and implements Action<PlayerDemeter> 
  */
-public class BuyThief extends ActionManager implements Action<PlayerDemeter>{
+public class BuyThief extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter>{
 
     public BuyThief(PlayerDemeter player){
         super(player);

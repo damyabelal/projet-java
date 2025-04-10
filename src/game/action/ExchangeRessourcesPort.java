@@ -10,7 +10,7 @@ import game.PlayerDemeter;
 import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 
-public class ExchangeRessourcesPort extends ActionManager implements Action<PlayerDemeter>{
+public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter>{
 
     public ListChooser<Ressource> lc; 
 
