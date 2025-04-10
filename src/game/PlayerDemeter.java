@@ -8,6 +8,10 @@ import game.tuile.building.*;
 import game.tuile.*;
 import game.listchooser.RandomListChooser; 
 import game.action.*;
+import game.action.actionDemeter.BuildFarm;
+import game.action.actionDemeter.BuyThief;
+import game.action.actionDemeter.PlayThief;
+import game.action.actionDemeter.UpgradeFarm;
 
 public class PlayerDemeter extends Player{
 
@@ -121,7 +125,7 @@ public class PlayerDemeter extends Player{
      * @param board
      * @throws IOException
      */
-    public void act(Board board) throws IOException {
+    public void act(Board board) throws IOException, InvalidChoiceException {
         if (this.actionsDemeter.isEmpty()) { 
             this.actionsDemeter = actionsPlayer(board);
         }

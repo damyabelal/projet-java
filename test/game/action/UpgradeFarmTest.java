@@ -10,8 +10,11 @@ import org.junit.jupiter.api.Test;
 
 import game.Board;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.action.actionDemeter.BuildFarm;
+import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
@@ -23,7 +26,7 @@ public class UpgradeFarmTest{
     private Action<PlayerDemeter> upgrade; 
 
     @BeforeEach
-    void setUp() throws NoMoreRessourcesException, CantBuildException, IOException{
+    void setUp() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         player = new PlayerDemeter("kiwi");
         board= new Board(5, 5); 
         build= new BuildFarm(board, player, new RandomListChooser<>()); 
@@ -34,7 +37,7 @@ public class UpgradeFarmTest{
     }
 
     @Test
-    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException {
+    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException {
         assertTrue(player.getExploitations().isEmpty());
         assertThrows(NoMoreRessourcesException.class, () -> upgrade.act(player)); 
         assertTrue(! player.getFarms().isEmpty());

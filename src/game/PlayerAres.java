@@ -4,6 +4,13 @@ import java.io.IOException;
 import java.util.*;
 
 import game.action.*;
+import game.action.actionAres.AttackNeighboor;
+import game.action.actionAres.BuildArmy;
+import game.action.actionAres.BuySecretWeapon;
+import game.action.actionAres.BuyWarriors;
+import game.action.actionAres.DisplayWarriors;
+import game.action.actionAres.UpgradeWithRessources;
+import game.action.actionAres.UpgradeWithWarriors;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.listchooser.RandomListChooser;
@@ -128,7 +135,7 @@ public class PlayerAres extends Player {
      * presents the user with a list of actions that the player can do
      * @param board the game board
      */
-    public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException {
+    public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException, InvalidChoiceException {
         if (this.actionsAres.isEmpty()) { 
             this.actionsAres = actionsPlayer(board);
         }

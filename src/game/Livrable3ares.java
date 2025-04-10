@@ -5,6 +5,11 @@ import java.io.IOException;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.action.*;
+import game.action.actionAres.BuildArmy;
+import game.action.actionAres.BuySecretWeapon;
+import game.action.actionAres.BuyWarriors;
+import game.action.actionAres.DisplayWarriors;
+import game.action.actionAres.UpgradeWithRessources;
 import game.listchooser.RandomListChooser;
 
 public class Livrable3ares {

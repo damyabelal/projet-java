@@ -2,6 +2,7 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.action.actionAres.AttackNeighboor;
 import game.listchooser.RandomListChooser;
 
 import org.junit.jupiter.api.BeforeEach;

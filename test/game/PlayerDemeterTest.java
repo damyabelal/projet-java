@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.action.BuildFarm;
+import game.action.actionDemeter.BuildFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
@@ -49,7 +49,7 @@ public class PlayerDemeterTest {
     }
 
     @Test
-    void testBuild() throws NoMoreRessourcesException, IOException{
+    void testBuild() throws NoMoreRessourcesException, IOException, InvalidChoiceException{
         BuildFarm buildfarm=new BuildFarm(board, player, new RandomListChooser<>());
         // a player trying to build with enough resources should return True
         player.addRessource(Ressource.WOOD, 1);

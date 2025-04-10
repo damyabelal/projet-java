@@ -10,8 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import game.Board;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.action.actionDemeter.BuildFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Ressource;
 
@@ -29,7 +31,7 @@ public class BuildFarmTest{
     }
 
     @Test
-    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException {
+    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException {
         // at the beginning , the player has no farms
         assertTrue(player.getFarms().isEmpty());
         // the player has no ressources , so if he attemps to build a farm it should throw an exception

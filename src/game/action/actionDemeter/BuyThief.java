@@ -1,6 +1,8 @@
-package game.action;
+package game.action.actionDemeter;
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.action.Action;
+import game.action.ActionManager;
 import game.tuile.Ressource;
 
 /*

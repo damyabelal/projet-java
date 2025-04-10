@@ -1,11 +1,11 @@
 package game;
 
-import game.action.BuildFarm;
 import game.action.BuildPort;
-import game.action.BuyThief;
 import game.action.ExchangeRessources;
 import game.action.ExchangeRessourcesPort;
-import game.action.UpgradeFarm;
+import game.action.actionDemeter.BuildFarm;
+import game.action.actionDemeter.BuyThief;
+import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;

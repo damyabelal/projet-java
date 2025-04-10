@@ -1,6 +1,8 @@
-package game.action;
+package game.action.actionAres;
 
 import game.*;
+import game.action.Action;
+import game.action.ActionManager;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.Position;

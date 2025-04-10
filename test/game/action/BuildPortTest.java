@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import game.Board;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
@@ -74,7 +75,7 @@ public class  BuildPortTest{
     }
 
     @Test
-    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         assertTrue(player.getPorts().isEmpty());
         action.act(player);
         assertTrue(! player.getPorts().isEmpty());

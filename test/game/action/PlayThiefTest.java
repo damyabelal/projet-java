@@ -2,6 +2,7 @@ package game.action;
 
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.action.actionDemeter.PlayThief;
 import game.tuile.Ressource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

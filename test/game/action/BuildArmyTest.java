@@ -10,8 +10,10 @@ import java.io.IOException;
 
 import game.Board;
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.action.actionAres.BuildArmy;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
@@ -80,7 +82,7 @@ public class BuildArmyTest {
     }
 
     @Test
-    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException {
+    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException {
 
         BuildArmy actionBuild = new BuildArmy(board, player, new RandomListChooser<>());
         board.islands = board.findIslands();

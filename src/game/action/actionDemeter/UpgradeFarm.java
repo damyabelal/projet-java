@@ -1,8 +1,10 @@
-package game.action;
+package game.action.actionDemeter;
 
 import java.util.List;
 
 import game.*;
+import game.action.Action;
+import game.action.ActionManager;
 import game.listchooser.ListChooser;
 import game.tuile.*;
 import game.tuile.building.*;

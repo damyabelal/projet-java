@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.action.actionAres.BuySecretWeapon;
 import game.tuile.Ressource;
 
 public class BuySecretWeaponTest{
@@ -24,7 +26,7 @@ public class BuySecretWeaponTest{
     }
 
     @Test
-    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         assertTrue(player.getNbSecretWeapon()==0);
         assertThrows(NoMoreRessourcesException.class, () -> action.act(player)); 
         player.addRessource(Ressource.WOOD, 1);

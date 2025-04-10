@@ -1,7 +1,8 @@
-package game.action;
+package game.action.actionDemeter;
 
 import game.NoMoreRessourcesException;
 import game.PlayerDemeter;
+import game.action.Action;
 import game.tuile.Ressource;
 /**
  * This class is used to play a thief

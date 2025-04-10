@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import game.CantBuildException;
+import game.InvalidChoiceException;
 import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.action.actionAres.BuyWarriors;
 import game.tuile.Ressource;
 public class BuyWarriorsTest{
 
@@ -23,7 +25,7 @@ public class BuyWarriorsTest{
     }
 
     @Test
-    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+    void actTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         //the players have initialy 30 warriors each
         assertTrue(player.getWarriors()==30);
         // the player has no ressources , so if he attempts to buy additionnal warriors , it should throw an exception
