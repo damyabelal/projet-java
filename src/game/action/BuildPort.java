@@ -43,13 +43,8 @@ public class BuildPort <T extends Player > extends ActionManager implements Acti
             return false;
         }
         return board.nbSeaTiles(pos) >= 2;
-   
     }
-    
 
-
-    /**
-     */
     @Override
     public void act(T player) throws NoMoreRessourcesException, IOException {
         Earth choosenTile= askCoordinate();
