@@ -150,13 +150,13 @@ public class PlayerDemeter extends Player{
     private List<Action<PlayerDemeter>> actionsPlayer(Board board){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
 
-        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board));
-        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this));
+        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board, new RandomListChooser<>()));
+        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this, new RandomListChooser<>()));
 
         // add possibles actions for player Demeter
-        actionsDemeter.add(new UpgradeFarm(this));
-        actionsDemeter.add(new ExchangeRessourcesPort(this));
-        actionsDemeter.add(new BuildFarm(board, this));
+        actionsDemeter.add(new UpgradeFarm(this, new RandomListChooser<>()));
+        actionsDemeter.add(new ExchangeRessourcesPort(this, new RandomListChooser<>()));
+        actionsDemeter.add(new BuildFarm(board, this, new RandomListChooser<>()));
         actionsDemeter.add(new BuyThief(this));
         actionsDemeter.add(new PlayThief(null, null));
         return actionsDemeter;
