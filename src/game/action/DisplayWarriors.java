@@ -50,10 +50,13 @@ public class DisplayWarriors extends ActionManager implements Action<PlayerAres>
             }
 
             int add = askWarrior(player);
-            // add warriors to the selected army
-            player.removeWarriors(add);
-            army.addWarriors(add);
-            System.out.println(add + " warriors have been added to the army");
+            // add warriors to the selected army : if army's number of warriors not > 5
+            if (army.getNbWarriors() + add <= 5 ){
+                player.removeWarriors(add);
+                army.addWarriors(add);
+                System.out.println(add + " warriors have been added to the army");
+            }
+            
 
         } else if ("camp".equalsIgnoreCase(choice)) {
             // choose a camp to add warriors to
