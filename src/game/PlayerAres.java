@@ -153,16 +153,18 @@ public class PlayerAres extends Player {
     private List<Action<PlayerAres>> actionsPlayer(Board board) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
 
-        aresActions.add(new BuildPort<PlayerAres>(this, board));
-        aresActions.add(new ExchangeRessources<PlayerAres>(this));
+        aresActions.add(new BuildPort<PlayerAres>(this, board, new RandomListChooser<>()));
+        aresActions.add(new ExchangeRessources<PlayerAres>(this, new RandomListChooser<>()));
 
         // add possible actions for player Ares
-        aresActions.add(new BuildArmy(board, this));
-        aresActions.add(new UpgradeArmy(this));
+        
+        aresActions.add(new BuildArmy(board, this, new RandomListChooser<>()));
+        aresActions.add(new UpgradeWithRessources(this, new RandomListChooser<>(), new RandomListChooser<>()));
+        aresActions.add(new UpgradeWithWarriors(this, new RandomListChooser<>(), new RandomListChooser<>()));
         aresActions.add(new BuySecretWeapon(this));
         aresActions.add(new BuyWarriors<PlayerAres>(this));
-        aresActions.add(new DisplayWarriors(this));
-        aresActions.add(new AttackNeighboor(this, null));
+        aresActions.add(new DisplayWarriors(this, new RandomListChooser<>(), new RandomListChooser<>(), new RandomListChooser<>(), new RandomListChooser<>()));
+        aresActions.add(new AttackNeighboor(this, null, new RandomListChooser<>()));
 
         return aresActions;
     }
