@@ -159,7 +159,7 @@ public class PlayerAres extends Player {
         // add possible actions for player Ares
         
         aresActions.add(new BuildArmy(board, this, new RandomListChooser<>()));
-        aresActions.add(new UpgradeWithRessources(this, new RandomListChooser<>(), new RandomListChooser<>()));
+        aresActions.add(new UpgradeWithRessources(this, new RandomListChooser<>()));
         aresActions.add(new UpgradeWithWarriors(this, new RandomListChooser<>(), new RandomListChooser<>()));
         aresActions.add(new BuySecretWeapon(this));
         aresActions.add(new BuyWarriors<PlayerAres>(this));

@@ -75,7 +75,7 @@ public class Livrable3ares {
 
         //3. upgradeArmy 
         System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  fait évoluer son armée en camp");
-        UpgradeWithRessources upgradeArmy = new UpgradeWithRessources(ares, new RandomListChooser<>(), new RandomListChooser<>());
+        UpgradeWithRessources upgradeArmy = new UpgradeWithRessources(ares, new RandomListChooser<>());
         try {
             upgradeArmy.act(ares);
             
