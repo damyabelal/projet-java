@@ -27,6 +27,7 @@ public class Livrable3ares {
             System.out.println("minimum dimensions must be 10");
             return;
         }
+        
         System.out.println("--------------------");
         System.out.println("--------ARES--------");
         System.out.println("--------------------");
