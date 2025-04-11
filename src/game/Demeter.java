@@ -35,6 +35,7 @@ public class Demeter {
         Board board = new Board(width, height);
 
         List<PlayerDemeter> players= new ArrayList<>(); 
+        PlayerDemeter winner= null; 
 
         //création des différents joueurs
         for (int i=0; i<nbPlayer; i++){
@@ -42,9 +43,19 @@ public class Demeter {
             players.add(new PlayerDemeter(name)); 
         }
 
+        while (winner==null){
+            for (PlayerDemeter p: players){
+                
+                if (p.getPoints() >= 12){
+                    winner=p; 
+                    break; 
+                }
+            }
+        }
+
+        System.out.println(winner.getName() +" gagne la partie!!");
 
 
     }
-    
     
 }

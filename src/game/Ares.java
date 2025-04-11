@@ -34,12 +34,19 @@ public class Ares {
 
         Board board = new Board(width, height);
 
-        List<PlayerDemeter> players= new ArrayList<>(); 
+        List<PlayerAres> players= new ArrayList<>(); 
+        PlayerAres winner= null; 
 
         //création des différents joueurs
         for (int i=0; i<nbPlayer; i++){
             String name= Input.readString(); 
-            players.add(new PlayerDemeter(name)); 
+            players.add(new PlayerAres(name)); 
+        }
+
+        while (winner==null){
+            for (PlayerAres p: players){
+                
+            }
         }
 
 
