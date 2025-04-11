@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 import game.action.*;
 import game.action.actionAres.BuildArmy;
 import game.action.actionAres.BuySecretWeapon;
@@ -15,7 +18,7 @@ import game.listchooser.RandomListChooser;
 public class Livrable3ares {
 
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NoMoreRessourcesException, InvalidChoiceException, CantBuildException {
         if (args.length < 2) {
             System.out.println("You have to give two positive settings.");
             return;
@@ -61,10 +64,10 @@ public class Livrable3ares {
         try {
             buildArmyAction.act(ares);
 
-        } catch (Exception e) {
-            System.out.println("An error occurred while building the army: " + e.getMessage());
+        } catch (CantBuildException e) {
+           throw new CantBuildException("An error occurred while building the army: " + e.getMessage());
            
-        } 
+        }
         System.out.println("\n"); 
 
         //2. add warriors 
