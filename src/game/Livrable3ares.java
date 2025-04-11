@@ -111,8 +111,8 @@ public class Livrable3ares {
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(ares, board, new RandomListChooser<>());
         try {
             buildPort.act(ares);            
-        } catch (Exception e) {
-            System.out.println("An error occurred while building a Port: " + e.getMessage());
+        } catch (CantBuildException e) {
+            throw new CantBuildException("An error occurred while building a Port: " + e.getMessage());
         } 
 
         System.out.println("\n"); 

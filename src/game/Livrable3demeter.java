@@ -9,10 +9,13 @@ import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class Livrable3demeter {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException {
         if (args.length < 2) {
             System.out.println("you have to give two positive setting");
             return;
@@ -81,8 +84,8 @@ public class Livrable3demeter {
         try {
             BuildPort<PlayerDemeter> buildPortAction = new BuildPort<PlayerDemeter >(demeter, board, new RandomListChooser<>());
             buildPortAction.act(demeter);
-        } catch (Exception e) {
-            System.out.println("An error occurred while building the port: " + e.getMessage());
+        } catch (CantBuildException e) {
+            throw new CantBuildException("An error occurred while building the port: " + e.getMessage());
         }
 
         System.out.println("\n"); 
