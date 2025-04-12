@@ -4,25 +4,13 @@ import java.io.IOException;
 import java.util.*;
 
 import game.action.*;
-import game.action.actionAres.AttackNeighboor;
-import game.action.actionAres.BuildArmy;
-import game.action.actionAres.BuySecretWeapon;
-import game.action.actionAres.BuyWarriors;
-import game.action.actionAres.DisplayWarriors;
-import game.action.actionAres.UpgradeWithRessources;
-import game.action.actionAres.UpgradeWithWarriors;
+import game.action.actionAres.*;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-import game.tuile.building.Exploitation;
-import game.tuile.building.Farm;
-import game.util.CantBuildException;
-import game.util.InvalidChoiceException;
-import game.util.NoMoreRessourcesException;
-import game.listchooser.InteractiveListChooser;
-import game.listchooser.ListChooser;
-import game.listchooser.RandomListChooser;
+import game.util.*;
+import game.listchooser.*;
 
 
 public class PlayerAres extends Player {
