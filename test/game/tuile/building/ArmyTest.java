@@ -41,21 +41,22 @@ public class ArmyTest {
      */
     @Test
     void canBeCampWithWarriorsTest() throws NoMoreRessourcesException {
-        assertFalse(army.canBeCamp(playerAres));
+        assertFalse(army.canBeCampWarriors(playerAres));
         playerAres.addWarriors(5);
         army.addWarriors(5);
-        assertTrue(army.canBeCamp(playerAres));
+        assertTrue(army.canBeCampWarriors(playerAres));
     }
 
     /**
      * Test if the army can become a camp based on resources
+     * @throws CantBuildException 
      */
     @Test
-    void canBeCampWithRessourcesTest() {
-        assertFalse(army.canBeCamp(playerAres));
+    void canBeCampWithRessourcesTest() throws CantBuildException {
+        assertFalse(army.canBeCampRessources(playerAres));
         playerAres.addRessource(Ressource.WOOD, 2);
         playerAres.addRessource(Ressource.ORE, 3);
-        assertTrue(army.canBeCamp(playerAres));
+        assertTrue(army.canBeCampRessources(playerAres));
     }
 
     /**
@@ -81,23 +82,26 @@ public class ArmyTest {
 
     /**
      * Checks if an army can be upgraded to a camp when conditions are met
+     * @throws CantBuildException 
      */
     @Test
-    void upGradeToCampTest() throws NoMoreRessourcesException {
+    void upGradeToCampTest() throws NoMoreRessourcesException, CantBuildException {
         playerAres.addWarriors(5);
         army.addWarriors(5);
-        assertTrue(army.canBeCamp(playerAres));
-        assertNotNull(army.upGradeToCamp(playerAres));
-        assertTrue(army.upGradeToCamp(playerAres) instanceof Camp);
+        assertTrue(army.canBeCampWarriors(playerAres));
+        assertNotNull(army.upGradeToCampWithWarriors(playerAres));
+        assertTrue(army.upGradeToCampWithWarriors(playerAres) instanceof Camp);
     }
 
     /**
      * Ensures that upgrading to a camp fails when a player does not have enough resources
+     * @throws CantBuildException 
      */
     @Test
-    void upgradeToCampFailedTest() {
-        assertFalse(army.canBeCamp(playerAres));
-        assertNull(army.upGradeToCamp(playerAres));
-    }
+    void upgradeToCampFailedTest() throws CantBuildException {
+    assertFalse(army.canBeCampRessources(playerAres));
+    assertThrows(CantBuildException.class, () -> army.upGradeToCampWithRessources(playerAres));
+}
+
 
 }

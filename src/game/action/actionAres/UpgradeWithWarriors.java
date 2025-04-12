@@ -39,11 +39,11 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    * @return the army the player wants to upgrade
    */
   public Army askArmy() throws InvalidChoiceException {
-    List<Army> armies = ((PlayerAres) this.player).getArmies();
+    List<Army> armies = (this.player).getArmies();
     if (armies.isEmpty()) {
       throw new IllegalArgumentException("No armies available to upgrade");
     }
-    return (Army) this.lc.choose("Which army do you want to upgrade?", armies);
+    return this.lc.choose("Which army do you want to upgrade?", armies);
   }
 
   /**
@@ -87,7 +87,7 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
     this.tuile.removeBuilding();
     player.removeArmy(chosenArmy);
 
-    Camp camp = chosenArmy.upGradeToCamp(player);
+    Camp camp = chosenArmy.upGradeToCampWithWarriors(player);
 
     this.tuile.setBuilding(camp);
     player.addCamp(camp);
