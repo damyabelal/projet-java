@@ -91,22 +91,14 @@ public class Army extends Building{
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
     */
-    public Camp upGradeToCamp(PlayerAres player) {
-    if (this.canBeCamp(player)){
-        try{
-            Camp camp = new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayerAres());
-            System.out.println("Army evolved into a camp");
-            return camp;
-        }catch(CantBuildException e){
-            System.out.println("Failed ");
-
+    public Camp upGradeToCamp(PlayerAres player) throws CantBuildException {
+        if (this.canBeCamp(player)) {
+            return new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayerAres());
+        } else {
+            throw new CantBuildException("Not enough warriors or not enough resources to upgrade to a camp");
         }
-    } else {
-        System.out.println("Not enough warriors or not enough resources");
     }
-    return null;
-}
-
+    
 
 
 
