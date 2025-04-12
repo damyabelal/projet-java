@@ -126,18 +126,27 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * excute the action of the demeter player
-     * @param board
-     * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
-     * @throws IOException
+     * collect all the ressources from the differents building 
      */
-    public void act(Board board, int option) throws IOException, InvalidChoiceException {
+    public void collectRessources(){
+        for ( Farm farm : this.farms){
+            this.addRessource(farm.getTuileRessource(), 1);
+        }
+        for (Exploitation exploitation: this.exploitations){
+            this.addRessource(exploitation.getTuileRessource(), 2);
+        }
+    }
 
+    /**
+     * fill the actionsDemeter attributes with all the actions for this game
+     * if option is 0 the actions will be in interactive mode, random otherwise
+     * @param board
+     * @param option
+     */
+    public void createActions(Board board, int option){
         ListChooser<Earth> lcEarth= null; 
         ListChooser<Farm> lcFarm=null; 
-        ListChooser<Ressource> lcRessource=null; 
-        ListChooser<Action<PlayerDemeter>> lc= null; 
-
+        ListChooser<Ressource> lcRessource=null;  
 
         if (this.actionsDemeter.isEmpty()) { 
             if (option==0){
@@ -152,6 +161,17 @@ public class PlayerDemeter extends Player{
             }
             this.actionsDemeter = actionsPlayer(board, lcEarth, lcRessource, lcFarm);
         }
+
+    }
+
+    /**
+     * excute the action of the demeter player
+     * @param board
+     * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
+     * @throws IOException
+     */
+    public void act(Board board, int option) throws IOException, InvalidChoiceException {
+        ListChooser<Action<PlayerDemeter>> lc= null;
 
         if (option==0){
             lc= new InteractiveListChooser<>(); 

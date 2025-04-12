@@ -41,7 +41,7 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
         //checks if player has enough ressources to build a farm
-        if (! this.hasEnoughRessources()) {
+        if ((!this.hasEnoughRessources()) && ( (player.getFarms().size() + player.getExploitations().size() +player.getPorts().size()) > 2 )) {
             throw new NoMoreRessourcesException("Not enough ressources to build the farm");
         }
         // if a farm is built, removes the farm's cost from the player's inventory

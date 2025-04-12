@@ -50,12 +50,13 @@ public class Demeter {
 
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
-            p.act(board, 0);
+            p.createActions(board, 0);
         }
 
         while (winner==null){
             for (PlayerDemeter p: players){
-                System.out.println(p+" ("+p.getPoints()+" points) turn!!"); 
+                System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
+                p.collectRessources();
                 board.display();
                 //on propose au joueur des actions
                 p.act(board, 0);
