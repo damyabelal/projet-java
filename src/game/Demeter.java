@@ -3,9 +3,6 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import game.action.Action;
-import game.listchooser.InteractiveListChooser;
 import game.listchooser.util.Input;
 import game.util.InvalidChoiceException;
 

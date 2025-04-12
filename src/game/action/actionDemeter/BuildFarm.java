@@ -40,12 +40,15 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
     public void act(PlayerDemeter player) throws NoMoreRessourcesException, InvalidChoiceException {
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
+        int numberofBuilding= player.getFarms().size() + player.getExploitations().size() +player.getPorts().size(); 
         //checks if player has enough ressources to build a farm
-        if ((!this.hasEnoughRessources()) && ( (player.getFarms().size() + player.getExploitations().size() +player.getPorts().size()) > 2 )) {
+        if ((!this.hasEnoughRessources()) && ( numberofBuilding > 2 )) {
             throw new NoMoreRessourcesException("Not enough ressources to build the farm");
         }
         // if a farm is built, removes the farm's cost from the player's inventory
-        this.removeRessources();
+        if (numberofBuilding>2){
+            this.removeRessources();
+        }
 
         // builds the farm on the tile the player wants to build on
         Farm farm = new Farm((Earth) tile, player);
