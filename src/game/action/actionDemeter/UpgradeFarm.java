@@ -62,6 +62,7 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         this.tuile.setBuilding(exploitation);
         player.addExploitation(exploitation);
  
+        player.addPoints(2); 
         System.out.println("The farm evolved into a exploitation");
 
 

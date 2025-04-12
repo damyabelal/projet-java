@@ -1,13 +1,17 @@
 package game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.action.Action;
+import game.listchooser.InteractiveListChooser;
 import game.listchooser.util.Input;
+import game.util.InvalidChoiceException;
 
 public class Demeter {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException, InvalidChoiceException{
         if (args.length < 3) {
             System.out.println("You have to give two positive settings and the number of player.");
             return;
@@ -43,9 +47,16 @@ public class Demeter {
             players.add(new PlayerDemeter(name)); 
         }
 
+        //on initialise la liste des actions pour chaque joueurs
+        for (PlayerDemeter p: players){
+            p.act(board);
+        }
+
         while (winner==null){
             for (PlayerDemeter p: players){
-                
+                //on propose au joueur des actions
+                p.act(board);
+                //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){
                     winner=p; 
                     break; 
@@ -54,7 +65,6 @@ public class Demeter {
         }
 
         System.out.println(winner.getName() +" gagne la partie!!");
-
 
     }
     

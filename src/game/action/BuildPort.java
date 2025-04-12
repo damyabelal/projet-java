@@ -60,7 +60,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         player.addPort(port);
 
         System.out.println(player.getName() +": "+player.getResources()+ " build a port on the position "+ choosenTile.getPosition());
-    
+        
     }
     
 }
