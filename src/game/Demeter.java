@@ -43,19 +43,22 @@ public class Demeter {
 
         //création des différents joueurs
         for (int i=0; i<nbPlayer; i++){
+            System.out.println("j"+(i+1)+" name:");
             String name= Input.readString(); 
             players.add(new PlayerDemeter(name)); 
         }
 
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
-            p.act(board);
+            p.act(board, 0);
         }
 
         while (winner==null){
             for (PlayerDemeter p: players){
+                System.out.println(p+" ("+p.getPoints()+" points) turn!!"); 
+                board.display();
                 //on propose au joueur des actions
-                p.act(board);
+                p.act(board, 0);
                 //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){
                     winner=p; 
