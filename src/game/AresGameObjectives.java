@@ -1,0 +1,39 @@
+package game;
+
+/**
+* represents the objective of a player in the Ares game
+ * each objective has a type and a value to reach
+ */
+public class AresGameObjectives {
+
+    public enum ObjectiveType {
+        CONQUER_TILES,
+        EVADE_ISLANDS,
+        DETAIN_WARRIORS
+    }
+
+    private ObjectiveType type;
+    private int value;
+
+    public AresGameObjectives(ObjectiveType type, int value) {
+        this.type = type;
+        this.value = value;
+    }
+
+    public ObjectiveType getType() {
+        return this.type;
+    }
+
+    public int getValue() {
+        return this.value;
+    }
+
+    @Override
+    public String toString() {
+        return switch (type) {
+            case CONQUER_TILES -> "Conquer " + value + " tiles";
+            case EVADE_ISLANDS -> "Invade " + value + " islands";
+            case DETAIN_WARRIORS -> "Detain " + value + " warriors";
+        };
+    }
+}
