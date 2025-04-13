@@ -29,7 +29,7 @@ public class PlayerAres extends Player {
     private List<Camp> camps;
     private RandomListChooser<Action<PlayerAres>> lc;
     private List<Action<PlayerAres>> actionsAres;
-    private int objective;
+    private AresGameObjectives objective;
     
     
         // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons

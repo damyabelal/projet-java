@@ -40,12 +40,17 @@ public class Ares {
         //création des différents joueurs
         for (int i=0; i<nbPlayer; i++){
             String name= Input.readString(); 
-            players.add(new PlayerAres(name)); 
+            players.add(new PlayerAres(name));
+             
+        }
+        // tir au sort d'un objectif pour chaque joueuer
+        for (PlayerAres p:players){
+
         }
 
         while (winner==null){
             for (PlayerAres p: players){
-                
+                if p.isObjectiveAchieved(null)
                 
             }
         }
