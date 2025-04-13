@@ -181,7 +181,10 @@ public class PlayerAres extends Player {
 
     public boolean isObjectiveAchieved(AresGameObjectives playersobjective){
 
-    boolean 
+    boolean tiles=this.getTiles()>=playersobjective.getTilesToConquer();
+    boolean warriors=this.getWarriors()>=playersobjective.getWarriorsToDetain();
+    boolean island=this.didEnvadeIsland();
+    return tiles && warriors && island;
 
     }
 
