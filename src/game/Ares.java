@@ -61,19 +61,16 @@ public class Ares {
                 p.collectRessources();
                 board.display();
                 p.act(board, 0);
-                if( isWinner(p)){
+                if( isWinner(p, board)){
                     winner= p; 
                     break; 
                 }
             }
         }
-
-
     }
 
-    private static boolean isWinner(PlayerAres player){
-        //retourne si le joueur as gagné ou pas, selon l'objectif déterminer en d"but de jeu
-        return false; 
+    private static boolean isWinner(PlayerAres player, Board board){
+        return player.isObjectiveAchieved(board);
     }
 
 }
