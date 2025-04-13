@@ -1,4 +1,4 @@
-package game;
+package game; 
 
 public class  AresGameObjectives{
   private int tilesToConquer;
@@ -14,6 +14,16 @@ public class  AresGameObjectives{
 
   }
 
+  public getTilesToConquer(){
+    return this.tilesToConquer;
+
+  }
+
+  public getWarriorsToDetain(){
+    return this.WarriorsToDetain;
+  }
+
+  
 
 
 }

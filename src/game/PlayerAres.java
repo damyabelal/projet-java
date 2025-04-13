@@ -140,9 +140,10 @@ public class PlayerAres extends Player {
     /** return true of this player has envaded an entire island */
     public boolean didEnvadeIsland(){
         return true;// will do later
+    
+}
 
-
-    }
+    public 
 
     /** returns all the possible objectives the player be asked to achieve in order to win the game */
     public HashMap<Integer,String> getGamesObjectives(){
