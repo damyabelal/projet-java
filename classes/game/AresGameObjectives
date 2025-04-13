@@ -1,8 +1,16 @@
 package game;
 
-public class AresGameObjectives{
+public class  AresGameObjectives{
   private int tilesToConquer;
   private int WarriorsToDetain;
   private int IslandsToEnvade;
 
+
+
+  public AresGameObjectives(int nbretiles,int nbreWarriors,int islands){
+    this.tilestoConquer=nbretiles;
+    this.WarriorsToDetain=nbreWarriors;
+    this.IslandsToEnvade=islands;
+    
+  }
 }
