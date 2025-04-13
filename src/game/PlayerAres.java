@@ -17,6 +17,7 @@ import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 import game.listchooser.RandomListChooser;
+import java.util.Random;
 
 
 public class PlayerAres extends Player {
@@ -146,6 +147,9 @@ public class PlayerAres extends Player {
     }
     /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
     public int  getPlayersObjective(){
+        Random random =new Random();
+        int randomnumber=random.nextInt(2);
+
         
 
     }
