@@ -24,8 +24,8 @@ public class Ares {
             return;
         }
 
-        if (nbPlayer < 1 ) {
-            System.out.println("You should play with at least one player");
+        if (nbPlayer < 2 ) {
+            System.out.println("You should play with at least two player");
             return;
         }
 
