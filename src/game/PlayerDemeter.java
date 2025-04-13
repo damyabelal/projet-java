@@ -8,7 +8,7 @@ import game.tuile.building.*;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
-import game.tuile.*;
+
 import game.listchooser.RandomListChooser; 
 import game.action.*;
 import game.action.actionDemeter.BuildFarm;
