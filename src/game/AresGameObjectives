@@ -1,0 +1,8 @@
+package game;
+
+public class AresGameObjectives{
+  private int tilesToConquer;
+  private int WarriorsToDetain;
+  private int IslandsToEnvade;
+
+}
