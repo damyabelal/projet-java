@@ -174,6 +174,11 @@ public class PlayerAres extends Player {
          
     }
 
+    public boolean isObjectiveAchieved(){
+        
+
+    }
+
 
     /**
      * presents the user with a list of actions that the player can do
