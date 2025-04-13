@@ -43,14 +43,17 @@ public class Ares {
             players.add(new PlayerAres(name));
              
         }
-        // tir au sort d'un objectif pour chaque joueuer
+        // tir au sort un objectif pour chaque joueuer
         for (PlayerAres p:players){
-
+            p.getPlayersObjective();
         }
 
         while (winner==null){
             for (PlayerAres p: players){
-                if p.isObjectiveAchieved(null)
+                // si un joueur a atteint son objectif alors il gagne
+                if (p.isObjectiveAchieved(null)){
+                    winner=p;
+                }
                 
             }
         }
