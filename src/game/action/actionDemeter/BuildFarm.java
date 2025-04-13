@@ -43,7 +43,7 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         int numberofBuilding= player.getFarms().size() + player.getExploitations().size() +player.getPorts().size(); 
         //checks if player has enough ressources to build a farm
         if ((!this.hasEnoughRessources()) && ( numberofBuilding > 2 )) {
-            throw new NoMoreRessourcesException("Not enough ressources to build the farm");
+            throw new NoMoreRessourcesException("Not enough ressources to build the farm\n cost: "+this.cost);
         }
         // if a farm is built, removes the farm's cost from the player's inventory
         if (numberofBuilding>2){

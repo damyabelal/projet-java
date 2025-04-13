@@ -48,7 +48,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         Earth choosenTile= askCoordinate();
 
         if (! this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough ressources to build a farm.");
+            throw new NoMoreRessourcesException("Not enough ressources to build a port.\n cost: "+this.cost);
         }
         if(!canPlacePort(choosenTile.getPosition(), board)){
             throw new CantBuildException("There should be at least two neighboring sea tiles.");

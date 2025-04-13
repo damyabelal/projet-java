@@ -42,7 +42,7 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         
         
         if (!this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough resources to upgrade the farm");
+            throw new NoMoreRessourcesException("Not enough resources to upgrade the farm \n cost: "+this.cost);
         }
 
        
