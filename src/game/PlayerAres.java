@@ -10,17 +10,8 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
-<<<<<<< HEAD
-import game.util.CantBuildException;
-import game.util.InvalidChoiceException;
-import game.util.NoMoreRessourcesException;
-import game.listchooser.RandomListChooser;
-import java.util.Random;
-
-=======
 import game.util.*;
 import game.listchooser.*;
->>>>>>> e7ec0e1782f055324877b413ae461947f9655283
 
 
 public class PlayerAres extends Player {
