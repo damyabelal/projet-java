@@ -23,7 +23,9 @@ public class  AresGameObjectives{
     return this.WarriorsToDetain;
   }
 
-  
+  public getIslandstoEnvade(){
+    return this.IslandsToEnvade;
+  }
 
 
 }
