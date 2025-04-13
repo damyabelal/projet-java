@@ -143,6 +143,10 @@ public class PlayerAres extends Player {
     
 }
 
+
+    public void setPlayersObjective(AresGameObjectives objective){
+        this.objective=objective;
+    }
     
 
     /** returns all the possible objectives the player be asked to achieve in order to win the game */
@@ -155,13 +159,13 @@ public class PlayerAres extends Player {
 
     }
     /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
-    public AresGameObjectives getPlayersObjective(){
+    public void givePlayersObjective(){
         Random random =new Random();
         int randomnumber=random.nextInt(2);
         // if the random objective is to invade an island 
         if (randomnumber==0){
            
-            return new AresGameObjectives(1,0,0);
+           this.objective=new AresGameObjectives(1,0,0);
         }
 
         else if(randomnumber==1){
