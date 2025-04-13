@@ -27,6 +27,7 @@ public class PlayerAres extends Player {
     private List<Camp> camps;
     private RandomListChooser<Action<PlayerAres>> lc;
     private List<Action<PlayerAres>> actionsAres;
+    private int objective;
     
     
         // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
@@ -133,6 +134,10 @@ public class PlayerAres extends Player {
         this.camps.add(camp);
         this.playerTiles.add(camp.getTuile()); 
     }
+
+
+
+
 
     /**
      * presents the user with a list of actions that the player can do
