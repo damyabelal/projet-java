@@ -178,7 +178,7 @@ public class PlayerAres extends Player {
 
     }
    
-
+    /** return true if the player has achieved his objectives for the game */
     public boolean isObjectiveAchieved(AresGameObjectives playersobjective){
 
     boolean tiles=this.getTiles()>=playersobjective.getTilesToConquer();
