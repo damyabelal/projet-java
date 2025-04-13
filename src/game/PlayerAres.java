@@ -135,18 +135,19 @@ public class PlayerAres extends Player {
         this.playerTiles.add(camp.getTuile()); 
     }
 
-
+    /** returns all the possible objectives the player be asked to achieve in order to win the game */
     public HashMap<Integer,String> getGamesObjectives(){
         HashMap<Integer,String> objectifs=new HashMap<>();
         objectifs.put(0,"Envade an island.");
-        objectifs.put(1,"Conquer a certain number of tiles");
-        objectifs.put(2,"Detain a certain Number of Warriors in the rank");
+        objectifs.put(1,"Conquer a certain number of tiles.");
+        objectifs.put(2,"Detain a certain Number of Warriors in the rank.");
         return objectifs;
 
     }
     /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
     public int  getPlayersObjective(){
         
+
     }
 
 
