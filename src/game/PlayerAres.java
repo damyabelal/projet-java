@@ -137,6 +137,13 @@ public class PlayerAres extends Player {
         this.playerTiles.add(camp.getTuile()); 
     }
 
+    /** return true of this player has envaded an entire island */
+    public boolean didEnvadeIsland(){
+        return true;// will do later
+
+
+    }
+
     /** returns all the possible objectives the player be asked to achieve in order to win the game */
     public HashMap<Integer,String> getGamesObjectives(){
         HashMap<Integer,String> objectifs=new HashMap<>();
@@ -175,7 +182,7 @@ public class PlayerAres extends Player {
     }
 
     public boolean isObjectiveAchieved(){
-        
+    if 
 
     }
 
