@@ -57,13 +57,6 @@ public class Ares {
 
         while (winner==null){
             for (PlayerAres p: players){
-<<<<<<< HEAD
-                // si un joueur a atteint son objectif alors il gagne
-                if (p.isObjectiveAchieved(null)){
-                    winner=p;
-                }
-                
-=======
                 System.out.println(p.getName()+" (" +p.getResources()+ ") turn!!"); 
                 p.collectRessources();
                 board.display();
@@ -72,7 +65,6 @@ public class Ares {
                     winner= p; 
                     break; 
                 }
->>>>>>> e7ec0e1782f055324877b413ae461947f9655283
             }
         }
 
