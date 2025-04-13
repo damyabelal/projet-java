@@ -1,0 +1,31 @@
+package game; 
+
+public class  AresGameObjectives{
+  private int tilesToConquer;
+  private int WarriorsToDetain;
+  private int IslandsToEnvade;
+
+
+
+  public AresGameObjectives(int islands,int nbretiles,int nbreWarriors){
+    this.tilestoConquer=nbretiles;
+    this.WarriorsToDetain=nbreWarriors;
+    this.IslandsToEnvade=islands;
+
+  }
+
+  public getTilesToConquer(){
+    return this.tilesToConquer;
+
+  }
+
+  public getWarriorsToDetain(){
+    return this.WarriorsToDetain;
+  }
+
+  public getIslandstoEnvade(){
+    return this.IslandsToEnvade;
+  }
+
+
+}

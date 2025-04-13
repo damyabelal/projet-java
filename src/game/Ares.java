@@ -43,7 +43,12 @@ public class Ares {
         for (int i=0; i<nbPlayer; i++){
             System.out.println("j"+(i+1)+" name:");
             String name= Input.readString(); 
-            players.add(new PlayerAres(name)); 
+            players.add(new PlayerAres(name));
+             
+        }
+        // tir au sort un objectif pour chaque joueuer
+        for (PlayerAres p:players){
+            p.getPlayersObjective();
         }
 
         for (PlayerAres p: players){

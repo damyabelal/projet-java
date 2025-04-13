@@ -10,8 +10,12 @@ import game.tuile.building.*;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
+<<<<<<< HEAD
+
+=======
 import game.listchooser.InteractiveListChooser;
 import game.listchooser.ListChooser;
+>>>>>>> e7ec0e1782f055324877b413ae461947f9655283
 import game.listchooser.RandomListChooser; 
 import game.action.*;
 import game.action.actionDemeter.BuildFarm;

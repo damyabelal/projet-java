@@ -10,8 +10,17 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+<<<<<<< HEAD
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
+import game.listchooser.RandomListChooser;
+import java.util.Random;
+
+=======
 import game.util.*;
 import game.listchooser.*;
+>>>>>>> e7ec0e1782f055324877b413ae461947f9655283
 
 
 public class PlayerAres extends Player {
@@ -21,6 +30,7 @@ public class PlayerAres extends Player {
     private List<Army> armies;
     private List<Camp> camps;
     private List<Action<PlayerAres>> actionsAres;
+    private AresGameObjectives objective;
     
     
         // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
@@ -126,6 +136,62 @@ public class PlayerAres extends Player {
         this.camps.add(camp);
         this.playerTiles.add(camp.getTuile()); 
     }
+
+    /** return true of this player has envaded an entire island */
+    public boolean didEnvadeIsland(){
+        return true;// will do later
+    
+}
+
+
+    public void setPlayersObjective(AresGameObjectives objective){
+        this.objective=objective;
+    }
+    
+
+    /** returns all the possible objectives the player be asked to achieve in order to win the game */
+    public HashMap<Integer,String> getGamesObjectives(){
+        HashMap<Integer,String> objectifs=new HashMap<>();
+        objectifs.put(0,"Envade an island.");
+        objectifs.put(1,"Conquer a certain number of tiles.");
+        objectifs.put(2,"Detain a certain Number of Warriors in the rank.");
+        return objectifs;
+
+    }
+    /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
+    public void givePlayersObjective(){
+        Random random =new Random();
+        int randomnumber=random.nextInt(2);
+        // if the random objective is to invade an island 
+        if (randomnumber==0){
+           
+         this.setPlayersObjective(new AresGameObjectives(1,0,0));
+        }
+
+        else if(randomnumber==1){
+         int randomnumberoftiles=random.nextInt(10);
+         this.setPlayersObjective(AresGameObjectives(0,randomnumberoftiles,0));
+
+
+        }
+        else if(randomnumber==2){
+        int randomnumberofwarriors=random.nextInt(20);
+        this.setPlayersObjective(new AresGameObjectives(0,0,randomnumberofwarriors)); 
+        }
+       
+
+    }
+   
+    /** return true if the player has achieved his objectives for the game */
+    public boolean isObjectiveAchieved(AresGameObjectives playersobjective){
+
+    boolean tiles=this.getTiles()>=playersobjective.getTilesToConquer();
+    boolean warriors=this.getWarriors()>=playersobjective.getWarriorsToDetain();
+    boolean island=this.didEnvadeIsland();
+    return tiles && warriors && island;
+
+    }
+
 
     /**
      * collect all the ressources from the differents building 

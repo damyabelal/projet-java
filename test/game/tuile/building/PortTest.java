@@ -37,12 +37,7 @@ public class PortTest{
     
     board.put(forestbis,posbis);
     board.put(forest,pos);
-
-
-
-
-
-  }
+}
  
   /*
    * Tests if a port can be placed when adjacent to at least 2 sea tiles
@@ -84,7 +79,7 @@ public class PortTest{
     board.put(forest3,pos3);
     board.put(forest4,pos4);
 
-    // port should not be placed at position (0,0) because it is surrounded by 4 earth tiles
+    // port should not be allowed to be placed at position (0,0) because it is surrounded by 4 earth tiles
     assertFalse(port.canPlacePort(pos, board));
 
 
