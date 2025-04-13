@@ -45,7 +45,7 @@ public class PlayerTest {
     @Test
     void testPlayerRemoveResources() throws NoMoreRessourcesException {
         player.addRessource(Ressource.WOOD, 10);
-        player.addRessource(Ressource.WOOD, 5);
+        player.removeRessource(Ressource.WOOD, 5);
         assertEquals(5, player.getResources().get(Ressource.WOOD));
     }
 
