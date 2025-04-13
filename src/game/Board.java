@@ -12,6 +12,8 @@ public class Board{
     private int height;
     private Tuile[][] grid;
     public List<List<Earth>> islands  ; 
+    private static final String RESET = "\u001B[0m";
+
 
 /** initialises a new board for the game  with the given height and the given width
  * then fills every case of the board with a sea tile (it is not the final board it would be modified later to add earth tiles)
@@ -117,59 +119,29 @@ public void display(){
 
     
     System.out.println("        ");
-    String abs= ""; 
-    for (int i= 0; i< w; i++){
-        
-        abs= abs+ ("   "+i+"   ");
-    }
-    System.out.println(abs);
-
-    for (int x = 0; x < w; x++) {
-        if(x==0){
-            System.out.print(" |-----|");
-        }
-        else {
-            System.out.print("------|");
-        }
+    System.err.print("     ");
+    for (int i = 0; i < w; i++) {
        
-    } System.out.println();
-    for(int  y=0; y < h ; y++){
-        System.out.print(y);
-        System.out.print("|");
-        for (int x=0 ; x < w; x++){
-            String symbole=""; 
-            Tuile t= this.grid[x][y]; // j'ai ajouté this.grid ou lieu de grid tout court 
-            if (t instanceof Earth && t.haveBuild()){
-                symbole= (""+(t).getSymbol()+ ((Earth)t).getBuilding().getSymbol()+"");
-            }
-            else{
-                symbole =(" "+ t.getSymbol() +"");
-            }
-        System.out.print(  symbole + " | ");
-        }
-        System.out.println(); 
-        // We put a separating line between the lines but not the last one.
-        if (y<h-1){
-            System.out.print(" |");
-            for (int x = 0; x < w; x++) {
-                if(x==0){
-                System.out.print("_____|");}
-                else {
-                    System.out.print("______|");}
-            }
-            System.out.println();
-        }
+        System.out.printf("%2d | ", i);
     }
-    for (int x = 0; x < w; x++) {
-            if(x==0){
-                System.out.print(" |-----|");
+    System.out.println();
+
+    for (int y = 0; y < h; y++) {
+        System.out.printf("%2d |", y); // Affiche le numéro de la ligne
+        for (int x = 0; x < w; x++) {
+            Tuile t = this.grid[x][y];
+            
+            String symbole = " " + t.getSymbol() + " ";
+
+            if (t instanceof Earth && t.haveBuild()) {
+                symbole = ((Earth)t).getSymbol() + ((Earth)t).getBuilding().getSymbol();
             }
-            else {
-                System.out.print("------|");
-            }
+
+            String color = getColorForTuile(t);
+            System.out.print(color + symbole + RESET + "");
         }
-        System.out.println();
-        
+        System.out.println(); // saut de ligne à la fin de chaque rangée
+    }
 }
 
 /**
@@ -599,6 +571,19 @@ public void displayBuildings() {
         }
         return res; 
     }
+
+
+    public static String getColorForTuile(Tuile tuile) {
+        if (tuile instanceof Forest) return "\u001B[42m";      // Vert
+        if (tuile instanceof Mountain) return "\u001B[45m";    // Magenta
+        if (tuile instanceof Pasture) return "\u001B[43m";     // Jaune
+        if (tuile instanceof Field) return "\u001B[46m";       // Cyan
+        if (tuile instanceof Sea) return "\u001B[44m";         // Bleu
+        return "\u001B[47m";                                   // Blanc (par défaut)
+    }
+    
+    
+    
 
 
 
