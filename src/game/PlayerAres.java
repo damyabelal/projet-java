@@ -165,18 +165,18 @@ public class PlayerAres extends Player {
         // if the random objective is to invade an island 
         if (randomnumber==0){
            
-           this.objective=new AresGameObjectives(1,0,0);
+         this.setPlayersObjective(new AresGameObjectives(1,0,0));
         }
 
         else if(randomnumber==1){
          int randomnumberoftiles=random.nextInt(10);
-         return new AresGameObjectives(0,randomnumberoftiles,0);
+         this.setPlayersObjective(AresGameObjectives(0,randomnumberoftiles,0));
 
 
         }
         else if(randomnumber==2){
         int randomnumberofwarriors=random.nextInt(20);
-        return new AresGameObjectives(0,0,randomnumberofwarriors);
+        this.setPlayersObjective(new AresGameObjectives(0,0,randomnumberofwarriors)); 
         }
        
 
