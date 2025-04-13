@@ -23,7 +23,7 @@ public abstract class ActionManager <T extends Player>{
      * checks if the the player has enough ressources in his inventory
      * @return true if he have enough, false otherwise
      */
-    protected boolean hasEnoughRessources(){
+    public boolean hasEnoughRessources(){
         for (Ressource ressource : cost.keySet()){
             if (player.getRessourceAmount(ressource) < cost.get(ressource)){
                 return false;

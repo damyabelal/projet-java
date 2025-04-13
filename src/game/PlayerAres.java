@@ -5,6 +5,7 @@ import java.util.*;
 
 import game.action.*;
 import game.action.actionAres.*;
+import game.action.actionDemeter.ExchangeRessourcesPort;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
@@ -213,17 +214,52 @@ public class PlayerAres extends Player {
      */
     private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt, ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
+       
 
-        aresActions.add(new BuildPort<PlayerAres>(this, board, lcEarth));
-        aresActions.add(new ExchangeRessources<PlayerAres>(this, lcRessource));
+        BuildPort <PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
+        if (buildPort.hasEnoughRessources() ) {
+            aresActions.add(buildPort);
+        }
+
+        ExchangeRessources <PlayerAres> exchangeRessources = new ExchangeRessources<PlayerAres>(this, lcRessource);
+        if (exchangeRessources.hasEnoughRessources()) {
+            aresActions.add(exchangeRessources);
+        }
+       
 
         // add possible actions for player Ares
         
-        aresActions.add(new BuildArmy(board, this, lcEarth));
-        aresActions.add(new UpgradeWithRessources(this, lcArmy));
-        aresActions.add(new UpgradeWithWarriors(this, lcInt, lcArmy));
-        aresActions.add(new BuySecretWeapon(this));
-        aresActions.add(new BuyWarriors<PlayerAres>(this));
+
+        //Build Army 
+        BuildArmy buildArmy = new BuildArmy(board, this, lcEarth);
+        if (buildArmy.hasEnoughRessources()) {
+            aresActions.add(buildArmy);
+        } 
+
+
+        // upgrade to camp with ressources
+        UpgradeWithRessources upgradeWithRessources = new UpgradeWithRessources(this, lcArmy);
+        if(upgradeWithRessources.hasEnoughRessources() && !this.armies.isEmpty()){ 
+            aresActions.add(upgradeWithRessources);
+        }
+
+        // upgrade to camp with warriors
+        UpgradeWithWarriors upgradeWithWarriors = new UpgradeWithWarriors(this, lcInt, lcArmy);
+        if(upgradeWithWarriors.hasEnoughRessources() && !this.armies.isEmpty()){
+            aresActions.add(upgradeWithWarriors);
+        }
+        
+        BuySecretWeapon buySecretWeapon = new BuySecretWeapon(this);
+        if (buySecretWeapon.hasEnoughRessources()) {
+            aresActions.add(buySecretWeapon);
+        }
+
+        BuyWarriors <PlayerAres> buyWarriors = new BuyWarriors<PlayerAres>(this);
+        if (buyWarriors.hasEnoughRessources()) {
+            aresActions.add(buyWarriors);
+        }
+        
+        ;
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
         aresActions.add(new AttackNeighboor(this, null, lcPlayer));
 
