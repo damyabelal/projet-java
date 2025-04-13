@@ -23,6 +23,14 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         this.lc =lc;
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Upgrade farm => cost: " + this.cost; 
+    }
+
     public Farm ask() {
         List<Farm> farms = ((PlayerDemeter) this.player).getFarms();
         if (farms.isEmpty()) {
@@ -42,7 +50,7 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         
         
         if (!this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough resources to upgrade the farm");
+            throw new NoMoreRessourcesException("Not enough resources to upgrade the farm \n cost: "+this.cost);
         }
 
        
@@ -62,6 +70,7 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         this.tuile.setBuilding(exploitation);
         player.addExploitation(exploitation);
  
+        player.addPoints(2); 
         System.out.println("The farm evolved into a exploitation");
 
 

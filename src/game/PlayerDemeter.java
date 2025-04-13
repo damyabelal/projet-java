@@ -4,11 +4,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.tuile.building.*;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
+<<<<<<< HEAD
 
+=======
+import game.listchooser.InteractiveListChooser;
+import game.listchooser.ListChooser;
+>>>>>>> e7ec0e1782f055324877b413ae461947f9655283
 import game.listchooser.RandomListChooser; 
 import game.action.*;
 import game.action.actionDemeter.BuildFarm;
@@ -23,7 +30,6 @@ public class PlayerDemeter extends Player{
     private int nbThief;
     private List<Farm> farms;
     private List<Exploitation> exploitations;
-    private RandomListChooser <Action<PlayerDemeter>> lc;
     private List<Action<PlayerDemeter>> actionsDemeter;
 
 
@@ -39,7 +45,6 @@ public class PlayerDemeter extends Player{
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
             this.actionsDemeter = new ArrayList<>();
-            lc = new RandomListChooser<>(); 
     }
 
     /**
@@ -125,14 +130,60 @@ public class PlayerDemeter extends Player{
     }
 
     /**
+     * collect all the ressources from the differents building 
+     */
+    public void collectRessources(){
+        for ( Farm farm : this.farms){
+            this.addRessource(farm.getTuileRessource(), 1);
+        }
+        for (Exploitation exploitation: this.exploitations){
+            this.addRessource(exploitation.getTuileRessource(), 2);
+        }
+    }
+
+    /**
+     * fill the actionsDemeter attributes with all the actions for this game
+     * if option is 0 the actions will be in interactive mode, random otherwise
+     * @param board
+     * @param option
+     */
+    public void createActions(Board board, int option){
+        ListChooser<Earth> lcEarth= null; 
+        ListChooser<Farm> lcFarm=null; 
+        ListChooser<Ressource> lcRessource=null;  
+
+        if (this.actionsDemeter.isEmpty()) { 
+            if (option==0){
+                lcEarth= new InteractiveListChooser<>(); 
+                lcFarm= new InteractiveListChooser<>();
+                lcRessource= new InteractiveListChooser<>(); 
+            }
+            else{
+                lcEarth= new RandomListChooser<>(); 
+                lcFarm= new RandomListChooser<>();
+                lcRessource= new RandomListChooser<>(); 
+            }
+            this.actionsDemeter = actionsPlayer(board, lcEarth, lcRessource, lcFarm);
+        }
+
+    }
+
+    /**
      * excute the action of the demeter player
      * @param board
+     * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
      * @throws IOException
      */
-    public void act(Board board) throws IOException, InvalidChoiceException {
-        if (this.actionsDemeter.isEmpty()) { 
-            this.actionsDemeter = actionsPlayer(board);
+    public void act(Board board, int option) throws IOException, InvalidChoiceException {
+        ListChooser<Action<PlayerDemeter>> lc= null;
+
+        if (option==0){
+            lc= new InteractiveListChooser<>(); 
         }
+        else{
+            lc= new RandomListChooser<>(); 
+        }
+
         Action<PlayerDemeter> demeterAction = lc.choose("Choose an action", this.actionsDemeter);
         if (demeterAction != null) {
             try {
@@ -150,16 +201,16 @@ public class PlayerDemeter extends Player{
      * @param board
      * @return List<Action<PlayerDemeter>> the list of actions that the demeter player can do
      */
-    private List<Action<PlayerDemeter>> actionsPlayer(Board board){
+    private List<Action<PlayerDemeter>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Farm> lcFarm){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
 
-        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board, new RandomListChooser<>()));
-        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this, new RandomListChooser<>()));
+        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board, lcEarth));
+        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this,lcRessource));
 
         // add possibles actions for player Demeter
-        actionsDemeter.add(new UpgradeFarm(this, new RandomListChooser<>()));
-        actionsDemeter.add(new ExchangeRessourcesPort(this, new RandomListChooser<>()));
-        actionsDemeter.add(new BuildFarm(board, this, new RandomListChooser<>()));
+        actionsDemeter.add(new UpgradeFarm(this, lcFarm));
+        actionsDemeter.add(new ExchangeRessourcesPort(this, lcRessource));
+        actionsDemeter.add(new BuildFarm(board, this, lcEarth));
         actionsDemeter.add(new BuyThief(this));
         actionsDemeter.add(new PlayThief(null, null));
         return actionsDemeter;

@@ -18,6 +18,14 @@ public class BuyWarriors<T extends PlayerAres> extends ActionManager<T> implemen
         this.cost.put(Ressource.ORE, 1);
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Buy warriors => cost: " + this.cost; 
+    }
+
     /**
      * Buys 5 warriors if the player has enough resources
      * @param player the player who wants to buy ressources    

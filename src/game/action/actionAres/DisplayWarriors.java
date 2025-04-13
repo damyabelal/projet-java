@@ -25,6 +25,14 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
         this.lcCamp = lcCamp;
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Display warriors";  
+    }
+
     /**
      * Asks the player how many warriors they want to add, ensuring they have enough.
      * 

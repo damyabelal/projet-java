@@ -27,6 +27,14 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         this.lc = lc;
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Build a farm => cost: " + this.cost; 
+    }
+
     public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build a Farm?", this.board.buildableTiles());
     }
@@ -40,12 +48,15 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
     public void act(PlayerDemeter player) throws NoMoreRessourcesException, InvalidChoiceException {
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
+        int numberofBuilding= player.getFarms().size() + player.getExploitations().size() +player.getPorts().size(); 
         //checks if player has enough ressources to build a farm
-        if (! this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough ressources to build the farm");
+        if ((!this.hasEnoughRessources()) && ( numberofBuilding >=  2 )) {
+            throw new NoMoreRessourcesException("Not enough ressources to build the farm\n cost: "+this.cost);
         }
         // if a farm is built, removes the farm's cost from the player's inventory
-        this.removeRessources();
+        if (numberofBuilding>= 2){
+            this.removeRessources();
+        }
 
         // builds the farm on the tile the player wants to build on
         Farm farm = new Farm((Earth) tile, player);
@@ -53,7 +64,9 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         tile.setBuilding(farm);
         // adds the built tile to the player's list of tiles
         player.addFarm(farm);
-
+        
+        player.addPoints(1); 
+        
         System.out.println(player.getName() +": "+player.getResources()+ " build a farm on position "+ choosenPosition);
     }
 

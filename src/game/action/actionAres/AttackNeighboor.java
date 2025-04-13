@@ -31,6 +31,13 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
             this.enemies= enemies;
             this.lc= lc; 
         }
+
+        /**
+         * @return the description of the action
+         */
+        public String toString(){
+            return "Attack neighboor"; 
+        }
     
         /**
          * ask the player which neighbor he wants to attack

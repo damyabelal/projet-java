@@ -4,21 +4,22 @@ import java.io.IOException;
 import java.util.*;
 
 import game.action.*;
-import game.action.actionAres.AttackNeighboor;
-import game.action.actionAres.BuildArmy;
-import game.action.actionAres.BuySecretWeapon;
-import game.action.actionAres.BuyWarriors;
-import game.action.actionAres.DisplayWarriors;
-import game.action.actionAres.UpgradeWithRessources;
-import game.action.actionAres.UpgradeWithWarriors;
+import game.action.actionAres.*;
+import game.tuile.Earth;
+import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+<<<<<<< HEAD
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 import game.listchooser.RandomListChooser;
 import java.util.Random;
 
+=======
+import game.util.*;
+import game.listchooser.*;
+>>>>>>> e7ec0e1782f055324877b413ae461947f9655283
 
 
 public class PlayerAres extends Player {
@@ -27,7 +28,6 @@ public class PlayerAres extends Player {
     private int secretWeapon;
     private List<Army> armies;
     private List<Camp> camps;
-    private RandomListChooser<Action<PlayerAres>> lc;
     private List<Action<PlayerAres>> actionsAres;
     private AresGameObjectives objective;
     
@@ -40,7 +40,6 @@ public class PlayerAres extends Player {
         this.armies = new ArrayList<>();
         this.camps = new ArrayList<>();
         this.actionsAres = new ArrayList<>();
-        lc = new RandomListChooser<>(); 
     }
 
     /**
@@ -194,18 +193,77 @@ public class PlayerAres extends Player {
 
 
     /**
-     * presents the user with a list of actions that the player can do
-     * @param board the game board
+     * collect all the ressources from the differents building 
      */
-    public void act(Board board) throws CantBuildException, NoMoreRessourcesException, IOException, InvalidChoiceException {
-        if (this.actionsAres.isEmpty()) { 
-            this.actionsAres = actionsPlayer(board);
+    public void collectRessources(){
+        for ( Army army : this.armies){
+            this.addRessource(army.getTuileRessource(), 1);
         }
-        Action<PlayerAres> action = lc.choose("Choose an action", this.actionsAres);
-        if (action != null) {
+        for (Camp camp: this.camps){
+            this.addRessource(camp.getTuileRessource(), 2);
+        }
+    }
+
+    /**
+     * fill the actionsDemeter attributes with all the actions for this game
+     * if option is 0 the actions will be in interactive mode, random otherwise
+     * @param board
+     * @param option
+     */
+    public void createActions(Board board, int option){
+        ListChooser<Earth> lcEarth= null; 
+        ListChooser<Army> lcArmy= null; 
+        ListChooser<Ressource> lcRessource=null;  
+        ListChooser<Integer> lcInt= null; 
+        ListChooser<String> lcString = null; 
+        ListChooser<Camp> lcCamp=null; 
+        ListChooser<PlayerAres> lcPlayer=null; 
+
+        if (this.actionsAres.isEmpty()) { 
+            if (option==0){
+                lcEarth= new InteractiveListChooser<>(); 
+                lcArmy= new InteractiveListChooser<>();
+                lcRessource= new InteractiveListChooser<>();
+                lcInt= new InteractiveListChooser<>(); 
+                lcString = new InteractiveListChooser<>(); 
+                lcCamp=new InteractiveListChooser<>(); 
+                lcPlayer=new InteractiveListChooser<>(); 
+            }
+            else{
+                lcEarth= new RandomListChooser<>(); 
+                lcArmy= new RandomListChooser<>();
+                lcRessource= new RandomListChooser<>(); 
+                lcInt= new RandomListChooser<>(); 
+                lcString = new RandomListChooser<>(); 
+                lcCamp=new RandomListChooser<>(); 
+                lcPlayer=new RandomListChooser<>(); 
+            }
+            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt,lcString, lcCamp, lcPlayer);
+        }
+
+    }
+
+    /**
+     * excute the action of the demeter player
+     * @param board
+     * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
+     * @throws IOException
+     */
+    public void act(Board board, int option) throws IOException, InvalidChoiceException {
+        ListChooser<Action<PlayerAres>> lc= null;
+
+        if (option==0){
+            lc= new InteractiveListChooser<>(); 
+        }
+        else{
+            lc= new RandomListChooser<>(); 
+        }
+
+        Action<PlayerAres> aresAction = lc.choose("Choose an action", this.actionsAres);
+        if (actionsAres != null) {
             try {
-                action.act(this);
-            } catch (NoMoreRessourcesException e) {
+                aresAction.act(this);
+            } catch (NoMoreRessourcesException | CantBuildException e) {
                 System.out.println(e.getMessage());
             }
         } else {
@@ -219,21 +277,21 @@ public class PlayerAres extends Player {
      * @param board
      * @return List<Action<PlayerAres>>
      */
-    private List<Action<PlayerAres>> actionsPlayer(Board board) {
+    private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt, ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
 
-        aresActions.add(new BuildPort<PlayerAres>(this, board, new RandomListChooser<>()));
-        aresActions.add(new ExchangeRessources<PlayerAres>(this, new RandomListChooser<>()));
+        aresActions.add(new BuildPort<PlayerAres>(this, board, lcEarth));
+        aresActions.add(new ExchangeRessources<PlayerAres>(this, lcRessource));
 
         // add possible actions for player Ares
         
-        aresActions.add(new BuildArmy(board, this, new RandomListChooser<>()));
-        aresActions.add(new UpgradeWithRessources(this, new RandomListChooser<>()));
-        aresActions.add(new UpgradeWithWarriors(this, new RandomListChooser<>(), new RandomListChooser<>()));
+        aresActions.add(new BuildArmy(board, this, lcEarth));
+        aresActions.add(new UpgradeWithRessources(this, lcArmy));
+        aresActions.add(new UpgradeWithWarriors(this, lcInt, lcArmy));
         aresActions.add(new BuySecretWeapon(this));
         aresActions.add(new BuyWarriors<PlayerAres>(this));
-        aresActions.add(new DisplayWarriors(this, new RandomListChooser<>(), new RandomListChooser<>(), new RandomListChooser<>(), new RandomListChooser<>()));
-        aresActions.add(new AttackNeighboor(this, null, new RandomListChooser<>()));
+        aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
+        aresActions.add(new AttackNeighboor(this, null, lcPlayer));
 
         return aresActions;
     }

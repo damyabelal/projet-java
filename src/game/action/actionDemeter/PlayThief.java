@@ -20,6 +20,14 @@ public class PlayThief implements Action<PlayerDemeter> {
 
 
     /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Play thief" ; 
+    }
+
+
+    /**
      * the thief steals the type of ressource in the constructor from every player on the board and gives it the given playerOfThief
      * @param playerOfThief 
      * @throws NoMoreRessourcesException if the player doesn't have enough ressources to play the thief

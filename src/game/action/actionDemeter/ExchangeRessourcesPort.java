@@ -21,6 +21,16 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
         this.lc = lc; 
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Exchange ressources by port"; 
+    }
+
+
+
      /**
      * asks the player which ressource he wants to exchange
      * @return the ressource the player wants to exchange

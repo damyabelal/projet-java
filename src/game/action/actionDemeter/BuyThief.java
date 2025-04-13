@@ -19,6 +19,14 @@ public class BuyThief extends ActionManager<PlayerDemeter> implements Action<Pla
 
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Buy a thief => cost: " + this.cost; 
+    }
+
     /**
      * buys a thief if the player has enough ressources
      * @param the player who wants to buy a thief
@@ -27,7 +35,7 @@ public class BuyThief extends ActionManager<PlayerDemeter> implements Action<Pla
 
         // checks if player has enough ressources to buy a thief
         if (! this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough ressources to buy a thief");
+            throw new NoMoreRessourcesException("Not enough ressources to buy a thief \n cost: "+this.cost);
         }
         // if the player has enough ressources , removes the thief's cost from the player
         this.removeRessources();

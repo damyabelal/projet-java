@@ -28,6 +28,14 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
 
   }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+      return "Upgrade with ressources => cost: " + this.cost; 
+  }
+
   /**
    * Asks the player which army he wants to upgrade
    * 
@@ -53,18 +61,15 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
     if (!this.hasEnoughRessources()) {
       throw new NoMoreRessourcesException("Not enough resources to upgrade the army");
     }
-
     
-    this.removeRessources();
-
-  
-
     this.tuile = chosenArmy.getTuile();
 
     this.tuile.removeBuilding();
     player.removeArmy(chosenArmy);
 
-    Camp camp = chosenArmy.upGradeToCamp(player);
+    Camp camp = chosenArmy.upGradeToCampWithRessources(player);
+
+    this.removeRessources();
 
     this.tuile.setBuilding(camp);
     player.addCamp(camp);
