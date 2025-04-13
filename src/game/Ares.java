@@ -48,7 +48,7 @@ public class Ares {
         }
         // tir au sort un objectif pour chaque joueuer
         for (PlayerAres p:players){
-            p.getPlayersObjective();
+            p.givePlayersObjective();
         }
 
         for (PlayerAres p: players){

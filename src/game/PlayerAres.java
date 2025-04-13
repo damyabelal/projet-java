@@ -4,15 +4,19 @@ import java.io.IOException;
 import java.util.*;
 
 import game.action.*;
-import game.action.actionAres.*;
-import game.action.actionDemeter.ExchangeRessourcesPort;
+import game.action.actionAres.AttackNeighboor;
+import game.action.actionAres.BuildArmy;
+import game.action.actionAres.BuySecretWeapon;
+import game.action.actionAres.BuyWarriors;
+import game.action.actionAres.DisplayWarriors;
+import game.action.actionAres.UpgradeWithRessources;
+import game.action.actionAres.UpgradeWithWarriors;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.util.*;
 import game.listchooser.*;
-
 
 public class PlayerAres extends Player {
 
@@ -22,9 +26,9 @@ public class PlayerAres extends Player {
     private List<Camp> camps;
     private List<Action<PlayerAres>> actionsAres;
     private AresGameObjectives objective;
-    
-    
-        // initializes a new PlayerAres with 30 warriors, a name, and zero secret weapons
+
+    // initializes a new PlayerAres with 30 warriors, a name, and zero secret
+    // weapons
     public PlayerAres(String name) {
         super(name);
         this.warriors = 30;
@@ -32,10 +36,12 @@ public class PlayerAres extends Player {
         this.armies = new ArrayList<>();
         this.camps = new ArrayList<>();
         this.actionsAres = new ArrayList<>();
+        this.objective = null;
     }
 
     /**
      * adds warriors to the army of this player
+     * 
      * @param nb number of warriors to add
      */
     public void addWarriors(int nb) {
@@ -44,6 +50,7 @@ public class PlayerAres extends Player {
 
     /**
      * removes nb warriors from this player's army
+     * 
      * @param nb number of warriors to remove
      * @exception NoMoreRessourcesException
      */
@@ -57,6 +64,7 @@ public class PlayerAres extends Player {
 
     /**
      * returns the number of warriors of this player
+     * 
      * @return number of warriors belonging to this player
      */
     public int getWarriors() {
@@ -65,6 +73,7 @@ public class PlayerAres extends Player {
 
     /**
      * returns the number of secret weapons owned by this player
+     * 
      * @return int
      */
     public int getNbSecretWeapon() {
@@ -73,11 +82,12 @@ public class PlayerAres extends Player {
 
     /**
      * removes an army from the list of armies
+     * 
      * @param army
      */
     public void removeArmy(Army army) {
         this.armies.remove(army);
-        this.playerTiles.remove(army.getTuile()); 
+        this.playerTiles.remove(army.getTuile());
     }
 
     /**
@@ -96,6 +106,7 @@ public class PlayerAres extends Player {
 
     /**
      * returns the list of armies of this player
+     * 
      * @return List<Army>
      */
     public List<Army> getArmies() {
@@ -104,15 +115,17 @@ public class PlayerAres extends Player {
 
     /**
      * adds an army to the list of armies of this player
+     * 
      * @param army
      */
     public void addArmy(Army army) {
         this.armies.add(army);
-        this.playerTiles.add(army.getTuile()); 
+        this.playerTiles.add(army.getTuile());
     }
 
     /**
      * returns the list of camps of this player
+     * 
      * @return List<Camp>
      */
     public List<Camp> getCamps() {
@@ -121,77 +134,89 @@ public class PlayerAres extends Player {
 
     /**
      * adds a camp to the list of camps of this player
+     * 
      * @param camp
      */
     public void addCamp(Camp camp) {
         this.camps.add(camp);
-        this.playerTiles.add(camp.getTuile()); 
+        this.playerTiles.add(camp.getTuile());
     }
 
-    /** return true of this player has envaded an entire island */
-    public boolean didEnvadeIsland(){
-        return true;// will do later
-    
-}
-
-
-    public void setPlayersObjective(AresGameObjectives objective){
-        this.objective=objective;
-    }
-    
-
-    /** returns all the possible objectives the player be asked to achieve in order to win the game */
-    public HashMap<Integer,String> getGamesObjectives(){
-        HashMap<Integer,String> objectifs=new HashMap<>();
-        objectifs.put(0,"Envade an island.");
-        objectifs.put(1,"Conquer a certain number of tiles.");
-        objectifs.put(2,"Detain a certain Number of Warriors in the rank.");
-        return objectifs;
-
-    }
-    /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
-    public void givePlayersObjective(){
-        Random random =new Random();
-        int randomnumber=random.nextInt(2);
-        // if the random objective is to invade an island 
-        if (randomnumber==0){
-           
-         this.setPlayersObjective(new AresGameObjectives(1,0,0));
+    /** return true if this player has envaded an entire island */
+    public boolean didEnvadeIsland(Board board) {
+        for (List<Earth> island : board.getIslands()) {
+            boolean allTilesOwned = true;
+            for (Earth tile : island) {
+                if (!this.getTiles().contains(tile)) {
+                    allTilesOwned = false;
+                    break;
+                }
+            }
+            if (allTilesOwned) {
+                return true;
+            }
         }
-
-        else if(randomnumber==1){
-         int randomnumberoftiles=random.nextInt(10);
-         this.setPlayersObjective(AresGameObjectives(0,randomnumberoftiles,0));
-
-
-        }
-        else if(randomnumber==2){
-        int randomnumberofwarriors=random.nextInt(20);
-        this.setPlayersObjective(new AresGameObjectives(0,0,randomnumberofwarriors)); 
-        }
-       
-
-    }
-   
-    /** return true if the player has achieved his objectives for the game */
-    public boolean isObjectiveAchieved(AresGameObjectives playersobjective){
-
-    boolean tiles=this.getTiles()>=playersobjective.getTilesToConquer();
-    boolean warriors=this.getWarriors()>=playersobjective.getWarriorsToDetain();
-    boolean island=this.didEnvadeIsland();
-    return tiles && warriors && island;
-
+        return false;
     }
 
+    /** return true if this player has conquered the values of tiles required */
+    public boolean hasConqueredTiles() {
+        return this.getTiles().size() >= this.objective.getValue();
+    }
 
     /**
-     * collect all the ressources from the differents building 
+     * returns true if the player has enough warriors by summing the warriors in all
+     * their armies and camps to meet the required objective
      */
-    public void collectRessources(){
-        for ( Army army : this.armies){
+    public boolean didDetainWarriors() {
+        int totalWarriors = 0;
+        for (Army army : this.armies) {
+            totalWarriors += army.getNbWarriors();
+        }
+        for (Camp camp : this.camps) {
+            totalWarriors += camp.getNbWarriors();
+        }
+        return totalWarriors >= this.objective.getValue();
+    }
+
+    /** return the objective of the player, exception if not set yet */
+    public AresGameObjectives getObjective() {
+        if (this.objective == null) {
+            throw new IllegalStateException("player has no objective yet");
+        }
+        return this.objective;
+    }
+
+    /** randomly assigns an objective to the player with a corresponding value */
+    public void givePlayersObjective() {
+        Random random = new Random();
+        AresGameObjectives.ObjectiveType[] types = AresGameObjectives.ObjectiveType.values();
+        AresGameObjectives.ObjectiveType chosenType = types[random.nextInt(types.length)];
+
+        int value = switch (chosenType) {
+            case CONQUER_TILES -> 5 + random.nextInt(6);
+            case EVADE_ISLANDS -> 1;
+            case DETAIN_WARRIORS -> 20 + random.nextInt(11);
+        };
+
+        this.objective = new AresGameObjectives(chosenType, value);
+    }
+
+    /** return true if the player's objective is achieved */
+    public boolean isObjectiveAchieved(Board board) {
+        return switch (this.objective.getType()) {
+            case CONQUER_TILES -> this.hasConqueredTiles();
+            case EVADE_ISLANDS -> this.didEnvadeIsland(board);
+            case DETAIN_WARRIORS -> this.didDetainWarriors();
+        };
+    }
+
+    /** collect all the ressources from the differents building */
+    public void collectRessources() {
+        for (Army army : this.armies) {
             this.addRessource(army.getTuileRessource(), 1);
         }
-        for (Camp camp: this.camps){
+        for (Camp camp : this.camps) {
             this.addRessource(camp.getTuileRessource(), 2);
         }
     }
@@ -199,56 +224,57 @@ public class PlayerAres extends Player {
     /**
      * fill the actionsDemeter attributes with all the actions for this game
      * if option is 0 the actions will be in interactive mode, random otherwise
+     * 
      * @param board
      * @param option
      */
-    public void createActions(Board board, int option){
-        ListChooser<Earth> lcEarth= null; 
-        ListChooser<Army> lcArmy= null; 
-        ListChooser<Ressource> lcRessource=null;  
-        ListChooser<Integer> lcInt= null; 
-        ListChooser<String> lcString = null; 
-        ListChooser<Camp> lcCamp=null; 
-        ListChooser<PlayerAres> lcPlayer=null; 
+    public void createActions(Board board, int option) {
+        ListChooser<Earth> lcEarth = null;
+        ListChooser<Army> lcArmy = null;
+        ListChooser<Ressource> lcRessource = null;
+        ListChooser<Integer> lcInt = null;
+        ListChooser<String> lcString = null;
+        ListChooser<Camp> lcCamp = null;
+        ListChooser<PlayerAres> lcPlayer = null;
 
-        if (this.actionsAres.isEmpty()) { 
-            if (option==0){
-                lcEarth= new InteractiveListChooser<>(); 
-                lcArmy= new InteractiveListChooser<>();
-                lcRessource= new InteractiveListChooser<>();
-                lcInt= new InteractiveListChooser<>(); 
-                lcString = new InteractiveListChooser<>(); 
-                lcCamp=new InteractiveListChooser<>(); 
-                lcPlayer=new InteractiveListChooser<>(); 
+        if (this.actionsAres.isEmpty()) {
+            if (option == 0) {
+                lcEarth = new InteractiveListChooser<>();
+                lcArmy = new InteractiveListChooser<>();
+                lcRessource = new InteractiveListChooser<>();
+                lcInt = new InteractiveListChooser<>();
+                lcString = new InteractiveListChooser<>();
+                lcCamp = new InteractiveListChooser<>();
+                lcPlayer = new InteractiveListChooser<>();
+            } else {
+                lcEarth = new RandomListChooser<>();
+                lcArmy = new RandomListChooser<>();
+                lcRessource = new RandomListChooser<>();
+                lcInt = new RandomListChooser<>();
+                lcString = new RandomListChooser<>();
+                lcCamp = new RandomListChooser<>();
+                lcPlayer = new RandomListChooser<>();
             }
-            else{
-                lcEarth= new RandomListChooser<>(); 
-                lcArmy= new RandomListChooser<>();
-                lcRessource= new RandomListChooser<>(); 
-                lcInt= new RandomListChooser<>(); 
-                lcString = new RandomListChooser<>(); 
-                lcCamp=new RandomListChooser<>(); 
-                lcPlayer=new RandomListChooser<>(); 
-            }
-            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt,lcString, lcCamp, lcPlayer);
+            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer);
         }
 
     }
 
     /**
      * excute the action of the demeter player
+     * 
      * @param board
-     * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
+     * @param option if option is 0 then we create a interactive actions List,
+     *               otherwise the actions will be automatic
      * @throws IOException
      */
     public void act(Board board, int option) throws IOException, InvalidChoiceException {
-        ListChooser<Action<PlayerAres>> lc= null;
+        ListChooser<Action<PlayerAres>> lc = null;
 
-        if (option==0){
-            lc= new InteractiveListChooser<>(); 
-        }
-        else{
-            lc= new RandomListChooser<>(); 
+        if (option == 0) {
+            lc = new InteractiveListChooser<>();
+        } else {
+            lc = new RandomListChooser<>();
         }
 
         Action<PlayerAres> aresAction = lc.choose("Choose an action", this.actionsAres);
@@ -262,60 +288,58 @@ public class PlayerAres extends Player {
             System.out.println("No action chosen");
         }
     }
-    
 
     /**
      * returns a list of actions that the player Ares can do
+     * 
      * @param board
      * @return List<Action<PlayerAres>>
      */
-    private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt, ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer) {
+    private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth,
+            ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt,
+            ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
-       
 
-        BuildPort <PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
-        if (buildPort.hasEnoughRessources() ) {
+        BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
+        if (buildPort.hasEnoughRessources()) {
             aresActions.add(buildPort);
         }
 
-        ExchangeRessources <PlayerAres> exchangeRessources = new ExchangeRessources<PlayerAres>(this, lcRessource);
+        ExchangeRessources<PlayerAres> exchangeRessources = new ExchangeRessources<PlayerAres>(this, lcRessource);
         if (exchangeRessources.hasEnoughRessources()) {
             aresActions.add(exchangeRessources);
         }
-       
 
         // add possible actions for player Ares
-        
 
-        //Build Army 
+        // Build Army
         BuildArmy buildArmy = new BuildArmy(board, this, lcEarth);
         if (buildArmy.hasEnoughRessources()) {
             aresActions.add(buildArmy);
-        } 
-
+        }
 
         // upgrade to camp with ressources
         UpgradeWithRessources upgradeWithRessources = new UpgradeWithRessources(this, lcArmy);
-        if(upgradeWithRessources.hasEnoughRessources() && !this.armies.isEmpty()){ 
+        if (upgradeWithRessources.hasEnoughRessources() && !this.armies.isEmpty()) {
             aresActions.add(upgradeWithRessources);
         }
 
         // upgrade to camp with warriors
         UpgradeWithWarriors upgradeWithWarriors = new UpgradeWithWarriors(this, lcInt, lcArmy);
-        if(upgradeWithWarriors.hasEnoughRessources() && !this.armies.isEmpty()){
+        if (upgradeWithWarriors.hasEnoughRessources() && !this.armies.isEmpty()) {
             aresActions.add(upgradeWithWarriors);
         }
-        
+
         BuySecretWeapon buySecretWeapon = new BuySecretWeapon(this);
         if (buySecretWeapon.hasEnoughRessources()) {
             aresActions.add(buySecretWeapon);
         }
 
-        BuyWarriors <PlayerAres> buyWarriors = new BuyWarriors<PlayerAres>(this);
+        BuyWarriors<PlayerAres> buyWarriors = new BuyWarriors<PlayerAres>(this);
         if (buyWarriors.hasEnoughRessources()) {
             aresActions.add(buyWarriors);
         }
-        
+
         ;
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
         aresActions.add(new AttackNeighboor(this, null, lcPlayer));
