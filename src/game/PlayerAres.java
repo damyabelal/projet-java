@@ -20,6 +20,7 @@ import game.listchooser.RandomListChooser;
 import java.util.Random;
 
 
+
 public class PlayerAres extends Player {
 
     private int warriors;
@@ -146,14 +147,32 @@ public class PlayerAres extends Player {
 
     }
     /** selects randomly the objective for this player. Thus ,in order to win should accomplish this objectives */
-    public int  getPlayersObjective(){
+    public AresGameObjectives getPlayersObjective(){
         Random random =new Random();
         int randomnumber=random.nextInt(2);
+        // if the random objective is to invade an island 
+        if (randomnumber==0){
+           
+            return new AresGameObjectives(1,0,0);
+        }
 
-        
+        else if(randomnumber==1){
+         int randomnumberoftiles=random.nextInt(10);
+         return new AresGameObjectives(0,randomnumberoftiles,0);
+
+
+        }
+        else if(randomnumber==2){
+        int randomnumberofwarriors=random.nextInt(20);
+        return new AresGameObjectives(0,0,randomnumberofwarriors);
+        }
+       
 
     }
-
+    //displays the 
+    public void displayPlayersObjective(int cleobjectif){
+         
+    }
 
 
     /**

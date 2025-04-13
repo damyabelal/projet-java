@@ -7,10 +7,13 @@ public class  AresGameObjectives{
 
 
 
-  public AresGameObjectives(int nbretiles,int nbreWarriors,int islands){
+  public AresGameObjectives(int islands,int nbretiles,int nbreWarriors){
     this.tilestoConquer=nbretiles;
     this.WarriorsToDetain=nbreWarriors;
     this.IslandsToEnvade=islands;
-    
+
   }
+
+
+
 }
