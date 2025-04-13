@@ -19,6 +19,14 @@ public class BuyThief extends ActionManager<PlayerDemeter> implements Action<Pla
 
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Buy a thief => cost: " + this.cost; 
+    }
+
     /**
      * buys a thief if the player has enough ressources
      * @param the player who wants to buy a thief

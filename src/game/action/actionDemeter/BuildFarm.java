@@ -27,6 +27,14 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         this.lc = lc;
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Build a farm => cost: " + this.cost; 
+    }
+
     public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build a Farm?", this.board.buildableTiles());
     }

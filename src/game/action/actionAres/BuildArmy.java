@@ -34,7 +34,12 @@ public class BuildArmy extends ActionManager <PlayerAres>implements Action<Playe
 
     }
 
-
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Build a army => cost: " + this.cost; 
+    }
 
     
     public Earth askCoordinate() throws InvalidChoiceException {

@@ -28,6 +28,14 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
 
   }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+      return "Upgrade with ressources => cost: " + this.cost; 
+  }
+
   /**
    * Asks the player which army he wants to upgrade
    * 

@@ -22,6 +22,14 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
         this.lc= lc; 
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Exchange ressources"; 
+    }
+
     /**
      * asks the player what type of  ressource he wants to exchange
      * @return the ressource

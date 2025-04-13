@@ -23,6 +23,14 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         this.lc =lc;
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Upgrade farm => cost: " + this.cost; 
+    }
+
     public Farm ask() {
         List<Farm> farms = ((PlayerDemeter) this.player).getFarms();
         if (farms.isEmpty()) {

@@ -18,6 +18,16 @@ public class BuySecretWeapon extends ActionManager<PlayerAres> implements Action
         this.cost.put(Ressource.ORE, 1);
         this.cost.put(Ressource.WOOD, 1);
     }
+
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Buy a secret weapon => cost: " + this.cost; 
+    }
+
+
     /**
      * buys a secret weapon if the player has enough ressources for it
      * @param player the player who wants to buy

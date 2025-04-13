@@ -33,6 +33,14 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
 
   }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+      return "Upgrade with warriors"; 
+  }
+
   /**
    * Asks the player which army he wants to upgrade
    * 

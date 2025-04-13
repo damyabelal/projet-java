@@ -26,6 +26,15 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         this.lc= lc; 
     }
 
+
+    /**
+    * @return the description of the action
+    */
+    public String toString(){
+        return "Build a port => cost: " + this.cost; 
+    }
+
+
     public Earth askCoordinate() throws InvalidChoiceException {
         return lc.choose("Where do you want to build a Port?",this.board.coastalTiles());
     }
