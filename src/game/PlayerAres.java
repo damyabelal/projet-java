@@ -143,7 +143,7 @@ public class PlayerAres extends Player {
     
 }
 
-    public 
+    
 
     /** returns all the possible objectives the player be asked to achieve in order to win the game */
     public HashMap<Integer,String> getGamesObjectives(){
@@ -177,13 +177,11 @@ public class PlayerAres extends Player {
        
 
     }
-    //displays the 
-    public void displayPlayersObjective(int cleobjectif){
-         
-    }
+   
 
-    public boolean isObjectiveAchieved(){
-    if 
+    public boolean isObjectiveAchieved(AresGameObjectives playersobjective){
+
+    boolean 
 
     }
 
