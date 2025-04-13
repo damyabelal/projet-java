@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-package game;
-public class DemeterRandom{
-  
-}
-=======
 package game;
 
 import java.io.IOException;
@@ -74,4 +68,3 @@ public class DemeterRandom {
     }
     
 }
->>>>>>> e7ec0e1782f055324877b413ae461947f9655283
