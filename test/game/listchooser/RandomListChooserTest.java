@@ -1,26 +1,31 @@
 package game.listchooser;
-import java.util.ArrayList;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RandomListChooserTest{
+import java.util.List;
 
-        private RandomListChooser<Integer> lc;
+public class RandomListChooserTest {
 
-        @BeforeEach
-        void setUp(){
-            lc= new RandomListChooser<>(); 
-        }
+    @Test
+    void testChooseRandomElement() {
+        RandomListChooser<String> chooser = new RandomListChooser<>();
+        
+        List<String> options = List.of("army1", "army2", "army3");
 
-        @Test
-        void returnIntegerTest(){
-            ArrayList<Integer> list= new ArrayList<>();
-            list.add(1);
-            list.add(2);
-            list.add(3);
-            Integer pick= lc.choose(null, list);
-            assertTrue( pick<4 && pick>0);
-        }
+        String result = chooser.choose("choose an army:", options);
+        
+        assertTrue(options.contains(result), "the chosen element should be in the list");
+    }
+
+    @Test
+    void testChooseNoneIfListIsEmpty() {
+        RandomListChooser<String> chooser = new RandomListChooser<>();
+
+        List<String> emptyList = List.of();
+
+        String result = chooser.choose("choose an army", emptyList);
+
+        assertNull(result, "the result should be null if the list is empty");
+    }
 }
