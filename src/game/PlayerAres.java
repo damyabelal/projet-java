@@ -385,4 +385,40 @@ public class PlayerAres extends Player {
     }
 
 
+    /**
+     * places the initial army of the player on a tile of the board
+     * @param board
+     * @throws CantBuildException
+     */
+    public void placeInitialArmyRandom(Board board) throws CantBuildException{
+        List<Earth> buildable = board.buildableTiles();
+        ListChooser<Earth> chooser = new RandomListChooser<>();
+        ListChooser<Integer> inChooser = new RandomListChooser<>();
+
+
+        Earth tile = chooser.choose("Placement automatique d'une armée", buildable);
+
+        int max = Math.min(this.getWarriors(), 5);
+        List<Integer> warriors = new ArrayList<>();
+        for (int i = 1; i <= max; i++) {
+            warriors.add(i);
+        }
+
+        int nbWarriors = inChooser.choose("choisis le nombre de guerriers", warriors);
+        
+        
+        Army army = new Army(tile, nbWarriors, this);
+        try{
+            tile.setBuilding(army);
+            this.addArmy(army);
+            this.playerTiles.add(tile);
+            this.removeWarriors(nbWarriors);
+        } catch (NoMoreRessourcesException e) {
+            System.out.println("Erreur lors du placement automatique : "+e.getMessage());
+        }
+
+    
+    }
+
+
 }
