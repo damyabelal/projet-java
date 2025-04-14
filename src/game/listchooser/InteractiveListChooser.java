@@ -17,6 +17,11 @@ public class InteractiveListChooser<T> implements ListChooser<T>{
         if (list.isEmpty()) {
             return null;
         }
+
+        if (list.size() == 1) {
+            return list.get(0);
+        }
+        
         int choice = -1;
         while ((choice < 0) || (choice > list.size())) {
             System.out.println(msg);
