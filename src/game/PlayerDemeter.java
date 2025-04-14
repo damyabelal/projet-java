@@ -221,7 +221,10 @@ public class PlayerDemeter extends Player{
         
 
         actionsDemeter.add(new ExchangeRessourcesPort(this, lcRessource));
+
+
         actionsDemeter.add(new BuildFarm(board, this, lcEarth));
+        
         actionsDemeter.add(new BuyThief(this));
         actionsDemeter.add(new PlayThief(null, null));
         return actionsDemeter;

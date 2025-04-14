@@ -346,4 +346,24 @@ public class PlayerAres extends Player {
 
         return aresActions;
     }
+
+    public void placeInitialArmy(Board board){
+        List<Earth> buildable = board.buildableTiles();
+        ListChooser<Earth> chooser = new InteractiveListChooser<>();
+        Earth tile = chooser.choose("choisis une tuile ", buildable);
+
+        Army army = new Army(tile, 1, this);
+        tile.setBuilding(army);
+        this.addArmy(army);
+        this.playerTiles.add(tile);
+        try {
+            this.removeWarriors(1);
+        } catch (NoMoreRessourcesException e) {
+            System.out.println(e.getMessage());
+        }
+
+    
+    }
+
+
 }
