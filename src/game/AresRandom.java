@@ -1,9 +1,87 @@
 package game;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+
+
 public class AresRandom{
 
+  public static void main(String[] args) throws  IOException, InvalidChoiceException ,CantBuildException{
+    
+    if (args.length < 3) {
+      System.out.println("You have to give two positive settings and the number of player.");
+      return;
+    }
 
-  Board board =new Board(10,10);
+    int width = Integer.parseInt(args[0]);
+    int height = Integer.parseInt(args[1]);
+    int nbplayer = Integer.parseInt(args[2]);
+
+    if(width <10 || height<10){
+      System.out.println("Width and height must be greater than 10.");
+      return;
+    }
+
+    if (nbplayer < 2 ) {
+      System.out.println("Number of players must be between 2 .");
+      return;
+    }
+
+    System.out.println("--------------------");
+    System.out.println("------ARES RANDOM---");
+    System.out.println("--------------------");
+
+
+    Board board = new Board(width, height);
+    
+    
+    List<PlayerAres> players= new ArrayList<>(); 
+    PlayerAres winner= null; 
+
+    //création des différents joueurs
+    for (int i=0; i<nbplayer; i++){
+        String name= "j"+(i+1); 
+        players.add(new PlayerAres(name)); 
+    }
+
+
+    //Placement initail des armees 
+    System.out.println("Placement initial des armées (mode aléatoire) :");
+
+    for (int i=0 ;i <nbplayer ;i++){
+      players.get(i).placeInitialArmyRandom(board);
+
+    }
+    for (int i = players.size() - 1; i >= 0; i--) {
+      players.get(i).placeInitialArmyRandom(board);
+    }
+
+
+    //initialisation des actions
+    for (PlayerAres p : players) {
+      p.createActions(board, 1);
+    }
+
+    while (winner == null) {
+      for (PlayerAres p : players) {
+        System.out.println(p.getName() + " (" + p.getResources() + ") tour !");
+        p.collectRessources();
+        board.display();
+        p.act(board, 1);
+        if (p.isObjectiveAchieved(board)) {
+          winner = p;
+          break;
+          }
+      }
+  }
+    
+    
+  }
+
   
 
 
