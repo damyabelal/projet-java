@@ -34,23 +34,36 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
      * asks the player what type of  ressource he wants to exchange
      * @return the ressource
      */
-    public Ressource askExchangeRessources()  {
-        List<Ressource> ressources= new ArrayList<>();
-        for (Ressource r : Arrays.asList(Ressource.values())){
-            if (player.getRessourceAmount(r)>2){
-                ressources.add(r); 
+    public Ressource askExchangeRessources() {
+        List<Ressource> ressources = new ArrayList<>();
+        for (Ressource r : Ressource.values()) {
+            if (player.getRessourceAmount(r) > 2) {
+                ressources.add(r);
             }
         }
-        return lc.choose("What ressource do you want to exchange?", ressources);
+        if (ressources.isEmpty()) {
+            throw new IllegalArgumentException("No ressources available to exchange.");
+        }
+        Ressource chosen = lc.choose("What ressource do you want to exchange?", ressources);
+        while (chosen == null) {
+            chosen = lc.choose("What ressource do you want to exchange?", ressources);
+        }
+        return chosen;
     }
-
+    
     /**
      * asks the player which ressource he wants to receive in exchange
      * @return the ressource
      */
-    public Ressource askReceiveRessources(){
-        return lc.choose("What ressource do you want in exchange?", Arrays.asList(Ressource.values())); 
+    public Ressource askReceiveRessources() {
+        List<Ressource> all = Arrays.asList(Ressource.values());
+        Ressource chosen = lc.choose("What ressource do you want in exchange?", all);
+        while (chosen == null) {
+            chosen = lc.choose("What ressource do you want in exchange?", all);
+        }
+        return chosen;
     }
+    
 
 
     /**
