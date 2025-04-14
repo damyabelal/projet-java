@@ -35,23 +35,35 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
      * asks the player which ressource he wants to exchange
      * @return the ressource the player wants to exchange
      */
-    public Ressource askExchangeRessources()  {
-        List<Ressource> ressources= new ArrayList<>();
-        for (Ressource r : Arrays.asList(Ressource.values())){
-            if (player.getRessourceAmount(r)>1){
-                ressources.add(r); 
+    public Ressource askExchangeRessources() {
+        List<Ressource> ressources = new ArrayList<>();
+        for (Ressource r : Ressource.values()) {
+            if (player.getRessourceAmount(r) > 1) {
+                ressources.add(r);
             }
         }
-        return lc.choose("What ressources do you want to exhange?",ressources);
+        Ressource chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
+        while (chosenRessource == null) {
+            System.out.println("Invalid choice. Please choose a valid resource.");
+            chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
+        }
+        return chosenRessource;
     }
+    
 
     /**
      * asks the player which ressource he wants to receive in exchange
      * @return the ressource the player wants to receive in exchange
      */
-    public Ressource askReceiveRessources(){
-        return lc.choose("What ressource do you want in exchange?", Arrays.asList(Ressource.values())); 
+    public Ressource askReceiveRessources() {
+        Ressource chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
+        while (chosen == null) {
+            System.out.println("Invalid choice. Please choose a valid resource.");
+            chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
+        }
+        return chosen;
     }
+    
 
 
     /**
