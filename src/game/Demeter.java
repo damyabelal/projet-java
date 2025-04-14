@@ -45,6 +45,23 @@ public class Demeter {
             players.add(new PlayerDemeter(name)); 
         }
 
+        //Placement initial des fermes
+        // premier tour : ordre croissant
+        System.out.println("Placement initial des fermes: ");
+        for (int i=0 ;i<players.size();i++){
+            System.out.println(players.get(i).getName()+"placez votre ferme initiale: ");
+            players.get(i).placeInitialFarm(board);
+            board.display();
+        }
+
+        // deuxieme tour : ordre decroissant
+        System.out.println("Placement initial des fermes: ");
+        for (int i=players.size()-1 ;i>=0;i--){
+            System.out.println(players.get(i).getName()+"placez votre ferme initiale: ");
+            players.get(i).placeInitialFarm(board);
+            board.display();
+        }
+
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
             p.createActions(board, 0);

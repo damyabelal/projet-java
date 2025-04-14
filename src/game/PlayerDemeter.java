@@ -200,15 +200,45 @@ public class PlayerDemeter extends Player{
     private List<Action<PlayerDemeter>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Farm> lcFarm){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
 
-        actionsDemeter.add(new BuildPort<PlayerDemeter>(this, board, lcEarth));
-        actionsDemeter.add(new ExchangeRessources<PlayerDemeter>(this,lcRessource));
+        BuildPort<PlayerDemeter> buildPort = new BuildPort<>(this, board, lcEarth);
+        if (buildPort.hasEnoughRessources()) {
+            actionsDemeter.add(buildPort);
+        }
+
+        ExchangeRessources<PlayerDemeter> exchange = new ExchangeRessources<>(this, lcRessource);
+        if (exchange.hasEnoughRessources()) {
+            actionsDemeter.add(exchange);
+        }
+
 
         // add possibles actions for player Demeter
-        actionsDemeter.add(new UpgradeFarm(this, lcFarm));
+        UpgradeFarm upgradeFarm = new UpgradeFarm(this, lcFarm);
+        if (!this.getFarms().isEmpty() && upgradeFarm.hasEnoughRessources()) {
+            actionsDemeter.add(upgradeFarm);
+        }
+
+
+        
+
         actionsDemeter.add(new ExchangeRessourcesPort(this, lcRessource));
         actionsDemeter.add(new BuildFarm(board, this, lcEarth));
         actionsDemeter.add(new BuyThief(this));
         actionsDemeter.add(new PlayThief(null, null));
         return actionsDemeter;
+    }
+
+    /**
+     * 
+     * @param board
+     */
+    public void placeInitialFarm(Board board){
+        List<Earth> buildableTiles = board.buildableTiles();
+        ListChooser<Earth> chooser = new InteractiveListChooser<>();
+        Earth chosenTile = chooser.choose("Choose a tile to place your initial farm", buildableTiles);
+
+        Farm farm = new Farm(chosenTile, this);
+        chosenTile.setBuilding(farm);
+        this.addFarm(farm);
+        this.playerTiles.add(chosenTile);
     }
 }

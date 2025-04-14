@@ -43,6 +43,18 @@ public class DemeterRandom {
             players.add(new PlayerDemeter(name)); 
         }
 
+        System.out.println("Placement initial des fermes (mode aleatoire ) : ");
+        
+
+        //Tour 1 : ordre normal
+        for(int i=0 ;i<players.size();i++){
+            players.get(i).placeInitialFarmRandom(board);
+        }
+
+        //Tour 2 : ordre inverse
+        for(int i=players.size()-1 ;i>=0;i--){
+            players.get(i).placeInitialFarmRandom(board);
+        }
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
             p.createActions(board, 1);
