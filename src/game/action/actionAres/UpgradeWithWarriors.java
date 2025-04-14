@@ -47,12 +47,22 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    * @return the army the player wants to upgrade
    */
   public Army askArmy() throws InvalidChoiceException {
-    List<Army> armies = (this.player).getArmies();
+    List<Army> armies = this.player.getArmies();
+    
     if (armies.isEmpty()) {
-      throw new IllegalArgumentException("No armies available to upgrade");
+        throw new InvalidChoiceException("No armies available to upgrade");
     }
-    return this.lc.choose("Which army do you want to upgrade?", armies);
-  }
+
+    Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
+
+    while (chosenArmy == null) {
+        System.out.println("Invalid choice. Please choose a valid army.");
+        chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
+    }
+
+    return chosenArmy;
+}
+
 
   /**
    * asks the player how many warriors ther want to add
