@@ -1,6 +1,8 @@
 package game.action;
 
 
+import java.util.List;
+
 import game.Board;
 import game.Player;
 import game.listchooser.ListChooser;
@@ -36,8 +38,14 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
 
 
     public Earth askCoordinate() throws InvalidChoiceException {
-        return lc.choose("Where do you want to build a Port?",this.board.coastalTiles());
+    List<Earth> options = this.board.coastalTiles();
+    Earth chosen = lc.choose("Where do you want to build a Port?", options);
+    while (chosen == null) {
+        chosen = lc.choose("Where do you want to build a Port?", options);
     }
+    return chosen;
+}
+
 
     /**
      * returns true if the port can be placed on the given position , false otherwise
