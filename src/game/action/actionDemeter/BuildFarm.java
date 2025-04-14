@@ -1,5 +1,7 @@
 package game.action.actionDemeter;
 
+import java.util.List;
+
 import game.*;
 import game.action.Action;
 import game.action.ActionManager;
@@ -36,8 +38,17 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
     }
 
     public Earth askCoordinate() throws InvalidChoiceException {
-        return lc.choose("Where do you want to build a Farm?", this.board.buildableTiles());
+    List<Earth> buildableTiles = this.board.buildableTiles();
+    if (buildableTiles.isEmpty()) {
+        throw new InvalidChoiceException("there are no buildable tiles available");
     }
+    Earth chosenTile = lc.choose("Where do you want to build a Farm?", buildableTiles);
+    if (chosenTile == null) {
+        throw new InvalidChoiceException("No valid choice was made");
+    }
+    return chosenTile;
+}
+
 
     /**
      * builds a farm on a tile for the given player
