@@ -241,4 +241,22 @@ public class PlayerDemeter extends Player{
         this.addFarm(farm);
         this.playerTiles.add(chosenTile);
     }
+
+
+
+
+    /**
+     * 
+     * @param board
+     */
+    public void placeInitialFarmRandom(Board board){
+        List<Earth> buildableTiles = board.buildableTiles();
+        ListChooser<Earth> chooser = new RandomListChooser<>();
+        Earth chosenTile = chooser.choose("Choose a tile to place your initial farm", buildableTiles);
+
+        Farm farm = new Farm(chosenTile, this);
+        chosenTile.setBuilding(farm);
+        this.addFarm(farm);
+        this.playerTiles.add(chosenTile);
+    }
 }
