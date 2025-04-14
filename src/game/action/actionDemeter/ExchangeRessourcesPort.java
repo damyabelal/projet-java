@@ -43,10 +43,6 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
             }
         }
         Ressource chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
-        while (chosenRessource == null) {
-            System.out.println("Invalid choice. Please choose a valid resource.");
-            chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
-        }
         return chosenRessource;
     }
     
@@ -57,10 +53,6 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
      */
     public Ressource askReceiveRessources() {
         Ressource chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
-        while (chosen == null) {
-            System.out.println("Invalid choice. Please choose a valid resource.");
-            chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
-        }
         return chosen;
     }
     
