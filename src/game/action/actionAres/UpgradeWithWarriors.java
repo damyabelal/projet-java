@@ -67,7 +67,7 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
     }
     Integer add = lnumb.choose("How many warriors do you want to add?", options);
     if (add == null) {
-      throw new IllegalStateException("No warrior count was chosen");
+      add = 0;
     }
     return add;
   }
