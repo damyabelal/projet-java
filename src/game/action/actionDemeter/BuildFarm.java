@@ -38,17 +38,22 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
     }
 
     public Earth askCoordinate() throws InvalidChoiceException {
-    List<Earth> buildableTiles = this.board.buildableTiles();
-    if (buildableTiles.isEmpty()) {
-        throw new InvalidChoiceException("there are no buildable tiles available");
+        List<Earth> buildableTiles = this.board.buildableTiles();
+        if (buildableTiles.isEmpty()) {
+            throw new InvalidChoiceException("There are no buildable tiles available");
+        }
+        if (buildableTiles.size() == 1) {
+            return buildableTiles.get(0);
+        }
+        Earth chosenTile = lc.choose("Where do you want to build a Farm ?", buildableTiles);
+    
+        while (chosenTile == null) {
+            System.out.println("Invalid choice. Please choose a valid tile");
+            chosenTile = lc.choose("Where do you want to build a Farm ?", buildableTiles);
+        }
+        return chosenTile;
     }
-    Earth chosenTile = lc.choose("Where do you want to build a Farm?", buildableTiles);
-    if (chosenTile == null) {
-        throw new InvalidChoiceException("No valid choice was made");
-    }
-    return chosenTile;
-}
-
+    
 
     /**
      * builds a farm on a tile for the given player
