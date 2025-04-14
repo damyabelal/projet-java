@@ -43,7 +43,15 @@ public class BuildArmy extends ActionManager <PlayerAres>implements Action<Playe
 
     
     public Earth askCoordinate() throws InvalidChoiceException {
-        return lc.choose("Where do you want to build an Army?", this.board.buildableTiles());
+        List<Earth> buildableTiles = this.board.buildableTiles();
+        if (buildableTiles.isEmpty()) {
+            throw new InvalidChoiceException("there are no buildable tiles available");
+        }
+        Earth chosenTile = lc.choose("Where do you want to build a Army?", buildableTiles);
+        if (chosenTile == null) {
+            throw new InvalidChoiceException("No valid choice was made");
+        }
+        return chosenTile;
     }
 
 
