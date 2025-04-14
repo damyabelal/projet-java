@@ -347,7 +347,7 @@ public class PlayerAres extends Player {
         return aresActions;
     }
 
-    public void placeInitialArmy(Board board){
+    public void placeInitialArmy(Board board) throws CantBuildException{
         List<Earth> buildable = board.buildableTiles();
         ListChooser<Earth> chooser = new InteractiveListChooser<>();
         Earth tile = chooser.choose("choisis une tuile ", buildable);

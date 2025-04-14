@@ -4,6 +4,7 @@ import game.*;
 import game.action.actionAres.UpgradeWithRessources;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
+import game.tuile.Forest;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.util.CantBuildException;
@@ -23,12 +24,11 @@ public class UpgradeWithRessourcesTest {
 
   @BeforeEach
   void setUp() throws CantBuildException {
-
     player = new PlayerAres("Player1");
     player.addRessource(Ressource.WOOD, 2);
     player.addRessource(Ressource.ORE, 3);
 
-    tuile = new Earth(null, null);
+    tuile = new Forest();
     army = new Army(tuile, 5, player);
     tuile.setBuilding(army);
     player.addArmy(army);
@@ -50,4 +50,6 @@ public class UpgradeWithRessourcesTest {
     player.removeRessource(Ressource.ORE, 3);
     assertThrows(NoMoreRessourcesException.class, () -> action.act(player));
   }
+
+  
 }

@@ -62,10 +62,10 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    */
   public int askNumberOfWarriors() {
     List<Integer> options = new ArrayList<>();
-    for (int i = 1; i <= ((PlayerAres) this.player).getWarriors(); i++) {
+    for (int i = 1; i <= (this.player).getWarriors(); i++) {
       options.add(i);
     }
-    return (int) this.lnumb.choose("How many warriors do you want to add?", options);
+    return this.lnumb.choose("How many warriors do you want to add?", options);
   }
 
   @Override
@@ -87,20 +87,22 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
     if (player.getWarriors() < add) {
       throw new CantBuildException("To upgrade an army to a camp, you must have enough warriors in stock");
     }
-    chosenArmy.addWarriors(add);
     player.removeWarriors(add);
 
     this.tuile = chosenArmy.getTuile();
 
+    // destroy army
     this.tuile.removeBuilding();
     player.removeArmy(chosenArmy);
 
     Camp camp = chosenArmy.upGradeToCampWithWarriors(player);
+    camp.addWarriors(add);
 
+    // build camp
     this.tuile.setBuilding(camp);
     player.addCamp(camp);
 
-    System.out.println("The army evolved into a camp (" + chosenArmy.getNbWarriors() + " warriors)");
+    System.out.println("The army evolved into a camp (" + camp.getNbWarriors() + " warriors)");
 
   }
 }

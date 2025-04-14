@@ -42,7 +42,7 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
    * @return the army the player wants to upgrade
    */
   public Army askArmy() throws InvalidChoiceException{
-    List<Army> armies = ((PlayerAres) this.player).getArmies();
+    List<Army> armies = (this.player).getArmies();
     if (armies.isEmpty()) {
       throw new InvalidChoiceException("No armies available to upgrade");
     }
