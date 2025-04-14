@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.listchooser.util.Input;
+import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 
 public class Ares {
     
-    public static void main(String[] args) throws IOException, InvalidChoiceException{
+    public static void main(String[] args) throws IOException, InvalidChoiceException, CantBuildException{
         if (args.length < 3) {
             System.out.println("You have to give two positive settings and the number of player.");
             return;

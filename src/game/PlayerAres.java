@@ -347,13 +347,6 @@ public class PlayerAres extends Player {
         return aresActions;
     }
 
-
-
-    /**
-     * places the initial army of the player on a tile of the board
-     * @param board
-     * @throws CantBuildException
-     */
     public void placeInitialArmy(Board board) throws CantBuildException{
         List<Earth> buildable = board.buildableTiles();
         ListChooser<Earth> chooser = new InteractiveListChooser<>();
