@@ -303,6 +303,7 @@ public class PlayerAres extends Player {
             ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt,
             ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer, ListChooser<Integer> lcNumber) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
+        
 
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
         if (buildPort.hasEnoughRessources()) {
@@ -346,7 +347,7 @@ public class PlayerAres extends Player {
 
         ;
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
-        aresActions.add(new AttackNeighboor(this, null, lcPlayer));
+        aresActions.add(new AttackNeighboor(this, null, lcPlayer,lcEarth,board));
 
         return aresActions;
     }

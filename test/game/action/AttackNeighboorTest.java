@@ -1,5 +1,6 @@
 package game.action;
 
+import game.Board;
 import game.PlayerAres;
 import game.action.actionAres.AttackNeighboor;
 import game.listchooser.RandomListChooser;
@@ -32,8 +33,9 @@ public class AttackNeighboorTest {
         PlayerAres player = new PlayerAres("Ares");
         List<PlayerAres> enemies = new ArrayList<>();
         enemies.add(new PlayerAres("Ares2"));
+        Board board = new Board(5,5);
 
-        AttackNeighboor attack = new AttackNeighboor(player, enemies, new RandomListChooser<>());
+        AttackNeighboor attack = new AttackNeighboor(player, enemies, new RandomListChooser<>(),new RandomListChooser<>(),board);
 
         // Cas 1 :
         player.removeWarriors(player.getWarriors() - 2); // reste 2
@@ -55,7 +57,7 @@ public class AttackNeighboorTest {
 
     @Test
     void testDicesResult() {
-        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>());
+        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>(),new RandomListChooser<>(),new Board(5,5));
 
         int numberOfDices = 10;
         int result = action.dicesResult(numberOfDices);
@@ -66,7 +68,7 @@ public class AttackNeighboorTest {
 
     @Test
     void testDicesResulZero() {
-        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>());
+        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>(),new RandomListChooser<>(),new Board(5,5));  
     
         int result = action.dicesResult(0);
     
