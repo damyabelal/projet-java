@@ -84,7 +84,7 @@ public class BuildArmyTest {
     @Test
     void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException {
 
-        BuildArmy actionBuild = new BuildArmy(board, player, new RandomListChooser<>());
+        BuildArmy actionBuild = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
         board.islands = board.findIslands();
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.SHEEP, 1);
@@ -136,14 +136,14 @@ public class BuildArmyTest {
 
         board.islands = board.findIslands();
 
-        BuildArmy buildArmy = new BuildArmy(board, player, new RandomListChooser<>());
+        BuildArmy buildArmy = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
 
         assertTrue(buildArmy.canBuildArmy(earth, player));
     }
 
     @Test
     void testNoMoreRessourcesException() throws Exception {
-        BuildArmy action = new BuildArmy(board, player, new RandomListChooser<>());
+        BuildArmy action = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
         // vider le stock de guerriers
         player.removeWarriors(player.getWarriors());
 
