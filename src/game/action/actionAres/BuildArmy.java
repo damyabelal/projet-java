@@ -110,7 +110,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         Position choosenPosition = askCoordinate().getPosition();
         Earth tile = (Earth) this.board.getTile(choosenPosition);
 
-        
+        Integer warriors = askNumberWarriors();
 
         if (player.getWarriors() < 1) {
             throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
@@ -125,14 +125,13 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         }
 
         this.removeRessources();
-        // 1 par défaut, à faire évoluer plus tard
-        Army army = new Army((Earth) tile, 1, player);
+    
+        Army army = new Army((Earth) tile, warriors, player);
 
         player.addArmy(army);
         tile.setBuilding(army);
 
-        // plein de 1 à changer plus tard ici aussi
-        player.removeWarriors(1);
+        player.removeWarriors(warriors);
 
         System.out.println(player.getName() + ": " + player.getResources() + " build a army with 1 warrior on position "
                 + choosenPosition);
