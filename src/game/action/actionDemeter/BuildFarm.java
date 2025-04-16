@@ -47,9 +47,8 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         }
         Earth chosenTile = lc.choose("Where do you want to build a Farm ?", buildableTiles);
     
-        while (chosenTile == null) {
-            System.out.println("Invalid choice. Please choose a valid tile");
-            chosenTile = lc.choose("Where do you want to build a Farm ?", buildableTiles);
+        if (chosenTile == null) {
+            System.out.println("Action cancelled. No farm was selected");
         }
         return chosenTile;
     }

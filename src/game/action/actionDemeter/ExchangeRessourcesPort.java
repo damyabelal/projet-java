@@ -21,15 +21,12 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
         this.lc = lc; 
     }
 
-
     /**
     * @return the description of the action
     */
     public String toString(){
         return "Exchange ressources by port"; 
     }
-
-
 
      /**
      * asks the player which ressource he wants to exchange
@@ -43,6 +40,9 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
             }
         }
         Ressource chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
+        if(chosenRessource == null){
+            System.out.println("Action cancelled. No ressource to exchange was selected");
+        }
         return chosenRessource;
     }
     
@@ -53,10 +53,11 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
      */
     public Ressource askReceiveRessources() {
         Ressource chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
+        if (chosen == null){
+            System.out.println("Action cancelled. No ressource to receive was selected");
+        }
         return chosen;
     }
-    
-
 
     /**
      * First, asks the player which ressource he wants to exchange, then ask him which one he
@@ -66,9 +67,7 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
     public void act(PlayerDemeter player) throws NoMoreRessourcesException , CantBuildException{
         Ressource toExchange= askExchangeRessources();
         Ressource toReceive= askReceiveRessources(); 
-        
-        
-
+    
         if (toExchange==toReceive){
             throw new  IllegalArgumentException("2 ressources being exchanged must be different");
         }
@@ -77,7 +76,6 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
             throw new CantBuildException("You don't have a port to exchange ressources"); 
         }
         
-
         if (player.getRessourceAmount(toExchange)<2){
            throw new NoMoreRessourcesException("Not enough Ressources to be able to exchange.");
         }

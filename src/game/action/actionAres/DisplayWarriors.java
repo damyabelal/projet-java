@@ -9,6 +9,7 @@ import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.util.NoMoreRessourcesException;
+import game.util.InvalidChoiceException;
 
 public class DisplayWarriors extends ActionManager<PlayerAres> implements Action<PlayerAres> {
 
@@ -39,17 +40,19 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
      * @param player the player who performs the action
      * @return the number of warriors to add, or -1 if invalid
      */
-    private int askWarrior(PlayerAres player) {
-        int add = lcNumber.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
-        if (add > player.getWarriors() ||add <= 0) {
-            System.out.println("Invalid number of warriors");
+    private int askWarrior(PlayerAres player){
+        Integer add = lcNumber.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
+        if (add == null) {
+           System.out.println("Action cancelled :  No enemies to attack");
+          }
+        if (add > player.getWarriors() || add <= 0) {
             return 0; 
         }
         return add;
     }
 
     @Override
-    public void act(PlayerAres player) throws NoMoreRessourcesException {
+    public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
         // ask if the player wants to add warriors to an army or a camp
         String choice = lcString.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
 

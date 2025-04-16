@@ -55,9 +55,8 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
 
     Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
 
-    while (chosenArmy == null) {
-        System.out.println("Invalid choice. Please choose a valid army.");
-        chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
+    if (chosenArmy == null) {
+        System.out.println("Action cancelled. No army was selected");
     }
 
     return chosenArmy;

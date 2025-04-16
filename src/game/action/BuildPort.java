@@ -39,9 +39,12 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
 
     public Earth askCoordinate() throws InvalidChoiceException {
     List<Earth> options = this.board.coastalTiles();
+    if (options.isEmpty()){
+        throw new InvalidChoiceException("No tiles to build a port");
+    }
     Earth chosen = lc.choose("Where do you want to build a Port?", options);
-    while (chosen == null) {
-        chosen = lc.choose("Where do you want to build a Port?", options);
+    if(chosen == null) {
+        System.out.println("Action cancelled. No port was selected");
     }
     return chosen;
 }

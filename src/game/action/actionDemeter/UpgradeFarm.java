@@ -37,12 +37,11 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
             throw new IllegalArgumentException("No farms available to upgrade.");
         }
         Farm chosen = lc.choose("Which farm do you want to upgrade?", farms);
-        while (chosen == null) {
-            chosen = lc.choose("Which farm do you want to upgrade?", farms);
+        if (chosen == null) {
+           System.out.println("Action cancelled. No farm to upgrade was selected");
         }
         return chosen;
     }
-    
 
     @Override
     public void act(PlayerDemeter player) throws NoMoreRessourcesException {
@@ -51,11 +50,6 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         if (!this.hasEnoughRessources()) {
             throw new NoMoreRessourcesException("Not enough resources to upgrade the farm \n cost: "+this.cost);
         }
-
-       
-        // on detruit la ferme associé a sa tuile pour la remplacer par la suite par une exploitation vu qu'on fait un upgrade sur la meme tuile
-       
-        
         
         Exploitation exploitation = chosenFarm.upGradeToExploitation(player);
         if (exploitation == null){

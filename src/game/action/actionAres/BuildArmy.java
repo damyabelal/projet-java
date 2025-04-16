@@ -49,7 +49,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         }
         Earth chosenTile = lc.choose("Where do you want to build a Army?", buildableTiles);
         if (chosenTile == null) {
-            throw new InvalidChoiceException("Action cancelled : No tile selected");
+            System.out.println("Action cancelled : No tile selected");
         }
         return chosenTile;
     }
@@ -61,7 +61,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         }
         Integer chosen = lcNumber.choose("How many warriors do you want to assign to the army?", options);
         if (chosen == null) {
-            throw new InvalidChoiceException("Action cancelled: No number of warriors selected");
+            System.out.println("Action cancelled: No number of warriors selected");
         }
         if (this.player.getWarriors() < chosen) {
             throw new NoMoreRessourcesException("Player has not enough warriors to deploy in the new army");

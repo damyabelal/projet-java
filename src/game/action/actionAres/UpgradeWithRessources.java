@@ -25,10 +25,7 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
     this.cost.put(Ressource.WOOD, 2);
     this.cost.put(Ressource.ORE, 3);
     this.lc = lc;
-
   }
-
-
     /**
     * @return the description of the action
     */
@@ -43,18 +40,14 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
    */
   public Army askArmy() throws InvalidChoiceException {
     List<Army> armies = this.player.getArmies();
-    
     if (armies.isEmpty()) {
         throw new InvalidChoiceException("No armies available to upgrade");
     }
-
     Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
-
-    while (chosenArmy == null) {
-        System.out.println("Invalid choice. Please choose a valid army.");
-        chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
+    if (chosenArmy == null) {
+        System.out.println("Action cancelled. No army was selected");
+  
     }
-
     return chosenArmy;
 }
 
@@ -62,10 +55,7 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
   @Override
   public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, InvalidChoiceException {
     Army chosenArmy = askArmy();
-    // checks if the player has an army to upgrade
-    if (chosenArmy == null) {
-      throw new InvalidChoiceException("No army selected");
-    }
+   
     // checks if the player has enough ressources
 
     if (!this.hasEnoughRessources()) {
