@@ -8,6 +8,7 @@ import game.Player;
 import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 import game.util.NoMoreRessourcesException;
+import game.util.InvalidChoiceException;
 
 public class ExchangeRessources <T extends Player> extends ActionManager<T> implements Action<T> {
 
@@ -34,7 +35,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
      * asks the player what type of  ressource he wants to exchange
      * @return the ressource
      */
-    public Ressource askExchangeRessources() {
+    public Ressource askExchangeRessources() throws InvalidChoiceException {
         List<Ressource> ressources = new ArrayList<>();
         for (Ressource r : Ressource.values()) {
             if (player.getRessourceAmount(r) > 2) {
@@ -45,8 +46,8 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
             throw new IllegalArgumentException("No ressources available to exchange.");
         }
         Ressource chosen = lc.choose("What ressource do you want to exchange?", ressources);
-        while (chosen == null) {
-            chosen = lc.choose("What ressource do you want to exchange?", ressources);
+        if (chosen == null) {
+            throw new InvalidChoiceException("No ressource was selected");
         }
         return chosen;
     }
@@ -69,9 +70,10 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
     /**
      * first, asks the player which ressource he wants to exchange, then asks  which one he
      * wants te receive in exchange. If all the conditions are met, the exchange takes place.  
+     * @throws InvalidChoiceException 
      */
     @Override
-    public void act(T player) throws NoMoreRessourcesException {
+    public void act(T player) throws NoMoreRessourcesException, InvalidChoiceException {
         Ressource toExchange= askExchangeRessources();
         Ressource toReceive= askReceiveRessources();
 

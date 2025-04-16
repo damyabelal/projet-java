@@ -45,7 +45,7 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
     }
     Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
     if (chosenArmy == null) {
-        System.out.println("Action cancelled. No army was selected");
+      throw new InvalidChoiceException("Action cancelled. No army was selected");
   
     }
     return chosenArmy;

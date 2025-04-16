@@ -56,7 +56,7 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
     Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
 
     if (chosenArmy == null) {
-        System.out.println("Action cancelled. No army was selected");
+      throw new InvalidChoiceException("Action cancelled. No army was selected");
     }
 
     return chosenArmy;
@@ -68,15 +68,16 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    * 
    * @param max the maximum number of warriors the player can add
    * @return the number of warriors to add
+   * @throws InvalidChoiceException 
    */
-  public int askNumberOfWarriors() {
+  public int askNumberOfWarriors() throws InvalidChoiceException {
     List<Integer> options = new ArrayList<>();
     for (int i = 1; i <= (this.player).getWarriors(); i++) {
       options.add(i);
     }
     Integer add = lnumb.choose("How many warriors do you want to add?", options);
     if (add == null) {
-      add = 0;
+      throw new InvalidChoiceException("Action cancelled. No warriors selected to upgrade");
     }
     return add;
   }
