@@ -73,6 +73,7 @@ public class Demeter {
                 p.collectRessources();
                 board.display();
                 //on propose au joueur des actions
+                p.createActions(board,0); // on propose les actions possibles 
                 p.act(board, 0);
                 //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){

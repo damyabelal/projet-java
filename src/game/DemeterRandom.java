@@ -66,6 +66,7 @@ public class DemeterRandom {
                 p.collectRessources();
                 board.display();
                 //on propose au joueur des actions
+                p.createActions(board, 1);
                 p.act(board, 1);
                 //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){

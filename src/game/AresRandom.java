@@ -71,6 +71,8 @@ public class AresRandom{
         System.out.println(p.getName() + " (" + p.getResources() + ") tour !");
         p.collectRessources();
         board.display();
+
+        p.createActions(board, 1);
         p.act(board, 1);
         if (p.isObjectiveAchieved(board)) {
           winner = p;

@@ -1,4 +1,4 @@
-public class CantUpgradeException extends exception{
+public class CantUpgradeException extends Exception {
 
   public CantUpgradeException(){
     super("An error occurred while upgrading.");
