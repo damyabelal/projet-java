@@ -59,7 +59,7 @@ public class Livrable3ares {
 
         // 1. Build an army with 1 warrior
         System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  veut construire une armee avec 1 guerrier");
-        BuildArmy buildArmyAction = new BuildArmy(board, ares, new RandomListChooser<>());
+        BuildArmy buildArmyAction = new BuildArmy(board, ares, new RandomListChooser<>(), new RandomListChooser<>());
 
         try {
             buildArmyAction.act(ares);
