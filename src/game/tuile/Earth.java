@@ -1,4 +1,6 @@
 package game.tuile;
+import game.Player;
+
 import game.tuile.building.*;
 
 
@@ -6,7 +8,10 @@ public class Earth extends Tuile {
 
     protected Ressource ressource;
     protected String symbol;
-    protected Building building; 
+    protected Building building;
+   
+
+
 
     /** 
      * initializes a new Earth tile with a given ressource and symbol
@@ -18,6 +23,9 @@ public class Earth extends Tuile {
         this.ressource = ressource;
         this.symbol = symbol;
         this.building = null; // genre au debut on a aucun batiment dessus
+        
+
+        
     }
 
     /** 
