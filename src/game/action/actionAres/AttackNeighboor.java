@@ -21,7 +21,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public PlayerAres  player ;
     public List<PlayerAres> enemies;
     public Earth tile;
-    public Board board;
+    
    
     
 
@@ -33,12 +33,12 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
          * @param enemies the list of all the neighboring enemies
          * @param tile the tile that the player wants to attack // on en a besoin car un joueur dans la plus part du temps a plusiers tuile et il faut savoir laquelle attaquer
          */ 
-        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies, ListChooser<PlayerAres> lc,ListChooser<Earth> lcEarth,Board board) {
+        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies, ListChooser<PlayerAres> lc,ListChooser<Earth> lcEarth) {
             super(player); 
             this.enemies= enemies;
             this.lc= lc; 
             this.lcEarth= lcEarth;
-            this.board = board;
+            
            
         }
 
