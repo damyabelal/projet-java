@@ -75,6 +75,7 @@ public class Ares {
                 System.out.println(p.getName()+" (" +p.getResources()+ ") turn!!"); 
                 p.collectRessources();
                 board.display();
+                p.createActions(board, 0);// changer la liste des actions a chaque tour
                 p.act(board, 0);
                 if( isWinner(p, board)){
                     winner= p; 
