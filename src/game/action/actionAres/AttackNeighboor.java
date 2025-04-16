@@ -65,6 +65,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         PlayerAres enemie = lc.choose("Who do you want to attack", this.enemies);
         if (enemie == null) {
           System.out.println("Action cancelled :  No enemies to attack");
+          throw new InvalidChoiceException("action cancelled !!!");
         }
     
          return enemie;
