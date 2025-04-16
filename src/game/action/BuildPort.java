@@ -44,7 +44,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
     }
     Earth chosen = lc.choose("Where do you want to build a Port?", options);
     if(chosen == null) {
-        System.out.println("Action cancelled. No port was selected");
+        throw new InvalidChoiceException("Action cancelled. No port was selected");
     }
     return chosen;
 }

@@ -9,6 +9,7 @@ import game.listchooser.ListChooser;
 import game.tuile.*;
 import game.tuile.building.*;
 import game.util.NoMoreRessourcesException;
+import game.util.InvalidChoiceException;
 
 public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter> {
 
@@ -31,20 +32,20 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
         return "Upgrade farm => cost: " + this.cost; 
     }
 
-    public Farm ask() {
+    public Farm ask() throws InvalidChoiceException {
         List<Farm> farms = ((PlayerDemeter) this.player).getFarms();
         if (farms.isEmpty()) {
             throw new IllegalArgumentException("No farms available to upgrade.");
         }
         Farm chosen = lc.choose("Which farm do you want to upgrade?", farms);
         if (chosen == null) {
-           System.out.println("Action cancelled. No farm to upgrade was selected");
+            throw new InvalidChoiceException("Action cancelled. No farm to upgrade was selected");
         }
         return chosen;
     }
 
     @Override
-    public void act(PlayerDemeter player) throws NoMoreRessourcesException {
+    public void act(PlayerDemeter player) throws NoMoreRessourcesException, InvalidChoiceException {
         Farm chosenFarm = ask();
         
         if (!this.hasEnoughRessources()) {

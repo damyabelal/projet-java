@@ -39,11 +39,12 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
      * 
      * @param player the player who performs the action
      * @return the number of warriors to add, or -1 if invalid
+     * @throws InvalidChoiceException 
      */
-    private int askWarrior(PlayerAres player){
+    private int askWarrior(PlayerAres player) throws InvalidChoiceException{
         Integer add = lcNumber.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
         if (add == null) {
-           System.out.println("Action cancelled :  No enemies to attack");
+            throw new InvalidChoiceException("Action cancelled :  No enemies to attack");
           }
         if (add > player.getWarriors() || add <= 0) {
             return 0; 
@@ -86,7 +87,7 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
             System.out.println(warriorsToAdd + " warriors have been added to the camp");
 
         } else {
-            System.out.println("Invalid choice please choose either 'army' or 'camp'");
+            throw new InvalidChoiceException("Invalid choice please choose either 'army' or 'camp'");
         }
     }
     

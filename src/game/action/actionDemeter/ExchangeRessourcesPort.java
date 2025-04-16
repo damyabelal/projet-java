@@ -11,6 +11,7 @@ import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 import game.util.CantBuildException;
 import game.util.NoMoreRessourcesException;
+import game.util.InvalidChoiceException;
 
 public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> implements Action<PlayerDemeter>{
 
@@ -32,7 +33,7 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
      * asks the player which ressource he wants to exchange
      * @return the ressource the player wants to exchange
      */
-    public Ressource askExchangeRessources() {
+    public Ressource askExchangeRessources() throws InvalidChoiceException{
         List<Ressource> ressources = new ArrayList<>();
         for (Ressource r : Ressource.values()) {
             if (player.getRessourceAmount(r) > 1) {
@@ -41,7 +42,7 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
         }
         Ressource chosenRessource = lc.choose("What resources do you want to exchange?", ressources);
         if(chosenRessource == null){
-            System.out.println("Action cancelled. No ressource to exchange was selected");
+            throw new InvalidChoiceException("Action cancelled. No ressource to exchange was selected");
         }
         return chosenRessource;
     }
@@ -63,8 +64,9 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
      * First, asks the player which ressource he wants to exchange, then ask him which one he
      * wants te receive in exhange. If all the conditions are met, the exchange takes place. 
      * The conditions are different from ExchangeRessources
+     * @throws InvalidChoiceException 
      */
-    public void act(PlayerDemeter player) throws NoMoreRessourcesException , CantBuildException{
+    public void act(PlayerDemeter player) throws NoMoreRessourcesException , CantBuildException, InvalidChoiceException{
         Ressource toExchange= askExchangeRessources();
         Ressource toReceive= askReceiveRessources(); 
     
