@@ -236,6 +236,7 @@ public class PlayerAres extends Player {
         ListChooser<String> lcString = null;
         ListChooser<Camp> lcCamp = null;
         ListChooser<PlayerAres> lcPlayer = null;
+        ListChooser<Integer> lcNumber = null;
 
         if (this.actionsAres.isEmpty()) {
             if (option == 0) {
@@ -246,6 +247,8 @@ public class PlayerAres extends Player {
                 lcString = new InteractiveListChooser<>();
                 lcCamp = new InteractiveListChooser<>();
                 lcPlayer = new InteractiveListChooser<>();
+                lcNumber = new InteractiveListChooser<>();
+
             } else {
                 lcEarth = new RandomListChooser<>();
                 lcArmy = new RandomListChooser<>();
@@ -254,8 +257,9 @@ public class PlayerAres extends Player {
                 lcString = new RandomListChooser<>();
                 lcCamp = new RandomListChooser<>();
                 lcPlayer = new RandomListChooser<>();
+                lcNumber = new RandomListChooser<>();
             }
-            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer);
+            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer, lcNumber);
         }
 
     }
@@ -297,7 +301,7 @@ public class PlayerAres extends Player {
      */
     private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth,
             ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt,
-            ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer) {
+            ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer, ListChooser<Integer> lcNumber) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
 
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
@@ -313,7 +317,7 @@ public class PlayerAres extends Player {
         // add possible actions for player Ares
 
         // Build Army
-        BuildArmy buildArmy = new BuildArmy(board, this, lcEarth);
+        BuildArmy buildArmy = new BuildArmy(board, this, lcEarth, lcNumber);
         if (buildArmy.hasEnoughRessources()) {
             aresActions.add(buildArmy);
         }
