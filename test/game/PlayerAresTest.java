@@ -83,6 +83,29 @@ public class PlayerAresTest {
         assertTrue(player.getTiles().contains(camp.getTuile()));
     }
 
+    
+    // tets si  givePlayersObjective() cree bien un objectif
+    @Test
+    void testGivePlayersObjectives(){
+        
+        player.givePlayersObjective();
+        assertNotNull(player.getObjective());
+    }
+
+    @Test
+    void testHasConqueredTilesObjective() throws Exception {
+        Board board = new Board(5, 5);
+        // On force un objectif "conquérir au moins 1 tuile"
+        player.setObjective( new AresGameObjectives(AresGameObjectives.ObjectiveType.CONQUER_TILES, 1));
+
+        // On ajoute une armée sur une tuile factice (null ici car on ne teste que la quantité)
+        Army army = new Army(null, 1, player);
+        player.addArmy(army);
+
+        // On vérifie que l’objectif est atteint
+        assertTrue(player.isObjectiveAchieved(board));
+    }
+
 
 
 

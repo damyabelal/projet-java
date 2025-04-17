@@ -1,10 +1,10 @@
 package game.action;
 
-import game.Board;
+
 import game.PlayerAres;
 import game.action.actionAres.AttackNeighboor;
 import game.listchooser.RandomListChooser;
-import game.tuile.Earth;
+
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 
@@ -57,7 +57,7 @@ public class AttackNeighboorTest {
         assertEquals(3, attack.howMuchDice(player));
     }
 
-    
+
 
     @Test
     void testDicesResult() {

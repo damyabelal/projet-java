@@ -70,6 +70,13 @@ public class PlayerAres extends Player {
     public int getWarriors() {
         return this.warriors;
     }
+    /**
+     * 
+     * @param objective
+     */
+    public void setObjective(AresGameObjectives objective) {
+        this.objective = objective;
+    }
 
     /**
      * returns the number of secret weapons owned by this player
