@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import java.util.List;
 
+
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.action.Action;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Ressource;
@@ -209,6 +212,8 @@ public class PlayerAresTest {
     }
 
 
+
+
     @Test
     void testCreateActions() throws Exception {
         Board board = new Board(5, 5);
@@ -229,7 +234,32 @@ public class PlayerAresTest {
         
         assertNotNull(player.getActionsAres());
         assertFalse(player.getActionsAres().isEmpty());
-   }
+    
+    
+    
+    }
+
+    @Test
+    void testCreateActionsWithoutRessources() throws Exception {
+        Board board = new Board(5, 5);
+
+        // Remplir le plateau de tuiles Earth valides
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                board.put(new Field(), new Position(i, j));
+            }
+        }
+
+        
+        player.createActions(board, 1);
+        List<Action<PlayerAres>> actions = player.getActionsAres();
+        assertEquals(3, actions.size()); 
+
+    }
+       
+
+
+
     
 
 

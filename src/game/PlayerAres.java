@@ -245,6 +245,7 @@ public class PlayerAres extends Player {
         ListChooser<PlayerAres> lcPlayer = null;
         ListChooser<Integer> lcNumber = null;
 
+        this.actionsAres.clear();
         if (this.actionsAres.isEmpty()) {
             if (option == 0) {
                 lcEarth = new InteractiveListChooser<>();
@@ -356,7 +357,7 @@ public class PlayerAres extends Player {
             aresActions.add(buyWarriors);
         }
 
-        ;
+        
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
         aresActions.add(new AttackNeighboor(this, null, lcPlayer,lcEarth));
 
