@@ -195,7 +195,7 @@ public class PlayerAres extends Player {
 
         int value = switch (chosenType) {
             case CONQUER_TILES -> 5 + random.nextInt(6);
-            case EVADE_ISLANDS -> 1;
+            case INVADE_ISLANDS -> 1;
             case DETAIN_WARRIORS -> 20 + random.nextInt(11);
         };
 
@@ -206,7 +206,7 @@ public class PlayerAres extends Player {
     public boolean isObjectiveAchieved(Board board) {
         return switch (this.objective.getType()) {
             case CONQUER_TILES -> this.hasConqueredTiles();
-            case EVADE_ISLANDS -> this.didEnvadeIsland(board);
+            case INVADE_ISLANDS -> this.didEnvadeIsland(board);
             case DETAIN_WARRIORS -> this.didDetainWarriors();
         };
     }
