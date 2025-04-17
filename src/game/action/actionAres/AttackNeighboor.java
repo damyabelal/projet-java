@@ -183,6 +183,6 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
             
         }
     
-    
+        
 }
 }

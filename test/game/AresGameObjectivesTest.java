@@ -30,7 +30,7 @@ public class AresGameObjectivesTest{
       AresGameObjectives objective3 = new AresGameObjectives(
         ObjectiveType.INVADE_ISLANDS, 10
     );
-    assertEquals(ObjectiveType.DETAIN_WARRIORS, objective3.getType());
+    assertEquals(ObjectiveType.INVADE_ISLANDS, objective3.getType());
 
 
 
