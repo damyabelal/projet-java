@@ -48,15 +48,38 @@ public class AresGameObjectivesTest{
      AresGameObjectives objective2 = new AresGameObjectives(
       ObjectiveType.INVADE_ISLANDS, 20
    );
-   assertEquals(20, objective.getValue());
+   assertEquals(20, objective2.getValue());
+
+
+  }
+
+   @Test
+   public void testToString() {
+       AresGameObjectives objective = new AresGameObjectives(
+          ObjectiveType.CONQUER_TILES, 20 );
+       assertEquals("Conquer 20 tiles", objective.toString());
 
 
 
- }
 
+    AresGameObjectives objective2 = new AresGameObjectives(
+       ObjectiveType.INVADE_ISLANDS, 15);
+    assertEquals("Invade 15 islands", objective2.toString());
 
-
-
-
-
+    AresGameObjectives objective3 = new AresGameObjectives(
+      ObjectiveType.DETAIN_WARRIORS, 7
+  );
+  assertEquals("Detain 7 warriors", objective3.toString());
 }
+
+
+  }
+   
+
+
+   
+ 
+
+
+
+
