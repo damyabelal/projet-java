@@ -3,7 +3,6 @@ package game.action.actionAres;
 import java.util.List;
 import java.util.Random;
 
-import game.Board;
 import game.PlayerAres;
 import game.action.Action;
 import game.action.ActionManager;

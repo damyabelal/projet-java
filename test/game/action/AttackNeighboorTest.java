@@ -4,6 +4,8 @@ import game.Board;
 import game.PlayerAres;
 import game.action.actionAres.AttackNeighboor;
 import game.listchooser.RandomListChooser;
+import game.tuile.Earth;
+import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +35,7 @@ public class AttackNeighboorTest {
         PlayerAres player = new PlayerAres("Ares");
         List<PlayerAres> enemies = new ArrayList<>();
         enemies.add(new PlayerAres("Ares2"));
-        Board board = new Board(5,5);
+        
 
         AttackNeighboor attack = new AttackNeighboor(player, enemies, new RandomListChooser<>(),new RandomListChooser<>());
 
@@ -55,6 +57,8 @@ public class AttackNeighboorTest {
         assertEquals(3, attack.howMuchDice(player));
     }
 
+    
+
     @Test
     void testDicesResult() {
         AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>(),new RandomListChooser<>());
@@ -66,6 +70,8 @@ public class AttackNeighboorTest {
         assertTrue(result >= 10 && result <= 60, "Le résultat devrait être entre 10 et 60");
     }
 
+
+
     @Test
     void testDicesResulZero() {
         AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new RandomListChooser<>(),new RandomListChooser<>());  
@@ -75,6 +81,24 @@ public class AttackNeighboorTest {
         // Aucun dé = somme 0
         assertEquals(0, result);
     }
+
+
+
+
+    
+    @Test
+    void testAskNeighborThrowsWhenNoEnemies() {
+        PlayerAres player = new PlayerAres("Attacker");
+        List<PlayerAres> enemies = new ArrayList<>(); // vide
+
+        AttackNeighboor action = new AttackNeighboor(player, enemies, new RandomListChooser<>(), new RandomListChooser<>());
+
+        assertThrows(InvalidChoiceException.class, () -> action.askNeighbor());
+    }
+
+    
+
+
 
     
 
