@@ -9,13 +9,8 @@ import game.AresGameObjectives.ObjectiveType;
 public class AresGameObjectivesTest{
 
 
- void setUp() {
-  AresGameObjectives conquerir =new AresGameObjectives(ObjectiveType.CONQUER_TILES, 0);
-  AresGameObjectives envahir =new AresGameObjectives(ObjectiveType.EVADE_ISLANDS, 0);
-  AresGameObjectives detenir =new AresGameObjectives(ObjectiveType.DETAIN_WARRIORS, 0);
-  
 
- }
+
 
  @Test
  public void  ObjectiveGetTypeTest(){
@@ -41,6 +36,26 @@ public class AresGameObjectivesTest{
 
 
  }
+
+ @Test
+  public void testGetValue() {
+     AresGameObjectives objective = new AresGameObjectives(
+        ObjectiveType.INVADE_ISLANDS, 5
+     );
+     assertEquals(5, objective.getValue());
+
+
+     AresGameObjectives objective2 = new AresGameObjectives(
+      ObjectiveType.INVADE_ISLANDS, 20
+   );
+   assertEquals(20, objective.getValue());
+
+
+
+ }
+
+
+
 
 
 
