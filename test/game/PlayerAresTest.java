@@ -95,16 +95,34 @@ public class PlayerAresTest {
     @Test
     void testHasConqueredTilesObjective() throws Exception {
         Board board = new Board(5, 5);
-        // On force un objectif "conquérir au moins 1 tuile"
+        // On force un objectif "conquerir au moins 1 tuile"
         player.setObjective( new AresGameObjectives(AresGameObjectives.ObjectiveType.CONQUER_TILES, 1));
 
-        // On ajoute une armée sur une tuile factice (null ici car on ne teste que la quantité)
+        // On ajoute une armee sur un etuile (null ici car on ne teste que la quantité)
         Army army = new Army(null, 1, player);
         player.addArmy(army);
 
-        // On vérifie que l’objectif est atteint
+        // On verifie que l’objectif est atteint
         assertTrue(player.isObjectiveAchieved(board));
     }
+
+
+
+   
+    @Test
+void testDidDetainWarriorsObjectiveAchieved() throws Exception {
+    Board board = new Board(5, 5);
+    // On fixe un objectif : détenir au moins 3 guerriers
+    player.setObjective(new AresGameObjectives(AresGameObjectives.ObjectiveType.DETAIN_WARRIORS, 3));
+
+    // On ajoute une armée contenant 3 guerriers
+    Army army = new Army(null, 3, player);
+    player.addArmy(army);
+
+    // On vérifie que l'objectif est bien atteint
+    assertTrue(player.isObjectiveAchieved(board));
+}
+
 
 
 
