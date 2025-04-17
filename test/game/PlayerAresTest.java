@@ -1,9 +1,14 @@
 package game;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashMap;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.tuile.Earth;
+import game.tuile.Field;
+import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.util.NoMoreRessourcesException;
@@ -110,18 +115,66 @@ public class PlayerAresTest {
 
    
     @Test
-void testDidDetainWarriorsObjectiveAchieved() throws Exception {
-    Board board = new Board(5, 5);
-    // On fixe un objectif : détenir au moins 3 guerriers
-    player.setObjective(new AresGameObjectives(AresGameObjectives.ObjectiveType.DETAIN_WARRIORS, 3));
+    void testDidDetainWarriorsObjectiveAchieved() throws Exception {
+        Board board = new Board(5, 5);
+        // On fixe un objectif : détenir au moins 3 guerriers
+        player.setObjective(new AresGameObjectives(AresGameObjectives.ObjectiveType.DETAIN_WARRIORS, 3));
 
-    // On ajoute une armée contenant 3 guerriers
-    Army army = new Army(null, 3, player);
-    player.addArmy(army);
+        // On ajoute une armée contenant 3 guerriers
+        Army army = new Army(null, 3, player);
+        player.addArmy(army);
 
-    // On vérifie que l'objectif est bien atteint
-    assertTrue(player.isObjectiveAchieved(board));
-}
+        // On vérifie que l'objectif est bien atteint
+        assertTrue(player.isObjectiveAchieved(board));
+    }
+
+
+
+    @Test
+    void testCollectRessources() throws Exception {
+        Earth e2 = new Field();
+        Earth e1 = new Field();
+
+
+        // Creation d'une armee et d'un camp fictifs sur des tuiles sans position
+        Army army = new Army(e1, 1, player);
+        Camp camp = new Camp(e2, 2, player);
+
+
+        // associater le batimlent a une tuile
+        e1.setBuilding(army);
+        e2.setBuilding(camp);
+
+
+        // Ajout au joueur
+        player.addArmy(army);
+        player.addCamp(camp);
+
+        // Calcul du total de ressources avant
+        int before = 0;
+        for (Integer val : player.getResources().values()) {
+            before += val;
+        }
+
+        // Appel de la methode
+        player.collectRessources();
+
+        // Calcul du total apres
+        int after = 0;
+        for (Integer val : player.getResources().values()) {
+            after += val;
+        }
+    
+
+        // On s’attend e +1 (armee) +2 (camp) = +3
+        assertEquals(3, after - before);
+    }
+
+
+
+
+
+
 
 
 
