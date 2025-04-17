@@ -2,6 +2,7 @@ package game;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.util.NoMoreRessourcesException;
+import game.util.Position;
 
 public class PlayerAresTest {
     
@@ -169,6 +171,46 @@ public class PlayerAresTest {
         // On s’attend e +1 (armee) +2 (camp) = +3
         assertEquals(3, after - before);
     }
+
+    @Test
+    void testDidEnvadeIsland() throws Exception {
+
+        Board board = new Board(3, 3);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                board.put(new game.tuile.Sea(), new Position(i, j));
+            }
+        }
+
+        // On place 4 tuiles Earth connectees , une ile
+        Earth e1 = new Field();
+        Earth e2 = new Field();
+        Earth e3 = new Field();
+        Earth e4 = new Field();
+
+        board.put(e1, new Position(1, 1));
+        board.put(e2, new Position(1, 2));
+        board.put(e3, new Position(2, 1));
+        board.put(e4, new Position(2, 2));
+
+        
+        player.getTiles().add(e1);
+        player.getTiles().add(e2);
+        player.getTiles().add(e3);
+        player.getTiles().add(e4);
+
+
+       
+        board.islands = board.findIslands();
+
+        // On lui donne l’objectif
+        player.setObjective(new AresGameObjectives(AresGameObjectives.ObjectiveType.INVADE_ISLANDS, 1));
+        assertTrue(player.isObjectiveAchieved(board));
+    }
+
+
+
+
 
 
 
