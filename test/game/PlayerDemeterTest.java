@@ -60,7 +60,7 @@ public class PlayerDemeterTest {
         buildfarm.act(player);
         buildfarm.act(player);
         buildfarm.act(player);
-        assertTrue( player.getFarms().size()==3);
+        assertEquals( player.getFarms().size(),3);
         // after building a farm  using one wood and one ore , the player's ressources should diminish
         assertTrue(player.getResources().get(Ressource.WOOD)==0);
         assertTrue(player.getResources().get(Ressource.ORE) == 0);

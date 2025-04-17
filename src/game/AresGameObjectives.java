@@ -1,6 +1,6 @@
 package game;
 
-/**
+/** 
 * represents the objective of a player in the Ares game
  * each objective has a type and a value to reach
  */
@@ -8,7 +8,7 @@ public class AresGameObjectives {
 
     public enum ObjectiveType {
         CONQUER_TILES,
-        EVADE_ISLANDS,
+        INVADE_ISLANDS,
         DETAIN_WARRIORS
     }
 
@@ -32,7 +32,7 @@ public class AresGameObjectives {
     public String toString() {
         return switch (type) {
             case CONQUER_TILES -> "Conquer " + value + " tiles";
-            case EVADE_ISLANDS -> "Invade " + value + " islands";
+            case INVADE_ISLANDS -> "Invade " + value + " islands";
             case DETAIN_WARRIORS -> "Detain " + value + " warriors";
         };
     }
