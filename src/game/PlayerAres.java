@@ -271,6 +271,10 @@ public class PlayerAres extends Player {
 
     }
 
+    public List<Action<PlayerAres>> getActionsAres() {
+        return this.actionsAres;
+    }
+
     /**
      * excute the action of the demeter player
      * 

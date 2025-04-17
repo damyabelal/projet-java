@@ -209,6 +209,31 @@ public class PlayerAresTest {
     }
 
 
+    @Test
+    void testCreateActions() throws Exception {
+        Board board = new Board(5, 5);
+
+        
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                board.put(new Field(), new Position(i, j));
+            }
+        }
+
+        
+        player.addRessource(Ressource.WOOD, 5);
+        player.addRessource(Ressource.SHEEP, 5);
+        player.addRessource(Ressource.WEALTH, 5);
+
+        player.createActions(board, 1);
+        
+        assertNotNull(player.getActionsAres());
+        assertFalse(player.getActionsAres().isEmpty());
+   }
+    
+
+
+
 
 
 
