@@ -15,6 +15,7 @@ import game.tuile.Field;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
+import game.util.CantBuildException;
 import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
@@ -257,6 +258,17 @@ public class PlayerAresTest {
 
     }
        
+
+    @Test
+    void placeInitialArmyTest() throws CantBuildException{
+       Board board=new Board(5, 5);
+       assertTrue( player.getArmies().isEmpty());
+       
+       player.placeInitialArmyRandom(board);
+
+       player.placeInitialArmy(board);
+
+    }
 
 
 
