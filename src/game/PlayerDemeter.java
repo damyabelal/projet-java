@@ -246,9 +246,6 @@ public class PlayerDemeter extends Player{
         this.playerTiles.add(chosenTile);
     }
 
-
-
-
     /**
      * places a farm for this player on a random tile
      *@param board

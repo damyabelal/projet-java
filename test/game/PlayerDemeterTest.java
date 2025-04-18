@@ -127,6 +127,18 @@ public class PlayerDemeterTest {
     assertTrue(player.getRessourceAmount(exp.getTuileRessource())==2);
 
     }
+
+    @Test 
+    void placeInitialFarmRandomTest(){
+
+    assertTrue(player.getFarms().isEmpty());
+    player.placeInitialFarm(board);
+    assertTrue(player.getFarms().isEmpty());
+    }
+
+
+
+
     
 
 
