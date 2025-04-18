@@ -261,12 +261,16 @@ public class PlayerAresTest {
 
     @Test
     void placeInitialArmyTest() throws CantBuildException{
-       Board board=new Board(5, 5);
-       assertTrue( player.getArmies().isEmpty());
-       
-       player.placeInitialArmyRandom(board);
 
-       player.placeInitialArmy(board);
+       Board board=new Board(5, 5);
+       // before placing an army randomly for the player , the player has no army
+       assertTrue( player.getArmies().isEmpty());
+       //placing an army randomly on the board
+       player.placeInitialArmyRandom(board);
+        // afterwards the player possess one army
+        assertTrue( player.getArmies().size()==1);
+
+       
 
     }
 
