@@ -233,7 +233,7 @@ public class PlayerDemeter extends Player{
     /**
      * asks the player which tile they want to build a farm on and builds the 
      * farm on the tile chosen by the player
-     * @param board
+     * @param board the game is played on
      */
     public void placeInitialFarm(Board board){
         List<Earth> buildableTiles = board.buildableTiles();
@@ -250,8 +250,8 @@ public class PlayerDemeter extends Player{
 
 
     /**
-     * 
-     * @param board
+     * places a farm for this player on a random tile
+     *@param board
      */
     public void placeInitialFarmRandom(Board board){
         List<Earth> buildableTiles = board.buildableTiles();
