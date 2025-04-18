@@ -114,13 +114,15 @@ public class PlayerDemeterTest {
     player.addFarm(farm);
     player.addFarm(exp);
 
-    
+    // before collecting the player's ressources that he has on tiles that have 
+    //building , the player has no ressources in his stock for the moment
     assertTrue(player.getRessourceAmount(Ressource.WOOD)==0);
     assertTrue(player.getRessourceAmount(exp.getTuileRessource())==0);
 
-  
+    // collecting the player's ressources
     player.collectRessources();
-
+    //after collecting the player's ressouces of tiles that has building ,
+    //now the player got said ressources in his inventory
     assertTrue(player.getRessourceAmount(farm.getTuileRessource())==1);
     assertTrue(player.getRessourceAmount(exp.getTuileRessource())==2);
 
