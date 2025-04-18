@@ -231,7 +231,8 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * 
+     * asks the player which tile they want to build a farm on and builds the 
+     * farm on the tile chosen by the player
      * @param board
      */
     public void placeInitialFarm(Board board){
