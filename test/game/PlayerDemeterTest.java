@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import game.action.actionDemeter.BuildFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
+import game.tuile.Forest;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
@@ -61,13 +62,13 @@ public class PlayerDemeterTest {
         buildfarm.act(player);
         buildfarm.act(player);
         assertEquals( player.getFarms().size(),3);
-        // after building a farm  using one wood and one ore , the player's ressources should diminish
+        // after building a farm  using  wood and one ore , the player's ressources should diminish
         assertTrue(player.getResources().get(Ressource.WOOD)==0);
         assertTrue(player.getResources().get(Ressource.ORE) == 0);
         }
 
     @Test
-    void testRemoveFarm() {
+    void testAddAndRemoveFarm() {
         Earth earth = new Earth(Ressource.SHEEP, null);
         Farm farm = new Farm(earth, player);
         player.addFarm(farm);
@@ -102,6 +103,28 @@ public class PlayerDemeterTest {
         assertTrue(player.hasPort());
     }
 
+
+    @Test
+    void collectRessourcesOfThePlayerTest(){
+    Forest forest1=new Forest();
+    Forest forest2=new Forest();
+    Farm farm=new Farm(forest1, player);
+    Exploitation exp=new Exploitation(forest2, player);
+    
+    player.addFarm(farm);
+    player.addFarm(exp);
+
+    
+    assertTrue(player.getRessourceAmount(Ressource.WOOD)==0);
+    assertTrue(player.getRessourceAmount(exp.getTuileRessource())==0);
+
+  
+    player.collectRessources();
+
+    assertTrue(player.getRessourceAmount(farm.getTuileRessource())==1);
+    assertTrue(player.getRessourceAmount(exp.getTuileRessource())==2);
+
+    }
     
 
 

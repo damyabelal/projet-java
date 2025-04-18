@@ -141,7 +141,7 @@ public class Player {
 
     /**
     * returns the amount of the given ressource the player owns
-    * @param resource the ressource type
+    * param resource the ressource type
     * @return the amount of the ressource
     */
     public int getRessourceAmount(Ressource resource) {
