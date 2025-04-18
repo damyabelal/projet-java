@@ -81,7 +81,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * adds  a farm to the demeter player
+     * adds  a farm to the this demeter player
      * @param farm the farm to add
      */
     public void addFarm(Farm farm){
@@ -90,7 +90,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * removes a farm from the demeter player
+     * removes a farm from the this player
      * @param farm the farm to remove
      */
     public void removeFarm(Farm farm){
@@ -100,8 +100,8 @@ public class PlayerDemeter extends Player{
 
 
     /**
-     * check if the demeter player has a port in his tiles
-     * @return boolean true if the demeter player has a port in his tiles
+     * checks if the demeter player has a port in his tiles
+     * @return boolean true if the this player has a port in his tiles
      */
     public boolean hasPort(){
         return !this.getPlayerPorts().isEmpty();
@@ -109,7 +109,7 @@ public class PlayerDemeter extends Player{
 
 
     /**
-     * get the exploitations of the demeter player
+     * gets the exploitations of the this  demeter player
      * @return List<Exploitation> the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
@@ -126,7 +126,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * collect all the ressources from the differents building 
+     * collects all the ressources from the different buildings of this player 
      */
     public void collectRessources(){
         for ( Farm farm : this.farms){
@@ -138,7 +138,7 @@ public class PlayerDemeter extends Player{
     }
 
     /**
-     * fill the actionsDemeter attributes with all the actions for this game
+     * fills the actionsDemeter attributes with all the actions for this game
      * if option is 0 the actions will be in interactive mode, random otherwise
      * @param board
      * @param option
