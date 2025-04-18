@@ -130,9 +130,10 @@ public class PlayerDemeterTest {
 
     @Test 
     void placeInitialFarmRandomTest(){
-
+    //before placing a farm randomly on the board for the player , the player has no farms
     assertTrue(player.getFarms().isEmpty());
     player.placeInitialFarm(board);
+    //after placing a farm randomly on the board , the player posesses one farm
     assertTrue(player.getFarms().isEmpty());
     }
 
