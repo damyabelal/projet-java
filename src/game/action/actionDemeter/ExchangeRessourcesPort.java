@@ -29,6 +29,19 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
         return "Exchange ressources by port"; 
     }
 
+    /**
+     * return true if the player have enough ressources to make an exchange, false otherwise
+     * @return boolean
+     */
+    public boolean canExchange(){
+        for (Ressource r : Ressource.values()) {
+            if (player.getRessourceAmount(r) > 1) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
      /**
      * asks the player which ressource he wants to exchange
      * @return the ressource the player wants to exchange

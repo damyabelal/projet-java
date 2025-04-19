@@ -76,16 +76,19 @@ public class Demeter {
         System.out.println("\n");
         int i= 0; 
         while (winner==null){
+            System.out.println("\n");
             System.out.println("ROUND "+ i );
+            System.out.println("\n");
             for (PlayerDemeter p: players){
-                System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 p.collectRessources();
+                System.out.println("\n");
+                System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 board.display();
                 //on propose au joueur des actions
                 p.createActions(board,0); // on propose les actions possibles
 
                try {
-                    p.act(board, 1);
+                    p.act(board, 0);
                 } catch (NullPointerException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
                 
