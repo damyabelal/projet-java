@@ -277,7 +277,6 @@ public class PlayerAres extends Player {
             }
             this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer, lcNumber);
         }
-
     }
 
     public List<Action<PlayerAres>> getActionsAres() {
@@ -323,15 +322,17 @@ public class PlayerAres extends Player {
             ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt,
             ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer, ListChooser<Integer> lcNumber) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
-        
-
+    
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
         if (buildPort.hasEnoughRessources()) {
             aresActions.add(buildPort);
         }
 
+        //Exchange Ressources
         ExchangeRessources<PlayerAres> exchangeRessources = new ExchangeRessources<PlayerAres>(this, lcRessource);
-        aresActions.add(exchangeRessources);
+        if( exchangeRessources.canExchange() ){
+            aresActions.add(exchangeRessources);
+        }
         
 
         // add possible actions for player Ares
@@ -364,7 +365,6 @@ public class PlayerAres extends Player {
             aresActions.add(buyWarriors);
         }
 
-        
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
         aresActions.add(new AttackNeighboor(this, null, lcPlayer,lcEarth));
 
@@ -373,7 +373,7 @@ public class PlayerAres extends Player {
 
     
     /**
-     * 
+     * allow the player to build a army, it will be used to build the first two armies in the game
      * @param board
      * @throws CantBuildException
      * @throws InvalidChoiceException 
@@ -382,42 +382,6 @@ public class PlayerAres extends Player {
     public void placeInitialArmy(Board board, ListChooser<Earth> lc, ListChooser<Integer> lcNumber) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
         BuildArmy ba= new BuildArmy(board, this, lc , lcNumber); 
         ba.act(this);
-    }
-
-
-    /**
-     * places the initial army of the player on a tile of the board
-     * @param board
-     * @throws CantBuildException
-     */
-    public void placeInitialArmyRandom(Board board) throws CantBuildException{
-        List<Earth> buildable = board.buildableTiles();
-        ListChooser<Earth> chooser = new RandomListChooser<>();
-        ListChooser<Integer> inChooser = new RandomListChooser<>();
-
-
-        Earth tile = chooser.choose("Placement automatique d'une armée", buildable);
-
-        int max = Math.min(this.getWarriors(), 5);
-        List<Integer> warriors = new ArrayList<>();
-        for (int i = 1; i <= max; i++) {
-            warriors.add(i);
-        }
-
-        int nbWarriors = inChooser.choose("choisis le nombre de guerriers", warriors);
-        
-        
-        Army army = new Army(tile, nbWarriors, this);
-        try{
-            tile.setBuilding(army);
-            this.addArmy(army);
-            this.playerTiles.add(tile);
-            this.removeWarriors(nbWarriors);
-        } catch (NoMoreRessourcesException e) {
-            System.out.println("Erreur lors du placement automatique : "+e.getMessage());
-        }
-
-    
     }
 
 

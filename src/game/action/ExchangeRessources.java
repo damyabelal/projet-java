@@ -32,6 +32,19 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
     }
 
     /**
+     * return true if the player have enough ressources to make an exchange, false otherwise
+     * @return boolean
+     */
+    public boolean canExchange(){
+        for (Ressource r : Ressource.values()) {
+            if (player.getRessourceAmount(r) > 2) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    /**
      * asks the player what type of  ressource he wants to exchange
      * @return the ressource
      */
