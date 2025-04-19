@@ -79,6 +79,14 @@ public class PlayerAres extends Player {
     }
 
     /**
+     * return the objective given to the player
+     * @return the objective
+     */
+    public AresGameObjectives getObjectives(){
+        return this.objective; 
+    }
+
+    /**
      * returns the number of secret weapons owned by this player
      * 
      * @return int

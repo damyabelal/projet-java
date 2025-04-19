@@ -53,15 +53,16 @@ public class Ares {
             players.get(i).placeInitialArmy(board);
         }
 
-        //placement initial des armees : tour 2
+/**         //placement initial des armees : tour 2
         for(int i =players.size()-1 ;i>=0;i--){
             players.get(i).placeInitialArmy(board);
         }
-
+*/
 
         // tir au sort un objectif pour chaque joueuer
         for (PlayerAres p:players){
             p.givePlayersObjective();
+            System.out.println(p.getName() + " goal is to "+ p.getObjective() );
         }
 
         for (PlayerAres p: players){
