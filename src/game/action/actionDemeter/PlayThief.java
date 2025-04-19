@@ -20,7 +20,7 @@ public class PlayThief implements Action<PlayerDemeter> {
 
     //builds a new PlayThief action with the given players demeter on the board and the given ressource type that the thief will steal
     public PlayThief(ListChooser<Ressource> lc, List<PlayerDemeter> players) {
-        this.ressource = askRessource();
+        this.ressource = null;
         this.players = players;
     }
 
@@ -52,6 +52,7 @@ public class PlayThief implements Action<PlayerDemeter> {
      */
     @Override
     public void act(PlayerDemeter playerOfThief) throws NoMoreRessourcesException {
+        this.ressource= askRessource(); 
         int totalStolen = 0;
         // check if the player has a thief to play
         if (playerOfThief.getNbThief() == 0) {
