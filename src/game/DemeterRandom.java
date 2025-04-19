@@ -52,7 +52,7 @@ public class DemeterRandom {
         
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
-            p.createActions(board, 1);
+            p.createActions(board, 1, players);
         }
 
 
@@ -82,7 +82,7 @@ public class DemeterRandom {
                 board.display();
                 
                 // on propose au joueur des actions
-                p.createActions(board, 1);
+                p.createActions(board, 1, players);
         
                 try {
                     p.act(board, 1);
