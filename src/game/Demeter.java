@@ -58,15 +58,16 @@ public class Demeter {
         System.out.println("\n");
         System.out.println("TIME TO BUILD YOUR FARMS !");
         System.out.println("\n");
+
+
         // premier tour : ordre croissant
         for (int i=0 ;i<players.size();i++){
-            System.out.println(players.get(i).getName()+" place your first initial farm: ");
+            System.out.println(players.get(i).getName()+"( " + players.get(i).getResources() + ") place your first initial farm: ");
             players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
         }
         // deuxieme tour : ordre decroissant
-        System.out.println("Placement initial des fermes: ");
         for (int i=players.size()-1 ;i>=0;i--){
-            System.out.println(players.get(i).getName()+" place your second initial farm:");
+            System.out.println(players.get(i).getName()+"( " + players.get(i).getResources() + ")  place your second initial farm:");
             players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
         }
 

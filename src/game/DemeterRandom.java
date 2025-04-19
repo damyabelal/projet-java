@@ -66,7 +66,6 @@ public class DemeterRandom {
             players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 
         }
         // deuxieme tour : ordre decroissant
-        System.out.println("Placement initial des fermes: ");
         for (int i=players.size()-1 ;i>=0;i--){
             System.out.println(players.get(i).getName()+" place your second initial farm:");
             players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 

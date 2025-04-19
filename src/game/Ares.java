@@ -68,12 +68,19 @@ public class Ares {
         System.out.println("\n");
         System.out.println("TIME TO BUILD YOUR ARMIES !");
         System.out.println("\n");
-        for (int j= 0; j<2; j++){
-            for( PlayerAres p: players){
-                System.out.println(p.getName()+" (" +p.getResources()+"/ nb warriors: "+ p.getWarriors() + ") build your armies");
-                p.placeInitialArmy(board, new InteractiveListChooser<Earth>(), new InteractiveListChooser<Integer>()); 
-            }
+
+
+         // premier tour : ordre croissant
+         for (int i=0 ;i<players.size();i++){
+            System.out.println(players.get(i).getName()+" place your first initial farm: ");
+            players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(), new InteractiveListChooser<Integer>()); 
         }
+        // deuxieme tour : ordre decroissant
+        for (int i=players.size()-1 ;i>=0;i--){
+            System.out.println(players.get(i).getName()+" (" +players.get(i).getResources()+"/ nb warriors: "+ players.get(i).getWarriors() + ") build your second army : ");
+            players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(), new InteractiveListChooser<Integer>()); 
+        }
+
 
         System.out.println("\n");
         System.out.println("THE GAME START");
