@@ -376,35 +376,12 @@ public class PlayerAres extends Player {
      * 
      * @param board
      * @throws CantBuildException
+     * @throws InvalidChoiceException 
+     * @throws NoMoreRessourcesException 
      */
-    public void placeInitialArmy(Board board) throws CantBuildException{
-        List<Earth> buildable = board.buildableTiles();
-        ListChooser<Earth> chooser = new InteractiveListChooser<>();
-        ListChooser<Integer> inChooser = new InteractiveListChooser<>();
-
-
-        Earth tile = chooser.choose("choisis une tuile ", buildable);
-
-        int max = Math.min(this.getWarriors(), 5);
-        List<Integer> warriors = new ArrayList<>();
-        for (int i = 1; i <= max; i++) {
-            warriors.add(i);
-        }
-
-        int nbWarriors = inChooser.choose("choisis le nombre de guerriers", warriors);
-        
-        
-        Army army = new Army(tile, nbWarriors, this);
-        try{
-            tile.setBuilding(army);
-            this.addArmy(army);
-            this.playerTiles.add(tile);
-            this.removeWarriors(nbWarriors);
-        } catch (NoMoreRessourcesException e) {
-            System.out.println(e.getMessage());
-        }
-
-    
+    public void placeInitialArmy(Board board, ListChooser<Earth> lc, ListChooser<Integer> lcNumber) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
+        BuildArmy ba= new BuildArmy(board, this, lc , lcNumber); 
+        ba.act(this);
     }
 
 

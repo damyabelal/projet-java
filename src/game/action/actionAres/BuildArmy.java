@@ -77,13 +77,24 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
      * @param earth
      * @param player
      * @return boolean
+     * @throws NoMoreRessourcesException 
      */
-    public boolean canBuildArmy(Earth earth, PlayerAres player) {
+    public boolean canBuildArmy(Earth earth, PlayerAres player) throws NoMoreRessourcesException {
         int cptBuild = 0;
         int cptPort = 0;
         if (player.getArmies().size() <= 2) {
             return true;
         }
+
+        if (player.getWarriors() < 1) {
+            throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
+        }
+
+        if (!this.hasEnoughRessources()) {
+            throw new NoMoreRessourcesException("Not enough resources to build an Army");
+        }
+
+
         List<Earth> island = board.getIsland(earth);
         for (Earth tuile : island) {
             if (tuile.haveBuild()) {
@@ -95,6 +106,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
             }
 
         }
+        
         return cptBuild >= 2 && cptPort >= 1;
     }
 
@@ -109,22 +121,25 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
     public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, InvalidChoiceException {
         Position choosenPosition = askCoordinate().getPosition();
         Earth tile = (Earth) this.board.getTile(choosenPosition);
+        Integer warriors= null; 
 
-        Integer warriors = askNumberWarriors();
-
-        if (player.getWarriors() < 1) {
-            throw new NoMoreRessourcesException("You need at least 1 warrior to build an Army");
+        if (player.getArmies().size() < 2){
+            warriors= 1; 
         }
 
-        if (!this.hasEnoughRessources()) {
-            throw new NoMoreRessourcesException("Not enough resources to build an Army");
+        else{
+            warriors = askNumberWarriors();
         }
+
 
         if (!canBuildArmy((Earth) tile, player)) {
             throw new CantBuildException("conditions not met to build an army here");
         }
 
-        this.removeRessources();
+        if(player.getArmies().size() >= 2){
+            this.removeRessources();
+        }
+        
     
         Army army = new Army((Earth) tile, warriors, player);
 
@@ -133,7 +148,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
 
         player.removeWarriors(warriors);
 
-        System.out.println(player.getName() + ": " + player.getResources() + " build a army with 1 warrior on position "
+        System.out.println(player.getName() + ": " + player.getResources() + " build a army with"+ warriors +" warrior on position "
                 + choosenPosition);
 
     }
