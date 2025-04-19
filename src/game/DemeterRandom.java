@@ -86,9 +86,9 @@ public class DemeterRandom {
         
                 try {
                     p.act(board, 1);
-                } catch (NullPointerException e) {
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
-                
+              
                 }
                 if (p.getPoints() >= 12) {
                     winner = p;
