@@ -63,15 +63,18 @@ public class AresRandom {
       }
     }
 
-    // initialisation des actions
+    // tir au sort un objectif pour chaque joueuer
+    System.out.println("\n");
+    System.out.println("Player's goals");
     for (PlayerAres p : players) {
-      p.createActions(board, 1);
+      p.givePlayersObjective();
+      System.out.println(p.getName() + " goal is to " + p.getObjective());
     }
 
     // give a random objective for the player
-    for (PlayerAres p : players){
+    for (PlayerAres p : players) {
       p.givePlayersObjective();
-    } 
+    }
 
     while (winner == null) {
       for (PlayerAres p : players) {
