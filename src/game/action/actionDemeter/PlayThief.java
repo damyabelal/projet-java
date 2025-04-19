@@ -1,7 +1,11 @@
 package game.action.actionDemeter;
 
+import java.util.Arrays;
+import java.util.List;
+
 import game.PlayerDemeter;
 import game.action.Action;
+import game.listchooser.ListChooser;
 import game.tuile.Ressource;
 import game.util.NoMoreRessourcesException;
 /**
@@ -10,12 +14,26 @@ import game.util.NoMoreRessourcesException;
  */
 public class PlayThief implements Action<PlayerDemeter> {
 
-    private Ressource ressource;
-    private PlayerDemeter[] players;
+    private List<PlayerDemeter> players;
+    public ListChooser<Ressource> lc; 
+    private Ressource ressource; 
+
     //builds a new PlayThief action with the given players demeter on the board and the given ressource type that the thief will steal
-    public PlayThief(Ressource ressource, PlayerDemeter[] players) {
-        this.ressource = ressource;
+    public PlayThief(ListChooser<Ressource> lc, List<PlayerDemeter> players) {
+        this.ressource = askRessource();
         this.players = players;
+    }
+
+    /**
+     * asks the player which ressource he wants to receive in exchange
+     * @return the ressource the player wants to receive in exchange
+     */
+    public Ressource askRessource() {
+        Ressource chosen = lc.choose("What resource do you want to steal?", Arrays.asList(Ressource.values()));
+        if (chosen == null){
+            System.out.println("Action cancelled. No ressource to steal was selected");
+        }
+        return chosen;
     }
 
 
@@ -40,12 +58,12 @@ public class PlayThief implements Action<PlayerDemeter> {
             throw new NoMoreRessourcesException("You don't have any thief to play");
         }
 
-        for (int i = 0; i < this.players.length; i++) {
-            if (this.players[i] != playerOfThief) {
-                int stolen = this.players[i].getRessourceAmount(this.ressource);
+        for (int i = 0; i < this.players.size(); i++) {
+            if (this.players.get(i) != playerOfThief) {
+                int stolen = this.players.get(i).getRessourceAmount(this.ressource);
                 if (stolen > 0) {
                     totalStolen += stolen;
-                    this.players[i].removeRessource(this.ressource, stolen);
+                    this.players.get(i).removeRessource(this.ressource, stolen);
                 }
             }
         }

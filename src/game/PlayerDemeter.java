@@ -142,8 +142,9 @@ public class PlayerDemeter extends Player{
      * if option is 0 the actions will be in interactive mode, random otherwise
      * @param board
      * @param option
+     * @param players
      */
-    public void createActions(Board board, int option){
+    public void createActions(Board board, int option, List<PlayerDemeter> players){
         ListChooser<Earth> lcEarth= null; 
         ListChooser<Farm> lcFarm=null; 
         ListChooser<Ressource> lcRessource=null;  
@@ -159,7 +160,7 @@ public class PlayerDemeter extends Player{
                 lcFarm= new RandomListChooser<>();
                 lcRessource= new RandomListChooser<>(); 
             }
-            this.actionsDemeter = actionsPlayer(board, lcEarth, lcRessource, lcFarm);
+            this.actionsDemeter = actionsPlayer(board, lcEarth, lcRessource, lcFarm, players);
         }
 
     }
@@ -197,7 +198,7 @@ public class PlayerDemeter extends Player{
      * @param board
      * @return List<Action<PlayerDemeter>> the list of actions that the demeter player can do
      */
-    private List<Action<PlayerDemeter>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Farm> lcFarm){
+    private List<Action<PlayerDemeter>> actionsPlayer(Board board, ListChooser<Earth> lcEarth, ListChooser<Ressource> lcRessource, ListChooser<Farm> lcFarm, List<PlayerDemeter> players){
         List<Action<PlayerDemeter>> actionsDemeter = new ArrayList<>();
 
         BuildPort<PlayerDemeter> buildPort = new BuildPort<>(this, board, lcEarth);
@@ -210,7 +211,6 @@ public class PlayerDemeter extends Player{
             actionsDemeter.add(exchange);
         }
 
-
         // add possibles actions for player Demeter
         UpgradeFarm upgradeFarm = new UpgradeFarm(this, lcFarm);
         if (!this.getFarms().isEmpty() && upgradeFarm.hasEnoughRessources()) {
@@ -222,9 +222,20 @@ public class PlayerDemeter extends Player{
             actionsDemeter.add(exchangeRessourcesPort);
         }
 
-        actionsDemeter.add(new BuildFarm(board, this, lcEarth));
-        actionsDemeter.add(new BuyThief(this));
-        actionsDemeter.add(new PlayThief(null, null));
+        BuyThief buyThief = new BuyThief(this);
+        if (buyThief.hasEnoughRessources()){
+            actionsDemeter.add(new BuyThief(this));
+        }
+
+        if (this.getNbThief()  > 0){
+            actionsDemeter.add(new PlayThief(lcRessource, players));
+        } 
+
+        BuildFarm buildFarm= new BuildFarm(board, this, lcEarth); 
+        if (buildFarm.hasEnoughRessources()){
+            actionsDemeter.add(new BuildFarm(board, this, lcEarth));
+        }
+        
         return actionsDemeter;
     }
 

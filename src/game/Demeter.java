@@ -52,7 +52,7 @@ public class Demeter {
 
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
-            p.createActions(board, 0);
+            p.createActions(board, 0, players);
         }
 
         System.out.println("\n");
@@ -85,8 +85,7 @@ public class Demeter {
                 System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 board.display();
                 //on propose au joueur des actions
-                p.createActions(board,0); // on propose les actions possibles
-
+                p.createActions(board,0, players); // on propose les actions possibles
                try {
                     p.act(board, 0);
                 } catch (NullPointerException e) {
