@@ -86,6 +86,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         Earth tile = lcEarth.choose("Which tile do you want to attack", tiles);
         if (tile == null) {
             System.out.println("Action cancelled :  No tiles to attack");
+            throw new InvalidChoiceException("No tile was selected !!!");
         }
         return tile;
 
@@ -131,6 +132,15 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         }
         return result;
     }
+
+    private void transferTile(Earth tile, PlayerAres player, PlayerAres ennemy) {
+        // retirer la tuile de l'ancien proprietaire
+        ennemy.getTiles().remove(tile);
+        // ajouter la tuile au nouveau proprietaire 
+        player.getTiles().add(tile);
+    }
+
+
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
@@ -161,27 +171,27 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
 
         //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
         
-
-        if (loser.getWarriors()>=1){
+        try {
+            if (loser.getWarriors()>=1){
             loser.removeWarriors(1);
+            }
+        } catch (NoMoreRessourcesException e) {
+            System.out.println("");
         }
 
-        else if (!loser.getArmies().isEmpty()){
+        if (!loser.getArmies().isEmpty()){
             List<Army> listarmies=loser.getArmies();
             Army army= listarmies.get(0);
             loser.removeArmy(army);
 
         }
 
-        if (loser == ennemy){
-            // retirer la tuile de l'ancien proprietaire
-            ennemy.getTiles().remove(tile);
-            // ajouter la tuile au nouveau proprietaire 
-            player.getTiles().add(tile);
+        transferTile(tile, player, ennemy);
 
+        
             
         }
     
         
 }
-}
+
