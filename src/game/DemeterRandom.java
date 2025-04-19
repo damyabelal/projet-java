@@ -74,25 +74,31 @@ public class DemeterRandom {
         System.out.println("THE GAME START");
         System.out.println("\n");
         int i= 0; 
-        while (winner==null){
-            System.out.println("ROUND "+ i );
-            for (PlayerDemeter p: players){
-                System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
+        while (winner == null) {
+            System.out.println("ROUND " + i);
+            for (PlayerDemeter p : players) {
+                System.out.println(p.getName() + " (" + p.getPoints() + " points, " + p.getResources() + ") turn!!");
                 p.collectRessources();
                 board.display();
-                //on propose au joueur des actions
+                
+                // on propose au joueur des actions
                 p.createActions(board, 1);
-                p.act(board, 1);
-                //on vérifie si le joueur gagne
-                if (p.getPoints() >= 12){
-                    winner=p; 
-                    break; 
+        
+                try {
+                    p.act(board, 1);
+                } catch (NullPointerException e) {
+                    System.out.println("Action cancelled due to invalid or null choice.");
+                
+                }
+                if (p.getPoints() >= 12) {
+                    winner = p;
+                    break;
                 }
             }
-            i++; 
+            i++;
         }
 
-        System.out.println(winner.getName() +" gagne la partie!!");
+        System.out.println(winner.getName() +" win the game !!");
 
     }
     
