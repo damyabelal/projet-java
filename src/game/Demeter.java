@@ -82,8 +82,14 @@ public class Demeter {
                 p.collectRessources();
                 board.display();
                 //on propose au joueur des actions
-                p.createActions(board,0); // on propose les actions possibles 
-                p.act(board, 0);
+                p.createActions(board,0); // on propose les actions possibles
+
+               try {
+                    p.act(board, 1);
+                } catch (NullPointerException e) {
+                    System.out.println("Action cancelled due to invalid or null choice.");
+                
+                }
                 //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){
                     winner=p; 
