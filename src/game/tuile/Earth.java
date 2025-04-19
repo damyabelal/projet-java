@@ -1,5 +1,4 @@
 package game.tuile;
-import game.Player;
 
 import game.tuile.building.*;
 

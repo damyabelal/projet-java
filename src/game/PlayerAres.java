@@ -331,9 +331,8 @@ public class PlayerAres extends Player {
         }
 
         ExchangeRessources<PlayerAres> exchangeRessources = new ExchangeRessources<PlayerAres>(this, lcRessource);
-        if (exchangeRessources.hasEnoughRessources()) {
-            aresActions.add(exchangeRessources);
-        }
+        aresActions.add(exchangeRessources);
+        
 
         // add possible actions for player Ares
 

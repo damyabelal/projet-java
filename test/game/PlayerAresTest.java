@@ -1,7 +1,6 @@
 package game;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -255,6 +254,20 @@ public class PlayerAresTest {
         player.createActions(board, 1);
         List<Action<PlayerAres>> actions = player.getActionsAres();
         assertEquals(3, actions.size()); 
+        boolean hasDisplayWarriors = false;
+        boolean hasAttackNeighboor = false;
+        
+        for (Action<PlayerAres> action : actions) {
+            if (action instanceof game.action.actionAres.DisplayWarriors) {
+                hasDisplayWarriors = true;
+            }
+            if (action instanceof game.action.actionAres.AttackNeighboor) {
+                hasAttackNeighboor = true;
+            }
+        }
+        
+        assertTrue(hasDisplayWarriors);
+        assertTrue(hasAttackNeighboor);
 
     }
        
