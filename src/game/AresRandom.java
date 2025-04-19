@@ -68,6 +68,11 @@ public class AresRandom {
       p.createActions(board, 1);
     }
 
+    // give a random objective for the player
+    for (PlayerAres p : players){
+      p.givePlayersObjective();
+    } 
+
     while (winner == null) {
       for (PlayerAres p : players) {
         System.out.println(p.getName() + " (" + p.getResources() + ") tour !");
