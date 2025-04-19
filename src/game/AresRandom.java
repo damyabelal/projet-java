@@ -85,16 +85,18 @@ public class AresRandom {
         p.createActions(board, 1);
         try {
           p.act(board, 1);
-        } catch (NullPointerException e) {
+      } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
           System.out.println("Action cancelled due to invalid or null choice.");
-
-        }
+    
+      }
         if (p.isObjectiveAchieved(board)) {
           winner = p;
           break;
         }
       }
     }
+
+    System.out.println(winner.getName() +" gagne la partie!!");
 
   }
 

@@ -97,9 +97,9 @@ public class Ares {
                 p.createActions(board, 0);// changer la liste des actions a chaque tour
                 try {
                     p.act(board, 1);
-                } catch (NullPointerException e) {
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
-
+              
                 }
                 if (isWinner(p, board)) {
                     winner = p;
