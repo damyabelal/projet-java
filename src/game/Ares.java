@@ -52,6 +52,8 @@ public class Ares {
         }
 
         // tir au sort un objectif pour chaque joueuer
+        System.out.println("\n");
+        System.out.println("Player's goals");
         for (PlayerAres p:players){
             p.givePlayersObjective();
             System.out.println(p.getName() + " goal is to "+ p.getObjective() );
@@ -63,6 +65,7 @@ public class Ares {
 
 
         //ici on vas laisser les joueurs construire leurs deux armées 
+        System.out.println("\n");
         System.out.println("TIME TO BUILD YOUR ARMIES !");
         System.out.println("\n");
         for (int j= 0; j<2; j++){
