@@ -3,12 +3,17 @@ package game;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import game.listchooser.InteractiveListChooser;
 import game.listchooser.util.Input;
+import game.tuile.Earth;
+import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class Demeter {
 
-    public static void main(String[] args) throws IOException, InvalidChoiceException{
+    public static void main(String[] args) throws IOException, InvalidChoiceException, CantBuildException, NoMoreRessourcesException{
         if (args.length < 3) {
             System.out.println("You have to give two positive settings and the number of player.");
             return;
@@ -45,29 +50,32 @@ public class Demeter {
             players.add(new PlayerDemeter(name)); 
         }
 
-        //Placement initial des fermes
-        // premier tour : ordre croissant
-        System.out.println("Placement initial des fermes: ");
-        for (int i=0 ;i<players.size();i++){
-            System.out.println(players.get(i).getName()+"placez votre ferme initiale: ");
-            players.get(i).placeInitialFarm(board);
-            board.display();
-        }
-
-        // deuxieme tour : ordre decroissant
-        System.out.println("Placement initial des fermes: ");
-        for (int i=players.size()-1 ;i>=0;i--){
-            System.out.println(players.get(i).getName()+"placez votre ferme initiale: ");
-            players.get(i).placeInitialFarm(board);
-            board.display();
-        }
-
         //on initialise la liste des actions pour chaque joueurs
         for (PlayerDemeter p: players){
             p.createActions(board, 0);
         }
 
+        System.out.println("\n");
+        System.out.println("TIME TO BUILD YOUR FARMS !");
+        System.out.println("\n");
+        // premier tour : ordre croissant
+        for (int i=0 ;i<players.size();i++){
+            System.out.println(players.get(i).getName()+" place your first initial farm: ");
+            players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+        }
+        // deuxieme tour : ordre decroissant
+        System.out.println("Placement initial des fermes: ");
+        for (int i=players.size()-1 ;i>=0;i--){
+            System.out.println(players.get(i).getName()+" place your second initial farm:");
+            players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+        }
+
+        System.out.println("\n");
+        System.out.println("THE GAME START");
+        System.out.println("\n");
+        int i= 0; 
         while (winner==null){
+            System.out.println("ROUND "+ i );
             for (PlayerDemeter p: players){
                 System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 p.collectRessources();
@@ -81,6 +89,7 @@ public class Demeter {
                     break; 
                 }
             }
+            i++; 
         }
 
         System.out.println(winner.getName() +" gagne la partie!!");

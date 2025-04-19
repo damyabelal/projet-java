@@ -14,6 +14,7 @@ import game.listchooser.InteractiveListChooser;
 import game.listchooser.ListChooser;
 import game.listchooser.RandomListChooser; 
 import game.action.*;
+import game.action.actionAres.BuildArmy;
 import game.action.actionDemeter.BuildFarm;
 import game.action.actionDemeter.BuyThief;
 import game.action.actionDemeter.ExchangeRessourcesPort;
@@ -230,34 +231,13 @@ public class PlayerDemeter extends Player{
         return actionsDemeter;
     }
 
-    /**
-     * asks the player which tile they want to build a farm on and builds the 
-     * farm on the tile chosen by the player
-     * @param board the game is played on
-     */
-    public void placeInitialFarm(Board board){
-        List<Earth> buildableTiles = board.buildableTiles();
-        ListChooser<Earth> chooser = new InteractiveListChooser<>();
-        Earth chosenTile = chooser.choose("Choose a tile to place your initial farm", buildableTiles);
-
-        Farm farm = new Farm(chosenTile, this);
-        chosenTile.setBuilding(farm);
-        this.addFarm(farm);
-        this.playerTiles.add(chosenTile);
-    }
 
     /**
      * places a farm for this player on a random tile
      *@param board
      */
-    public void placeInitialFarmRandom(Board board){
-        List<Earth> buildableTiles = board.buildableTiles();
-        ListChooser<Earth> chooser = new RandomListChooser<>();
-        Earth chosenTile = chooser.choose("Choose a tile to place your initial farm", buildableTiles);
-
-        Farm farm = new Farm(chosenTile, this);
-        chosenTile.setBuilding(farm);
-        this.addFarm(farm);
-        this.playerTiles.add(chosenTile);
+    public void placeInitialFarm(Board board, ListChooser<Earth> lc) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
+        BuildFarm bf= new BuildFarm(board, this, lc ); 
+        bf.act(this);
     }
 }
