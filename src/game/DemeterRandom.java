@@ -73,12 +73,16 @@ public class DemeterRandom {
         System.out.println("\n");
         System.out.println("THE GAME START");
         System.out.println("\n");
+
         int i= 0; 
-        while (winner == null) {
+        int maxRounds = 100;  
+        int roundCounter = 0;
+
+        while (winner == null && roundCounter < maxRounds) {
             System.out.println("ROUND " + i);
             for (PlayerDemeter p : players) {
                 System.out.println(p.getName() + " (" + p.getPoints() + " points, " + p.getResources() + ") turn!!");
-                p.collectRessources();
+                p.collectRessources() ;
                 board.display();
                 
                 // on propose au joueur des actions
@@ -96,9 +100,15 @@ public class DemeterRandom {
                 }
             }
             i++;
+            roundCounter++;
+            System.out.println("\n");
         }
 
-        System.out.println(winner.getName() +" win the game !!");
+        if (roundCounter >= maxRounds) {
+            System.out.println("GAME OVER. No winner after " + maxRounds + " rounds.");
+        } else {
+            System.out.println(winner.getName() + " WINS THE GAME !!");
+        }
 
     }
     

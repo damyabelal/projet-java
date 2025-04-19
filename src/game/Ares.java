@@ -86,8 +86,12 @@ public class Ares {
         System.out.println("\n");
         System.out.println("THE GAME START");
         System.out.println("\n");
-        int i = 0; // pour compter le nombre de tour
-        while (winner == null) {
+
+        int i = 0;
+        int maxRounds = 100;
+        int roundCounter = 0;
+
+        while (winner == null && roundCounter < maxRounds) {
             System.out.println("ROUND " + i);
             for (PlayerAres p : players) {
                 System.out.println(
@@ -99,7 +103,7 @@ public class Ares {
                     p.act(board, 1);
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
-              
+
                 }
                 if (isWinner(p, board)) {
                     winner = p;
@@ -107,8 +111,16 @@ public class Ares {
                 }
             }
             i++;
+            roundCounter++;
             System.out.println("\n");
         }
+
+        if (roundCounter >= maxRounds) {
+            System.out.println("GAME OVER. No winner after " + maxRounds + " rounds.");
+        } else {
+            System.out.println(winner.getName() + " WINS THE GAME !!");
+        }
+
     }
 
     private static boolean isWinner(PlayerAres player, Board board) {
@@ -116,4 +128,3 @@ public class Ares {
     }
 
 }
- 

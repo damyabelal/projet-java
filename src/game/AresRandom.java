@@ -76,27 +76,41 @@ public class AresRandom {
       p.givePlayersObjective();
     }
 
-    while (winner == null) {
+    int i = 0;
+    int maxRounds = 100;
+    int roundCounter = 0;
+
+    while (winner == null && roundCounter < maxRounds) {
+      System.out.println("\n");
+      System.out.println("ROUND " + i);
+      System.out.println("\n");
       for (PlayerAres p : players) {
-        System.out.println(p.getName() + " (" + p.getResources() + ") tour !");
+        System.out.println(p.getName() + " (" + p.getResources() + ") turn !");
         p.collectRessources();
         board.display();
 
         p.createActions(board, 1);
         try {
           p.act(board, 1);
-      } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+        } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
           System.out.println("Action cancelled due to invalid or null choice.");
-    
-      }
+
+        }
         if (p.isObjectiveAchieved(board)) {
           winner = p;
           break;
         }
       }
+      i++;
+      roundCounter++;
+      System.out.println("\n");
     }
 
-    System.out.println(winner.getName() +" gagne la partie!!");
+    if (roundCounter >= maxRounds) {
+      System.out.println("GAME OVER. No winner after " + maxRounds + " rounds.");
+    } else {
+      System.out.println(winner.getName() + " WINS THE GAME !!");
+    }
 
   }
 

@@ -74,8 +74,12 @@ public class Demeter {
         System.out.println("\n");
         System.out.println("THE GAME START");
         System.out.println("\n");
+
         int i= 0; 
-        while (winner==null){
+        int maxRounds = 100;  
+        int roundCounter = 0;
+        
+        while (winner==null && roundCounter < maxRounds){
             System.out.println("\n");
             System.out.println("ROUND "+ i );
             System.out.println("\n");
@@ -99,9 +103,15 @@ public class Demeter {
                 }
             }
             i++; 
+            roundCounter++;
+            System.out.println("\n");
         }
 
-        System.out.println(winner.getName() +" gagne la partie!!");
+        if (roundCounter >= maxRounds) {
+            System.out.println("GAME OVER. No winner after " + maxRounds + " rounds.");
+        } else {
+            System.out.println(winner.getName() + " WINS THE GAME !!");
+        }
 
     }
     
