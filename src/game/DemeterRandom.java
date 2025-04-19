@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.listchooser.InteractiveListChooser;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.util.CantBuildException;
