@@ -1,5 +1,6 @@
 package game.action.actionAres;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,35 +21,46 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public PlayerAres  player ;
     public List<PlayerAres> enemies;
     public Earth tile;
+    private List<PlayerAres> players; 
     
    
     
 
 
 
-        /**
-         * constructor of AttackNeighboor
-         * @param player the player who wants to attack
-         * @param enemies the list of all the neighboring enemies
-         * @param tile the tile that the player wants to attack // on en a besoin car un joueur dans la plus part du temps a plusiers tuile et il faut savoir laquelle attaquer
-         */ 
-        public AttackNeighboor(PlayerAres player, List<PlayerAres> enemies, ListChooser<PlayerAres> lc,ListChooser<Earth> lcEarth) {
-            super(player); 
-            this.enemies= enemies;
-            this.lc= lc; 
-            this.lcEarth= lcEarth;
-            
+    /**
+     * constructor of AttackNeighboor
+     * @param player the player who wants to attack
+     * @param enemies the list of all the neighboring enemies
+     * @param tile the tile that the player wants to attack // on en a besoin car un joueur dans la plus part du temps a plusiers tuile et il faut savoir laquelle attaquer
+     */ 
+    public AttackNeighboor(PlayerAres player, List<PlayerAres> players, ListChooser<PlayerAres> lc,ListChooser<Earth> lcEarth) {
+        super(player); 
+        this.enemies= null;
+        this.lc= lc; 
+        this.lcEarth= lcEarth;
+        this.players= players;
            
-        }
+    }
 
 
 
-        /**
-         * @return the description of the action
-         */
-        public String toString(){
+    /**
+     * @return the description of the action
+     */
+    public String toString(){
             return "Attack neighboor"; 
+    }
+
+    public List<PlayerAres> createEnnemies(){
+        List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
+        for (PlayerAres p : this.players){
+            if (p != this.player){
+                ennemies.add(p); 
+            }
         }
+        return ennemies; 
+    }
 
 
 
@@ -57,15 +69,15 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * ask the player which neighbor he wants to attack
      * @return the player  to be attacked
      */
-    public PlayerAres askNeighbor() throws InvalidChoiceException {
+    public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
         PlayerAres enemie=null;
-        if (this.enemies.isEmpty()) {
+        if (enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         
-        else if (this.enemies.size()>1){
+        else if (enemies.size()>1){
      
-        enemie = lc.choose("Who do you want to attack", this.enemies);
+        enemie = lc.choose("Who do you want to attack", enemies);
         if (enemie == null) {
           System.out.println("Action cancelled :  No enemies to attack");
           throw new InvalidChoiceException("action cancelled !!!");
@@ -132,6 +144,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * @return the result of the dices
      */
     public Integer dicesResult(Integer numberDices){
+        
         Random dice = new Random();
         int result = 0;
         for (int i = 0; i < numberDices; i++) {
@@ -151,9 +164,10 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
+        List<PlayerAres> ennemies= createEnnemies(); 
         PlayerAres ennemy=null;
         if(this.enemies.size()>1){
-            ennemy= askNeighbor();
+            ennemy= askNeighbor(ennemies);
 
         }
         else{
