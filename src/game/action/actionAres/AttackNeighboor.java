@@ -3,7 +3,6 @@ package game.action.actionAres;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import game.PlayerAres;
 import game.action.Action;
 import game.action.ActionManager;
@@ -52,6 +51,10 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
             return "Attack neighboor"; 
     }
 
+    /**
+     * from the players list, create a list of the ennemies
+     * @return a list of all the adversary
+     */
     public List<PlayerAres> createEnnemies(){
         List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
         for (PlayerAres p : this.players){
@@ -67,6 +70,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
 
     /**
      * ask the player which neighbor he wants to attack
+     * @param ennemies
      * @return the player  to be attacked
      */
     public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
