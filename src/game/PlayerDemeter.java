@@ -225,7 +225,7 @@ public class PlayerDemeter extends Player{
 
         BuyThief buyThief = new BuyThief(this);
         if (buyThief.hasEnoughRessources()){
-            actionsDemeter.add(new BuyThief(this));
+            actionsDemeter.add(buyThief);
         }
 
         if (this.getNbThief()  > 0){
