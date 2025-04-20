@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import game.tuile.Earth;
-import game.tuile.Ressource;
 import game.tuile.building.Camp;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
@@ -26,8 +25,6 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
   // army is the army that the given player player wants to upgrade
   public UpgradeWithWarriors(PlayerAres player, ListChooser<Integer> lnumb, ListChooser<Army> lc) {
     super(player);
-    this.cost.put(Ressource.WOOD, 2);
-    this.cost.put(Ressource.ORE, 3);
     this.lnumb = lnumb;
     this.lc = lc;
 
@@ -46,20 +43,29 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
    * 
    * @return the army the player wants to upgrade
    */
-  public Army askArmy() throws InvalidChoiceException {
-    List<Army> armies = this.player.getArmies();
-    
-    if (armies.isEmpty()) {
-        throw new InvalidChoiceException("No armies available to upgrade");
-    }
+  /**
+ * Asks the player which army they want to upgrade (only those with exactly 5 warriors)
+ * 
+ * @return the army the player wants to upgrade
+ * @throws InvalidChoiceException if no valid army is available or the choice is cancelled
+ */
+public Army askArmy() throws InvalidChoiceException {
+  List<Army> eligibleArmies = new ArrayList<>();
+  for (Army army : this.player.getArmies()) {
+      if (army.getNbWarriors() == 5) {
+          eligibleArmies.add(army);
+      }
+  }
+  if (eligibleArmies.isEmpty()) {
+      throw new InvalidChoiceException("No eligible armies available (the army must have exactly 5 warriors to upgrade)");
+  }
+  Army chosenArmy = lc.choose("Which army do you want to upgrade?", eligibleArmies);
 
-    Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
-
-    if (chosenArmy == null) {
+  if (chosenArmy == null) {
       throw new InvalidChoiceException("Action cancelled. No army was selected");
-    }
+  }
 
-    return chosenArmy;
+  return chosenArmy;
 }
 
 
