@@ -1,5 +1,6 @@
 package game.action.actionAres;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.PlayerAres;
@@ -41,16 +42,19 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
      * @return the number of warriors to add, or -1 if invalid
      * @throws InvalidChoiceException 
      */
-    private int askWarrior(PlayerAres player) throws InvalidChoiceException{
-        Integer add = lcNumber.choose("How many warriors do you want to add?",List.of(player.getWarriors()));
-        if (add == null) {
-            throw new InvalidChoiceException("Action cancelled :  No enemies to attack");
-          }
-        if (add > player.getWarriors() || add <= 0) {
-            return 0; 
-        }
-        return add;
+    private int askWarrior(PlayerAres player) throws InvalidChoiceException {
+    List<Integer> warriorChoices = new ArrayList<>();
+    for (int i = 1; i <= player.getWarriors(); i++) {
+        warriorChoices.add(i);
     }
+    Integer add = lcNumber.choose("How many warriors do you want to add?", warriorChoices);
+    
+    if (add == null) {
+        throw new InvalidChoiceException("Action cancelled : No warriors selected");
+    }
+    return add;
+}
+
 
     @Override
     public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
