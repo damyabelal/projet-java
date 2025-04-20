@@ -6,6 +6,7 @@ import game.action.ActionManager;
 import game.listchooser.ListChooser;
 import game.tuile.building.Army;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game.tuile.Earth;
@@ -39,16 +40,22 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
    * @return the army the player wants to upgrade
    */
   public Army askArmy() throws InvalidChoiceException {
-    List<Army> armies = this.player.getArmies();
-    if (armies.isEmpty()) {
-        throw new InvalidChoiceException("No armies available to upgrade");
-    }
-    Army chosenArmy = lc.choose("Which army do you want to upgrade?", armies);
-    if (chosenArmy == null) {
+  List<Army> eligibleArmies = new ArrayList<>();
+  for (Army army : this.player.getArmies()) {
+      if (army.getNbWarriors() == 5) {
+          eligibleArmies.add(army);
+      }
+  }
+  if (eligibleArmies.isEmpty()) {
+      throw new InvalidChoiceException("No eligible armies available (the army must have exactly 5 warriors to upgrade)");
+  }
+  Army chosenArmy = lc.choose("Which army do you want to upgrade?", eligibleArmies);
+
+  if (chosenArmy == null) {
       throw new InvalidChoiceException("Action cancelled. No army was selected");
-  
-    }
-    return chosenArmy;
+  }
+
+  return chosenArmy;
 }
 
 
