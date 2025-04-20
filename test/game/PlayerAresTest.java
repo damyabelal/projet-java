@@ -329,6 +329,18 @@ public class PlayerAresTest {
     }
 
 
+    @Test
+    void testNoMoreRessourcesException() throws Exception {
+        player.removeWarriors(30); // remove all
+        assertEquals(0, player.getWarriors());
+
+        assertThrows(NoMoreRessourcesException.class, () -> {player.removeWarriors(1);});
+
+    }
+
+
+
+
 
     
 
