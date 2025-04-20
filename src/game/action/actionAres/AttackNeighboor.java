@@ -62,10 +62,9 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         if (this.enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
-        else if(this.enemies.size()==1){
-            enemie=this.enemies.get(0);
-        }  
+        
         else if (this.enemies.size()>1){
+     
         enemie = lc.choose("Who do you want to attack", this.enemies);
         if (enemie == null) {
           System.out.println("Action cancelled :  No enemies to attack");
@@ -152,7 +151,14 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
-        PlayerAres ennemy= askNeighbor();
+        PlayerAres ennemy=null;
+        if(this.enemies.size()>1){
+            ennemy= askNeighbor();
+
+        }
+        else{
+            ennemy=this.enemies.get(0);
+        }
         Earth tile = askTile(ennemy);
 
         
