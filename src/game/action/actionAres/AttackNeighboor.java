@@ -169,16 +169,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
         List<PlayerAres> enemies= this.createEnnemies(); 
-        PlayerAres ennemy=null;
-        if(enemies.size()==1){
-            
-            ennemy=enemies.get(0);
-        }
-        
-        else if (enemies.size()==0){
-            ennemy= askNeighbor(enemies);
-        }
-       
+       PlayerAres ennemy=this.askNeighbor(enemies);
         Earth tile = askTile(ennemy);
 
         
