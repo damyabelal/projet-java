@@ -69,19 +69,19 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
 
 
     /**
-     * ask the player which neighbor he wants to attack
+     * ask the player which neighbor he wants to attack , returns null if there are no enemies to attack
      * @param ennemies
      * @return the player  to be attacked
      */
     public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
-     
+       PlayerAres enemie=null;
         if (enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         
         else{
      
-        PlayerAres enemie = lc.choose("Who do you want to attack", enemies);
+        enemie = lc.choose("Who do you want to attack", enemies);
         if (enemie == null) {
           System.out.println("Action cancelled :  No enemies to attack");
           throw new InvalidChoiceException("action cancelled !!!");
@@ -170,13 +170,15 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
         List<PlayerAres> enemies= this.createEnnemies(); 
         PlayerAres ennemy=null;
-        if(enemies.size()>1){
-            ennemy= askNeighbor(enemies);
-
-        }
-        else{
+        if(enemies.size()==1){
+            
             ennemy=enemies.get(0);
         }
+        
+        else if (enemies.size()==0){
+            ennemy= askNeighbor(enemies);
+        }
+       
         Earth tile = askTile(ennemy);
 
         
