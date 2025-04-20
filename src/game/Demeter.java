@@ -88,6 +88,7 @@ public class Demeter {
                 System.out.println("\n");
                 System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 board.display();
+                
                 //on propose au joueur des actions
                 p.createActions(board,0, players); // on propose les actions possibles
 

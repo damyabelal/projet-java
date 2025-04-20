@@ -205,7 +205,7 @@ public class PlayerDemeter extends Player{
         if (buildPort.hasEnoughRessources()) {
             actionsDemeter.add(buildPort);
         }
-        
+
         // add possibles actions for player Demeter
         UpgradeFarm upgradeFarm = new UpgradeFarm(this, lcFarm);
         if (!this.getFarms().isEmpty() && upgradeFarm.hasEnoughRessources()) {
@@ -213,7 +213,7 @@ public class PlayerDemeter extends Player{
         }        
 
         ExchangeRessourcesPort exchangeRessourcesPort= new ExchangeRessourcesPort(this, lcRessource); 
-        if (exchangeRessourcesPort.canExchange()){
+        if (exchangeRessourcesPort.canExchange() && !this.getPorts().isEmpty()){
             actionsDemeter.add(exchangeRessourcesPort);
         }
 
