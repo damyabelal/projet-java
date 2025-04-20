@@ -58,7 +58,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public List<PlayerAres> createEnnemies(){
         List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
         for (PlayerAres p : this.players){
-            if (p != this.player){
+            if (p.getName() != this.player.getName()){
                 ennemies.add(p); 
             }
         }
@@ -73,9 +73,9 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * @param ennemies
      * @return the player  to be attacked
      */
-    public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
+    public PlayerAres askNeighbor() throws InvalidChoiceException {
         PlayerAres enemie=null;
-        if (enemies.isEmpty()) {
+        if (this.enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         
@@ -168,11 +168,11 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
-        List<PlayerAres> ennemies= createEnnemies(); 
+        this.enemies= createEnnemies(); 
         PlayerAres ennemy=null;
-        if(this.enemies.size()>1){
-            ennemy= askNeighbor(ennemies);
 
+        if(this.enemies.size()>1){
+            ennemy= askNeighbor();
         }
         else{
             ennemy=this.enemies.get(0);
@@ -199,9 +199,6 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         }
 
         System.out.println(loser.getName() + " a perdu ! ");
-
-
-        //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
         
         try {
             if (loser.getWarriors()>=1){
