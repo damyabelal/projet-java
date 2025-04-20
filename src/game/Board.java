@@ -115,15 +115,6 @@ public void display(){
     int h = this.getHeight();
    
     System.out.println("GAME BOARD :");
-<<<<<<< HEAD
-    System.out.println("\n");
-    System.out.println("Légende des tuiles :");
-    System.out.println((new Sea()).getSymbol() + " : Sea");
-    System.out.println((new Forest()).getSymbol() + " : Forest");
-    System.out.println((new Pasture()).getSymbol() + " : Pasture");
-    System.out.println((new Mountain()).getSymbol() + " : Mountain");
-    System.out.println((new Field()).getSymbol() + " : Field");
-=======
     System.out.println("\n Légende des tuiles :");
 
 
@@ -134,7 +125,6 @@ public void display(){
     System.out.print(getColorForTuile(new Field()) + "     " + RESET + " : Field     ");
     System.out.println();
 
->>>>>>> 2b3283d6780fe56ffc9bdf756512dde14a83d69c
 
     System.out.println("\n Légende des Batiments :");
     System.out.println(" a : Army");
