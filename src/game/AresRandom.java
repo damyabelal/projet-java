@@ -108,6 +108,7 @@ public class AresRandom {
 
     if (roundCounter >= maxRounds) {
       System.out.println("GAME OVER. No winner after " + maxRounds + " rounds.");
+      System.out.println("(do love, not war)");
     } else {
       System.out.println(winner.getName() + " WINS THE GAME !!");
     }
