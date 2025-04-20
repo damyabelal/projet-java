@@ -126,7 +126,6 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         if (player.getArmies().size() < 2){
             warriors= 1; 
         }
-
         else{
             warriors = askNumberWarriors();
         }
@@ -139,12 +138,13 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         if(player.getArmies().size() >= 2){
             this.removeRessources();
         }
-        
     
         Army army = new Army((Earth) tile, warriors, player);
 
         player.addArmy(army);
         tile.setBuilding(army);
+
+        army.collectRessource(player);
 
         player.removeWarriors(warriors);
 

@@ -79,6 +79,8 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         tile.setBuilding(farm);
         // adds the built tile to the player's list of tiles
         player.addFarm(farm);
+
+        farm.collectRessource(player);
         
         player.addPoints(1); 
         

@@ -117,6 +117,8 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
     this.tuile.setBuilding(camp);
     player.addCamp(camp);
 
+    camp.collectRessource(player);
+
     System.out.println("The army evolved into a camp (" + camp.getNbWarriors() + " warriors)");
 
   }

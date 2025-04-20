@@ -78,6 +78,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         Port port = new Port(choosenTile, player);
         choosenTile.setBuilding(port);
         player.addPort(port);
+        port.collectRessource(player);
 
         System.out.println(player.getName() +": "+player.getResources()+ " build a port on the position "+ choosenTile.getPosition());
         

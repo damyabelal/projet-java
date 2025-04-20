@@ -57,11 +57,9 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
     Army chosenArmy = askArmy();
    
     // checks if the player has enough ressources
-
     if (!this.hasEnoughRessources()) {
       throw new NoMoreRessourcesException("Not enough resources to upgrade the army");
     }
-    
     this.tuile = chosenArmy.getTuile();
 
     this.tuile.removeBuilding();
@@ -72,6 +70,9 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
     this.removeRessources();
 
     this.tuile.setBuilding(camp);
+
+    camp.collectRessource(player);
+
     player.addCamp(camp);
 
     System.out.println("The army evolved into a camp (" + chosenArmy.getNbWarriors() + " warriors)");
