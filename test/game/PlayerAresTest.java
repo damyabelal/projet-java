@@ -1,6 +1,7 @@
 package game;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -9,12 +10,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.action.Action;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.tuile.building.Camp;
 import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
@@ -230,7 +233,10 @@ public class PlayerAresTest {
         player.addRessource(Ressource.SHEEP, 5);
         player.addRessource(Ressource.WEALTH, 5);
 
-        player.createActions(board, 1);
+        List<PlayerAres> players =new ArrayList<>();
+        players.add(player);
+
+        player.createActions(board, 1,players);
         
         assertNotNull(player.getActionsAres());
         assertFalse(player.getActionsAres().isEmpty());
@@ -241,51 +247,67 @@ public class PlayerAresTest {
 
     @Test
     void testCreateActionsWithoutRessources() throws Exception {
-        Board board = new Board(5, 5);
+    Board board = new Board(5, 5);
 
-        // Remplir le plateau de tuiles Earth valides
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                board.put(new Field(), new Position(i, j));
-            }
+    // Remplir le plateau de tuiles Earth valides
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            board.put(new Field(), new Position(i, j));
         }
+    }
 
+    List<PlayerAres> players =new ArrayList<>();
+    players.add(player);
+
+    player.createActions(board, 1,players);
+
+    List<Action<PlayerAres>> actions = player.getActionsAres();
+
+    
+    assertEquals(2, actions.size()); 
+    boolean hasDisplayWarriors = false;
+    boolean hasAttackNeighboor = false;
         
-        player.createActions(board, 1);
-        List<Action<PlayerAres>> actions = player.getActionsAres();
-        assertEquals(3, actions.size()); 
-        boolean hasDisplayWarriors = false;
-        boolean hasAttackNeighboor = false;
-        
-        for (Action<PlayerAres> action : actions) {
-            if (action instanceof game.action.actionAres.DisplayWarriors) {
-                hasDisplayWarriors = true;
-            }
-            if (action instanceof game.action.actionAres.AttackNeighboor) {
-                hasAttackNeighboor = true;
-            }
+    for (Action<PlayerAres> action : actions) {
+        if (action instanceof game.action.actionAres.DisplayWarriors) {
+            hasDisplayWarriors = true;
         }
+        if (action instanceof game.action.actionAres.AttackNeighboor) {
+            hasAttackNeighboor = true;
+        }
+    }
         
-        assertTrue(hasDisplayWarriors);
-        assertTrue(hasAttackNeighboor);
+    assertTrue(hasDisplayWarriors);
+    assertTrue(hasAttackNeighboor);
 
     }
        
 
     @Test
-    void placeInitialArmyTest() throws CantBuildException{
+    void placeInitialArmyTest() throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException {
+    Board board = new Board(5, 5);
 
-       Board board=new Board(5, 5);
-       // before placing an army randomly for the player , the player has no army
-       assertTrue( player.getArmies().isEmpty());
-       //placing an army randomly on the board
-       player.placeInitialArmyRandom(board);
-        // afterwards the player possess one army
-        assertTrue( player.getArmies().size()==1);
-
-       
-
+    
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            board.put(new Field(), new Position(i, j));
+        }
     }
+
+    
+    player.addRessource(Ressource.WOOD, 1);
+    player.addRessource(Ressource.SHEEP, 1);
+    player.addRessource(Ressource.WEALTH, 1);
+
+    
+    assertTrue(player.getArmies().isEmpty());
+
+    
+    player.placeInitialArmy(board, new RandomListChooser<>(), new RandomListChooser<>());
+
+    
+    assertEquals(1, player.getArmies().size());
+}
 
     
 

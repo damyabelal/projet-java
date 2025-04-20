@@ -2,20 +2,31 @@ package game;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import game.action.Action;
+import game.action.ExchangeRessources;
 import game.action.actionDemeter.BuildFarm;
+import game.action.actionDemeter.BuyThief;
+import game.action.actionDemeter.ExchangeRessourcesPort;
+import game.action.actionDemeter.PlayThief;
+import game.action.actionDemeter.UpgradeFarm;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
+import game.tuile.Field;
 import game.tuile.Forest;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
+import game.util.Position;
 
 public class PlayerDemeterTest {
 
@@ -129,13 +140,82 @@ public class PlayerDemeterTest {
     }
 
     @Test 
-    void placeInitialFarmRandomTest(){
+    void placeInitialFarmRandomTest() throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{
     //before placing a farm randomly on the board for the player , the player has no farms
     assertTrue(player.getFarms().isEmpty());
-    player.placeInitialFarm(board);
+    player.placeInitialFarm(board, new RandomListChooser<>());
     //after placing a farm randomly on the board , the player posesses one farm
-    assertTrue(player.getFarms().isEmpty());
+    assertTrue(!player.getFarms().isEmpty());
     }
+
+    @Test
+    void testCreateAllActionsAvailable() throws Exception {
+        PlayerDemeter player = new PlayerDemeter("Demeter");
+        Board board = new Board(5, 5);
+        List<PlayerDemeter> players = new ArrayList<>();
+        players.add(player);
+
+       
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                board.put(new Field(), new Position(i, j));
+            }
+        }
+
+        
+        Earth tile =(Earth) board.getTile(new Position(1, 1));
+        Farm farm = new Farm(tile, player);
+        tile.setBuilding(farm);
+        player.addFarm(farm);
+
+       
+        Port port = new Port((Earth)board.getTile(new Position(2, 2)), player);
+        Earth e = (Earth) board.getTile(new Position(2, 2));
+        e.setBuilding(port);
+        player.addPort(port);
+
+      
+        player.addThief();
+
+        
+        player.addRessource(Ressource.WOOD, 10);
+        player.addRessource(Ressource.ORE, 10);
+        player.addRessource(Ressource.WEALTH, 10);
+        player.addRessource(Ressource.SHEEP, 10);
+
+        
+        player.createActions(board, 1, players);
+
+        
+        List<Action<PlayerDemeter>> actions = player.getActionsDemeter();
+
+        
+        
+        boolean hasBuildFarm = false;
+        boolean hasBuyThief = false;
+        boolean hasPlayThief = false;
+        boolean hasExchange = false;
+        boolean hasExchangePort = false;
+        boolean hasUpgradeFarm = false;
+
+        for (Action<PlayerDemeter> action : actions) {
+            if (action instanceof BuildFarm) hasBuildFarm = true;
+            if (action instanceof BuyThief) hasBuyThief = true;
+            if (action instanceof PlayThief) hasPlayThief = true;
+            if (action instanceof ExchangeRessources) hasExchange = true;
+            if (action instanceof ExchangeRessourcesPort) hasExchangePort = true;
+            if (action instanceof UpgradeFarm) hasUpgradeFarm = true;
+        }
+
+       
+        assertTrue(hasBuildFarm);
+        assertTrue(hasBuyThief);
+        assertTrue(hasPlayThief);
+        assertTrue(hasExchange);
+        assertTrue(hasExchangePort);
+        assertTrue(hasUpgradeFarm);
+    }
+
 
 
 
