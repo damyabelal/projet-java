@@ -74,5 +74,7 @@ public class PlayThief implements Action<PlayerDemeter> {
         } else {
             throw new NoMoreRessourcesException("There is not enough of this type of ressource : " + this.ressource + " to be able to steal");
         }
+
+        
     }
 }

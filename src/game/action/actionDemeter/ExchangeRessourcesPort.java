@@ -68,7 +68,7 @@ public class ExchangeRessourcesPort extends ActionManager<PlayerDemeter> impleme
     public Ressource askReceiveRessources() {
         Ressource chosen = lc.choose("What resource do you want in exchange?", Arrays.asList(Ressource.values()));
         if (chosen == null){
-            System.out.println("Action cancelled. No ressource to receive was selected");
+            throw new IllegalArgumentException("Action cancelled. No ressource to receive was selected");
         }
         return chosen;
     }

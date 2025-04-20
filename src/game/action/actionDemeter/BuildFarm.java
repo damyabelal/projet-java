@@ -50,6 +50,9 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         if (chosenTile == null) {
             throw new InvalidChoiceException("Action cancelled. No farm was selected");
         }
+        if (chosenTile.haveBuild()) {
+            throw new InvalidChoiceException("This tile already has a building.");
+        }
         return chosenTile;
     }
     

@@ -35,7 +35,7 @@ public class UpgradeFarm extends ActionManager<PlayerDemeter> implements Action<
     public Farm ask() throws InvalidChoiceException {
         List<Farm> farms = ((PlayerDemeter) this.player).getFarms();
         if (farms.isEmpty()) {
-            throw new IllegalArgumentException("No farms available to upgrade.");
+            throw new InvalidChoiceException("No farms available to upgrade.");
         }
         Farm chosen = lc.choose("Which farm do you want to upgrade?", farms);
         if (chosen == null) {
