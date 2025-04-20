@@ -74,7 +74,7 @@ public class AresRandom {
     
 
     int i = 0;
-    int maxRounds = 100;
+    int maxRounds = 50;
     int roundCounter = 0;
 
     while (winner == null && roundCounter < maxRounds) {

@@ -311,6 +311,7 @@ public class PlayerAresTest {
 
 }
 
+  
     @Test
     void testDetainWarriors() throws Exception {
 
