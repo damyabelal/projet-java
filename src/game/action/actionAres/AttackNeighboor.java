@@ -58,7 +58,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public List<PlayerAres> createEnnemies(){
         List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
         for (PlayerAres p : this.players){
-            if (!(p == this.player)){
+            if (p.getName() != this.player.getName()){
                 ennemies.add(p); 
             }
         }
@@ -170,6 +170,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
         this.enemies= createEnnemies(); 
         PlayerAres ennemy=null;
+
         if(this.enemies.size()>1){
             ennemy= askNeighbor();
         }
