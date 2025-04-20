@@ -46,6 +46,9 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
     if(chosen == null) {
         throw new InvalidChoiceException("Action cancelled. No port was selected");
     }
+    if(chosen.haveBuild()){
+        throw new InvalidChoiceException("This tile already has a building.");
+    }
     return chosen;
 }
 

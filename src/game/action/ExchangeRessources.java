@@ -56,7 +56,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
             }
         }
         if (ressources.isEmpty()) {
-            throw new IllegalArgumentException("No ressources available to exchange.");
+            throw new InvalidChoiceException("No ressources available to exchange.");
         }
         Ressource chosen = lc.choose("What ressource do you want to exchange?", ressources);
         if (chosen == null) {

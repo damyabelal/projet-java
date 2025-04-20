@@ -28,10 +28,11 @@ public class PlayThief implements Action<PlayerDemeter> {
      * asks the player which ressource he wants to receive in exchange
      * @return the ressource the player wants to receive in exchange
      */
-    public Ressource askRessource() {
+    public Ressource askRessource() throws NoMoreRessourcesException {
         Ressource chosen = lc.choose("What resource do you want to steal?", Arrays.asList(Ressource.values()));
         if (chosen == null){
-            System.out.println("Action cancelled. No ressource to steal was selected");
+            throw new NoMoreRessourcesException("No ressource to steal was selected");
+
         }
         return chosen;
     }
