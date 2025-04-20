@@ -72,6 +72,11 @@ public class PlayerDemeter extends Player{
         this.nbThief += 1 ;
     }
 
+    public List<Action<PlayerDemeter>> getActionsDemeter() {
+        return this.actionsDemeter;
+    }
+    
+
     /**
      * gets the farms of the demeter player
      * @return List<Farm> the farms of the demeter player
