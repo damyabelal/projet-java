@@ -103,7 +103,8 @@ public void display(){
     int h = this.getHeight();
    
     System.out.println("GAME BOARD :");
-    System.out.println("\n Légende des tuiles :");
+    System.out.println("\n");
+    System.out.println("Légende des tuiles :");
     System.out.println((new Sea()).getSymbol() + " : Sea");
     System.out.println((new Forest()).getSymbol() + " : Forest");
     System.out.println((new Pasture()).getSymbol() + " : Pasture");
