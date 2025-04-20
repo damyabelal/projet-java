@@ -103,7 +103,6 @@ public class Ares {
                     p.act(board, 0);
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
-
                 }
                 if (isWinner(p, board)) {
                     winner = p;

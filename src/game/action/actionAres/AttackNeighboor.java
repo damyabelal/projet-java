@@ -168,10 +168,10 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
-        List<PlayerAres> ennemies= createEnnemies(); 
+        this.enemies= createEnnemies(); 
         PlayerAres ennemy=null;
         if(this.enemies.size()>1){
-            ennemy= askNeighbor(ennemies);
+            ennemy= askNeighbor(this.enemies);
 
         }
         else{
@@ -199,9 +199,6 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         }
 
         System.out.println(loser.getName() + " a perdu ! ");
-
-
-        //je sais pas comment on va faire pour savoir quel tuile on attaque je pense que 
         
         try {
             if (loser.getWarriors()>=1){
