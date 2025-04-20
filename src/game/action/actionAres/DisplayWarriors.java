@@ -15,84 +15,72 @@ import game.util.InvalidChoiceException;
 public class DisplayWarriors extends ActionManager<PlayerAres> implements Action<PlayerAres> {
 
     private ListChooser<Integer> lcNumber;
-    private ListChooser<String> lcString;
-    private ListChooser<Army> lcArmy;
-    private ListChooser<Camp> lcCamp;
+    private ListChooser<Army> lcArmyCamp;
 
-    public DisplayWarriors(PlayerAres player, ListChooser<Integer> lcNumber, ListChooser<String> lcString, ListChooser<Army> lcArmy, ListChooser<Camp> lcCamp) {
+    public DisplayWarriors(PlayerAres player, ListChooser<Integer> lcNumber, ListChooser<Army> lcArmyCamp ) {
         super(player);
         this.lcNumber = lcNumber;
-        this.lcString = lcString;
-        this.lcArmy = lcArmy;
-        this.lcCamp = lcCamp;
-    }
-
-
-    /**
-    * @return the description of the action
-    */
-    public String toString(){
-        return "Display warriors";  
+        this.lcArmyCamp = lcArmyCamp;
     }
 
     /**
-     * Asks the player how many warriors they want to add, ensuring they have enough.
+     * @return the description of the action
+     */
+    public String toString() {
+        return "Display warriors";
+    }
+
+    /**
+     * Asks the player how many warriors they want to add, ensuring they have
+     * enough.
      * 
      * @param player the player who performs the action
      * @return the number of warriors to add, or -1 if invalid
-     * @throws InvalidChoiceException 
+     * @throws InvalidChoiceException
      */
     private int askWarrior(PlayerAres player) throws InvalidChoiceException {
-    List<Integer> warriorChoices = new ArrayList<>();
-    for (int i = 1; i <= player.getWarriors(); i++) {
-        warriorChoices.add(i);
-    }
-    Integer add = lcNumber.choose("How many warriors do you want to add?", warriorChoices);
-    
-    if (add == null) {
-        throw new InvalidChoiceException("Action cancelled : No warriors selected");
-    }
-    return add;
-}
+        List<Integer> warriorChoices = new ArrayList<>();
+        for (int i = 1; i <= player.getWarriors(); i++) {
+            warriorChoices.add(i);
+        }
+        Integer add = lcNumber.choose("How many warriors do you want to add?", warriorChoices);
 
+        if (add == null) {
+            throw new InvalidChoiceException("Action cancelled : No warriors selected");
+        }
+        return add;
+    }
 
     @Override
-    public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
-        // ask if the player wants to add warriors to an army or a camp
-        String choice = lcString.choose("Do you want to add warriors to an army or a camp? (army/camp)", List.of("army", "camp"));
+public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
+    List<Army> allArmiesAndCamps = new ArrayList<>();
 
-        if ("army".equalsIgnoreCase(choice)) {
-            Army army = lcArmy.choose("Which army do you want to add warriors to?", player.getArmies());
-            if (army == null) {
-                System.out.println("No army selected");
-                return;
-            }
-
-            int add = askWarrior(player);
-            // add warriors to the selected army : if army's number of warriors not > 5
-            if (army.getNbWarriors() + add <= 5 ){
-                player.removeWarriors(add);
-                army.addWarriors(add);
-                System.out.println(add + " warriors have been added to the army");
-            }
-            
-
-        } else if ("camp".equalsIgnoreCase(choice)) {
-            // choose a camp to add warriors to
-            Camp camp = lcCamp.choose("Which camp do you want to add warriors to?", player.getCamps());
-            if (camp == null) {
-                System.out.println("No camp selected");
-                return;
-            }
-            int warriorsToAdd = askWarrior(player);  
-            
-            player.removeWarriors(warriorsToAdd);
-            camp.addWarriors(warriorsToAdd);
-            System.out.println(warriorsToAdd + " warriors have been added to the camp");
-
-        } else {
-            throw new InvalidChoiceException("Invalid choice please choose either 'army' or 'camp'");
-        }
+    for (Army army : player.getArmies()) {
+        allArmiesAndCamps.add(army);
     }
-    
+    for (Camp camp : player.getCamps()) {
+        allArmiesAndCamps.add(camp); 
+    }
+
+    Army selection = lcArmyCamp.choose("Choose an army or a camp to add warriors to:", allArmiesAndCamps);
+
+    if (selection == null) {
+        throw new InvalidChoiceException("Action cancelled: No army or camp selected");
+    }
+
+    int warriorsToAdd = askWarrior(player);
+
+    if (selection instanceof Camp) {
+        player.removeWarriors(warriorsToAdd);
+        selection.addWarriors(warriorsToAdd);
+        System.out.println(warriorsToAdd + " warriors have been added to the camp.");
+    } else {
+        if (selection.getNbWarriors() + warriorsToAdd > 5) {
+            throw new InvalidChoiceException("Cannot add that many warriors. Maximum per army is 5.");
+        }
+        player.removeWarriors(warriorsToAdd);
+        selection.addWarriors(warriorsToAdd);
+        System.out.println(warriorsToAdd + " warriors have been added to the army.");
+    }
+}
 }
