@@ -10,6 +10,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.action.Action;
+import game.action.BuildPort;
+import game.action.ExchangeRessources;
+import game.action.actionAres.AttackNeighboor;
+import game.action.actionAres.BuildArmy;
+import game.action.actionAres.BuySecretWeapon;
+import game.action.actionAres.BuyWarriors;
+import game.action.actionAres.DisplayWarriors;
+import game.action.actionAres.UpgradeWithRessources;
+import game.action.actionAres.UpgradeWithWarriors;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
@@ -337,6 +346,69 @@ public class PlayerAresTest {
         assertThrows(NoMoreRessourcesException.class, () -> {player.removeWarriors(1);});
 
     }
+    @Test
+    void testCreateAllActionsAvailable() throws Exception {
+    PlayerAres player = new PlayerAres("Ares");
+    Board board = new Board(5, 5);
+    List<PlayerAres> players = new ArrayList<>();
+    players.add(player);
+
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            board.put(new Field(), new Position(i, j));
+        }
+    }
+
+   
+    Earth tile = (Earth) board.getTile(new Position(1, 1));
+    Army army = new Army(tile, 3, player);
+    tile.setBuilding(army);
+    player.addArmy(army);
+
+   
+    player.addRessource(Ressource.WOOD, 10);
+    player.addRessource(Ressource.ORE, 10);
+    player.addRessource(Ressource.WEALTH, 10);
+    player.addRessource(Ressource.SHEEP, 10);
+
+    
+    player.createActions(board, 1, players);
+    List<Action<PlayerAres>> actions = player.getActionsAres();
+
+    
+    boolean hasBuildPort = false;
+    boolean hasExchange = false;
+    boolean hasBuildArmy = false;
+    boolean hasUpgradeWithRessources = false;
+    boolean hasUpgradeWithWarriors = false;
+    boolean hasBuySecretWeapon = false;
+    boolean hasBuyWarriors = false;
+    boolean hasDisplayWarriors = false;
+    boolean hasAttack = false;
+
+    for (Action<PlayerAres> action : actions) {
+        if (action instanceof BuildPort) hasBuildPort = true;
+        if (action instanceof ExchangeRessources) hasExchange = true;
+        if (action instanceof BuildArmy) hasBuildArmy = true;
+        if (action instanceof UpgradeWithRessources) hasUpgradeWithRessources = true;
+        if (action instanceof UpgradeWithWarriors) hasUpgradeWithWarriors = true;
+        if (action instanceof BuySecretWeapon) hasBuySecretWeapon = true;
+        if (action instanceof BuyWarriors) hasBuyWarriors = true;
+        if (action instanceof DisplayWarriors) hasDisplayWarriors = true;
+        if (action instanceof AttackNeighboor) hasAttack = true;
+    }
+
+    assertTrue(hasBuildPort);
+    assertTrue(hasExchange);
+    assertTrue(hasBuildArmy);
+    assertTrue(hasUpgradeWithRessources);
+    assertTrue(hasUpgradeWithWarriors);
+    assertTrue(hasBuySecretWeapon);
+    assertTrue(hasBuyWarriors);
+    assertTrue(hasDisplayWarriors);
+    assertTrue(hasAttack);
+}
+
 
 
 
