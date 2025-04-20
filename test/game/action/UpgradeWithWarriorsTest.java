@@ -1,18 +1,20 @@
 package game.action;
 
+
 import game.action.actionAres.UpgradeWithWarriors;
 import game.PlayerAres;
 import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Forest;
-import game.tuile.Ressource;
 import game.tuile.building.Army;
+import game.tuile.building.Camp;
 import game.util.CantBuildException;
-
+import game.util.InvalidChoiceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public class UpgradeWithWarriorsTest {
 
@@ -22,41 +24,41 @@ public class UpgradeWithWarriorsTest {
 
   @BeforeEach
   void setUp() throws CantBuildException {
-    player = new PlayerAres("Player1"); 
-    player.addRessource(Ressource.WOOD, 2);
-    player.addRessource(Ressource.ORE, 3);
-
+    player = new PlayerAres("Player1");
+    player.addWarriors(5);
     tuile = new Forest();
     army = new Army(tuile, 5, player);
+    tuile.setBuilding(army);
+    army.collectRessource(player);
+    player.addArmy(army);
   }
 
   @Test
   void testUpgradeArmyToCampSuccessfully() throws Exception {
-    tuile.setBuilding(army);
-    player.addArmy(army);
+    UpgradeWithWarriors action = new UpgradeWithWarriors(
+        player,
+        new RandomListChooser<>(),
+        new RandomListChooser<>()
+    );
 
     int warriorsBefore = player.getWarriors();
 
-    UpgradeWithWarriors action = new UpgradeWithWarriors(player, new RandomListChooser<>(), new RandomListChooser<>());
-
     action.act(player);
 
-    assertTrue(tuile.getBuilding() instanceof game.tuile.building.Camp);
+    assertTrue(tuile.getBuilding() instanceof Camp);
     assertEquals(0, player.getArmies().size());
     assertEquals(1, player.getCamps().size());
 
     int warriorsAfter = player.getWarriors();
-    int addedToCamp = warriorsBefore - warriorsAfter;
+    assertEquals(warriorsBefore - 2, warriorsAfter);
 
-    assertTrue(addedToCamp >= 1 && addedToCamp <= warriorsBefore);
+    Camp camp = (Camp) tuile.getBuilding();
+    assertEquals(7, camp.getNbWarriors());
   }
 
   @Test
-  void testFailsIfArmyTooWeak() throws CantBuildException {
-    Earth weakTile = new Forest();
-    Army weakArmy = new Army(weakTile, 3, player);
-    weakTile.setBuilding(weakArmy);
-
+  void testFailsIfNoEligibleArmy() throws CantBuildException {
+    Army weakArmy = new Army(new Forest(), 3, player);
     player.addArmy(weakArmy);
 
     UpgradeWithWarriors action = new UpgradeWithWarriors(
@@ -65,6 +67,6 @@ public class UpgradeWithWarriorsTest {
         new RandomListChooser<>()
     );
 
-    assertThrows(CantBuildException.class, () -> action.act(player));
+    assertThrows(InvalidChoiceException.class, () -> action.act(player));
   }
 }
