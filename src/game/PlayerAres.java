@@ -243,7 +243,7 @@ public class PlayerAres extends Player {
      * @param board
      * @param option
      */
-    public void createActions(Board board, int option) {
+    public void createActions(Board board, int option, List<PlayerAres> players) {
         ListChooser<Earth> lcEarth = null;
         ListChooser<Army> lcArmy = null;
         ListChooser<Ressource> lcRessource = null;
@@ -275,7 +275,7 @@ public class PlayerAres extends Player {
                 lcPlayer = new RandomListChooser<>();
                 lcNumber = new RandomListChooser<>();
             }
-            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer, lcNumber);
+            this.actionsAres = actionsPlayer(board, lcEarth, lcRessource, lcArmy, lcInt, lcString, lcCamp, lcPlayer, lcNumber, players);
         }
     }
 
@@ -320,7 +320,7 @@ public class PlayerAres extends Player {
      */
     private List<Action<PlayerAres>> actionsPlayer(Board board, ListChooser<Earth> lcEarth,
             ListChooser<Ressource> lcRessource, ListChooser<Army> lcArmy, ListChooser<Integer> lcInt,
-            ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer, ListChooser<Integer> lcNumber) {
+            ListChooser<String> lcString, ListChooser<Camp> lcCamp, ListChooser<PlayerAres> lcPlayer, ListChooser<Integer> lcNumber, List<PlayerAres> players) {
         List<Action<PlayerAres>> aresActions = new ArrayList<>();
     
         BuildPort<PlayerAres> buildPort = new BuildPort<PlayerAres>(this, board, lcEarth);
@@ -366,7 +366,7 @@ public class PlayerAres extends Player {
         }
 
         aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
-        aresActions.add(new AttackNeighboor(this, null, lcPlayer,lcEarth));
+        aresActions.add(new AttackNeighboor(this, players, lcPlayer,lcEarth));
 
         return aresActions;
     }

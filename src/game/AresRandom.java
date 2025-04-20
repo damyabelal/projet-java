@@ -89,7 +89,7 @@ public class AresRandom {
         p.collectRessources();
         board.display();
 
-        p.createActions(board, 1);
+        p.createActions(board, 1, players);
         try {
           p.act(board, 1);
         } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {

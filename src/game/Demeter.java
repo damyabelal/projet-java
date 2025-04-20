@@ -88,7 +88,7 @@ public class Demeter {
                 System.out.println("\n");
                 System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
                 board.display();
-                
+
                 //on propose au joueur des actions
                 p.createActions(board,0, players); // on propose les actions possibles
 
@@ -96,7 +96,6 @@ public class Demeter {
                     p.act(board, 0);
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
-              
                 }
                 //on vérifie si le joueur gagne
                 if (p.getPoints() >= 12){

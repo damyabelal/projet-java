@@ -61,7 +61,7 @@ public class Ares {
         }
 
         for (PlayerAres p : players) {
-            p.createActions(board, 0);
+            p.createActions(board, 0, players);
         }
 
         // ici on vas laisser les joueurs construire leurs deux armées
@@ -98,9 +98,9 @@ public class Ares {
                         p.getName() + " (" + p.getResources() + "/ nb warriors: " + p.getWarriors() + ") turn!!");
                 p.collectRessources();
                 board.display();
-                p.createActions(board, 0);// changer la liste des actions a chaque tour
+                p.createActions(board, 0, players);// changer la liste des actions a chaque tour
                 try {
-                    p.act(board, 1);
+                    p.act(board, 0);
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Action cancelled due to invalid or null choice.");
 
