@@ -300,7 +300,7 @@ public class PlayerAres extends Player {
             lc = new RandomListChooser<>();
         }
 
-        Action<PlayerAres> aresAction = lc.choose("Choose an action", this.actionsAres);
+        Action<PlayerAres> aresAction = lc.choose("Choose an action by typing its number", this.actionsAres);
         if (actionsAres != null) {
             try {
                 aresAction.act(this);
