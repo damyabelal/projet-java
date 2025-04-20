@@ -205,12 +205,7 @@ public class PlayerDemeter extends Player{
         if (buildPort.hasEnoughRessources()) {
             actionsDemeter.add(buildPort);
         }
-
-        ExchangeRessources<PlayerDemeter> exchange = new ExchangeRessources<>(this, lcRessource);
-        if (exchange.canExchange()) {
-            actionsDemeter.add(exchange);
-        }
-
+        
         // add possibles actions for player Demeter
         UpgradeFarm upgradeFarm = new UpgradeFarm(this, lcFarm);
         if (!this.getFarms().isEmpty() && upgradeFarm.hasEnoughRessources()) {
@@ -233,7 +228,12 @@ public class PlayerDemeter extends Player{
 
         BuildFarm buildFarm= new BuildFarm(board, this, lcEarth); 
         if (buildFarm.hasEnoughRessources()){
-            actionsDemeter.add(new BuildFarm(board, this, lcEarth));
+            actionsDemeter.add(buildFarm);
+        }
+
+        ExchangeRessources<PlayerDemeter> exchangeRessources= new ExchangeRessources<PlayerDemeter>(this, lcRessource); 
+        if (exchangeRessources.canExchange()){
+            actionsDemeter.add(exchangeRessources); 
         }
         
         return actionsDemeter;

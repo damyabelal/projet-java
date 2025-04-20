@@ -22,11 +22,11 @@ public class RandomListChooser<T> implements ListChooser<T>{
         if (list.isEmpty()) {
 			return null;
 		}
-
+/** 
 		if (list.size() == 1) {
             return list.get(0);
         }
-		
+	*/	
 		System.out.println(msg);
 		System.out.println("      0 - none");
 		int index = 1;
