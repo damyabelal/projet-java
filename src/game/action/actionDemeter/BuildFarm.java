@@ -64,13 +64,16 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         Position choosenPosition= askCoordinate().getPosition();
         Earth tile= (Earth) this.board.getTile(choosenPosition); 
         int numberofBuilding= player.getFarms().size() + player.getExploitations().size() +player.getPorts().size(); 
+       
+       
+       
         //checks if player has enough ressources to build a farm
-        if ((!this.hasEnoughRessources()) && ( numberofBuilding >=  2 )) {
-            throw new NoMoreRessourcesException("Not enough ressources to build the farm\n cost: "+this.cost);
-        }
-        // if a farm is built, removes the farm's cost from the player's inventory
-        if (numberofBuilding>= 2){
-            this.removeRessources();
+       
+        if (numberofBuilding >=2){
+            if (!this.hasEnoughRessources()){
+                throw new NoMoreRessourcesException("You don't have enough ressources to build a farm" + this.cost);
+            }
+            this.removeRessources(); // removes the ressources from the player
         }
 
         // builds the farm on the tile the player wants to build on
@@ -86,6 +89,10 @@ public class BuildFarm extends ActionManager <PlayerDemeter> implements Action<P
         
         System.out.println(player.getName() +": "+player.getResources()+ " build a farm on position "+ choosenPosition);
     }
+
+
+
+
 
 }
 

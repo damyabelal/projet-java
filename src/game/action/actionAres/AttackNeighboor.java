@@ -38,6 +38,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         this.enemies= null;
         this.lc= lc; 
         this.lcEarth= lcEarth;
+        this.player= player;
         this.players= players;
            
     }
@@ -58,7 +59,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public List<PlayerAres> createEnnemies(){
         List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
         for (PlayerAres p : this.players){
-            if (p != this.player){
+            if (p.getName() != this.player.getName()){
                 ennemies.add(p); 
             }
         }
@@ -73,9 +74,11 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * @param ennemies
      * @return the player  to be attacked
      */
-    public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
-       PlayerAres enemie=null;
-        if (enemies.size()==0) {
+    public PlayerAres askNeighbor() throws InvalidChoiceException {
+        
+        List<PlayerAres> enemies= this.createEnnemies();
+        PlayerAres enemie=null;
+        if (this.enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         else if(enemies.size()==1){
@@ -171,8 +174,8 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     
 
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
-        List<PlayerAres> enemies= this.createEnnemies(); 
-       PlayerAres ennemy=this.askNeighbor(enemies);
+         
+       PlayerAres ennemy=this.askNeighbor();
         Earth tile = askTile(ennemy);
 
         // la somme des dés de chaque joueur

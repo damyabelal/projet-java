@@ -71,13 +71,10 @@ public class AresRandom {
       System.out.println(p.getName() + " goal is to " + p.getObjective());
     }
 
-    // give a random objective for the player
-    for (PlayerAres p : players) {
-      p.givePlayersObjective();
-    }
+    
 
     int i = 0;
-    int maxRounds = 100;
+    int maxRounds = 50;
     int roundCounter = 0;
 
     while (winner == null && roundCounter < maxRounds) {

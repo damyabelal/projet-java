@@ -73,7 +73,7 @@ public class Livrable3ares {
         //2. add warriors 
         System.out.println("===> ares "+ ares.getResources()+ " ("+ ares.getWarriors()+ " warriors)  ajoute des guerriers jusqu'à 5");
 
-        DisplayWarriors displayWarriorsAction= new DisplayWarriors(ares, new RandomListChooser<>(),new RandomListChooser<>(),new RandomListChooser<>(), new RandomListChooser<>()); 
+        DisplayWarriors displayWarriorsAction= new DisplayWarriors(ares, new RandomListChooser<>(),new RandomListChooser<>()); 
         try {
             displayWarriorsAction.act(ares);
         } catch (Exception e) {

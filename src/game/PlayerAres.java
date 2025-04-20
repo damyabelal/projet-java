@@ -365,7 +365,7 @@ public class PlayerAres extends Player {
             aresActions.add(buyWarriors);
         }
 
-        aresActions.add(new DisplayWarriors(this, lcInt, lcString, lcArmy, lcCamp));
+        aresActions.add(new DisplayWarriors(this, lcInt, lcArmy));
         aresActions.add(new AttackNeighboor(this, players, lcPlayer,lcEarth));
 
         return aresActions;

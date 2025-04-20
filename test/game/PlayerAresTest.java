@@ -307,7 +307,40 @@ public class PlayerAresTest {
 
     
     assertEquals(1, player.getArmies().size());
+    
+
 }
+
+  
+    @Test
+    void testDetainWarriors() throws Exception {
+
+        player.setObjective(new AresGameObjectives(AresGameObjectives.ObjectiveType.DETAIN_WARRIORS, 6));
+
+
+        Army a = new Army(null, 3, player);
+        Camp c = new Camp(null, 3, player);
+        player.addArmy(a);
+        player.addCamp(c);
+
+        assertTrue(player.didDetainWarriors());
+        assertTrue(player.isObjectiveAchieved(new Board(1, 1)));
+
+    }
+
+
+    @Test
+    void testNoMoreRessourcesException() throws Exception {
+        player.removeWarriors(30); // remove all
+        assertEquals(0, player.getWarriors());
+
+        assertThrows(NoMoreRessourcesException.class, () -> {player.removeWarriors(1);});
+
+    }
+
+
+
+
 
     
 
