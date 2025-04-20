@@ -47,7 +47,7 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         if (buildableTiles.isEmpty()) {
             throw new InvalidChoiceException("There are no buildable tiles available");
         }
-        Earth chosenTile = lc.choose("Where do you want to build a Army?", buildableTiles);
+        Earth chosenTile = lc.choose("Where do you want to build an Army?", buildableTiles);
         if (chosenTile == null) {
             throw new InvalidChoiceException("Action cancelled : No tile selected");
         }
