@@ -14,6 +14,7 @@ import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
+import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
 import game.util.NoMoreRessourcesException;
 
@@ -129,12 +130,12 @@ public class PlayerDemeterTest {
     }
 
     @Test 
-    void placeInitialFarmRandomTest(){
+    void placeInitialFarmRandomTest() throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{
     //before placing a farm randomly on the board for the player , the player has no farms
     assertTrue(player.getFarms().isEmpty());
-    player.placeInitialFarm(board);
+    player.placeInitialFarm(board, new RandomListChooser<>());
     //after placing a farm randomly on the board , the player posesses one farm
-    assertTrue(player.getFarms().isEmpty());
+    assertTrue(!player.getFarms().isEmpty());
     }
 
 

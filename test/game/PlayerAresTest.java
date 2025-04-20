@@ -279,7 +279,7 @@ public class PlayerAresTest {
        // before placing an army randomly for the player , the player has no army
        assertTrue( player.getArmies().isEmpty());
        //placing an army randomly on the board
-       player.placeInitialArmyRandom(board);
+       player.placeInitialArmyRandom(board,new );
         // afterwards the player possess one army
         assertTrue( player.getArmies().size()==1);
 
