@@ -139,7 +139,7 @@ public void display(){
             }
 
             String color = getColorForTuile(t);
-            System.out.print(color + symbole + RESET + "");
+            System.out.print(""+color+""+symbole+""+ RESET + "");
         }
         System.out.println(); // saut de ligne à la fin de chaque rangée
     }
