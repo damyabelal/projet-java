@@ -1,5 +1,7 @@
 package game.listchooser;
 import java.util.List;
+
+import game.Player;
 import game.listchooser.util.Input;
 
 public class InteractiveListChooser<T> implements ListChooser<T>{
@@ -28,7 +30,13 @@ public class InteractiveListChooser<T> implements ListChooser<T>{
             System.out.println("      0 - none");
             int index = 1;
             for (T element : list) {
+                if (element instanceof Player){
+                    System.out.println("      " + (index++) + " - " + ((Player) element).getName());
+                }
+
+                else{
                 System.out.println("      " + (index++) + " - " + element);
+                }
             }
             System.out.println("            choice ?");
             try {
