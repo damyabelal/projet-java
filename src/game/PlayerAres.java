@@ -350,10 +350,17 @@ public class PlayerAres extends Player {
         }
 
         // upgrade to camp with warriors
-        UpgradeWithWarriors upgradeWithWarriors = new UpgradeWithWarriors(this, lcInt, lcArmy);
-        if (upgradeWithWarriors.hasEnoughRessources() && !this.armies.isEmpty()) {
+        List<Army> armiesWithFiveWarriors = new ArrayList<>();
+        for (Army army : this.armies) {
+            if (army.getNbWarriors() == 5) {
+                armiesWithFiveWarriors.add(army);  
+            }
+        }
+        if (!armiesWithFiveWarriors.isEmpty() && this.getWarriors() > 0) {
+            UpgradeWithWarriors upgradeWithWarriors = new UpgradeWithWarriors(this, lcInt, lcArmy);
             aresActions.add(upgradeWithWarriors);
         }
+        
 
         BuySecretWeapon buySecretWeapon = new BuySecretWeapon(this);
         if (buySecretWeapon.hasEnoughRessources()) {
