@@ -88,7 +88,7 @@ public class Ares {
         System.out.println("\n");
 
         int i = 0;
-        int maxRounds = 50;
+        int maxRounds = 100;
         int roundCounter = 0;
 
         while (winner == null && roundCounter < maxRounds) {

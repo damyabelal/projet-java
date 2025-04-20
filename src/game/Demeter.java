@@ -75,7 +75,7 @@ public class Demeter {
         System.out.println("THE GAME START");
         System.out.println("\n");
 
-        int maxRounds = 50;  
+        int maxRounds = 100;  
         int roundCounter = 0;
         
         while (winner==null && roundCounter < maxRounds){
