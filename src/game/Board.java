@@ -94,8 +94,20 @@ public List<Earth> getIsland(Earth earth){
 }
 
 
-
-
+/**
+ * returns the color for the given tile
+ * @param tuile
+ * @return 
+ */
+public static String getColorForTuile(Tuile tuile) {
+        if (tuile instanceof Forest) return "\u001B[48;5;22m";      
+        if (tuile instanceof Mountain) return "\u001B[100m";    
+        if (tuile instanceof Pasture) return "\u001B[103m";     
+        if (tuile instanceof Field) return "\u001B[48;5;94m";       
+        if (tuile instanceof Sea) return "\u001B[48;5;17m";         
+        return "\u001B[47m";                                   
+    }
+    
 
 /*** displays a  board for the game with tiles with random type placed on random positions */
 public void display(){
@@ -104,11 +116,15 @@ public void display(){
    
     System.out.println("GAME BOARD :");
     System.out.println("\n Légende des tuiles :");
-    System.out.println((new Sea()).getSymbol() + " : Sea");
-    System.out.println((new Forest()).getSymbol() + " : Forest");
-    System.out.println((new Pasture()).getSymbol() + " : Pasture");
-    System.out.println((new Mountain()).getSymbol() + " : Mountain");
-    System.out.println((new Field()).getSymbol() + " : Field");
+
+
+    System.out.print(getColorForTuile(new Sea()) + "     " + RESET + " : Sea     ");
+    System.out.print(getColorForTuile(new Forest()) + "     " + RESET + " : Forest     ");
+    System.out.print(getColorForTuile(new Pasture()) + "     " + RESET + " : Pasture     ");
+    System.out.print(getColorForTuile(new Mountain()) + "     " + RESET + " : Mountain     ");
+    System.out.print(getColorForTuile(new Field()) + "     " + RESET + " : Field     ");
+    System.out.println();
+
 
     System.out.println("\n Légende des Batiments :");
     System.out.println(" a : Army");
@@ -131,10 +147,13 @@ public void display(){
         for (int x = 0; x < w; x++) {
             Tuile t = this.grid[x][y];
             
-            String symbole = " " + t.getSymbol() + " ";
+            String symbole = "     ";
+            if (t instanceof Sea) {
+                symbole =" " + t.getSymbol()+" ";
+            }
 
             if (t instanceof Earth && t.haveBuild()) {
-                symbole = ((Earth)t).getSymbol() + ((Earth)t).getBuilding().getSymbol();
+                symbole = "  " + ((Earth)t).getBuilding().getSymbol()+"  ";
             }
 
             String color = getColorForTuile(t);
@@ -573,14 +592,6 @@ public void displayBuildings() {
     }
 
 
-    public static String getColorForTuile(Tuile tuile) {
-        if (tuile instanceof Forest) return "\u001B[42m";      // Vert
-        if (tuile instanceof Mountain) return "\u001B[45m";    // Magenta
-        if (tuile instanceof Pasture) return "\u001B[43m";     // Jaune
-        if (tuile instanceof Field) return "\u001B[46m";       // Cyan
-        if (tuile instanceof Sea) return "\u001B[44m";         // Bleu
-        return "\u001B[47m";                                   // Blanc (par défaut)
-    }
     
     
     
