@@ -78,8 +78,11 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         if (enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
+        else if(enemies.size()==1){
+            enemie=enemies.get(0);
+        }
         
-        else{
+        else if (enemies.size()>1){
      
         enemie = lc.choose("Who do you want to attack", enemies);
         if (enemie == null) {
