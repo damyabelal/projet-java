@@ -38,6 +38,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         this.enemies= null;
         this.lc= lc; 
         this.lcEarth= lcEarth;
+        this.player= player;
         this.players= players;
            
     }
