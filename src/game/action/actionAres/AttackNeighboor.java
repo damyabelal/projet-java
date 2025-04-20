@@ -75,7 +75,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      */
     public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
        PlayerAres enemie=null;
-        if (enemies.isEmpty()) {
+        if (enemies.size()==0) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         else if(enemies.size()==1){
@@ -175,7 +175,6 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
        PlayerAres ennemy=this.askNeighbor(enemies);
         Earth tile = askTile(ennemy);
 
-        
         // la somme des dés de chaque joueur
         System.out.println(player.getName() + " VS " + ennemy.getName());
         
