@@ -74,14 +74,14 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * @return the player  to be attacked
      */
     public PlayerAres askNeighbor(List<PlayerAres> ennemies) throws InvalidChoiceException {
-        PlayerAres enemie=null;
+     
         if (enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
         
-        else if (enemies.size()>1){
+        else{
      
-        enemie = lc.choose("Who do you want to attack", enemies);
+        PlayerAres enemie = lc.choose("Who do you want to attack", enemies);
         if (enemie == null) {
           System.out.println("Action cancelled :  No enemies to attack");
           throw new InvalidChoiceException("action cancelled !!!");
