@@ -4,6 +4,9 @@ import java.util.List;
 import game.Player;
 import game.listchooser.util.Input;
 
+/** 
+ * Allow the player to make choices by himself 
+*/
 public class InteractiveListChooser<T> implements ListChooser<T>{
 
     /**

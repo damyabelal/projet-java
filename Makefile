@@ -4,7 +4,7 @@ clean:
 
 doc: 
 	$ javadoc -d docs -sourcepath src src/game/listchooser/*.java
-	$ javadoc -d docs -sourcepath src src/game/listchooser/input/*.java
+	$ javadoc -d docs -sourcepath src src/game/listchooser/util/*.java
 	$ javadoc -d docs -sourcepath src src/game/tuile/*.java
 	$ javadoc -d docs -sourcepath src src/game/util/*.java
 	$ javadoc -d docs -sourcepath src src/game/*.java

@@ -1,6 +1,9 @@
 package game.listchooser;
 import java.util.List;
 
+/**
+ *  allow the player to make choice 
+*/
 public interface ListChooser<T> {
 
 	/**

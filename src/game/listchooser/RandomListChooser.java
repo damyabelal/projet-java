@@ -2,6 +2,9 @@ package game.listchooser;
 import java.util.List;
 import java.util.Random;
 
+/** 
+ * allow the player to be given a random choice 
+*/
 public class RandomListChooser<T> implements ListChooser<T>{
 
     private Random random = new Random();
