@@ -1,6 +1,7 @@
 package game.action;
 import game.PlayerDemeter;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Ressource;
 import game.util.NoMoreRessourcesException;
 
@@ -30,7 +31,7 @@ public class ExchangeRessourcesTest {
         int beforeWood = player.getRessourceAmount(Ressource.WOOD);
         int beforeOre = player.getRessourceAmount(Ressource.ORE);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new RandomListChooser<>()) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -55,7 +56,7 @@ public class ExchangeRessourcesTest {
     void SameRessourceExchangeShouldThrowException() {
         player.addRessource(Ressource.WOOD, 3);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new RandomListChooser<>()) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -77,7 +78,7 @@ public class ExchangeRessourcesTest {
     void NotEnoughResourcesShouldThrowException() {
         player.addRessource(Ressource.WOOD, 2);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new RandomListChooser<>()) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
