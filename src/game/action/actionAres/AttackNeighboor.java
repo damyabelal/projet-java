@@ -59,7 +59,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     public List<PlayerAres> createEnnemies(){
         List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
         for (PlayerAres p : this.players){
-            if (p.getName() != this.player.getName()){
+            if (p!= this.player){
                 ennemies.add(p); 
             }
         }
