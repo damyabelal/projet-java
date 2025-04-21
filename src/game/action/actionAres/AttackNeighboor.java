@@ -35,7 +35,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      */ 
     public AttackNeighboor(PlayerAres player, List<PlayerAres> players, ListChooser<PlayerAres> lc,ListChooser<Earth> lcEarth) {
         super(player); 
-        this.enemies= null;
+        this.enemies= new ArrayList<>();
         this.lc= lc; 
         this.lcEarth= lcEarth;
         this.player= player;
