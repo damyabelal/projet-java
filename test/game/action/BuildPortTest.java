@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import game.Board;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
@@ -30,7 +31,7 @@ public class  BuildPortTest{
     void setUp(){
         player = new PlayerAres("Marco");
         board= new Board(5, 5); 
-        action= new BuildPort<PlayerAres>(player, board, new RandomListChooser<>()); 
+        action= new BuildPort<PlayerAres>(player, board, new FixedIndexChooser<>(3)); 
        
        // giving the player enough ressources to be able to build a port
         player.addRessource(Ressource.WOOD, 1);
