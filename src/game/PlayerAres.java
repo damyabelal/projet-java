@@ -391,5 +391,22 @@ public class PlayerAres extends Player {
         ba.act(this);
     }
 
+    public List<Earth> getEnemyTilesOnSameIsland(Board board, PlayerAres enemy) {
+        List<Earth> islandTiles = new ArrayList<>();
+    
+        for (Earth myTile : this.getTiles()) {
+            List<Earth> island = board.getIsland(myTile);
+            if (island == null) continue;
+    
+            for (Earth enemyTile : enemy.getTiles()) {
+                if (island.contains(enemyTile) && !islandTiles.contains(enemyTile)) {
+                    islandTiles.add(enemyTile);
+                }
+            }
+        }
+    
+        return islandTiles;
+    }
+    
 
 }
