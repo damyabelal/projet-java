@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import game.Board;
 import game.PlayerDemeter;
 import game.action.actionDemeter.BuildFarm;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
 import game.tuile.Forest;
 import game.tuile.Ressource;
 import game.tuile.building.Farm;
@@ -31,7 +31,7 @@ public class BuildFarmTest {
     void setUp() {
         player = new PlayerDemeter("kiwi");
         board = new Board(5, 5);
-        action = new BuildFarm(board, player, new RandomListChooser<>());
+        action = new BuildFarm(board, player, new FixedIndexChooser<>(2));
     }
 
     @Test
