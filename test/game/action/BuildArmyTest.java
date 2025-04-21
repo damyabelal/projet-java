@@ -11,13 +11,11 @@ import java.io.IOException;
 import game.Board;
 import game.PlayerAres;
 import game.action.actionAres.BuildArmy;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
-
 import game.tuile.Ressource;
 import game.tuile.Sea;
-
 import game.tuile.building.Farm;
 import game.tuile.building.Port;
 import game.util.CantBuildException;
@@ -30,15 +28,9 @@ public class BuildArmyTest {
     private Board board;
     private PlayerAres player;
 
-    // creation de tuile qui vont servir pour creer une ile de le board parceque
-    // comme le board est creer de facon aleatoire on
-    // veut etre sur que il y a une ile qui respecte les conditions pour poser une
-    // armee sur le plateau
-
     @BeforeEach
     void setUp() throws CantBuildException {
-
-        board = new Board(5, 5); // creation d'un plateau de maniere aleatoire
+        board = new Board(5, 5);
         player = new PlayerAres("Ares");
 
         for (int x = 0; x < 5; x++) {
@@ -47,7 +39,6 @@ public class BuildArmyTest {
             }
         }
 
-        // mettre une tuile Earth au centre de 4 tuiles Earth
         Position pos = new Position(2, 2);
         Earth tuile = new Field();
         board.put(tuile, pos);
@@ -78,13 +69,11 @@ public class BuildArmyTest {
         tuile3.setBuilding(port);
 
         board.islands = board.findIslands();
-
     }
 
     @Test
     void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException {
-
-        BuildArmy actionBuild = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
+        BuildArmy actionBuild = new BuildArmy(board, player, new FixedIndexChooser<>(0), new FixedIndexChooser<>(0));
         board.islands = board.findIslands();
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.SHEEP, 1);
@@ -104,7 +93,6 @@ public class BuildArmyTest {
             }
         }
 
-        // mettre une tuile Earth au centre de 4 tuiles Earth
         Position pos = new Position(2, 2);
         Earth tuile = new Field();
         board.put(tuile, pos);
@@ -136,24 +124,17 @@ public class BuildArmyTest {
 
         board.islands = board.findIslands();
 
-        BuildArmy buildArmy = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
-
+        BuildArmy buildArmy = new BuildArmy(board, player, new FixedIndexChooser<>(0), new FixedIndexChooser<>(0));
         assertTrue(buildArmy.canBuildArmy(earth, player));
     }
 
     @Test
     void testNoMoreRessourcesException() throws Exception {
-        BuildArmy action = new BuildArmy(board, player, new RandomListChooser<>(), new RandomListChooser<>());
-        // vider le stock de guerriers
+        BuildArmy action = new BuildArmy(board, player, new FixedIndexChooser<>(0), new FixedIndexChooser<>(0));
         player.removeWarriors(player.getWarriors());
 
-        // s'assurer que l'exception est bien levée
         assertThrows(NoMoreRessourcesException.class, () -> {
             action.act(player);
         });
-
     }
-
-    
-
 }
