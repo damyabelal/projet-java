@@ -19,7 +19,8 @@ import game.action.actionAres.BuyWarriors;
 import game.action.actionAres.DisplayWarriors;
 import game.action.actionAres.UpgradeWithRessources;
 import game.action.actionAres.UpgradeWithWarriors;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Ressource;
@@ -312,7 +313,7 @@ public class PlayerAresTest {
     assertTrue(player.getArmies().isEmpty());
 
     
-    player.placeInitialArmy(board, new RandomListChooser<>(), new RandomListChooser<>());
+    player.placeInitialArmy(board, new FixedIndexChooser<>(2), new FixedIndexChooser<>(2));
 
     
     assertEquals(1, player.getArmies().size());
