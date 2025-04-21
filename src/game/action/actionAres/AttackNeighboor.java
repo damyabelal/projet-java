@@ -56,14 +56,14 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      * from the players list, create a list of the ennemies
      * @return a list of all the adversary
      */
-    public List<PlayerAres> createEnnemies(){
-        List<PlayerAres> ennemies = new ArrayList<PlayerAres>(); 
+    public void  createEnnemies(){
+        
         for (PlayerAres p : this.players){
             if (p!= this.player){
-                ennemies.add(p); 
+                this.enemies.add(p); 
             }
         }
-        return ennemies; 
+     
     }
     public List<PlayerAres> getEnemies(){
         return this.enemies;
@@ -78,16 +78,16 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
      */
     public PlayerAres askNeighbor() throws InvalidChoiceException {
         
-        List<PlayerAres> enemies= this.createEnnemies();
+        this.createEnnemies();
         PlayerAres enemie=null;
         if (this.enemies.isEmpty()) {
             throw new InvalidChoiceException("No enemies to attack");
         }
-        else if(enemies.size()==1){
+        else if(this.enemies.size()==1){
             enemie=enemies.get(0);
         }
         
-        else if (enemies.size()>1){
+        else if (this.enemies.size()>1){
      
         enemie = lc.choose("Who do you want to attack", enemies);
         if (enemie == null) {
