@@ -414,6 +414,17 @@ public class PlayerAresTest {
 }
 
 
+ @Test
+ void createEnnemiesTes(){
+    List<PlayerAres> enemies=new ArrayList<>();
+    PlayerAres player1=new PlayerAres("toto");
+    PlayerAres player2=new PlayerAres("totpo");
+    enemies.add(player1);
+    enemies.add(player2);
+    List
+    AttackNeighboor action=new AttackNeighboor(player, null, null, null)
+ }
+
 
 
 

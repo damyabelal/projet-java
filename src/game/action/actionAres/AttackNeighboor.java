@@ -65,7 +65,9 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
         }
         return ennemies; 
     }
-
+    public List<PlayerAres> getEnemies(){
+        return this.enemies;
+    }
 
 
 
