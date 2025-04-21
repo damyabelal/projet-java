@@ -416,13 +416,17 @@ public class PlayerAresTest {
 
  @Test
  void createEnnemiesTes(){
-    List<PlayerAres> enemies=new ArrayList<>();
+    List<PlayerAres> players=new ArrayList<>();
     PlayerAres player1=new PlayerAres("toto");
     PlayerAres player2=new PlayerAres("totpo");
-    enemies.add(player1);
-    enemies.add(player2);
-    List
-    AttackNeighboor action=new AttackNeighboor(player, null, null, null)
+    players.add(player1);
+    players.add(player2);
+    players.add(player);
+    AttackNeighboor action=new AttackNeighboor(player, null, null, null);
+
+    assertTrue(action.getEnemies().size()==0);
+    action.createEnnemies();
+    assertFalse(action.getEnemies().size()==0);
  }
 
 
