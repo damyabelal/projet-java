@@ -690,7 +690,15 @@ On voudrais amélirorer l'affichage, faire les corrections necessaire suite à c
 ## Semaine 12
 
 ### Ce qui a été réalisé
+On as bien avancé sur le dernier livrable, les deux jeux sont globalement fonctionnel, dans l'ensemble la réflexion et la programmation s'est déroulé plutôt rapidement. Aujourd'hui il reste presque plus de bug. On as décidé de proposer aux joueurs uniquement les actions qu'ils pouvait effectué. Cela as permit de rendre les version random plus fluide, de cette manière les joueurs random ne peuvent pas s'entêter sur un choix qui ne passe pas. On as aussi décidé de mettre une limite de tour avant de déclarer une égalité. Pour le moment cette limite est fixé à 100. 
 
 ### Difficultés rencontrées
+On as eu du mal à implémenter les objectifs pour les joueur d'Ares c'est pourquoi on as créer une classe à part entière, ca rend la vérification et l'attribution plus fluide. On as eu aussi un problème avec l'action d'attaque, un joueur pouvait s'attquer lui même et gagner un duel contre lui même. 
 
 ### Objectifs pour finaliser le projet
+AUjourd'hui il nous reste à:
+- vérifier que chaque action est bien fonctionnel et réalise ce qu'elle doit faire
+- Que le jeu est gagnabla
+- Faire l'UML complet
+- Finir les Tests
+- et faire des corrections dans la doc
