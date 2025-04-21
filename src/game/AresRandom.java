@@ -55,13 +55,36 @@ public class AresRandom {
     System.out.println("\n");
     System.out.println("TIME TO BUILD YOUR ARMIES !");
     System.out.println("\n");
-    for (int j = 0; j < 2; j++) {
-      for (PlayerAres p : players) {
-        System.out.println(
-            p.getName() + " (" + p.getResources() + "/ nb warriors: " + p.getWarriors() + ") build your armies");
-        p.placeInitialArmy(board, new RandomListChooser<Earth>(), new RandomListChooser<Integer>());
+
+    // premier tour : ordre croissant
+    for (int i = 0; i < players.size(); i++) {
+      System.out.println(players.get(i).getName() + " place your first initial farm: ");
+      boolean isPlace= false; 
+      while (!isPlace){
+          try{
+              players.get(i).placeInitialArmy(board, new RandomListChooser<Earth>(),new RandomListChooser<Integer>());
+              isPlace= true; 
+          } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                  System.out.println("Please build a army.");
+          }
       }
-    }
+      
+  }
+
+  // deuxieme tour : ordre decroissant
+  for (int i = players.size() - 1; i >= 0; i--) {
+      System.out.println(players.get(i).getName() + " (" + players.get(i).getResources() + "/ nb warriors: "
+              + players.get(i).getWarriors() + ") build your second army : ");
+      boolean isPlace= false; 
+      while (!isPlace){
+          try{
+              players.get(i).placeInitialArmy(board, new RandomListChooser<Earth>(),new RandomListChooser<Integer>());
+              isPlace= true; 
+          } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                  System.out.println("Please build a army.");
+          }
+      }
+  }
 
     // tir au sort un objectif pour chaque joueuer
     System.out.println("\n");

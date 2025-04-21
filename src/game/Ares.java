@@ -72,15 +72,31 @@ public class Ares {
         // premier tour : ordre croissant
         for (int i = 0; i < players.size(); i++) {
             System.out.println(players.get(i).getName() + " place your first initial farm: ");
-            players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(),
-                    new InteractiveListChooser<Integer>());
+            boolean isPlace= false; 
+            while (!isPlace){
+                try{
+                    players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(),new InteractiveListChooser<Integer>());
+                    isPlace= true; 
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                        System.out.println("Please build a army.");
+                }
+            }
+            
         }
+
         // deuxieme tour : ordre decroissant
         for (int i = players.size() - 1; i >= 0; i--) {
             System.out.println(players.get(i).getName() + " (" + players.get(i).getResources() + "/ nb warriors: "
                     + players.get(i).getWarriors() + ") build your second army : ");
-            players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(),
-                    new InteractiveListChooser<Integer>());
+            boolean isPlace= false; 
+            while (!isPlace){
+                try{
+                    players.get(i).placeInitialArmy(board, new InteractiveListChooser<Earth>(),new InteractiveListChooser<Integer>());
+                    isPlace= true; 
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                        System.out.println("Please build a army.");
+                }
+            }
         }
 
         System.out.println("\n");

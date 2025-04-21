@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.listchooser.InteractiveListChooser;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
@@ -65,7 +65,7 @@ public class DemeterRandom {
             boolean isPlace= false; 
             while (!isPlace){
                 try {
-                    players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+                    players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 
                     isPlace= true; 
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Please build a farm.");
@@ -78,7 +78,7 @@ public class DemeterRandom {
             boolean isPlace= false; 
             while (!isPlace){
                 try {
-                    players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+                    players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 
                     isPlace= true; 
                 } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
                     System.out.println("Please build a farm.");
