@@ -2,7 +2,7 @@ package game.action;
 
 import game.*;
 import game.action.actionAres.UpgradeWithRessources;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Forest;
 import game.tuile.Ressource;
@@ -33,7 +33,7 @@ public class UpgradeWithRessourcesTest {
     tuile.setBuilding(army);
     player.addArmy(army);
 
-    action = new UpgradeWithRessources(player, new RandomListChooser<>());
+    action = new UpgradeWithRessources(player, new FixedIndexChooser<>(4));
   }
 
   @Test
