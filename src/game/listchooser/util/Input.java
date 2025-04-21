@@ -4,7 +4,6 @@ import java.util.Scanner;
 /**
  * A utility class for entering strings or integers on standard input
  */
-
 public class Input {
 	
 	private Scanner scanner; 

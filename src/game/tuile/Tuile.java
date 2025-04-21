@@ -1,10 +1,13 @@
 package game.tuile;
 import game.util.*;
 
+/**
+ * a tile
+ */
 public abstract class Tuile {
-    public String symbol ; /// symbol of the tile
+    public String symbol ;// symbol of the tile
    
-    protected Position pos; // to be able to get the position of the tile
+    protected Position pos;// to be able to get the position of the tile
 
 
     /**
@@ -35,10 +38,10 @@ public abstract class Tuile {
 
     }
 
-    /*
-     * set the position of the tile
-     * @param position the position we want
-     */
+     /**
+      * set the position of the tile
+      * @param position
+      */
     public void setPosition(Position position) {
         this.pos = position;
     }

@@ -1,5 +1,8 @@
 package game.tuile;
 
+/**
+ * A Earth tile Field type
+ */
 public class Field extends Earth {
     private static final String SYMBOL = " C ";
 
