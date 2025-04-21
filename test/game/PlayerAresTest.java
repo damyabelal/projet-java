@@ -346,6 +346,9 @@ public class PlayerAresTest {
         assertThrows(NoMoreRessourcesException.class, () -> {player.removeWarriors(1);});
 
     }
+
+
+    
     @Test
     void testCreateAllActionsAvailable() throws Exception {
     PlayerAres player = new PlayerAres("Ares");
@@ -407,6 +410,7 @@ public class PlayerAresTest {
     assertTrue(hasBuyWarriors);
     assertTrue(hasDisplayWarriors);
     assertTrue(hasAttack);
+
 }
 
 

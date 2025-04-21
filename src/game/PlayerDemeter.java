@@ -85,6 +85,18 @@ public class PlayerDemeter extends Player{
         return this.farms;
     }
 
+
+    /**
+     * remove a thief from the demeter player
+     * 
+     */
+    public void removeThief(){
+        if(this.nbThief > 0){
+            this.nbThief -= 1; 
+        }
+        
+    }
+
     /**
      * adds  a farm to the this demeter player
      * @param farm the farm to add
