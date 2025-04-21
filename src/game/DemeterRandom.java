@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import game.listchooser.RandomListChooser;
+import game.listchooser.InteractiveListChooser;
 import game.tuile.Earth;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
@@ -62,12 +62,28 @@ public class DemeterRandom {
         // premier tour : ordre croissant
         for (int i=0 ;i<players.size();i++){
             System.out.println(players.get(i).getName()+" place your first initial farm: ");
-            players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 
+            boolean isPlace= false; 
+            while (!isPlace){
+                try {
+                    players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+                    isPlace= true; 
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                    System.out.println("Please build a farm.");
+                }
+            }
         }
         // deuxieme tour : ordre decroissant
         for (int i=players.size()-1 ;i>=0;i--){
             System.out.println(players.get(i).getName()+" place your second initial farm:");
-            players.get(i).placeInitialFarm(board, new RandomListChooser<Earth>()); 
+            boolean isPlace= false; 
+            while (!isPlace){
+                try {
+                    players.get(i).placeInitialFarm(board, new InteractiveListChooser<Earth>()); 
+                    isPlace= true; 
+                } catch (InvalidChoiceException | NullPointerException | IllegalArgumentException e) {
+                    System.out.println("Please build a farm.");
+                }
+            } 
         }
        
         System.out.println("\n");
