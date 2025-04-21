@@ -15,7 +15,7 @@ import game.action.actionDemeter.BuyThief;
 import game.action.actionDemeter.ExchangeRessourcesPort;
 import game.action.actionDemeter.PlayThief;
 import game.action.actionDemeter.UpgradeFarm;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Forest;
@@ -64,7 +64,7 @@ public class PlayerDemeterTest {
 
     @Test
     void testBuild() throws NoMoreRessourcesException, IOException, InvalidChoiceException{
-        BuildFarm buildfarm=new BuildFarm(board, player, new RandomListChooser<>());
+        BuildFarm buildfarm=new BuildFarm(board, player, new FixedIndexChooser<>(1));
         // a player trying to build with enough resources should return True
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.ORE, 1);
@@ -143,7 +143,7 @@ public class PlayerDemeterTest {
     void placeInitialFarmRandomTest() throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{
     //before placing a farm randomly on the board for the player , the player has no farms
     assertTrue(player.getFarms().isEmpty());
-    player.placeInitialFarm(board, new RandomListChooser<>());
+    player.placeInitialFarm(board, new FixedIndexChooser<>(2));
     //after placing a farm randomly on the board , the player posesses one farm
     assertTrue(!player.getFarms().isEmpty());
     }
