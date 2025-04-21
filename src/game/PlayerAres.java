@@ -391,6 +391,14 @@ public class PlayerAres extends Player {
         ba.act(this);
     }
 
+
+    /**
+     * returns a list of enemy tiles on the same island as this player's tiles
+     * 
+     * @param board the game board
+     * @param enemy the enemy player
+     * @return List<Earth> list of enemy tiles on the same island as this player's tiles
+     */
     public List<Earth> getEnemyTilesOnSameIsland(Board board, PlayerAres enemy) {
         List<Earth> islandTiles = new ArrayList<>();
     

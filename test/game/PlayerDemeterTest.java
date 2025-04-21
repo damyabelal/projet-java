@@ -219,6 +219,45 @@ public class PlayerDemeterTest {
     }
 
 
+    @Test
+    void testRemoveThief() {
+
+        player.addThief();
+        assertEquals(1, player.getNbThief());
+        player.removeThief();
+        assertEquals(0, player.getNbThief());
+
+        
+        player.removeThief();
+        assertEquals(0, player.getNbThief());
+    }
+
+
+    @Test
+    void testActChoosesAndExecutesAction() throws Exception {
+        List<PlayerDemeter> players = new ArrayList<>();
+        players.add(player);
+        player.addThief();
+        player.addRessource(Ressource.WOOD, 10);
+        player.addRessource(Ressource.ORE, 10);
+
+        player.createActions(board, 1, players); 
+        assertDoesNotThrow(() -> player.act(board, 1));
+    }
+
+    @Test
+    void testGetActionsDemeterReturnsList() {
+        List<Action<PlayerDemeter>> actions = player.getActionsDemeter();
+        assertNotNull(actions);
+    }
+
+
+
+
+
+
+
+
 
 
 
