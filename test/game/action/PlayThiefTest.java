@@ -3,8 +3,8 @@ package game.action;
 import game.PlayerDemeter;
 import game.action.actionDemeter.PlayThief;
 import game.listchooser.FakeListChooser;
-import game.listchooser.ListChooser;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Ressource;
 import game.util.NoMoreRessourcesException;
 
@@ -34,7 +34,7 @@ public class PlayThiefTest {
         
         listPlayers.add(player1);
         listPlayers.add(player2);
-        actionVoler = new PlayThief(new RandomListChooser<>(), listPlayers);
+        actionVoler = new PlayThief(new FixedIndexChooser<>(2), listPlayers);
         
         assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
         assertEquals(0, player2.getRessourceAmount(Ressource.WOOD));
@@ -68,7 +68,7 @@ public class PlayThiefTest {
         List<PlayerDemeter> listPlayers = new ArrayList<>();
         listPlayers.add(player1);
         listPlayers.add(player2);
-        actionVoler = new PlayThief(new RandomListChooser<>(), listPlayers);
+        actionVoler = new PlayThief(new FixedIndexChooser<>(2), listPlayers);
         
         assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player1));
     }
