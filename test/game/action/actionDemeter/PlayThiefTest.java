@@ -1,7 +1,6 @@
-package game.action;
+package game.action.actionDemeter;
 
 import game.PlayerDemeter;
-import game.action.actionDemeter.PlayThief;
 import game.listchooser.FakeListChooser;
 import game.listchooser.FixedIndexChooser;
 

@@ -1,10 +1,10 @@
-package game.action;
+package game.action.actionDemeter;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.PlayerDemeter;
-import game.action.actionDemeter.BuyThief;
+import game.action.Action;
 import game.tuile.Ressource;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;

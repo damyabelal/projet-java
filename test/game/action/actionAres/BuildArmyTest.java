@@ -1,4 +1,4 @@
-package game.action;
+package game.action.actionAres;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import game.Board;
 import game.PlayerAres;
-import game.action.actionAres.BuildArmy;
 import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Field;

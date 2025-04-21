@@ -1,8 +1,7 @@
-package game.action;
+package game.action.actionDemeter;
 
 import game.Board;
 import game.PlayerDemeter;
-import game.action.actionDemeter.ExchangeRessourcesPort;
 import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;

@@ -1,7 +1,6 @@
-package game.action;
+package game.action.actionAres;
 
 import game.*;
-import game.action.actionAres.UpgradeWithRessources;
 import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Forest;

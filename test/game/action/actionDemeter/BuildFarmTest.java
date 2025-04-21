@@ -1,4 +1,4 @@
-package game.action;
+package game.action.actionDemeter;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import game.Board;
 import game.PlayerDemeter;
-import game.action.actionDemeter.BuildFarm;
+import game.action.Action;
 import game.listchooser.FixedIndexChooser;
 import game.tuile.Forest;
 import game.tuile.Ressource;

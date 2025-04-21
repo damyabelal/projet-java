@@ -1,7 +1,6 @@
-package game.action;
+package game.action.actionAres;
 
 
-import game.action.actionAres.UpgradeWithWarriors;
 import game.PlayerAres;
 import game.listchooser.FixedIndexChooser;
 

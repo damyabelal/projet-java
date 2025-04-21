@@ -1,4 +1,4 @@
-package game.action;
+package game.action.actionAres;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import game.PlayerAres;
-import game.action.actionAres.BuyWarriors;
+import game.action.Action;
 import game.tuile.Ressource;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;

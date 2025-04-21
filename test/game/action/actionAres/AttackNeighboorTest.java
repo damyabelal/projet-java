@@ -1,8 +1,7 @@
-package game.action;
+package game.action.actionAres;
 
 
 import game.PlayerAres;
-import game.action.actionAres.AttackNeighboor;
 import game.listchooser.FixedIndexChooser;
 
 import game.util.InvalidChoiceException;
