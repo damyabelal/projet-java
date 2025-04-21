@@ -3,7 +3,7 @@ package game.action;
 import game.Board;
 import game.PlayerDemeter;
 import game.action.actionDemeter.ExchangeRessourcesPort;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
@@ -26,7 +26,7 @@ public class ExchangeRessourcesPortTest{
     @BeforeEach
     public void setUp(){
         player = new PlayerDemeter("test");
-        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new RandomListChooser<>());
+        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new FixedIndexChooser<>(1));
     }
 
 
@@ -41,7 +41,7 @@ public class ExchangeRessourcesPortTest{
     @Test
     void testExchageWithSameRessource() {
     
-        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new RandomListChooser<>()){
+        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new FixedIndexChooser<>(1)){
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -88,7 +88,7 @@ public class ExchangeRessourcesPortTest{
         int beforeWood =player.getRessourceAmount(Ressource.WOOD);
         int beforeOre = player.getRessourceAmount(Ressource.ORE);
 
-        ExchangeRessourcesPort testAction = new ExchangeRessourcesPort(player, new RandomListChooser<>()){
+        ExchangeRessourcesPort testAction = new ExchangeRessourcesPort(player, new FixedIndexChooser<>(1)){
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
