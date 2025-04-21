@@ -3,7 +3,8 @@ package game.action;
 
 import game.action.actionAres.UpgradeWithWarriors;
 import game.PlayerAres;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Earth;
 import game.tuile.Forest;
 import game.tuile.building.Army;
@@ -37,8 +38,8 @@ public class UpgradeWithWarriorsTest {
   void testUpgradeArmyToCampSuccessfully() throws Exception {
     UpgradeWithWarriors action = new UpgradeWithWarriors(
         player,
-        new RandomListChooser<>(),
-        new RandomListChooser<>()
+        new FixedIndexChooser<>(5),
+        new FixedIndexChooser<>(4)
     );
 
     int warriorsBefore = player.getWarriors();
@@ -63,8 +64,8 @@ public class UpgradeWithWarriorsTest {
 
     UpgradeWithWarriors action = new UpgradeWithWarriors(
         player,
-        new RandomListChooser<>(),
-        new RandomListChooser<>()
+        new FixedIndexChooser<>(5),
+        new FixedIndexChooser<>(4)
     );
 
     assertThrows(InvalidChoiceException.class, () -> action.act(player));
