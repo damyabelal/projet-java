@@ -12,7 +12,8 @@ import game.Board;
 import game.PlayerDemeter;
 import game.action.actionDemeter.BuildFarm;
 import game.action.actionDemeter.UpgradeFarm;
-import game.listchooser.RandomListChooser;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Ressource;
 import game.util.CantBuildException;
 import game.util.InvalidChoiceException;
@@ -29,8 +30,8 @@ public class UpgradeFarmTest{
     void setUp() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         player = new PlayerDemeter("kiwi");
         board= new Board(5, 5); 
-        build= new BuildFarm(board, player, new RandomListChooser<>()); 
-        upgrade= new UpgradeFarm(player, new RandomListChooser<>()); 
+        build= new BuildFarm(board, player, new FixedIndexChooser<>(3)); 
+        upgrade= new UpgradeFarm(player, new FixedIndexChooser<>(3)); 
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.ORE, 1);
         build.act(player);
