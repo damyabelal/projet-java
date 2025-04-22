@@ -8,6 +8,7 @@ import game.tuile.Ressource;
 import game.tuile.building.Army;
 import game.util.CantBuildException;
 import game.util.NoMoreRessourcesException;
+import game.util.Position;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,11 +29,12 @@ public class UpgradeWithRessourcesTest {
     player.addRessource(Ressource.ORE, 3);
 
     tuile = new Forest();
+    tuile.setPosition((new Position(1,1)));
     army = new Army(tuile, 5, player);
     tuile.setBuilding(army);
     player.addArmy(army);
 
-    action = new UpgradeWithRessources(player, new FixedIndexChooser<>(4));
+    action = new UpgradeWithRessources(player, new FixedIndexChooser<>(0));
   }
 
   @Test

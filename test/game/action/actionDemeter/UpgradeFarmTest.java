@@ -29,8 +29,8 @@ public class UpgradeFarmTest{
     void setUp() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         player = new PlayerDemeter("kiwi");
         board= new Board(5, 5); 
-        build= new BuildFarm(board, player, new FixedIndexChooser<>(3)); 
-        upgrade= new UpgradeFarm(player, new FixedIndexChooser<>(3)); 
+        build= new BuildFarm(board, player, new FixedIndexChooser<>(0)); 
+        upgrade= new UpgradeFarm(player, new FixedIndexChooser<>(0)); 
         player.addRessource(Ressource.WOOD, 1);
         player.addRessource(Ressource.ORE, 1);
         build.act(player);

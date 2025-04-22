@@ -7,7 +7,6 @@ import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
 import game.tuile.building.Port;
-import game.util.CantBuildException;
 import game.util.Position;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +24,7 @@ public class ExchangeRessourcesPortTest{
     @BeforeEach
     public void setUp(){
         player = new PlayerDemeter("test");
-        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new FixedIndexChooser<>(1));
+        exchangeRessourcesPortAction = new ExchangeRessourcesPort(player, new FixedIndexChooser<>(0));
     }
 
 
@@ -34,7 +33,7 @@ public class ExchangeRessourcesPortTest{
         player.addRessource(Ressource.WOOD, 2);
         player.addRessource(Ressource.ORE, 1);
 
-        assertThrows(CantBuildException.class, () -> {exchangeRessourcesPortAction.act(player);});
+        assertThrows(IllegalArgumentException.class, () -> {exchangeRessourcesPortAction.act(player);});
     }
 
     @Test
