@@ -1,6 +1,5 @@
 package game.action.actionAres;
 
-
 import game.PlayerAres;
 import game.listchooser.FixedIndexChooser;
 
@@ -16,14 +15,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AttackNeighboorTest {
 
-    
     private PlayerAres defender;
     private List<PlayerAres> enemies;
-    
 
     @BeforeEach
     void setUp() {
-       
+
         defender = new PlayerAres("Ares2");
         enemies = new ArrayList<>();
         enemies.add(defender);
@@ -34,9 +31,9 @@ public class AttackNeighboorTest {
         PlayerAres player = new PlayerAres("Ares");
         List<PlayerAres> enemies = new ArrayList<>();
         enemies.add(new PlayerAres("Ares2"));
-        
 
-        AttackNeighboor attack = new AttackNeighboor(player, enemies, new FixedIndexChooser<>(2),new FixedIndexChooser<>(2));
+        AttackNeighboor attack = new AttackNeighboor(player, enemies, new FixedIndexChooser<>(2),
+                new FixedIndexChooser<>(2));
 
         // Cas 1 :
         player.removeWarriors(player.getWarriors() - 2); // reste 2
@@ -56,11 +53,10 @@ public class AttackNeighboorTest {
         assertEquals(3, attack.howMuchDice(player));
     }
 
-
-
     @Test
     void testDicesResult() {
-        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new FixedIndexChooser<>(2),new FixedIndexChooser<>(2));
+        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new FixedIndexChooser<>(2),
+                new FixedIndexChooser<>(2));
 
         int numberOfDices = 10;
         int result = action.dicesResult(numberOfDices);
@@ -69,55 +65,45 @@ public class AttackNeighboorTest {
         assertTrue(result >= 10 && result <= 60, "Le résultat devrait être entre 10 et 60");
     }
 
-
-
     @Test
     void testDicesResulZero() {
-        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new FixedIndexChooser<>(2),new FixedIndexChooser<>(2));  
-    
+        AttackNeighboor action = new AttackNeighboor(new PlayerAres("Ares"), enemies, new FixedIndexChooser<>(2),
+                new FixedIndexChooser<>(2));
+
         int result = action.dicesResult(0);
-    
+
         // Aucun dé = somme 0
         assertEquals(0, result);
     }
 
-
-
-
-    
     @Test
     void testAskNeighborThrowsWhenNoEnemies() {
         PlayerAres player = new PlayerAres("Attacker");
         List<PlayerAres> enemies = new ArrayList<>(); // vide
 
-        AttackNeighboor action = new AttackNeighboor(player, enemies, new FixedIndexChooser<>(2), new FixedIndexChooser<>(2));
+        AttackNeighboor action = new AttackNeighboor(player, enemies, new FixedIndexChooser<>(2),
+                new FixedIndexChooser<>(2));
 
         assertThrows(InvalidChoiceException.class, () -> action.askNeighbor());
     }
 
-    
-
     @Test
-    void createEnnemiesTes(){
-       List<PlayerAres> players=new ArrayList<>();
-       PlayerAres player1=new PlayerAres("toto");
-       PlayerAres player2=new PlayerAres("totpo");
-       PlayerAres player=new PlayerAres("totpo");
+    void createEnnemiesTes() {
+        List<PlayerAres> players = new ArrayList<>();
+        PlayerAres player1 = new PlayerAres("toto");
+        PlayerAres player2 = new PlayerAres("totpo");
+        PlayerAres player = new PlayerAres("totpo");
 
-       players.add(player1);
-       players.add(player2);
-       players.add(player);
-       AttackNeighboor action=new AttackNeighboor(player, null, null, null);
-   
-       assertTrue(action.getEnemies().size()==0);
-       action.createEnnemies();
-       assertFalse(action.getEnemies().size()==0);
+        players.add(player1);
+        players.add(player2);
+        players.add(player);
+
+        AttackNeighboor action = new AttackNeighboor(player, players, new FixedIndexChooser<>(0),
+                new FixedIndexChooser<>(0));
+
+        assertTrue(action.getEnemies().size() == 0);
+        action.createEnnemies();
+        assertFalse(action.getEnemies().size() == 0);
     }
-   
-
-
-
-    
-
 
 }
