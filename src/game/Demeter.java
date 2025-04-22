@@ -117,13 +117,15 @@ public class Demeter {
                     if (newIsland ==2){
                         p.addPoints(1);
                         System.out.println("You settled on 2 islands! (+1 bonus point)");
+                        
                     }
                     else{
                         if (newIsland >=2){
                             p.addPoints(2);
-                            System.out.println("You settled on more than two islands! (+2 bonus point) ");
+                            System.out.println("You settled on more than two islands! (+2 bonus points) ");
                         }
                     }
+                    p.updateNbIsland(newIsland);
                 }
 
                 try {

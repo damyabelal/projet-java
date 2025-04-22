@@ -45,8 +45,21 @@ public class PlayerDemeter extends Player{
             this.implementedIsland= 0; 
     }
 
+
+    /**
+     * return the number of settled Islands
+     * @return the number of settled Islands
+     */
     public int getNbIsland(){
         return this.implementedIsland; 
+    }
+
+    /**
+     * update the number of settled islands
+     * @param n
+     */
+    public void updateNbIsland(int n){
+        this.implementedIsland = n; 
     }
 
     /**
@@ -274,23 +287,25 @@ public class PlayerDemeter extends Player{
     }
 
 
-        /**
-         * return the number of island where the player is implemented
-         * @param board
-         * @return the number of island where the player have at least one building
-         */
-        public int nbIslands(Board board) {
-            int nbIsland= 0; 
-            for (List<Earth> island : board.getIslands()) {
-                for (Earth tile : island) {
-                    if (this.getTiles().contains(tile)) {
-                        nbIsland++ ; 
-                        break; 
-                    }
+    /**
+     * return the number of island where the player is implemented
+     * @param board
+     * @return the number of island where the player have at least one building
+     */
+    public int nbIslands(Board board) {
+        int nbIsland= 0; 
+        for (List<Earth> island : board.getIslands()) {
+            boolean conqueer = false; 
+            for (Earth tile : island) {
+                if (this.getTiles().contains(tile) && !conqueer) {
+                    nbIsland++ ; 
+                    conqueer=true; 
+                    break; 
                 }
             }
-            return nbIsland;
         }
+        return nbIsland;
+    }
 
 
 
