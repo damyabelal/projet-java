@@ -19,6 +19,7 @@ import game.listchooser.FixedIndexChooser;
 import game.tuile.Earth;
 import game.tuile.Field;
 import game.tuile.Forest;
+import game.tuile.Mountain;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
@@ -119,17 +120,17 @@ public class PlayerDemeterTest {
 
     @Test
     void collectRessourcesOfThePlayerTest(){
-    Forest forest1=new Forest();
-    Forest forest2=new Forest();
-    Farm farm=new Farm(forest1, player);
-    Exploitation exp=new Exploitation(forest2, player);
+    Forest forest=new Forest();
+    Mountain mountain=new Mountain();
+    Farm farm=new Farm(forest, player);
+    Exploitation exp=new Exploitation(mountain, player);
     
     player.addFarm(farm);
-    player.addFarm(exp);
+    player.addExploitation(exp);
 
     // before collecting the player's ressources that he has on tiles that have 
     //building , the player has no ressources in his stock for the moment
-    assertTrue(player.getRessourceAmount(Ressource.WOOD)==0);
+    assertTrue(player.getRessourceAmount(farm.getTuileRessource())==0);
     assertTrue(player.getRessourceAmount(exp.getTuileRessource())==0);
 
     // collecting the player's ressources
