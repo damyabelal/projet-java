@@ -245,6 +245,8 @@ public class PlayerDemeterTest {
         assertDoesNotThrow(() -> player.act(board, 1));
     }
 
+
+    
     @Test
     void testGetActionsDemeterReturnsList() {
         List<Action<PlayerDemeter>> actions = player.getActionsDemeter();

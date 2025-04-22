@@ -414,6 +414,81 @@ public class PlayerAresTest {
 
 }
 
+@Test
+void testGetObjectivesNullable() {
+    assertNull(player.getObjectives()); 
+    player.givePlayersObjective();
+    assertNotNull(player.getObjectives());
+}
+
+@Test
+void testGetObjectiveThrowsIfNull() {
+    assertThrows(IllegalStateException.class, () -> {player.getObjective();});
+    
+}
+
+@Test
+void testActWithRandomAction() throws Exception {
+    Board board = new Board(5, 5);
+    List<PlayerAres> players = new ArrayList<>();
+    players.add(player);
+
+    player.addRessource(Ressource.WOOD, 5);
+    player.addRessource(Ressource.SHEEP, 5);
+    player.addRessource(Ressource.ORE, 5);
+    player.createActions(board, 1, players); // random option
+
+    assertDoesNotThrow(() -> player.act(board, 1));
+}
+
+
+
+
+
+
+@Test
+void testGetEnemyTilesOnSameIsland() {
+    Board board = new Board(5, 5);
+    PlayerAres enemy = new PlayerAres("Enemy");
+
+    Earth t1 = new Field();
+    Earth t2 = new Field();
+
+    board.put(t1, new Position(1, 1));
+    board.put(t2, new Position(1, 2));
+
+    player.getTiles().add(t1);
+    enemy.getTiles().add(t2);
+
+    board.islands = board.findIslands();
+
+    List<Earth> result = player.getEnemyTilesOnSameIsland(board, enemy);
+    assertEquals(1, result.size());
+    assertTrue(result.contains(t2));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
