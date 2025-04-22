@@ -103,6 +103,7 @@ public class Demeter {
             System.out.println("\n");
 
             for (PlayerDemeter p: players){
+                
                 p.collectRessources();
                 System.out.println("\n");
                 System.out.println(p.getName()+" ("+p.getPoints()+" points, "+p.getResources()+ ") turn!!"); 
@@ -110,6 +111,20 @@ public class Demeter {
 
                 //on propose au joueur des actions
                 p.createActions(board,0, players); // on propose les actions possibles
+
+                if ((p.getNbIsland()!= p.nbIslands(board)) && (p.nbIslands(board)<4) ){
+                    int newIsland= p.nbIslands(board); 
+                    if (newIsland ==2){
+                        p.addPoints(1);
+                        System.out.println("You settled on 2 islands! (+1 bonus point)");
+                    }
+                    else{
+                        if (newIsland >=2){
+                            p.addPoints(2);
+                            System.out.println("You settled on more than two islands! (+2 bonus point) ");
+                        }
+                    }
+                }
 
                 try {
                     p.act(board, 0);

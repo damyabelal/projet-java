@@ -27,6 +27,7 @@ public class PlayerDemeter extends Player{
     private List<Farm> farms;
     private List<Exploitation> exploitations;
     private List<Action<PlayerDemeter>> actionsDemeter;
+    private int implementedIsland; 
 
 
     /** 
@@ -41,6 +42,11 @@ public class PlayerDemeter extends Player{
             this.farms = new ArrayList<>();
             this.exploitations = new ArrayList<>();
             this.actionsDemeter = new ArrayList<>();
+            this.implementedIsland= 0; 
+    }
+
+    public int getNbIsland(){
+        return this.implementedIsland; 
     }
 
     /**
@@ -266,4 +272,26 @@ public class PlayerDemeter extends Player{
         BuildFarm bf= new BuildFarm(board, this, lc ); 
         bf.act(this);
     }
+
+
+        /**
+         * return the number of island where the player is implemented
+         * @param board
+         * @return the number of island where the player have at least one building
+         */
+        public int nbIslands(Board board) {
+            int nbIsland= 0; 
+            for (List<Earth> island : board.getIslands()) {
+                for (Earth tile : island) {
+                    if (this.getTiles().contains(tile)) {
+                        nbIsland++ ; 
+                        break; 
+                    }
+                }
+            }
+            return nbIsland;
+        }
+
+
+
 }
