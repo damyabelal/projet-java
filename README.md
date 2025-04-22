@@ -523,15 +523,15 @@ make clean
 
  Légende des tuiles :
 
-  <font color='red'> S  : Sea </font>
+  `rgb(12,18,88)` Sea 
 
- F  : Forest
+ `rgb(13,88,12)` Forest
 
- P  : Pasture
+ `rgb(240, 179, 50)` Pasture
 
- M  : Mountain
+ `rgb(156,147,175)` Mountain
 
- C  : Field
+ `rgb(136,96,26)` Field
 
  Légende des Batiments :
 
