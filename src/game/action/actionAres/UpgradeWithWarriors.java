@@ -38,7 +38,8 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
       return "Upgrade with warriors"; 
   }
 
-  /**
+  /**2
+   * 
    * Asks the player which army he wants to upgrade
    * 
    * @return the army the player wants to upgrade

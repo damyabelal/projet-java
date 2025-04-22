@@ -98,7 +98,7 @@ public class Army extends Building{
         if (this.canBeCampWarriors(player)) {
             return new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayerAres());
         } else {
-            throw new CantBuildException("Not enough warriors  to upgrade to a camp");
+            throw new CantBuildException("Not enough warriors to upgrade to a camp");
         }
     }
 
