@@ -138,10 +138,13 @@ public class PlayerTest {
     }
 
     @Test
-void testGetEarthReturnsNullWhenNotFound() {
-    Earth result = player.getEarth(99, 99); // position absente
-    assertNull(result);
-}
+    void testGetEarthReturnsNullWhenNotFound() {
+        Earth result = player.getEarth(99, 99); // position absente
+        assertNull(result);
+    }
+
+
+    
 
 
 

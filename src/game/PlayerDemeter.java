@@ -140,7 +140,7 @@ public class PlayerDemeter extends Player{
      * @return boolean true if the this player has a port in his tiles
      */
     public boolean hasPort(){
-        return !this.getPlayerPorts().isEmpty();
+        return !this.getPorts().isEmpty();
     }
 
 
