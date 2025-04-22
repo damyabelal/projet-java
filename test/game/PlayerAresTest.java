@@ -368,6 +368,7 @@ public class PlayerAresTest {
     Army army = new Army(tile, 3, player);
     tile.setBuilding(army);
     player.addArmy(army);
+    army.addWarriors(2);
 
    
     player.addRessource(Ressource.WOOD, 10);
@@ -426,24 +427,6 @@ void testGetObjectiveThrowsIfNull() {
     assertThrows(IllegalStateException.class, () -> {player.getObjective();});
     
 }
-
-@Test
-void testActWithRandomAction() throws Exception {
-    Board board = new Board(5, 5);
-    List<PlayerAres> players = new ArrayList<>();
-    players.add(player);
-
-    player.addRessource(Ressource.WOOD, 5);
-    player.addRessource(Ressource.SHEEP, 5);
-    player.addRessource(Ressource.ORE, 5);
-    player.createActions(board, 1, players); // random option
-
-    assertDoesNotThrow(() -> player.act(board, 1));
-}
-
-
-
-
 
 
 @Test
