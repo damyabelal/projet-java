@@ -444,7 +444,89 @@ Les principaux objectifs du livrable 3 ont été réalisés, les actions de base
 
 ## Livrable 4
 
+
+### Les commandes  : 
+
+### 1 Compilation des sources 
+
+make cls
+
+### 2.1 Exécution du livrable 3 Ares/Random :
+
+java -classpath classes game.Ares a b c 
+java -classpath classes game.AresRandom a b c 
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+### 2.2 Exécution du livrable 3 Demeter/Random :
+
+java -classpath classes game.Demeter a b c
+java -classpath classes game.DemeterRandom a b c
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
+
+make doc
+
+### 4.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 4.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 4.3 Compilation des tests du package game.tuile.building
+
+javac -classpath junit-console.jar:classes test/game/tuile/building*.java
+
+### 4.4 Compilation des tests du package game.action
+
+javac -classpath junit-console.jar:classes test/game/action/*.java
+
+### 5. Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6.Créer les Archives JAR
+
+make ares.jar
+
+make demeter.jar
+
+make aresRandom.jar
+
+make demeterRandom.jar
+
+### 7.Exécuter les Archives JAR
+
+java -jar ares.jar
+
+java -jar demeter.jar
+
+java -jar aresRandom.jar
+
+java -jar demeterRandom.jar
+
+### 8.Nettoyer le dossier classes
+
+make clean
+
+### Affichage du plateau: 
+
+
+#### exemple d’affichage du plateau de dimension 10x10 :
+
+![exemple d'affichage avec a =10 et b=10 :](/index/Board.png "")
+
 ### Atteinte des objectifs
+Les objectifs de ce livrable ont été atteint, la boucle de jeu est fonctionnel, on peut donc jouer à Ares et Demeter de manière interactive mais aussi en mode de jeu "random".
+C'est à dire qu'après avoir donnée la dimension du plateau et le nombre de joueur, le jeu se déroule seul, à base d'actions aléatoire.
 
 ### Difficultés restant à résoudre
 
