@@ -468,7 +468,7 @@ ou a,b et c seront saisie par l'utilisateur.
 a et b représentent la hauteur et la largeur du plateau.
 c représente le nombre de joueurs. 
 
-### 3. Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
+### 3 Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
 
 make doc
 
@@ -521,7 +521,32 @@ make clean
 
 #### exemple d’affichage du plateau de dimension 10x10 :
 
+ Légende des tuiles :
+
+  <font color='red'> S  : Sea </font>
+
+ F  : Forest
+
+ P  : Pasture
+
+ M  : Mountain
+
+ C  : Field
+
+ Légende des Batiments :
+
+ a : Army
+
+ c : Camp
+
+ f : Farm
+
+ e : Exploitation
+
+ p : Port
+
 ![exemple d'affichage avec a =10 et b=10 :](/index/Board.png "")
+
 
 ### Atteinte des objectifs
 Les objectifs de ce livrable ont été atteint, la boucle de jeu est fonctionnel, on peut donc jouer à Ares et Demeter de manière interactive mais aussi en mode de jeu "random".
