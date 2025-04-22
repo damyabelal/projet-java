@@ -444,7 +444,6 @@ Les principaux objectifs du livrable 3 ont été réalisés, les actions de base
 
 ## Livrable 4
 
-
 ### Les commandes  : 
 
 ### 1 Compilation des sources 
@@ -489,11 +488,11 @@ javac -classpath junit-console.jar:classes test/game/tuile/building*.java
 
 javac -classpath junit-console.jar:classes test/game/action/*.java
 
-### 5. Execution des tests
+### 5 Execution des tests
 
 java -jar junit-console.jar -classpath test:classes -scan-classpath
 
-### 6.Créer les Archives JAR
+### 6 Créer les Archives JAR
 
 make ares.jar
 
@@ -503,7 +502,7 @@ make aresRandom.jar
 
 make demeterRandom.jar
 
-### 7.Exécuter les Archives JAR
+### 7 Exécuter les Archives JAR
 
 java -jar ares.jar
 
@@ -513,7 +512,7 @@ java -jar aresRandom.jar
 
 java -jar demeterRandom.jar
 
-### 8.Nettoyer le dossier classes
+### 8 Nettoyer le dossier classes
 
 make clean
 
