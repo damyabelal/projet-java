@@ -38,9 +38,9 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
      * @return the number of warriors to add, or -1 if invalid
      * @throws InvalidChoiceException
      */
-    private int askWarrior(PlayerAres player) throws InvalidChoiceException {
+    private int askWarrior(PlayerAres player, int max) throws InvalidChoiceException {
         List<Integer> warriorChoices = new ArrayList<>();
-        for (int i = 1; i <= player.getWarriors(); i++) {
+        for (int i = 1; i <= max; i++) {
             warriorChoices.add(i);
         }
         Integer add = lcNumber.choose("How many warriors do you want to add?", warriorChoices);
@@ -54,7 +54,7 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
     @Override
 public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
     List<Army> allArmiesAndCamps = new ArrayList<>();
-
+    int nbWarriorsMax= 0; 
     for (Army army : player.getArmies()) {
         allArmiesAndCamps.add(army);
     }
@@ -68,7 +68,16 @@ public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoi
         throw new InvalidChoiceException("Action cancelled: No army or camp selected");
     }
 
-    int warriorsToAdd = askWarrior(player);
+    if (selection instanceof Camp){
+        nbWarriorsMax= player.getWarriors(); 
+    }
+    else{
+        nbWarriorsMax= 5 - selection.getNbWarriors(); 
+    }
+
+    
+
+    int warriorsToAdd = askWarrior(player, nbWarriorsMax);
 
     if (selection instanceof Camp) {
         player.removeWarriors(warriorsToAdd);
