@@ -3,6 +3,7 @@ package game;
 import java.io.IOException;
 import java.util.*;
 
+import game.AresGameObjectives.ObjectiveType;
 import game.action.*;
 import game.action.actionAres.AttackNeighboor;
 import game.action.actionAres.BuildArmy;
@@ -207,23 +208,32 @@ public class PlayerAres extends Player {
         Random random = new Random();
         AresGameObjectives.ObjectiveType[] types = AresGameObjectives.ObjectiveType.values();
         AresGameObjectives.ObjectiveType chosenType = types[random.nextInt(types.length)];
-
-        int value = switch (chosenType) {
-            case CONQUER_TILES -> 5 + random.nextInt(6);
-            case INVADE_ISLANDS -> 1;
-            case DETAIN_WARRIORS -> 20 + random.nextInt(11);
-        };
-
+        int value= 0; 
+        if (chosenType== ObjectiveType.CONQUER_TILES){
+            value= 5 + random.nextInt(6);
+        }
+        if (chosenType == ObjectiveType.INVADE_ISLANDS){
+            value = 1; 
+        }
+        if (chosenType == ObjectiveType.DETAIN_WARRIORS){
+            value=  20 + random.nextInt(11); 
+        }
         this.objective = new AresGameObjectives(chosenType, value);
     }
 
     /** return true if the player's objective is achieved */
     public boolean isObjectiveAchieved(Board board) {
-        return switch (this.objective.getType()) {
-            case CONQUER_TILES -> this.hasConqueredTiles();
-            case INVADE_ISLANDS -> this.didEnvadeIsland(board);
-            case DETAIN_WARRIORS -> this.didDetainWarriors();
-        };
+        ObjectiveType obj= this.objective.getType(); 
+        if ( obj == ObjectiveType.CONQUER_TILES){
+            return this.hasConqueredTiles(); 
+        }
+        if (obj == ObjectiveType.INVADE_ISLANDS){
+            return this.didEnvadeIsland(board);
+        }
+        if (obj  == ObjectiveType.DETAIN_WARRIORS){
+            return this.didDetainWarriors();
+        }
+        return false; 
     }
 
     /** collect all the ressources from the differents building */

@@ -21,6 +21,7 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
 
   private ListChooser<Army> lc;
 
+  
   public UpgradeWithRessources(PlayerAres player, ListChooser<Army> lc) {
     super(player);
     this.cost.put(Ressource.WOOD, 2);
@@ -59,7 +60,10 @@ public class UpgradeWithRessources extends ActionManager<PlayerAres> implements 
 }
 
 
-  @Override
+
+  /** upgrades the army of the given player using his own ressources
+   * @player the player that want his army to be upgraded
+   */
   public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException, InvalidChoiceException {
     Army chosenArmy = askArmy();
    

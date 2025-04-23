@@ -38,7 +38,8 @@ public class UpgradeWithWarriors extends ActionManager<PlayerAres> implements Ac
       return "Upgrade with warriors"; 
   }
 
-  /**
+  /**2
+   * 
    * Asks the player which army he wants to upgrade
    * 
    * @return the army the player wants to upgrade
@@ -88,7 +89,10 @@ public Army askArmy() throws InvalidChoiceException {
     return add;
   }
 
-  @Override
+  /** upgrades the army of the given player by adding more warriors to the warrios they alreadly have
+   * to create an army
+   * @player the player that wants to upgrade his army using more warriors
+   */
   public void act(PlayerAres player) throws NoMoreRessourcesException, CantBuildException,InvalidChoiceException{
     Army chosenArmy = askArmy();
 

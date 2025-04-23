@@ -37,6 +37,9 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
     }
 
 
+    /** asks the player on which tile they want to build the port on
+     * @return the tile chosen play the player to build the port on
+     */
     public Earth askCoordinate() throws InvalidChoiceException {
     List<Earth> options = this.board.coastalTiles();
     if (options.isEmpty()){
@@ -66,7 +69,10 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         return board.nbSeaTiles(pos) >= 2;
     }
 
-    @Override
+    /** builds a port for the given player player
+     * @player the player that wants to build a port
+     * @throws NoMoreRessourcesException if the player doesnt have enough ressources to build a port
+     */
     public void act(T player) throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{
         Earth choosenTile= askCoordinate();
 

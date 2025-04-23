@@ -30,10 +30,15 @@ public class AresGameObjectives {
 
     @Override
     public String toString() {
-        return switch (type) {
-            case CONQUER_TILES -> "Conquer " + value + " tiles";
-            case INVADE_ISLANDS -> "Invade " + value + " islands";
-            case DETAIN_WARRIORS -> "Detain " + value + " warriors";
-        };
+        if (this.type == ObjectiveType.CONQUER_TILES){
+            return "Conquer " + value + " tiles";
+        }
+        if (this.type == ObjectiveType.INVADE_ISLANDS){
+            return "Invade " + value + " islands";
+        }
+        if ( this.type == ObjectiveType.DETAIN_WARRIORS){
+            return "Detain " + value + " warriors";
+        }
+        return null; 
     }
 }

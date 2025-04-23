@@ -53,8 +53,8 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     }
 
     /**
-     * from the players list, create a list of the ennemies
-     * @return a list of all the adversary
+     * iterates on the the list this.player and adds all this player's enemies to the list this.enemies
+     * 
      */
     public void  createEnnemies(){
         
@@ -102,7 +102,7 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
     }
 
     /**
-     * ask the player which tile he wants to attack
+     * asks the player which tile he wants to attack
      * @param enemie
      * @return the tile to be attacked
      * @throws InvalidChoiceException
@@ -174,7 +174,11 @@ public class AttackNeighboor extends ActionManager<PlayerAres> implements Action
 
 
     
+    /** 
+     * attacks the tile of the neighbor  chosen by this player 
+     *@param player the player that wants to attack a neighbor
 
+    */
     public void act(PlayerAres player) throws NoMoreRessourcesException , InvalidChoiceException {
          
        PlayerAres ennemy=this.askNeighbor();
