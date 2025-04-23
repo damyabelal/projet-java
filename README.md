@@ -516,6 +516,9 @@ java -jar demeterRandom.jar
 
 make clean
 
+### Diagramme UML pour le Livrable 4 :
+#TODO
+
 ### Affichage du plateau: 
 
 
@@ -523,7 +526,7 @@ make clean
 
  Légende des tuiles :
 
-  `rgb(12,18,88)` Sea 
+ `rgb(12,18,88)` Sea 
 
  `rgb(13,88,12)` Forest
 
@@ -551,8 +554,17 @@ make clean
 ### Atteinte des objectifs
 Les objectifs de ce livrable ont été atteint, la boucle de jeu est fonctionnel, on peut donc jouer à Ares et Demeter de manière interactive mais aussi en mode de jeu "random".
 C'est à dire qu'après avoir donnée la dimension du plateau et le nombre de joueur, le jeu se déroule seul, à base d'actions aléatoire.
+Lors de la partie, uniquement les actions possible à réaliser sont proposer au joueur, si un joueur commence une action et finalement décide de l'annuler en tapant "0" correspondant à none (par exemple su le choix de combien de guerriers placer ou sur quelle tuile construire...) on concidère qu'il soufaite passer son tour. 
+De plus, dans toutes les actions de type "build" on proposeras les tuiles sur lesquelles on peut construire uniquement (avec l'ajout de la condition "près de la mer" pour la construction du port).
+Si l'on veut ajouter des guerriers à une armées on ne pourras pas dépasser un effectif de 5. Une fois l'armée à 5 on pourras proposer de la faire évoluer en camps et enfin mettre plus de 5 guerriers. 
+On as pris la décision de découper le choix de l'évolution d'une armée en camp en deux actions:
+- UpgradeWithWarriors
+- UpgradeWithRessources
+afin de faciliter la prise de décission du joueur mais aussi de faire en sorte qu'on sache ce que l'on échange sans porter à confusion. 
 
 ### Difficultés restant à résoudre
+Tout est fonctionnel cependant on rencontre des difficultés avec l'exécution de la doc. Effectivement les types du genre "List<List<int>>" semble poser des problèmes...
+Cette section peut évoluer avant le rendu final selon ce que l'on trouve pour régler ce probléme. 
 
 # Journal de bord
 
