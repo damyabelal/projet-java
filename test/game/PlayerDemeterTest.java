@@ -255,6 +255,36 @@ public class PlayerDemeterTest {
     }
 
 
+    @Test
+    void testUpdateNbIsland() {
+        assertEquals(0, player.getNbIsland());
+        player.updateNbIsland(3);
+        assertEquals(3, player.getNbIsland());
+    }
+
+    @Test
+    void testHasPortWhenEmpty() {
+        assertFalse(player.hasPort());
+    }
+
+    @Test
+    void testCreateActionsAddsActionsWhenResourcesPresent() {
+        Board board = new Board(5, 5);
+        List<PlayerDemeter> players = List.of(player);
+
+        player.addRessource(Ressource.WOOD, 5);
+        player.addRessource(Ressource.ORE, 5);
+        player.addRessource(Ressource.SHEEP, 5);
+        player.addRessource(Ressource.WEALTH, 5);
+
+        player.createActions(board, 1, players);
+        assertFalse(player.getActionsDemeter().isEmpty());
+    }
+
+
+
+
+
 
 
 
