@@ -52,6 +52,9 @@ public class DisplayWarriors extends ActionManager<PlayerAres> implements Action
     }
 
     @Override
+    /** displays the warriors  of the given player
+     * @param player that wants his players to be displayed
+     */
 public void act(PlayerAres player) throws NoMoreRessourcesException, InvalidChoiceException {
     List<Army> allArmiesAndCamps = new ArrayList<>();
     int nbWarriorsMax= 0; 
