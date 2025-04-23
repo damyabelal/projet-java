@@ -42,6 +42,10 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         return "Build a army => cost: " + this.cost;
     }
 
+    /**
+     * asks the player which tile they want to build on and returns the chosen tile
+     * @return the tile chosen by the player to be built on
+     */
     private Earth askCoordinate() throws InvalidChoiceException {
         List<Earth> buildableTiles = this.board.buildableTiles();
         if (buildableTiles.isEmpty()) {
@@ -54,6 +58,12 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
         return chosenTile;
     }
 
+    /***
+     * asks the player the number of warriors they want to assign to an army
+     * @return the number of warriors chosen by the player
+     * @throws InvalidChoiceException 
+     * @throws NoMoreRessourcesException when the player doesnt have enough ressources to assign those new warriors
+     */
     private int askNumberWarriors() throws InvalidChoiceException, NoMoreRessourcesException {
         List<Integer> options = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
@@ -111,9 +121,9 @@ public class BuildArmy extends ActionManager<PlayerAres> implements Action<Playe
     }
 
     /**
-     * Build an army on the island
+     * Builds  an army on the island
      * 
-     * @param player
+     * @param player the player that wants to build an army on an island
      * @throws NoMoreRessourcesException
      * @throws CantBuildException
      * @throws IOException
