@@ -1,9 +1,7 @@
 package game.action.actionDemeter;
 
 import game.PlayerDemeter;
-import game.listchooser.FakeListChooser;
 import game.listchooser.FixedIndexChooser;
-
 import game.tuile.Ressource;
 import game.util.NoMoreRessourcesException;
 
@@ -30,31 +28,25 @@ public class PlayThiefTest {
     @Test
     void shouldThrowExceptionWhenNoRessources() throws NoMoreRessourcesException {
         List<PlayerDemeter> listPlayers = new ArrayList<>();
-        
         listPlayers.add(player1);
         listPlayers.add(player2);
-        actionVoler = new PlayThief(new FixedIndexChooser<>(2), listPlayers);
-        
-        assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
-        assertEquals(0, player2.getRessourceAmount(Ressource.WOOD));
-        
+
+        actionVoler = new PlayThief(new FixedIndexChooser<>(0), listPlayers);
+
         assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player2));
     }
 
     @Test
     void shouldStealRessourcesSuccessfully() throws NoMoreRessourcesException {
-        // vider les ressources des joueurs
-        
-        
         player1.addRessource(Ressource.WOOD, 10);
         player2.addThief();
-        
+
         List<PlayerDemeter> listPlayers = new ArrayList<>();
         listPlayers.add(player1);
         listPlayers.add(player2);
-        actionVoler = new PlayThief(new FakeListChooser<>(Ressource.WOOD), listPlayers);
-       
-        
+
+        actionVoler = new PlayThief(new FixedIndexChooser<>(0), listPlayers);
+
         actionVoler.act(player2);
 
         assertEquals(0, player1.getRessourceAmount(Ressource.WOOD));
@@ -64,18 +56,13 @@ public class PlayThiefTest {
     @Test
     void shouldThrowExceptionWhenPlayerHasNoThief() {
         player1.addRessource(Ressource.WOOD, 10);
+
         List<PlayerDemeter> listPlayers = new ArrayList<>();
         listPlayers.add(player1);
         listPlayers.add(player2);
-        actionVoler = new PlayThief(new FixedIndexChooser<>(2), listPlayers);
-        
+
+        actionVoler = new PlayThief(new FixedIndexChooser<>(0), listPlayers);
+
         assertThrows(NoMoreRessourcesException.class, () -> actionVoler.act(player1));
     }
-
-
-    
-
-    
-
-
 }
