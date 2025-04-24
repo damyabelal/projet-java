@@ -19,14 +19,14 @@ cls:
 	$ javac -sourcepath src src/game/action/*.java -d classes
 
 ares.jar: 
-	$ jar cvfe jar/ares.jar game.Ares -C classes .
+	$ jar cvfe ares.jar game.Ares -C classes .
 
 demeter.jar: 
-	$ jar cvfe jar/demeter.jar game.Demeter -C classes .
+	$ jar cvfe demeter.jar game.Demeter -C classes .
 
 aresRandom.jar: 
-	$ jar cvfe jar/aresRandom.jar game.AresRandom -C classes .
+	$ jar cvfe aresRandom.jar game.AresRandom -C classes .
 
 demeterRandom.jar: 
-	$ jar cvfe jar/demeterRandom.jar game.DemeterRandom -C classes .
+	$ jar cvfe demeterRandom.jar game.DemeterRandom -C classes .
 
