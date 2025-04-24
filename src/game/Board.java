@@ -58,7 +58,7 @@ public int getHeight(){
 
 /**
  * returns the tile at the given position
- * @param pos
+ * @param pos the position
  * @return the tile at the given position
  */
 public Tuile getTile(Position pos){
@@ -72,7 +72,7 @@ public Tuile getTile(Position pos){
 
 /**
  * get the list of islands on the board
- * @return List<List<Earth>> the list of islands
+ * @return the list of islands
  */
 public List<List<Earth>> getIslands(){
     return this.islands;
@@ -82,7 +82,7 @@ public List<List<Earth>> getIslands(){
 /**
  * get the island of the given earth
  * @param earth the earth
- * @return List<Earth> the island of the given earth
+ * @return the island of the given earth
  */
 public List<Earth> getIsland(Earth earth){
     for (List<Earth> island : this.islands){
@@ -96,8 +96,8 @@ public List<Earth> getIsland(Earth earth){
 
 /**
  * returns the color for the given tile
- * @param tuile
- * @return 
+ * @param tuile the tile
+ * @return the color
  */
 public static String getColorForTuile(Tuile tuile) {
         if (tuile instanceof Forest) return "\u001B[48;5;22m";      
@@ -331,7 +331,7 @@ private void placeInitialeTiles(){
 /// Test +
 /**
  * returns the list of all the neighbors of a given position
- * @param pos
+ * @param pos the position
  * @return the list of neighbors
  */
 public List<Tuile> getNeighbours(Position pos){
@@ -440,7 +440,7 @@ public void displayBuildings() {
 
 /**
      * return the number of sea tiles around the port
-     * @param pos
+     * @param pos the position
      * @return int the number of sea tiles around the port
      */
     public int nbSeaTiles(Position pos) {

@@ -53,7 +53,7 @@ public class PlayerAres extends Player {
      * removes nb warriors from this player's army
      * 
      * @param nb number of warriors to remove
-     * @exception NoMoreRessourcesException
+     * @exception NoMoreRessourcesException if you don't have enough ressources
      */
     public void removeWarriors(int nb) throws NoMoreRessourcesException {
         if ((this.warriors - nb) < 0) {
@@ -71,9 +71,10 @@ public class PlayerAres extends Player {
     public int getWarriors() {
         return this.warriors;
     }
+
     /**
-     * 
-     * @param objective
+     * set the objective to the player 
+     * @param objective the objective
      */
     public void setObjective(AresGameObjectives objective) {
         this.objective = objective;
@@ -98,8 +99,7 @@ public class PlayerAres extends Player {
 
     /**
      * removes an army from the list of armies
-     * 
-     * @param army
+     * @param army the army
      */
     public void removeArmy(Army army) {
         this.armies.remove(army);
@@ -123,7 +123,7 @@ public class PlayerAres extends Player {
     /**
      * returns the list of armies of this player
      * 
-     * @return List<Army>
+     * @return the list of army
      */
     public List<Army> getArmies() {
         return this.armies;
@@ -132,7 +132,7 @@ public class PlayerAres extends Player {
     /**
      * adds an army to the list of armies of this player
      * 
-     * @param army
+     * @param army the army
      */
     public void addArmy(Army army) {
         this.armies.add(army);
@@ -142,7 +142,7 @@ public class PlayerAres extends Player {
     /**
      * returns the list of camps of this player
      * 
-     * @return List<Camp>
+     * @return the list of camp
      */
     public List<Camp> getCamps() {
         return this.camps;
@@ -151,14 +151,19 @@ public class PlayerAres extends Player {
     /**
      * adds a camp to the list of camps of this player
      * 
-     * @param camp
+     * @param camp the camp
      */
     public void addCamp(Camp camp) {
         this.camps.add(camp);
         this.playerTiles.add(camp.getTuile());
     }
 
-    /** return true if this player has envaded an entire island */
+
+    /**
+     * return true if this player has envaded an entire island
+     * @param board the board
+     * @return true if the player invade the island, false otherwise
+     */
     public boolean didEnvadeIsland(Board board) {
         for (List<Earth> island : board.getIslands()) {
             boolean allTilesOwned = true;
@@ -175,7 +180,10 @@ public class PlayerAres extends Player {
         return false;
     }
 
-    /** return true if this player has conquered the values of tiles required */
+    /**
+     * return true if this player has conquered the values of tiles required 
+     * @return true if it's the case, false otherwise
+     */
     public boolean hasConqueredTiles() {
         return this.getTiles().size() >= this.objective.getValue();
     }
@@ -183,6 +191,7 @@ public class PlayerAres extends Player {
     /**
      * returns true if the player has enough warriors by summing the warriors in all
      * their armies and camps to meet the required objective
+     * @return true if it's the case, false otherwise
      */
     public boolean didDetainWarriors() {
         int totalWarriors = 0;
@@ -195,7 +204,10 @@ public class PlayerAres extends Player {
         return totalWarriors >= this.objective.getValue();
     }
 
-    /** return the objective of the player, exception if not set yet */
+    /**
+     * return the objective of the player, exception if not set yet 
+     * @return the objective
+     */
     public AresGameObjectives getObjective() {
         if (this.objective == null) {
             throw new IllegalStateException("player has no objective yet");
@@ -221,7 +233,11 @@ public class PlayerAres extends Player {
         this.objective = new AresGameObjectives(chosenType, value);
     }
 
-    /** return true if the player's objective is achieved */
+    /**
+     *  return true if the player's objective is achieved 
+     * @param board the board
+     * @return true if is the objective is complete, false otherwise
+     */
     public boolean isObjectiveAchieved(Board board) {
         ObjectiveType obj= this.objective.getType(); 
         if ( obj == ObjectiveType.CONQUER_TILES){
@@ -250,8 +266,9 @@ public class PlayerAres extends Player {
      * fill the actionsDemeter attributes with all the actions for this game
      * if option is 0 the actions will be in interactive mode, random otherwise
      * 
-     * @param board
-     * @param option
+     * @param board the board
+     * @param option the option
+     * @param players the players
      */
     public void createActions(Board board, int option, List<PlayerAres> players) {
         ListChooser<Earth> lcEarth = null;
@@ -296,10 +313,11 @@ public class PlayerAres extends Player {
     /**
      * excute the action of the demeter player
      * 
-     * @param board
+     * @param board the board
      * @param option if option is 0 then we create a interactive actions List,
      *               otherwise the actions will be automatic
-     * @throws IOException
+     * @throws IOException exception
+     * @throws InvalidChoiceException if the choice is not valid
      */
     public void act(Board board, int option) throws IOException, InvalidChoiceException {
         ListChooser<Action<PlayerAres>> lc = null;
@@ -388,13 +406,14 @@ public class PlayerAres extends Player {
         return aresActions;
     }
 
-    
     /**
      * allow the player to build a army, it will be used to build the first two armies in the game
-     * @param board
-     * @throws CantBuildException
-     * @throws InvalidChoiceException 
-     * @throws NoMoreRessourcesException 
+     * @param board the board
+     * @param lc lischooser with earth
+     * @param lcNumber list chooser with number
+     * @throws CantBuildException if you can't build
+     * @throws NoMoreRessourcesException if the choice is invalid
+     * @throws InvalidChoiceException if you don't have enough ressources
      */
     public void placeInitialArmy(Board board, ListChooser<Earth> lc, ListChooser<Integer> lcNumber) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
         BuildArmy ba= new BuildArmy(board, this, lc , lcNumber); 
@@ -407,7 +426,7 @@ public class PlayerAres extends Player {
      * 
      * @param board the game board
      * @param enemy the enemy player
-     * @return List<Earth> list of enemy tiles on the same island as this player's tiles
+     * @return the list of enemy tiles on the same island as this player's tiles
      */
     public List<Earth> getEnemyTilesOnSameIsland(Board board, PlayerAres enemy) {
         List<Earth> islandTiles = new ArrayList<>();

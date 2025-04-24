@@ -11,7 +11,7 @@ public class CantBuildException extends Exception {
 
 	/**
 	 * the same with a text
-	 * @param arg0
+	 * @param arg0 the arg
 	 */
     public CantBuildException(String arg0) {
 		super(arg0);

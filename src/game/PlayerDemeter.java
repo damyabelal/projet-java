@@ -56,7 +56,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * update the number of settled islands
-     * @param n
+     * @param n the number of island implemented
      */
     public void updateNbIsland(int n){
         this.implementedIsland = n; 
@@ -64,6 +64,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the number of points that the demeter player has
+     * @return the number of points
      */
     public int getPoints() {
         return this.points;
@@ -71,6 +72,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the number of thief that the demeter player has
+     * @return the number of thief
      */
     public int getNbThief(){
         return this.nbThief;
@@ -85,7 +87,6 @@ public class PlayerDemeter extends Player{
     }
     /**
      * adds a  thief to the  demeter player
-     * @param nb int number of thief to add
      */
     public void addThief(){
         this.nbThief += 1 ;
@@ -98,7 +99,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the farms of the demeter player
-     * @return List<Farm> the farms of the demeter player
+     * @return the farms of the demeter player
      */
     public List<Farm> getFarms(){
         return this.farms;
@@ -146,7 +147,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the exploitations of the this  demeter player
-     * @return List<Exploitation> the exploitations of the demeter player
+     * @return the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
         return this.exploitations;
@@ -176,9 +177,9 @@ public class PlayerDemeter extends Player{
     /**
      * fills the actionsDemeter attributes with all the actions for this game
      * if option is 0 the actions will be in interactive mode, random otherwise
-     * @param board
-     * @param option
-     * @param players
+     * @param board the board
+     * @param option 0 for interactive, whatever bit zero for random
+     * @param players the players
      */
     public void createActions(Board board, int option, List<PlayerDemeter> players){
         ListChooser<Earth> lcEarth= null; 
@@ -204,9 +205,10 @@ public class PlayerDemeter extends Player{
 
     /**
      * excute the action of the demeter player
-     * @param board
+     * @param board the board
      * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
-     * @throws IOException
+     * @throws IOException exception
+     * @throws InvalidChoiceException if the choice is not valid
      */
     public void act(Board board, int option) throws IOException, InvalidChoiceException {
         ListChooser<Action<PlayerDemeter>> lc= null;
@@ -276,10 +278,13 @@ public class PlayerDemeter extends Player{
         return actionsDemeter;
     }
 
-
     /**
      * places a farm for this player on a random tile
-     *@param board
+     * @param board the board
+     * @param lc the listchooser
+     * @throws CantBuildException if you can't build
+     * @throws NoMoreRessourcesException if you don't have enough ressources
+     * @throws InvalidChoiceException if the choice is invalid
      */
     public void placeInitialFarm(Board board, ListChooser<Earth> lc) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
         BuildFarm bf= new BuildFarm(board, this, lc ); 
@@ -289,7 +294,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * return the number of island where the player is implemented
-     * @param board
+     * @param board the board
      * @return the number of island where the player have at least one building
      */
     public int nbIslands(Board board) {

@@ -12,7 +12,7 @@ public abstract class ActionManager <T extends Player>{
     
     /**
      * creates an ActionManager for the given player
-     * @param player
+     * @param player the  player
      */
         public ActionManager(T player){
             this.cost = new HashMap<>();
@@ -34,7 +34,7 @@ public abstract class ActionManager <T extends Player>{
 
     /**
      * removes the ressource from the player's inventary
-     * @throws NoMoreRessourcesException
+     * @throws NoMoreRessourcesException if you don't have enough ressources
      */
     protected void removeRessources() throws NoMoreRessourcesException{
         for (Ressource ressource : cost.keySet()){

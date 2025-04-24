@@ -13,6 +13,7 @@ public class Farm extends Building{
 
     /** Builds a Farm
      * @param tuile the tile where we place the farm
+     * @param player the player
      */
     public Farm(Earth tuile, PlayerDemeter player) {
         super(tuile, player);
@@ -54,7 +55,8 @@ public class Farm extends Building{
     }
     
     /** evolves the farm into a exploitation
-    * @return the new exploitation if the farm can be upgraded null otherwise
+     * @param player the player 
+     * @return the new exploitation if the farm can be upgraded null otherwise
     */
     public Exploitation upGradeToExploitation(PlayerDemeter player ) {
         if (this.canBeExploitation(player)) {

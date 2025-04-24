@@ -24,6 +24,7 @@ public abstract class Building{
            
     /** create a building on a given tile
     * @param tuile the tile where we build the building
+    * @param player the player
     */
     public Building(Earth tuile, Player player){
         this.player = player;
@@ -115,7 +116,6 @@ public abstract class Building{
    
     /** 
     * displays cost
-    * exemple: "Harbor, cost -> Sheep: 2, Wood: 1"
     */
     public void displayCost() {
         HashMap<Ressource, Integer> cost = this.getCost();
