@@ -517,8 +517,7 @@ java -jar demeterRandom.jar
 make clean
 
 ### Diagramme UML pour le Livrable 4 :
-#TODO
-
+https://lucid.app/lucidchart/5902e73f-4322-4aba-922a-fc3bb0dea9c7/edit?viewport_loc=-1498%2C-1031%2C3673%2C1549%2CHWEp-vi-RSFO&invitationId=inv_0bf26132-d019-489c-bff7-d16ef601bbf9
 ### Affichage du plateau: 
 
 
