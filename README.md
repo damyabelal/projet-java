@@ -532,7 +532,7 @@ make clean
 
 ### Diagramme UML pour le Livrable 4 :
 
-![ l'uml ](/index/UMLFINAL1.png "UML")
+![ l'uml ](/index/UMLFINAL1.PNG "UML")
 
 
 
