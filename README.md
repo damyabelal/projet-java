@@ -450,18 +450,32 @@ Les principaux objectifs du livrable 3 ont été réalisés, les actions de base
 
 make cls
 
-### 2.1 Exécution du livrable 3 Ares/Random :
+### 2.1 Exécution du livrable 4 Ares :
 
 java -classpath classes game.Ares a b c 
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+### 2.1. Exécution du livrable 4 AresRandom :
+
 java -classpath classes game.AresRandom a b c 
 
 ou a,b et c seront saisie par l'utilisateur.
 a et b représentent la hauteur et la largeur du plateau.
 c représente le nombre de joueurs. 
 
-### 2.2 Exécution du livrable 3 Demeter/Random :
+### 2.2 Exécution du livrable 4 Demeter :
 
 java -classpath classes game.Demeter a b c
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+
+### 2.2 Exécution du livrable 4 DemeterRandom :
 java -classpath classes game.DemeterRandom a b c
 
 ou a,b et c seront saisie par l'utilisateur.
