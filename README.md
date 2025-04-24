@@ -546,6 +546,7 @@ make clean
 
 ![ l'uml ](/index/UMLFINAL7.PNG "UML")
 
+![ l'uml ](/index/UMLFINAL8.PNG "UML")
 
 
 ### Affichage du plateau: 
