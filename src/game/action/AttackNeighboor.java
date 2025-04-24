@@ -30,7 +30,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
         }
     
         /**
-         * ask the player which neighbor he wants to attack
+         * asks the player which neighbor he wants to attack
          * @return the player  to be attacked
          */
         public PlayerAres askNeighbor() {
@@ -50,7 +50,7 @@ public class AttackNeighboor extends ActionManager implements Action<PlayerAres>
     public int howMuchDice(PlayerAres player) {
         int nbWarriors = player.getWarriors();
         int res = 0;
-        if (player.getNbSecretWeapon() > 0) {
+        if (player.getNbSecretWeapon() > 0) { 
             player.removeSecretWeapon();
             res += 1;
         }
