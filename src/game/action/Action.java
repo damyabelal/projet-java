@@ -11,10 +11,10 @@ public interface Action<T extends Player> {
 
     /**
      * executes the action for the given player
-     * 
-     * @param player the player performing the action
-     * @throws NoMoreRessourcesException 
-     * @throws IOException 
+     * @param player the player
+     * @throws NoMoreRessourcesException if you don't have the ressources
+     * @throws CantBuildException if you can't build
+     * @throws InvalidChoiceException if the choice is invalid
      */
     void act(T player) throws NoMoreRessourcesException , CantBuildException, InvalidChoiceException;
 }

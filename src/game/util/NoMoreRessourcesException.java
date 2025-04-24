@@ -13,7 +13,7 @@ public class NoMoreRessourcesException extends Exception {
 
 	/**
 	 * alternative version
-	 * @param arg0
+	 * @param arg0 the arg
 	 */
 	public NoMoreRessourcesException(String arg0) {
 		super(arg0);

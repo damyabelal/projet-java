@@ -71,9 +71,10 @@ public class PlayerAres extends Player {
     public int getWarriors() {
         return this.warriors;
     }
+
     /**
-     * 
-     * @param objective
+     * set the objective to the player 
+     * @param objective the objective
      */
     public void setObjective(AresGameObjectives objective) {
         this.objective = objective;
@@ -98,8 +99,7 @@ public class PlayerAres extends Player {
 
     /**
      * removes an army from the list of armies
-     * 
-     * @param army
+     * @param army the army
      */
     public void removeArmy(Army army) {
         this.armies.remove(army);
@@ -123,7 +123,7 @@ public class PlayerAres extends Player {
     /**
      * returns the list of armies of this player
      * 
-     * @return List<Army>
+     * @return the list of army
      */
     public List<Army> getArmies() {
         return this.armies;
@@ -132,7 +132,7 @@ public class PlayerAres extends Player {
     /**
      * adds an army to the list of armies of this player
      * 
-     * @param army
+     * @param army the army
      */
     public void addArmy(Army army) {
         this.armies.add(army);
@@ -142,7 +142,7 @@ public class PlayerAres extends Player {
     /**
      * returns the list of camps of this player
      * 
-     * @return List<Camp>
+     * @return the list of camp
      */
     public List<Camp> getCamps() {
         return this.camps;
@@ -151,14 +151,19 @@ public class PlayerAres extends Player {
     /**
      * adds a camp to the list of camps of this player
      * 
-     * @param camp
+     * @param camp the camp
      */
     public void addCamp(Camp camp) {
         this.camps.add(camp);
         this.playerTiles.add(camp.getTuile());
     }
 
-    /** return true if this player has envaded an entire island */
+
+    /**
+     * return true if this player has envaded an entire island
+     * @param board the board
+     * @return true if the player invade the island, false otherwise
+     */
     public boolean didEnvadeIsland(Board board) {
         for (List<Earth> island : board.getIslands()) {
             boolean allTilesOwned = true;
@@ -183,6 +188,7 @@ public class PlayerAres extends Player {
     /**
      * returns true if the player has enough warriors by summing the warriors in all
      * their armies and camps to meet the required objective
+     * @return true if it's the case, false otherwise
      */
     public boolean didDetainWarriors() {
         int totalWarriors = 0;
@@ -407,7 +413,7 @@ public class PlayerAres extends Player {
      * 
      * @param board the game board
      * @param enemy the enemy player
-     * @return List<Earth> list of enemy tiles on the same island as this player's tiles
+     * @return the list of enemy tiles on the same island as this player's tiles
      */
     public List<Earth> getEnemyTilesOnSameIsland(Board board, PlayerAres enemy) {
         List<Earth> islandTiles = new ArrayList<>();

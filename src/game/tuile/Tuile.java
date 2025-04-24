@@ -40,7 +40,7 @@ public abstract class Tuile {
 
      /**
       * set the position of the tile
-      * @param position
+      * @param position the position
       */
     public void setPosition(Position position) {
         this.pos = position;

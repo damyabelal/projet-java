@@ -6,7 +6,7 @@ package game.util;
 public class InvalidChoiceException extends Exception {
     /**
      * the exception
-     * @param message
+     * @param message the message
      */
     public InvalidChoiceException(String message) {
         super(message);

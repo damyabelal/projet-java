@@ -70,7 +70,7 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
     }
 
     /** builds a port for the given player player
-     * @player the player that wants to build a port
+     * @param player the player that wants to build a port
      * @throws NoMoreRessourcesException if the player doesnt have enough ressources to build a port
      */
     public void act(T player) throws NoMoreRessourcesException, InvalidChoiceException , CantBuildException{

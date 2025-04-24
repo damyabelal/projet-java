@@ -85,7 +85,6 @@ public class PlayerDemeter extends Player{
     }
     /**
      * adds a  thief to the  demeter player
-     * @param nb int number of thief to add
      */
     public void addThief(){
         this.nbThief += 1 ;
@@ -98,7 +97,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the farms of the demeter player
-     * @return List<Farm> the farms of the demeter player
+     * @return the farms of the demeter player
      */
     public List<Farm> getFarms(){
         return this.farms;
@@ -146,7 +145,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the exploitations of the this  demeter player
-     * @return List<Exploitation> the exploitations of the demeter player
+     * @return the exploitations of the demeter player
      */
     public List<Exploitation> getExploitations(){
         return this.exploitations;
@@ -276,10 +275,13 @@ public class PlayerDemeter extends Player{
         return actionsDemeter;
     }
 
-
     /**
      * places a farm for this player on a random tile
-     *@param board
+     * @param board
+     * @param lc
+     * @throws CantBuildException if you can't build
+     * @throws NoMoreRessourcesException if you don't have enough ressources
+     * @throws InvalidChoiceException if the choice is invalid
      */
     public void placeInitialFarm(Board board, ListChooser<Earth> lc) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException{
         BuildFarm bf= new BuildFarm(board, this, lc ); 
@@ -289,7 +291,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * return the number of island where the player is implemented
-     * @param board
+     * @param board the board
      * @return the number of island where the player have at least one building
      */
     public int nbIslands(Board board) {

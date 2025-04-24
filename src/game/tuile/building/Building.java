@@ -115,7 +115,6 @@ public abstract class Building{
    
     /** 
     * displays cost
-    * exemple: "Harbor, cost -> Sheep: 2, Wood: 1"
     */
     public void displayCost() {
         HashMap<Ressource, Integer> cost = this.getCost();
