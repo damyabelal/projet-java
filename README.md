@@ -534,6 +534,13 @@ make clean
 
 ![ l'uml ](/index/UMLFINAL1.PNG "UML")
 
+![ l'uml ](/index/UMLFINAL2.PNG "UML")
+
+![ l'uml ](/index/UMLFINAL3.PNG "UML")
+
+
+
+
 
 
 ### Affichage du plateau: 
