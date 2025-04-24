@@ -19,9 +19,9 @@ public class Army extends Building{
     /** create an army on a given tile
     * @param tuile the tile where we build the building
     * @param nbWarriors the number of warriors
-    * @throws CantBuildException 
+    * @param player the player
+    * @throws CantBuildException if you can't build
     */
-
     public Army(Earth tuile, int nbWarriors, PlayerAres player) throws CantBuildException{
         super(tuile, player); 
         if (nbWarriors > nbWarriorsMax){
@@ -59,9 +59,12 @@ public class Army extends Building{
     
     public PlayerAres getPlayerAres(){
         return this.player;
-    }               
+    }     
+
     /**
-     * 
+     * add warriors to the army
+     * @param nb the number of warriors
+     * @throws NoMoreRessourcesException if you don't have enough ressources
      */
     public void addWarriors(int nb) throws NoMoreRessourcesException{
         if (this.player.getWarriors() < nb){
@@ -83,7 +86,7 @@ public class Army extends Building{
      * return true if the army can be a camp if player has enough ressources
      * @param player the person who play
      * @return boolean
-     * @throws CantBuildException 
+     * @throws CantBuildException if you can't build
      */
     public boolean canBeCampRessources(PlayerAres player) throws CantBuildException{
         return this.player.hasEnoughRessources(new Camp(tuile, nbWarriors, player));
@@ -93,6 +96,7 @@ public class Army extends Building{
     /** evolves the army into a camp
     * @param player the player who wants to upgrade the army
     * @return the new camp if the army can be upgraded null otherwise
+    * @throws CantBuildException if you can't build
     */
     public Camp upGradeToCampWithWarriors(PlayerAres player) throws CantBuildException {
         if (this.canBeCampWarriors(player)) {
@@ -102,10 +106,12 @@ public class Army extends Building{
         }
     }
 
-    /** evolves the army into a camp
-    * @param player the player who wants to upgrade the army
-    * @return the new camp if the army can be upgraded null otherwise
-    */
+    /**
+     * evolves the army into a camp
+     * @param player the player who wants to upgrade the army
+     * @return the new camp if the army can be upgraded null otherwise
+     * @throws CantBuildException if you can't build
+     */
     public Camp upGradeToCampWithRessources(PlayerAres player) throws CantBuildException {
         if (this.canBeCampRessources(player)) {
             return new Camp(this.getTuile(), this.getNbWarriors(), this.getPlayerAres());

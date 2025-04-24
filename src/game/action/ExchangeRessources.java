@@ -15,8 +15,9 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
     private ListChooser<Ressource> lc; 
 
     /**
-     * creates an exchange action between two resources
+     *  creates an exchange action between two resources
      * @param player the player who proceed the exchange
+     * @param lc the ressource lisChooser
      */
     public ExchangeRessources(T player, ListChooser<Ressource> lc) {
         super(player); 
@@ -47,6 +48,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
     /**
      * asks the player what type of  ressource he wants to exchange
      * @return the ressource
+     * @throws InvalidChoiceException if the choice is invalid
      */
     public Ressource askExchangeRessources() throws InvalidChoiceException {
         List<Ressource> ressources = new ArrayList<>();
@@ -83,7 +85,7 @@ public class ExchangeRessources <T extends Player> extends ActionManager<T> impl
     /**
      * first, asks the player which ressource he wants to exchange, then asks  which one he
      * wants te receive in exchange. If all the conditions are met, the exchange takes place.  
-     * @throws InvalidChoiceException 
+     * @throws InvalidChoiceException if the choice is invalid
      */
     @Override
     public void act(T player) throws NoMoreRessourcesException, InvalidChoiceException {

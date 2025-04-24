@@ -19,9 +19,10 @@ public class Camp extends Army{
 
     /**
      * creates a Camp on the given tile with a set number of warriors
-     *
      * @param tuile The tile where the Camp is placed
      * @param nbWarriors The number of warriors in the Camp
+     * @param player the player
+     * @throws CantBuildException if you can't build
      */
     public Camp(Earth tuile, int nbWarriors, PlayerAres player) throws CantBuildException{ 
         super(tuile, nbWarriors , player);

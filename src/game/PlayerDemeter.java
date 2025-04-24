@@ -56,7 +56,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * update the number of settled islands
-     * @param n
+     * @param n the number of island implemented
      */
     public void updateNbIsland(int n){
         this.implementedIsland = n; 
@@ -64,6 +64,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the number of points that the demeter player has
+     * @return the number of points
      */
     public int getPoints() {
         return this.points;
@@ -71,6 +72,7 @@ public class PlayerDemeter extends Player{
 
     /**
      * gets the number of thief that the demeter player has
+     * @return the number of thief
      */
     public int getNbThief(){
         return this.nbThief;
@@ -175,9 +177,9 @@ public class PlayerDemeter extends Player{
     /**
      * fills the actionsDemeter attributes with all the actions for this game
      * if option is 0 the actions will be in interactive mode, random otherwise
-     * @param board
-     * @param option
-     * @param players
+     * @param board the board
+     * @param option 0 for interactive, whatever bit zero for random
+     * @param players the players
      */
     public void createActions(Board board, int option, List<PlayerDemeter> players){
         ListChooser<Earth> lcEarth= null; 
@@ -203,9 +205,10 @@ public class PlayerDemeter extends Player{
 
     /**
      * excute the action of the demeter player
-     * @param board
+     * @param board the board
      * @param option if option is 0 then we create a interactive actions List, otherwise the actions will be automatic
-     * @throws IOException
+     * @throws IOException exception
+     * @throws InvalidChoiceException if the choice is not valid
      */
     public void act(Board board, int option) throws IOException, InvalidChoiceException {
         ListChooser<Action<PlayerDemeter>> lc= null;
@@ -277,8 +280,8 @@ public class PlayerDemeter extends Player{
 
     /**
      * places a farm for this player on a random tile
-     * @param board
-     * @param lc
+     * @param board the board
+     * @param lc the listchooser
      * @throws CantBuildException if you can't build
      * @throws NoMoreRessourcesException if you don't have enough ressources
      * @throws InvalidChoiceException if the choice is invalid

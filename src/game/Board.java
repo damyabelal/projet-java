@@ -58,7 +58,7 @@ public int getHeight(){
 
 /**
  * returns the tile at the given position
- * @param pos
+ * @param pos the position
  * @return the tile at the given position
  */
 public Tuile getTile(Position pos){

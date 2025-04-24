@@ -36,9 +36,10 @@ public class BuildPort <T extends Player > extends ActionManager<T> implements A
         return "Build a port => cost: " + this.cost; 
     }
 
-
-    /** asks the player on which tile they want to build the port on
+    /**
+     * asks the player on which tile they want to build the port on
      * @return the tile chosen play the player to build the port on
+     * @throws InvalidChoiceException if the choice is invalid
      */
     public Earth askCoordinate() throws InvalidChoiceException {
     List<Earth> options = this.board.coastalTiles();

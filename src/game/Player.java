@@ -65,7 +65,7 @@ public class Player {
 
     /**
      * adds the given tile to the player's list of tiles
-     * @param tile
+     * @param tile the tile
      */
     public void addTile(Earth tile) {
         if(!this.playerTiles.contains(tile)){
