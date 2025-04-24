@@ -1,7 +1,10 @@
 package game.action;
 import game.PlayerDemeter;
-import game.NoMoreRessourcesException;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Ressource;
+import game.util.NoMoreRessourcesException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +17,6 @@ public class ExchangeRessourcesTest {
     @BeforeEach
     void setUp() {
         player = new PlayerDemeter("Demeter");
-        
     }
 
     /**
@@ -29,7 +31,7 @@ public class ExchangeRessourcesTest {
         int beforeWood = player.getRessourceAmount(Ressource.WOOD);
         int beforeOre = player.getRessourceAmount(Ressource.ORE);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -54,7 +56,7 @@ public class ExchangeRessourcesTest {
     void SameRessourceExchangeShouldThrowException() {
         player.addRessource(Ressource.WOOD, 3);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;
@@ -76,7 +78,7 @@ public class ExchangeRessourcesTest {
     void NotEnoughResourcesShouldThrowException() {
         player.addRessource(Ressource.WOOD, 2);
 
-        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player) {
+        ExchangeRessources<PlayerDemeter> testAction = new ExchangeRessources<>(player, new FixedIndexChooser<>(1)) {
             @Override
             public Ressource askExchangeRessources() {
                 return Ressource.WOOD;

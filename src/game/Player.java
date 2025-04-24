@@ -2,6 +2,7 @@ package game;
 
 import java.util.*;
 import game.tuile.building.*;
+import game.util.NoMoreRessourcesException;
 import game.tuile.*;
 
 public class Player {
@@ -37,7 +38,7 @@ public class Player {
 
     /**
      * gets the ports of this player
-     * @return List<Ports> the ports of the player
+     * @return the ports of the player
      */
     public List<Port> getPorts(){
         return this.ports;
@@ -60,9 +61,11 @@ public class Player {
         return this.playerTiles;
     }
 
+    
+
     /**
      * adds the given tile to the player's list of tiles
-     * @param tile
+     * @param tile the tile
      */
     public void addTile(Earth tile) {
         if(!this.playerTiles.contains(tile)){
@@ -71,8 +74,8 @@ public class Player {
     }
     /**
      * returns the earth at the given position
-     * @param x 
-     * @param y
+     * @param x the x coordinate
+     * @param y the y coordinate
      * @return the earth at (x,y) or null if not found
      */
     public Earth getEarth(int x,int y){
@@ -105,7 +108,7 @@ public class Player {
      * removes the given amount of the give type of resource from the player's stock
      * @param ressource resource to remove
      * @param nb amount to remove
-     * @exception NoMoreRessourcesException
+     * @exception NoMoreRessourcesException if you don't have enough ressources
      */
     public void removeRessource(Ressource ressource, int nb) throws NoMoreRessourcesException{
         if ((ressources.getOrDefault(ressource, 0) - nb)<0 ){
@@ -131,10 +134,10 @@ public class Player {
 
 
     /**
-    * returns the amount of the given ressource the player owns
-    * @param resource the ressource type
-    * @return the amount of the ressource
-    */
+     *  returns the amount of the given ressource the player owns
+     * @param resource the ressource
+     * @return the amount of the ressource
+     */
     public int getRessourceAmount(Ressource resource) {
         return this.ressources.getOrDefault(resource, 0);
     }

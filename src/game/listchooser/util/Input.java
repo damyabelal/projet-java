@@ -4,7 +4,6 @@ import java.util.Scanner;
 /**
  * A utility class for entering strings or integers on standard input
  */
-
 public class Input {
 	
 	private Scanner scanner; 
@@ -26,11 +25,10 @@ public class Input {
 		return this.scanner.next();
 	}
 
-	
 	/**
 	 * Allows entry of an int on standard input
-	 * 
 	 * @return the int entered
+	 * @throws java.io.IOException exception
 	 */
 	public static int readInt() throws java.io.IOException {
 	   return new Input().localReadInt();

@@ -10,12 +10,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import game.Board;
-import game.CantBuildException;
-import game.NoMoreRessourcesException;
 import game.PlayerAres;
+import game.listchooser.FixedIndexChooser;
+
 import game.tuile.Earth;
 import game.tuile.Ressource;
 import game.tuile.Sea;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
 public class  BuildPortTest{
@@ -28,7 +31,7 @@ public class  BuildPortTest{
     void setUp(){
         player = new PlayerAres("Marco");
         board= new Board(5, 5); 
-        action= new BuildPort<PlayerAres>(player, board); 
+        action= new BuildPort<PlayerAres>(player, board, new FixedIndexChooser<>(3)); 
        
        // giving the player enough ressources to be able to build a port
         player.addRessource(Ressource.WOOD, 1);
@@ -73,7 +76,7 @@ public class  BuildPortTest{
     }
 
     @Test
-    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException{
+    void BuildTest() throws NoMoreRessourcesException, CantBuildException, IOException, InvalidChoiceException{
         assertTrue(player.getPorts().isEmpty());
         action.act(player);
         assertTrue(! player.getPorts().isEmpty());

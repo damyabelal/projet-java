@@ -3,8 +3,10 @@ package game.tuile.building;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import game.CantBuildException;
+import game.PlayerAres;
 import game.tuile.Field;
+import game.util.CantBuildException;
+import game.util.NoMoreRessourcesException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,13 +15,16 @@ class CampTest{
 
   private Camp camp;
   private Field tuile;
-  
+  private Army army; 
+  private PlayerAres player; 
 
  @BeforeEach
- void setUp() throws CantBuildException{
+ void setUp() throws CantBuildException, NoMoreRessourcesException{
+  player= new PlayerAres("c"); 
   tuile = new Field();
-  camp = new Camp(tuile ,8, null);
-
+  army = new Army(tuile ,5, player);
+  camp = army.upGradeToCampWithWarriors(player); 
+  camp.addWarriors(3);
  }
 /*
  * test the getAdditionalWarriors method : 

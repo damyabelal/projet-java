@@ -1,12 +1,18 @@
 package game.tuile;
+
 import game.tuile.building.*;
 
-
+/**
+ * A Earth Tile
+ */
 public class Earth extends Tuile {
 
-    protected Ressource ressource;
-    protected String symbol;
-    protected Building building; 
+    protected Ressource ressource; // the ressource the tile produce
+    protected String symbol; // the symbol of the tile
+    protected Building building; //if a tile have one 
+   
+
+
 
     /** 
      * initializes a new Earth tile with a given ressource and symbol
@@ -18,6 +24,9 @@ public class Earth extends Tuile {
         this.ressource = ressource;
         this.symbol = symbol;
         this.building = null; // genre au debut on a aucun batiment dessus
+        
+
+        
     }
 
     /** 
@@ -28,7 +37,7 @@ public class Earth extends Tuile {
         return this.ressource;
     }
 
-    /** 
+    /**
      * checks if this tile has a building
      * @return true if there is a building false otherwise
      */

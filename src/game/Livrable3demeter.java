@@ -1,17 +1,21 @@
 package game;
 
-import game.action.BuildFarm;
 import game.action.BuildPort;
-import game.action.BuyThief;
 import game.action.ExchangeRessources;
-import game.action.ExchangeRessourcesPort;
-import game.action.UpgradeFarm;
+import game.action.actionDemeter.BuildFarm;
+import game.action.actionDemeter.BuyThief;
+import game.action.actionDemeter.ExchangeRessourcesPort;
+import game.action.actionDemeter.UpgradeFarm;
+import game.listchooser.RandomListChooser;
 import game.tuile.Earth;
 import game.tuile.Ressource;
+import game.util.CantBuildException;
+import game.util.InvalidChoiceException;
+import game.util.NoMoreRessourcesException;
 
 public class Livrable3demeter {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CantBuildException, NoMoreRessourcesException, InvalidChoiceException {
         if (args.length < 2) {
             System.out.println("you have to give two positive setting");
             return;
@@ -51,7 +55,7 @@ public class Livrable3demeter {
         //1. Build a farm
         System.out.println("===> demeter "+ demeter.getResources()+ "veut construire une ferme");
         try {
-            BuildFarm buildFarmAction = new BuildFarm(board, demeter);
+            BuildFarm buildFarmAction = new BuildFarm(board, demeter, new RandomListChooser<>());
             buildFarmAction.act(demeter);
         } catch (Exception e) {
             System.out.println("An error occurred while building the farm: " + e.getMessage());
@@ -62,7 +66,7 @@ public class Livrable3demeter {
 
         //2. Upgrade a farm to an exploitation
         System.out.println("===> demeter "+ demeter.getResources()+ " veut faire évoluer une ferme en une exploitation");
-        UpgradeFarm upgradeFarmAction = new UpgradeFarm(demeter);
+        UpgradeFarm upgradeFarmAction = new UpgradeFarm(demeter, new RandomListChooser<>());
         try {
             if (! demeter.getFarms().isEmpty()) {
                 upgradeFarmAction.act(demeter);
@@ -78,10 +82,10 @@ public class Livrable3demeter {
         //3. build a port 
         System.out.println("===> demeter "+ demeter.getResources()+ " veut construire un port");
         try {
-            BuildPort<PlayerDemeter> buildPortAction = new BuildPort<PlayerDemeter >(demeter, board);
+            BuildPort<PlayerDemeter> buildPortAction = new BuildPort<PlayerDemeter >(demeter, board, new RandomListChooser<>());
             buildPortAction.act(demeter);
-        } catch (Exception e) {
-            System.out.println("An error occurred while building the port: " + e.getMessage());
+        } catch (CantBuildException e) {
+            throw new CantBuildException("An error occurred while building the port: " + e.getMessage());
         }
 
         System.out.println("\n"); 
@@ -89,7 +93,7 @@ public class Livrable3demeter {
 
         //4. exchange 3 resources for 1
         System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 3 ressources contre une");
-        ExchangeRessources<PlayerDemeter> exchangeRessourcesAction = new ExchangeRessources<PlayerDemeter>(demeter);
+        ExchangeRessources<PlayerDemeter> exchangeRessourcesAction = new ExchangeRessources<PlayerDemeter>(demeter, new RandomListChooser<>());
         try {
             exchangeRessourcesAction.act(demeter);
         } catch (Exception e) {
@@ -101,7 +105,7 @@ public class Livrable3demeter {
 
         //5. exchange 2 resources for 1 with his port
         System.out.println("===> demeter "+ demeter.getResources()+ " veut échanger 2 ressources contre une grâce à son port");
-        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(demeter);
+        ExchangeRessourcesPort exchangeRessourcesPortAction = new ExchangeRessourcesPort(demeter, new RandomListChooser<>());
         try {
             exchangeRessourcesPortAction.act(demeter);
         } catch (Exception e) {

@@ -1,11 +1,10 @@
 package game.listchooser;
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-import game.Board;
-import game.util.Position; 
-
+/** 
+ * allow the player to be given a random choice 
+*/
 public class RandomListChooser<T> implements ListChooser<T>{
 
     private Random random = new Random();
@@ -26,48 +25,26 @@ public class RandomListChooser<T> implements ListChooser<T>{
         if (list.isEmpty()) {
 			return null;
 		}
-		System.out.println(msg);
-		int index = 0;
-		for (T element : list) {
-            if (index==0){
-                System.out.print("[" + (index) + " - " + element);
-                index++; 
-            }
-            else{
-			    System.out.print(", " + (index++) + " - " + element);
-            }
-		}
-		System.out.println("]");
-        int i= random.nextInt(list.size()); 
-        //while (i==0){
-        //    i= random.nextInt(list.size()); 
-        //}
-		return list.get(i);
-    }
-
-    /**
-     * asks the player on which tile he wants to act 
-     * @param msg the prompt message
-     * @param board the board for this game
-     * @return the choosen position
-     * @throws IOException
-     */
-    public Position chooseCoordinate(String msg, Board board) throws IOException {
-        int x;
-        int y; 
-        Position pos = null;
-        System.out.println(msg); 
-        x= random.nextInt(board.getWidth());
-        y= random.nextInt(board.getHeight());
-        pos= new Position(x,y);
-        //c'est fait de manière un peu bête peut être revoir ca plus tard
-        while (!board.isValidPosition(pos) || !board.isBuildable(pos)){
-            x= random.nextInt(board.getWidth());
-            y= random.nextInt(board.getHeight());
-            pos= new Position(x,y);
+/** 
+		if (list.size() == 1) {
+            return list.get(0);
         }
-		return pos;
-	}
+	*/	
+		System.out.println(msg);
+		System.out.println("      0 - none");
+		int index = 1;
+		for (T element : list) {
+			System.out.println("      " + (index++) + " - " + element);
+		}
+		System.out.println("            choice ?");
+		
+        int i= random.nextInt(list.size()); 
+		if (i==0){
+			return null; 
+		}
+
+		return list.get(i - 1);
+    }
     
 
 }

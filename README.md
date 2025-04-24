@@ -444,9 +444,126 @@ Les principaux objectifs du livrable 3 ont été réalisés, les actions de base
 
 ## Livrable 4
 
+### Les commandes  : 
+
+### 1 Compilation des sources 
+
+make cls
+
+### 2.1 Exécution du livrable 3 Ares/Random :
+
+java -classpath classes game.Ares a b c 
+java -classpath classes game.AresRandom a b c 
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+### 2.2 Exécution du livrable 3 Demeter/Random :
+
+java -classpath classes game.Demeter a b c
+java -classpath classes game.DemeterRandom a b c
+
+ou a,b et c seront saisie par l'utilisateur.
+a et b représentent la hauteur et la largeur du plateau.
+c représente le nombre de joueurs. 
+
+### 3 Génération de la documentation Javadoc pour les packages game.tuile, game.util, game, game.building, game.action: 
+
+make doc
+
+### 4.1 Compilation des tests du package game.tuile
+
+javac -classpath junit-console.jar:classes test/game/tuile/*.java
+
+### 4.2 Compilation des tests du package game.util
+
+javac -classpath junit-console.jar:classes test/game/util/*.java
+
+### 4.3 Compilation des tests du package game.tuile.building
+
+javac -classpath junit-console.jar:classes test/game/tuile/building*.java
+
+### 4.4 Compilation des tests du package game.action
+
+javac -classpath junit-console.jar:classes test/game/action/*.java
+
+### 5 Execution des tests
+
+java -jar junit-console.jar -classpath test:classes -scan-classpath
+
+### 6 Créer les Archives JAR
+
+make ares.jar
+
+make demeter.jar
+
+make aresRandom.jar
+
+make demeterRandom.jar
+
+### 7 Exécuter les Archives JAR
+
+java -jar ares.jar
+
+java -jar demeter.jar
+
+java -jar aresRandom.jar
+
+java -jar demeterRandom.jar
+
+### 8 Nettoyer le dossier classes
+
+make clean
+
+### Diagramme UML pour le Livrable 4 :
+https://lucid.app/lucidchart/5902e73f-4322-4aba-922a-fc3bb0dea9c7/edit?viewport_loc=-1498%2C-1031%2C3673%2C1549%2CHWEp-vi-RSFO&invitationId=inv_0bf26132-d019-489c-bff7-d16ef601bbf9
+### Affichage du plateau: 
+
+
+#### exemple d’affichage du plateau de dimension 10x10 :
+
+ Légende des tuiles :
+
+ `rgb(12,18,88)` Sea 
+
+ `rgb(13,88,12)` Forest
+
+ `rgb(240, 179, 50)` Pasture
+
+ `rgb(156,147,175)` Mountain
+
+ `rgb(136,96,26)` Field
+
+ Légende des Batiments :
+
+ a : Army
+
+ c : Camp
+
+ f : Farm
+
+ e : Exploitation
+
+ p : Port
+
+![exemple d'affichage avec a =10 et b=10 :](/index/Board.png "")
+
+
 ### Atteinte des objectifs
+Les objectifs de ce livrable ont été atteint, la boucle de jeu est fonctionnel, on peut donc jouer à Ares et Demeter de manière interactive mais aussi en mode de jeu "random".
+C'est à dire qu'après avoir donnée la dimension du plateau et le nombre de joueur, le jeu se déroule seul, à base d'actions aléatoire.
+Lors de la partie, uniquement les actions possible à réaliser sont proposer au joueur, si un joueur commence une action et finalement décide de l'annuler en tapant "0" correspondant à none (par exemple su le choix de combien de guerriers placer ou sur quelle tuile construire...) on concidère qu'il soufaite passer son tour. 
+De plus, dans toutes les actions de type "build" on proposeras les tuiles sur lesquelles on peut construire uniquement (avec l'ajout de la condition "près de la mer" pour la construction du port).
+Si l'on veut ajouter des guerriers à une armées on ne pourras pas dépasser un effectif de 5. Une fois l'armée à 5 on pourras proposer de la faire évoluer en camps et enfin mettre plus de 5 guerriers. 
+On as pris la décision de découper le choix de l'évolution d'une armée en camp en deux actions:
+- UpgradeWithWarriors
+- UpgradeWithRessources
+afin de faciliter la prise de décission du joueur mais aussi de faire en sorte qu'on sache ce que l'on échange sans porter à confusion. 
 
 ### Difficultés restant à résoudre
+Tout est fonctionnel cependant on rencontre des difficultés avec l'exécution de la doc. Effectivement les types du genre "List<List<int>>" semble poser des problèmes...
+Cette section peut évoluer avant le rendu final selon ce que l'on trouve pour régler ce probléme. 
 
 # Journal de bord
 
@@ -667,15 +784,38 @@ liste des réflexions et choses à modifier du livrable 2:
 ## Semaine 11
 
 ### Ce qui a été réalisé
+On as corriger quelques test et discuter sur la mise en forme du prochain livrable.
+Entretien sur le livrable3, petit compte rendu ci dessous: 
+
+- faire des sous-package actionDemeter et actionAres
+- régler le display du plateau (il y a un petit décallage dans l'affichage)
+- vérification sur les échange de ressources posible
+- ne pas utiliser utiliser instanceof dans l'échange avec le port 
+- division de upgrade Army en upgradeWithWarriors et upgradeWithRessources
+- mettre un type paramétré pour le player dans ActionManager (correction dans AskWarrior)
+- remplacé certaines exception par nos propres exception 
+- suppression de la méthode chooseCoordinate de ListChooser
+- ajouter listChooser en paramètre des actions (pour pouvoir choisir la manière interactive ou random)
 
 ### Difficultés rencontrées
+Certains test ne passait plus dans building (ArmyTest), il sont maintenant de nouveau fonctionnels.
+
 
 ### Objectifs pour la semaine
+On voudrais amélirorer l'affichage, faire les corrections necessaire suite à ce qui as été dit à l'entretien et commencé à écrire les boucles de jeu. 
 
 ## Semaine 12
 
 ### Ce qui a été réalisé
+On as bien avancé sur le dernier livrable, les deux jeux sont globalement fonctionnel, dans l'ensemble la réflexion et la programmation s'est déroulé plutôt rapidement. Aujourd'hui il reste presque plus de bug. On as décidé de proposer aux joueurs uniquement les actions qu'ils pouvait effectué. Cela as permit de rendre les version random plus fluide, de cette manière les joueurs random ne peuvent pas s'entêter sur un choix qui ne passe pas. On as aussi décidé de mettre une limite de tour avant de déclarer une égalité. Pour le moment cette limite est fixé à 100. 
 
 ### Difficultés rencontrées
+On as eu du mal à implémenter les objectifs pour les joueur d'Ares c'est pourquoi on as créer une classe à part entière, ca rend la vérification et l'attribution plus fluide. On as eu aussi un problème avec l'action d'attaque, un joueur pouvait s'attquer lui même et gagner un duel contre lui même. 
 
 ### Objectifs pour finaliser le projet
+AUjourd'hui il nous reste à:
+- vérifier que chaque action est bien fonctionnel et réalise ce qu'elle doit faire
+- Que le jeu est gagnabla
+- Faire l'UML complet
+- Finir les Tests
+- et faire des corrections dans la doc

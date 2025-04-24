@@ -10,14 +10,19 @@ import game.tuile.Field;
 import game.tuile.Ressource;
 import game.tuile.building.Exploitation;
 import game.tuile.building.Farm;
+import game.util.NoMoreRessourcesException;
 import game.util.Position;
 
 
 
 
 public class PlayerTest {
+
+
     private Player player;
     private Earth earth;
+
+
 
     @BeforeEach
     // Create a player and a field tile
@@ -26,12 +31,18 @@ public class PlayerTest {
         earth = new Field();
     }
 
+
+
+
     // Test the player's initialization
     @Test
     void testPlayerInit() {
         assertEquals("TestPlayer", player.getName());
         assertEquals(0, player.getResources().get(Ressource.WOOD)); // puisque la tuile est une field
     }
+
+
+
 
     // test the player adding resources
     @Test
@@ -40,6 +51,10 @@ public class PlayerTest {
         assertEquals(10, player.getResources().get(Ressource.WOOD));
     }
 
+
+
+
+
     // test the player removing resources
     @Test
     void testPlayerRemoveResources() throws NoMoreRessourcesException {
@@ -47,6 +62,9 @@ public class PlayerTest {
         player.removeRessource(Ressource.WOOD, 5);
         assertEquals(5, player.getResources().get(Ressource.WOOD));
     }
+
+
+
 
     // test the player has enough resources
     @Test
@@ -57,6 +75,8 @@ public class PlayerTest {
         assertTrue(player.hasEnoughRessources(farm));
     }
 
+
+
     // test the player does not have enough resources
     @Test
     void testHasEnoughRessourcesFail() {
@@ -66,11 +86,17 @@ public class PlayerTest {
         assertFalse(player.hasEnoughRessources(exploitation));
     }
 
+
+
     @Test
     void testAddTile() {
         player.addTile(earth);
         assertTrue(player.getTiles().contains(earth));
     }
+
+
+
+
 
     @Test
     void testGetEarthByPosition() {
@@ -79,6 +105,9 @@ public class PlayerTest {
         Earth result = player.getEarth(2, 3);
         assertEquals(earth, result);
     }
+
+
+
 
     @Test
     void testAddPort() {
@@ -89,4 +118,66 @@ public class PlayerTest {
         assertTrue(player.getPorts().contains(port)); 
         assertTrue(player.getTiles().contains(earth)); 
     }
+
+    @Test
+    void testRemoveRessourceThrowsExceptionIfNotEnough() {
+        assertThrows(NoMoreRessourcesException.class, () -> {player.removeRessource(Ressource.WOOD, 1);});
+    }
+
+    @Test
+    void testGetRessourceAmountReturnsZeroIfMissing() {
+        assertEquals(0, player.getRessourceAmount(Ressource.SHEEP)); // par defaut ,0
+    }
+
+
+    @Test
+    void testAddTileDoesNotDuplicate() {
+        player.addTile(earth);
+        player.addTile(earth);
+        assertEquals(1, player.getTiles().size()); // doit rester à 1
+    }
+
+    @Test
+    void testGetEarthReturnsNullWhenNotFound() {
+        Earth result = player.getEarth(99, 99); // position absente
+        assertNull(result);
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

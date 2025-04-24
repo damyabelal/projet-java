@@ -2,6 +2,7 @@ package game;
 import java.util.List;
 import game.tuile.building.*;
 import game.tuile.*;
+import game.util.CantBuildException;
 import game.util.Position;
 
 public class Livrable2 {
